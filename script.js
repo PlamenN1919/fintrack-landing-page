@@ -1301,4 +1301,344 @@ function initFooterAnimations() {
     
     footerObserver.observe(footer);
 }
+
+// ===================================
+// HELP CENTER MODAL FUNCTIONS
+// ===================================
+
+function openHelpCenter() {
+    const modal = document.getElementById('helpCenterModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on search input
+        setTimeout(() => {
+            const searchInput = document.getElementById('helpSearch');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        }, 300);
+        
+        // Track event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'help_center_opened', {
+                'event_category': 'engagement',
+                'event_label': 'footer_link'
+            });
+        }
+    }
+}
+
+function closeHelpCenter() {
+    const modal = document.getElementById('helpCenterModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Reset search
+        const searchInput = document.getElementById('helpSearch');
+        if (searchInput) {
+            searchInput.value = '';
+            filterHelpContent('');
+        }
+        
+        // Close all categories
+        const categories = modal.querySelectorAll('.help-category');
+        categories.forEach(category => {
+            category.classList.remove('active');
+        });
+    }
+}
+
+function toggleHelpCategory(categoryElement) {
+    categoryElement.classList.toggle('active');
+    
+    // Close other categories (optional - remove if you want multiple open)
+    const allCategories = document.querySelectorAll('.help-category');
+    allCategories.forEach(cat => {
+        if (cat !== categoryElement && cat.classList.contains('active')) {
+            cat.classList.remove('active');
+        }
+    });
+}
+
+// Help Center Search Functionality
+function initHelpCenterSearch() {
+    const searchInput = document.getElementById('helpSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            filterHelpContent(e.target.value);
+        });
+        
+        // Close on Escape key
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeHelpCenter();
+            }
+        });
+    }
+}
+
+function filterHelpContent(searchTerm) {
+    const searchLower = searchTerm.toLowerCase().trim();
+    const categories = document.querySelectorAll('.help-category');
+    const helpItems = document.querySelectorAll('.help-item');
+    
+    if (!searchTerm) {
+        // Show all if search is empty
+        categories.forEach(cat => {
+            cat.style.display = '';
+        });
+        helpItems.forEach(item => {
+            item.style.display = '';
+        });
+        return;
+    }
+    
+    let hasResults = false;
+    
+    categories.forEach(category => {
+        const categoryTitle = category.querySelector('h3').textContent.toLowerCase();
+        const items = category.querySelectorAll('.help-item');
+        let categoryHasMatch = false;
+        
+        items.forEach(item => {
+            const itemTitle = item.querySelector('h4').textContent.toLowerCase();
+            const itemContent = item.querySelector('p').textContent.toLowerCase();
+            
+            if (itemTitle.includes(searchLower) || itemContent.includes(searchLower)) {
+                item.style.display = '';
+                categoryHasMatch = true;
+                hasResults = true;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Show/hide category based on matches
+        if (categoryTitle.includes(searchLower) || categoryHasMatch) {
+            category.style.display = '';
+            if (categoryHasMatch) {
+                category.classList.add('active');
+            }
+        } else {
+            category.style.display = 'none';
+        }
+    });
+    
+    // Show "no results" message if needed
+    let noResultsMsg = document.querySelector('.help-no-results');
+    if (!hasResults && searchTerm) {
+        if (!noResultsMsg) {
+            noResultsMsg = document.createElement('div');
+            noResultsMsg.className = 'help-no-results';
+            noResultsMsg.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px;">
+                    <i class="fas fa-search" style="font-size: 48px; color: rgba(44, 44, 44, 0.3); margin-bottom: 16px;"></i>
+                    <h3 style="color: rgba(44, 44, 44, 0.7); margin: 0 0 8px 0;">Няма намерени резултати</h3>
+                    <p style="color: rgba(44, 44, 44, 0.5); margin: 0;">Опитайте с различни ключови думи или се свържете с нас</p>
+                </div>
+            `;
+            const helpContent = document.querySelector('.help-center-content');
+            if (helpContent) {
+                helpContent.appendChild(noResultsMsg);
+            }
+        }
+        noResultsMsg.style.display = 'block';
+    } else if (noResultsMsg) {
+        noResultsMsg.style.display = 'none';
+    }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('helpCenterModal');
+        if (modal && modal.classList.contains('active')) {
+            closeHelpCenter();
+        }
+    }
+});
+
+// ===================================
+// CONTACT MODAL FUNCTIONS
+// ===================================
+
+function openContactModal() {
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on first input
+        setTimeout(() => {
+            const firstInput = document.getElementById('contactName');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }, 300);
+        
+        // Track event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'contact_modal_opened', {
+                'event_category': 'engagement',
+                'event_label': 'contact_form'
+            });
+        }
+    }
+}
+
+function closeContactModal() {
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Reset form
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.reset();
+            // Remove any error states
+            const errorMessages = form.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.remove());
+            const errorInputs = form.querySelectorAll('.error');
+            errorInputs.forEach(input => input.classList.remove('error'));
+        }
+    }
+}
+
+function submitContactForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = form.querySelector('.contact-submit-btn');
+    const originalText = submitBtn.innerHTML;
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('contactName').value.trim(),
+        email: document.getElementById('contactEmail').value.trim(),
+        subject: document.getElementById('contactSubject').value,
+        message: document.getElementById('contactMessage').value.trim()
+    };
+    
+    // Validate
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        showFormError('Моля, попълнете всички задължителни полета.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showFormError('Моля, въведете валиден email адрес.');
+        return;
+    }
+    
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Изпращане...';
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+        // Success
+        showFormSuccess('Съобщението ви е изпратено успешно! Ще се свържем с вас скоро.');
+        
+        // Reset form
+        form.reset();
+        
+        // Close modal after delay
+        setTimeout(() => {
+            closeContactModal();
+        }, 2000);
+        
+        // Track conversion
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'contact_form_submitted', {
+                'event_category': 'conversion',
+                'event_label': formData.subject
+            });
+        }
+    }, 1500);
+}
+
+function showFormError(message) {
+    // Remove existing error messages
+    const existingErrors = document.querySelectorAll('.form-error-message');
+    existingErrors.forEach(err => err.remove());
+    
+    // Create error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'form-error-message';
+    errorDiv.style.cssText = `
+        background: rgba(255, 107, 107, 0.1);
+        border: 2px solid rgba(255, 107, 107, 0.3);
+        color: #ff6b6b;
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    `;
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    
+    const form = document.getElementById('contactForm');
+    form.insertBefore(errorDiv, form.firstChild);
+    
+    // Scroll to error
+    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showFormSuccess(message) {
+    // Remove existing messages
+    const existingMessages = document.querySelectorAll('.form-success-message, .form-error-message');
+    existingMessages.forEach(msg => msg.remove());
+    
+    // Create success message
+    const successDiv = document.createElement('div');
+    successDiv.className = 'form-success-message';
+    successDiv.style.cssText = `
+        background: rgba(76, 175, 80, 0.1);
+        border: 2px solid rgba(76, 175, 80, 0.3);
+        color: #4CAF50;
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    `;
+    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    
+    const form = document.getElementById('contactForm');
+    form.insertBefore(successDiv, form.firstChild);
+    
+    // Scroll to success message
+    successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Close contact modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const contactModal = document.getElementById('contactModal');
+        const helpModal = document.getElementById('helpCenterModal');
+        
+        if (contactModal && contactModal.classList.contains('active')) {
+            closeContactModal();
+        } else if (helpModal && helpModal.classList.contains('active')) {
+            closeHelpCenter();
+        }
+    }
+});
+
+// Initialize help center when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initHelpCenterSearch();
+});
  
