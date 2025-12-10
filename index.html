@@ -646,111 +646,236 @@
 
     <!-- How It Works Section -->
     <section class="how-it-works-section section" id="how-it-works">
-        <div class="container">
-            <!-- Section Header -->
-            <div class="how-header">
-                <div class="how-badge">⚡ ЛЕСЕН СТАРТ</div>
-                <h2 class="how-title">КАК РАБОТИ FINTRACK</h2>
-                <p class="how-subtitle">
-                    Започнете да спестявате за по-малко от 5 минути
-                </p>
-            </div>
+        <!-- Animated Background Elements -->
+        <div class="how-bg-shapes">
+            <div class="how-shape how-shape-1"></div>
+            <div class="how-shape how-shape-2"></div>
+            <div class="how-shape how-shape-3"></div>
+            <div class="how-shape how-shape-4"></div>
+        </div>
 
-            <!-- Steps Timeline -->
-            <div class="steps-timeline">
+        <!-- Progress Indicator -->
+        <div class="how-progress-container">
+            <div class="how-progress-bar">
+                <div class="how-progress-fill"></div>
+            </div>
+            <div class="how-progress-steps">
+                <span class="progress-step active" data-step="1">1</span>
+                <span class="progress-step" data-step="2">2</span>
+                <span class="progress-step" data-step="3">3</span>
+                <span class="progress-step" data-step="4">4</span>
+                <span class="progress-step" data-step="5">5</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Interactive Steps Grid -->
+            <div class="steps-grid">
                 <!-- Step 1 -->
-                <div class="step-item">
-                    <div class="step-number">
-                        <span>01</span>
+                <div class="step-card" data-step="1">
+                    <div class="step-card-glow"></div>
+                    <div class="step-card-border"></div>
+                    <div class="step-number-wrapper">
+                        <div class="step-number-pulse"></div>
+                        <div class="step-number">01</div>
                     </div>
-                    <div class="step-icon gradient-purple">
-                        <i class="fas fa-download"></i>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon gradient-purple">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="step-icon-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
                     </div>
                     <div class="step-content">
                         <h3 class="step-title">Изтегли приложението</h3>
                         <p class="step-description">
                             Налично безплатно в App Store и Google Play. Инсталацията отнема само 30 секунди.
                         </p>
-                        <span class="step-time">⏱️ 30 секунди</span>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                30 секунди
+                            </span>
+                            <div class="step-visual">
+                                <div class="visual-bar" style="--width: 20%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="step-item">
-                    <div class="step-number">
-                        <span>02</span>
+                <div class="step-card" data-step="2">
+                    <div class="step-card-glow"></div>
+                    <div class="step-card-border"></div>
+                    <div class="step-number-wrapper">
+                        <div class="step-number-pulse"></div>
+                        <div class="step-number">02</div>
                     </div>
-                    <div class="step-icon gradient-green">
-                        <i class="fas fa-user-plus"></i>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon gradient-green">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="step-icon-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
                     </div>
                     <div class="step-content">
                         <h3 class="step-title">Създай профил</h3>
                         <p class="step-description">
                             Регистрирай се с email или социални мрежи. Бърза и сигурна регистрация.
                         </p>
-                        <span class="step-time">⏱️ 1 минута</span>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                1 минута
+                            </span>
+                            <div class="step-visual">
+                                <div class="visual-bar" style="--width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="step-item">
-                    <div class="step-number">
-                        <span>03</span>
+                <div class="step-card" data-step="3">
+                    <div class="step-card-glow"></div>
+                    <div class="step-card-border"></div>
+                    <div class="step-number-wrapper">
+                        <div class="step-number-pulse"></div>
+                        <div class="step-number">03</div>
                     </div>
-                    <div class="step-icon gradient-blue">
-                        <i class="fas fa-cog"></i>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon gradient-blue">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="step-icon-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
                     </div>
                     <div class="step-content">
                         <h3 class="step-title">Настрой бюджета си</h3>
                         <p class="step-description">
                             Въведи месечния си доход и основни категории разходи. AI ще ти помогне с препоръки.
                         </p>
-                        <span class="step-time">⏱️ 1 минута</span>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                1 минута
+                            </span>
+                            <div class="step-visual">
+                                <div class="visual-bar" style="--width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="step-item">
-                    <div class="step-number">
-                        <span>04</span>
+                <div class="step-card" data-step="4">
+                    <div class="step-card-glow"></div>
+                    <div class="step-card-border"></div>
+                    <div class="step-number-wrapper">
+                        <div class="step-number-pulse"></div>
+                        <div class="step-number">04</div>
                     </div>
-                    <div class="step-icon gradient-orange">
-                        <i class="fas fa-chart-pie"></i>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon gradient-orange">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="step-icon-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
                     </div>
                     <div class="step-content">
                         <h3 class="step-title">Получи AI анализ</h3>
                         <p class="step-description">
                             Нашият AI анализира финансовите ти навици и създава персонализиран план за спестяване.
                         </p>
-                        <span class="step-time">⏱️ Автоматично</span>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-magic"></i>
+                                Автоматично
+                            </span>
+                            <div class="step-visual">
+                                <div class="visual-bar" style="--width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                 </div>
 
                 <!-- Step 5 -->
-                <div class="step-item">
-                    <div class="step-number">
-                        <span>05</span>
+                <div class="step-card step-card-featured" data-step="5">
+                    <div class="step-card-glow"></div>
+                    <div class="step-card-border"></div>
+                    <div class="step-number-wrapper">
+                        <div class="step-number-pulse"></div>
+                        <div class="step-number">05</div>
                     </div>
-                    <div class="step-icon gradient-pink">
-                        <i class="fas fa-rocket"></i>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon-bg"></div>
+                        <div class="step-icon gradient-pink">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="step-icon-particles">
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                            <span class="particle"></span>
+                        </div>
                     </div>
                     <div class="step-content">
                         <h3 class="step-title">Започни да спестяваш!</h3>
                         <p class="step-description">
                             Следи разходите си, получавай умни препоръки и гледай как спестяванията ти растат всеки ден.
                         </p>
-                        <span class="step-time">⏱️ Завинаги</span>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-infinity"></i>
+                                Завинаги
+                            </span>
+                            <div class="step-visual">
+                                <div class="visual-bar" style="--width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-success-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Готово!</span>
                     </div>
                 </div>
             </div>
 
             <!-- CTA -->
             <div class="how-cta">
-                <a href="#download" class="how-cta-btn">
-                    Започни сега безплатно
-                    <i class="fas fa-arrow-right"></i>
+                <a href="#download" class="download-pill-btn">
+                    <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
+                    <div class="pill-btn-circle">
+                        <i class="fas fa-download"></i>
+                    </div>
                 </a>
-                <p class="how-cta-note">Без кредитна карта • Без задължения</p>
             </div>
         </div>
     </section>
@@ -769,14 +894,18 @@
 
                 <div class="download-buttons">
                     <a href="#" class="download-btn ios">
-                        <i class="fab fa-apple"></i>
+                        <div class="download-btn-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
                         <div class="btn-text">
                             <span class="btn-small">Изтегли от</span>
                             <span class="btn-large">App Store</span>
                         </div>
                     </a>
                     <a href="#" class="download-btn android">
-                        <i class="fab fa-google-play"></i>
+                        <div class="download-btn-icon">
+                            <i class="fab fa-google-play"></i>
+                        </div>
                         <div class="btn-text">
                             <span class="btn-small">Вземи го от</span>
                             <span class="btn-large">Google Play</span>
