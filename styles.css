@@ -8413,15 +8413,59 @@ body {
 
 .fear-of-loss-section-new {
     min-height: 100vh;
-    background: url('./assets/backgrounds/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
     overflow: visible;
     padding: 60px 0 120px 0;
     display: flex;
     align-items: center;
+}
+
+.fear-of-loss-section-new::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('./assets/backgrounds/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+    z-index: 0;
+}
+
+.fear-of-loss-section-new .fear-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fear-spline-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    z-index: 2;
+    margin: 0 auto;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fear-spline-container spline-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 1;
+}
+
+.fear-spline-container spline-viewer canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 
@@ -8614,15 +8658,22 @@ body {
 .fear-brand-section {
     position: relative;
     z-index: 15;
-    max-width: 500px;
-    width: 500px;
-    margin-left: -400px;
-    margin-right: auto;
-    margin-top: -200px;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto !important;
+    margin-top: 0;
+    margin-left: calc(50% - 2%) !important;
+    transform: translateX(-50%) !important;
     opacity: 0;
-    animation: slideInLeft 1.2s ease-out 0.3s forwards;
-    padding-top: 40px;
-    text-align: left;
+    animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    padding: 40px 20px 0 20px;
+    text-align: center !important;
+    overflow: visible;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .fear-warning-badge {
@@ -8831,16 +8882,21 @@ body {
     color: #212529 !important;
     text-transform: uppercase !important;
     line-height: 1.0 !important;
-    margin-bottom: 20px !important;
-    margin-top: -60px !important;
+    margin: 0 auto 20px auto !important;
     opacity: 0;
-    animation: fadeInLeft 0.8s ease-out 0.8s forwards;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5) !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 8px !important;
-    text-align: left !important;
-    margin-left: -220px !important;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 .fear-title-line-1 {
@@ -8849,11 +8905,16 @@ body {
     color: #495057;
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-    width: 100% !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
     margin-bottom: 0px;
     line-height: 1.0 !important;
     white-space: nowrap;
-    text-align: left !important;
+    text-align: center !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 .fear-title-line-2 {
@@ -8866,11 +8927,16 @@ body {
     font-weight: 900;
     text-shadow: 0 0 40px rgba(255, 107, 107, 0.5);
     animation: dangerGlow 4s ease-in-out infinite alternate;
-    width: 100% !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
     margin-bottom: 0px;
     line-height: 1.0 !important;
     white-space: nowrap;
-    text-align: left !important;
+    text-align: center !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 .fear-title-line-3 {
@@ -8879,11 +8945,16 @@ body {
     color: #495057;
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-    width: 100% !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
     margin-bottom: 0;
     line-height: 1.0 !important;
     white-space: nowrap;
-    text-align: left !important;
+    text-align: center !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
 @keyframes dangerGlow {
@@ -8905,19 +8976,24 @@ body {
     color: #6c757d;
     line-height: 1.6;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
-    margin-bottom: 40px;
-    margin-left: -220px !important;
+    margin: 0 auto 40px auto !important;
+    max-width: 600px;
+    text-align: center !important;
     opacity: 0;
     animation: fadeInUpSubtle 0.8s ease-out 1.1s forwards;
+    display: block;
+    width: 100%;
 }
 
 /* Fear Statistics - Design Elements */
 .fear-stats-elements {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 25px;
     margin-top: 40px;
-    margin-left: -220px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 1.4s forwards;
 }
@@ -8953,28 +9029,6 @@ body {
 }
 
 /* 3D Spline Visualization Container */
-.fear-spline-container {
-    position: absolute;
-    width: 65%;
-    height: 110%;
-    top: 15%;
-    right: 10%;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    opacity: 0;
-    animation: fadeInUp 1s ease-out 0.6s forwards;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.fear-spline-container spline-viewer {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    transform: scale(0.6);
-    transform-origin: center center;
-}
 
 @keyframes fadeInUp {
     from {
@@ -8998,6 +9052,18 @@ body {
     padding-top: 20px;
 }
 
+.fear-glass-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    z-index: 12;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 /* First card spans all columns (full width) */
 .fear-card-1 {
     grid-column: 1 / -1;
@@ -9005,15 +9071,16 @@ body {
 
 .fear-glass-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    background: rgba(44, 44, 44, 0.95) !important;
+    backdrop-filter: blur(20px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+    border: none !important;
+    border-radius: 32px;
     padding: 32px;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: visible;
     opacity: 0;
     display: flex;
@@ -9022,6 +9089,23 @@ body {
     word-wrap: break-word;
     box-sizing: border-box;
     min-height: 180px;
+    transform: rotate(0deg);
+}
+
+/* Force dark background even if inline styles are applied */
+.fear-glass-card[style*="background"] {
+    background: linear-gradient(135deg, 
+        rgba(44, 44, 44, 0.85) 0%, 
+        rgba(44, 44, 44, 0.75) 50%,
+        rgba(44, 44, 44, 0.85) 100%) !important;
+}
+
+.fear-glass-card::before {
+    display: none;
+}
+
+.fear-glass-card::after {
+    display: none;
 }
 
 /* Long card (first card) styling */
@@ -9032,12 +9116,45 @@ body {
     align-items: center;
     gap: 40px;
     padding: 32px 40px;
+    background: rgba(44, 44, 44, 0.95) !important;
+    border: none !important;
+    border-radius: 32px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(0deg);
+}
+
+.fear-card-1:hover {
+    transform: translateY(-6px) rotate(1deg);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    background: rgba(44, 44, 44, 1) !important;
 }
 
 /* Smaller cards (cards 2, 3, 4) styling */
 .fear-card-2, .fear-card-3, .fear-card-4 {
     min-height: 220px;
     max-height: 260px;
+    padding: 32px;
+    border-radius: 32px;
+    transform: rotate(0deg);
+}
+
+.fear-card-2 {
+    background: rgba(44, 44, 44, 0.95) !important;
+    transform: rotate(-0.5deg);
+}
+
+.fear-card-3 {
+    background: rgba(44, 44, 44, 0.95) !important;
+    transform: rotate(0.5deg);
+}
+
+.fear-card-4 {
+    background: rgba(44, 44, 44, 0.95) !important;
+    transform: rotate(-0.3deg);
 }
 
 /* Card Content Styling */
@@ -9067,47 +9184,55 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: #555;
-    opacity: 0.8;
-    transition: all 0.4s ease;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0.9;
+    transition: all 0.3s ease;
     flex-shrink: 0;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .fear-glass-card:hover .fear-card-icon i {
     opacity: 1;
-    color: #2c2c2c;
-    transform: scale(1.1) rotate(5deg);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .fear-card-title {
     font-family: 'Inter', sans-serif;
     font-size: 13px;
     font-weight: 700;
-    color: #2c2c2c;
+    color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 16px;
+    letter-spacing: 1.8px;
+    margin-bottom: 18px;
     line-height: 1.3;
     flex-shrink: 0;
     word-wrap: break-word;
     hyphens: auto;
     text-align: left;
     position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Enhanced title for card 1 */
 .fear-card-1 .fear-card-title {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 800;
-    color: #1a1a1a;
+    color: #ffffff;
     margin-bottom: 24px;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .fear-card-1 .fear-card-title::after {
@@ -9115,10 +9240,23 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #dc3545, #ff6b6b);
-    border-radius: 2px;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #dc3545, #ff6b6b, #ff8787);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+    animation: titleUnderlineGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleUnderlineGlow {
+    from {
+        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+        opacity: 0.8;
+    }
+    to {
+        box-shadow: 0 4px 16px rgba(255, 107, 107, 0.8);
+        opacity: 1;
+    }
 }
 
 .fear-card-content {
@@ -9141,37 +9279,64 @@ body {
 }
 
 .fear-loss-amount {
-    font-size: 24px;
-    font-weight: 800;
-    color: #dc3545;
+    font-size: 26px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #dc3545, #ff6b6b, #e63946);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: block;
-    margin: 16px 0;
+    margin: 18px 0;
     line-height: 1.2;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.8px;
+    text-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(220, 53, 69, 0.3));
 }
 
 /* Enhanced loss amount for card 1 */
 .fear-card-1 .fear-loss-amount {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 900;
-    color: #dc3545;
+    background: linear-gradient(135deg, #dc3545, #ff6b6b, #e63946, #ff8787);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: block;
     margin: 0;
     line-height: 1.1;
-    letter-spacing: -1px;
-    text-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    letter-spacing: -1.2px;
     position: relative;
+    filter: drop-shadow(0 3px 6px rgba(220, 53, 69, 0.4));
+    animation: lossAmountPulse 3s ease-in-out infinite;
 }
 
 .fear-card-1 .fear-loss-amount::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 0;
     width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #dc3545, transparent);
-    opacity: 0.3;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(220, 53, 69, 0.6), 
+        rgba(255, 107, 107, 0.8),
+        rgba(220, 53, 69, 0.6),
+        transparent);
+    opacity: 0.5;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes lossAmountPulse {
+    0%, 100% {
+        filter: drop-shadow(0 3px 6px rgba(220, 53, 69, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 5px 12px rgba(255, 107, 107, 0.6));
+    }
 }
 
 .fear-consequence-list {
@@ -9182,22 +9347,43 @@ body {
 
 .fear-consequence-list li {
     font-size: 12px;
-    color: #888;
-    margin-bottom: 8px;
-    padding-left: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 10px;
+    padding-left: 20px;
     position: relative;
-    line-height: 1.4;
+    line-height: 1.5;
     word-wrap: break-word;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.fear-consequence-list li:hover {
+    color: rgba(255, 255, 255, 0.95);
+    transform: translateX(4px);
 }
 
 .fear-consequence-list li::before {
-    content: '—';
+    content: '●';
     position: absolute;
     left: 0;
-    color: #2c2c2c;
-    font-size: 12px;
-    font-weight: 500;
+    color: #ff6b6b;
+    font-size: 10px;
+    font-weight: 700;
+    top: 2px;
+    text-shadow: 0 1px 3px rgba(255, 107, 107, 0.4);
+    animation: consequenceDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes consequenceDotPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
 
@@ -9222,12 +9408,20 @@ body {
     text-align: center;
     margin-bottom: 0;
     padding: 16px 20px;
-    background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
-    border-radius: 12px;
-    border: 1px solid rgba(220, 53, 69, 0.2);
+    background: rgba(220, 53, 69, 0.2);
+    border-radius: 20px;
+    border: none;
     position: relative;
     overflow: hidden;
     flex: 1;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.current-loss:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    background: rgba(220, 53, 69, 0.25);
 }
 
 .current-loss::before {
@@ -9253,24 +9447,26 @@ body {
 }
 
 .could-have {
-    background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.05));
+    background: rgba(40, 167, 69, 0.2);
     padding: 16px 20px;
-    border-radius: 12px;
+    border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(40, 167, 69, 0.2);
+    border: none;
     position: relative;
     overflow: hidden;
     flex: 1;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.could-have:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    background: rgba(40, 167, 69, 0.25);
 }
 
 .could-have::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #28a745, #20c997);
+    display: none;
 }
 
 .comparison-text {
@@ -9396,15 +9592,15 @@ body {
 
 /* Hover effects */
 .fear-glass-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-6px) rotate(1deg);
+    background: rgba(44, 44, 44, 1) !important;
     box-shadow: 
-        0 20px 60px rgba(220, 53, 69, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 40px rgba(220, 53, 69, 0.2);
-    backdrop-filter: blur(25px);
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(25px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(120%) !important;
 }
+
 
 /* Animation delays */
 .fear-card-1 {
@@ -9426,11 +9622,15 @@ body {
 @keyframes cardFadeIn {
     0% {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(40px) scale(0.92) rotateX(10deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(15px) scale(0.98) rotateX(5deg);
     }
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1) rotateX(0deg);
     }
 }
 
@@ -9544,11 +9744,11 @@ body {
         transform: none !important;
         max-width: 100% !important;
         width: 100% !important;
-        margin-left: -220px !important;
+        margin-left: auto !important;
         margin-right: auto !important;
-        text-align: left !important;
+        text-align: center !important;
         margin-bottom: 40px !important;
-        margin-top: -150px !important;
+        margin-top: 0 !important;
         padding: 0 20px !important;
     }
     
@@ -9598,11 +9798,15 @@ body {
     }
     
     .fear-subtitle {
-        margin-left: -220px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
     }
     
     .fear-stats-elements {
-        margin-left: -220px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center !important;
     }
     
     /* Fear Text Block Responsive */
@@ -9652,9 +9856,11 @@ body {
     }
     
     .fear-brand-section {
-        margin-left: -120px !important;
-        margin-top: -100px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0 !important;
         padding: 0 10px !important;
+        text-align: center !important;
     }
     
     .fear-brand-section {
@@ -9708,7 +9914,8 @@ body {
     }
     
     .fear-main-title {
-        margin-left: -10px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
     
     /* Fear Text Block Mobile */
@@ -9818,11 +10025,15 @@ body {
     }
     
     .fear-subtitle {
-        margin-left: -120px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
     }
     
     .fear-stats-elements {
-        margin-left: -120px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center !important;
     }
 }
 
@@ -10908,6 +11119,224 @@ body {
     margin-bottom: 0;
 }
 
+/* ========================================
+   EMOTIONAL IMPACT MESSAGES - SCATTERED
+   ======================================== */
+
+.fear-impact-message {
+    position: absolute;
+    z-index: 25;
+    opacity: 0;
+    max-width: 320px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 107, 107, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fear-impact-1:hover,
+.fear-impact-2:hover,
+.fear-impact-3:hover,
+.fear-impact-4:hover,
+.fear-impact-5:hover,
+.fear-impact-6:hover,
+.fear-impact-7:hover,
+.fear-impact-8:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.5);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.fear-impact-1:hover { transform: translateY(-5px) scale(1.02) rotate(-2deg); }
+.fear-impact-2:hover { transform: translateY(-5px) scale(1.02) rotate(3deg); }
+.fear-impact-3:hover { transform: translateY(-5px) scale(1.02) rotate(-1deg); }
+.fear-impact-4:hover { transform: translateY(-5px) scale(1.02) rotate(2deg); }
+.fear-impact-5:hover { transform: translateY(-5px) scale(1.02) rotate(-3deg); }
+.fear-impact-6:hover { transform: translateY(-5px) scale(1.02) translateX(-50%) rotate(1deg); }
+.fear-impact-7:hover { transform: translateY(-5px) scale(1.02) rotate(-2deg); }
+.fear-impact-8:hover { transform: translateY(-5px) scale(1.02) rotate(2deg); }
+
+.fear-impact-indicator {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #ff6b6b, #e63946);
+    border-radius: 50%;
+    margin-bottom: 10px;
+    animation: impactPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+}
+
+.fear-impact-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c2c2c;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: 0.3px;
+    text-align: left;
+}
+
+/* Individual positioning for chaotic effect */
+.fear-impact-1 {
+    top: 15%;
+    left: 8%;
+    animation: fadeInImpact 0.8s ease-out 1.2s forwards;
+    transform: rotate(-2deg);
+}
+
+.fear-impact-2 {
+    top: 25%;
+    right: 12%;
+    animation: fadeInImpact 0.8s ease-out 1.5s forwards;
+    transform: rotate(3deg);
+}
+
+.fear-impact-3 {
+    top: 45%;
+    left: 5%;
+    animation: fadeInImpact 0.8s ease-out 1.8s forwards;
+    transform: rotate(-1deg);
+    max-width: 360px;
+}
+
+.fear-impact-4 {
+    top: 55%;
+    right: 8%;
+    animation: fadeInImpact 0.8s ease-out 2.1s forwards;
+    transform: rotate(2deg);
+}
+
+.fear-impact-5 {
+    top: 70%;
+    left: 15%;
+    animation: fadeInImpact 0.8s ease-out 2.4s forwards;
+    transform: rotate(-3deg);
+}
+
+.fear-impact-6 {
+    top: 18%;
+    left: 50%;
+    animation: fadeInImpact 0.8s ease-out 1.4s forwards;
+    transform: translateX(-50%) rotate(1deg);
+}
+
+.fear-impact-7 {
+    top: 65%;
+    right: 20%;
+    animation: fadeInImpact 0.8s ease-out 3s forwards;
+    transform: rotate(-2deg);
+    max-width: 340px;
+}
+
+.fear-impact-8 {
+    top: 80%;
+    left: 25%;
+    animation: fadeInImpact 0.8s ease-out 3.3s forwards;
+    transform: rotate(2deg);
+    max-width: 380px;
+}
+
+@keyframes fadeInImpact {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes impactPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.9);
+    }
+}
+
+/* Responsive styles for impact messages */
+@media (max-width: 1200px) {
+    .fear-impact-message {
+        max-width: 280px;
+        padding: 14px 18px;
+    }
+    
+    .fear-impact-text {
+        font-size: 12px;
+    }
+    
+    .fear-impact-1 {
+        top: 12%;
+        left: 5%;
+    }
+    
+    .fear-impact-2 {
+        top: 20%;
+        right: 8%;
+    }
+    
+    .fear-impact-3 {
+        top: 40%;
+        left: 3%;
+        max-width: 300px;
+    }
+    
+    .fear-impact-4 {
+        top: 50%;
+        right: 5%;
+    }
+    
+    .fear-impact-5 {
+        top: 65%;
+        left: 10%;
+    }
+    
+    .fear-impact-6 {
+        top: 15%;
+        left: 50%;
+    }
+    
+    .fear-impact-7 {
+        top: 60%;
+        right: 15%;
+        max-width: 280px;
+    }
+    
+    .fear-impact-8 {
+        top: 75%;
+        left: 20%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fear-impact-message {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        max-width: 90% !important;
+        margin: 20px auto !important;
+        animation-delay: 0s !important;
+    }
+    
+    .fear-impact-text {
+        font-size: 11px;
+        text-align: center;
+    }
+    
+    .fear-impact-indicator {
+        margin: 0 auto 10px auto;
+    }
+}
 
 /* ===================================
    TESTIMONIALS / SOCIAL PROOF SECTION
