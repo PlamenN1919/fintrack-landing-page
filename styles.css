@@ -5434,6 +5434,7 @@ body {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -5484,10 +5485,12 @@ body {
 .card-header {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 15px;
     margin-bottom: 0;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .card-icon {
@@ -5556,6 +5559,12 @@ body {
     flex-direction: column;
     gap: 12px;
     padding: 0;
+}
+
+/* Bento Card Content - Left aligned */
+.bento-card .card-content {
+    align-items: flex-start;
+    width: 100%;
 }
 
 .card-title {
