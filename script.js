@@ -684,12 +684,14 @@ function initFearAnimations() {
                         setTimeout(() => {
                             card.addEventListener('mouseenter', () => {
                                 card.style.transform = 'translateY(-8px) scale(1.02)';
-                                card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 107, 107, 0.2)';
+                                card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 40px rgba(255, 107, 107, 0.3)';
+                                card.style.background = 'linear-gradient(135deg, rgba(44, 44, 44, 0.95) 0%, rgba(44, 44, 44, 0.85) 50%, rgba(44, 44, 44, 0.95) 100%)';
                             });
                             
                             card.addEventListener('mouseleave', () => {
                                 card.style.transform = 'translateY(0) scale(1)';
-                                card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                                card.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2)';
+                                card.style.background = 'linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(44, 44, 44, 0.75) 50%, rgba(44, 44, 44, 0.85) 100%)';
                             });
                         }, 500);
                     }, index * 300 + 500);
@@ -1125,22 +1127,25 @@ if (document.readyState === 'loading') {
 // NEW SECTIONS JAVASCRIPT
 // ===================================
 
-// Initialize Step Animations for How It Works
+// Initialize Step Animations for How It Works - Enhanced
 function initHowItWorksAnimations() {
     const observerOptions = {
-        threshold: 0.2,
+        threshold: 0.1,
         rootMargin: '0px'
     };
     
     const stepsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const steps = entry.target.querySelectorAll('.step-item');
-                steps.forEach((step, index) => {
+                const stepCards = entry.target.querySelectorAll('.step-card');
+                stepCards.forEach((card, index) => {
                     setTimeout(() => {
-                        step.classList.add('animate-in');
-                    }, index * 200);
+                        card.classList.add('animate-in');
+                    }, index * 150);
                 });
+                
+                // Initialize progress tracking
+                initProgressTracking();
             }
         });
     }, observerOptions);
@@ -1149,6 +1154,100 @@ function initHowItWorksAnimations() {
     if (howSection) {
         stepsObserver.observe(howSection);
     }
+    
+    // 3D Tilt Effect for Cards
+    initCardTiltEffect();
+    
+    // Mouse Glow Effect
+    initMouseGlowEffect();
+}
+
+// Progress Tracking
+function initProgressTracking() {
+    const progressFill = document.querySelector('.how-progress-fill');
+    const progressSteps = document.querySelectorAll('.progress-step');
+    const stepCards = document.querySelectorAll('.step-card');
+    
+    if (!progressFill || !progressSteps.length) return;
+    
+    const updateProgress = () => {
+        const section = document.querySelector('.how-it-works-section');
+        if (!section) return;
+        
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollPosition = window.scrollY;
+        
+        const scrollProgress = Math.max(0, Math.min(1, 
+            (scrollPosition + windowHeight - sectionTop) / sectionHeight
+        ));
+        
+        progressFill.style.height = `${scrollProgress * 100}%`;
+        
+        // Update active step
+        const activeStep = Math.min(4, Math.floor(scrollProgress * 5));
+        progressSteps.forEach((step, index) => {
+            if (index <= activeStep) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+        
+        // Update card visibility
+        stepCards.forEach((card, index) => {
+            if (index <= activeStep) {
+                card.style.opacity = '1';
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+}
+
+// 3D Tilt Effect
+function initCardTiltEffect() {
+    const cards = document.querySelectorAll('.step-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
+
+// Mouse Glow Effect
+function initMouseGlowEffect() {
+    const cards = document.querySelectorAll('.step-card');
+    
+    cards.forEach(card => {
+        const glow = card.querySelector('.step-card-glow');
+        if (!glow) return;
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            glow.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, rgba(102, 126, 234, 0.4) 0%, transparent 70%)`;
+        });
+    });
 }
 
 // Initialize Testimonials Animations
@@ -1465,11 +1564,19 @@ document.addEventListener('keydown', function(e) {
 // CONTACT MODAL FUNCTIONS
 // ===================================
 
-function openContactModal() {
+function openContactModal(preselectedSubject = null) {
     const modal = document.getElementById('contactModal');
     if (modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Pre-select subject if provided
+        if (preselectedSubject) {
+            const subjectSelect = document.getElementById('contactSubject');
+            if (subjectSelect) {
+                subjectSelect.value = preselectedSubject;
+            }
+        }
         
         // Focus on first input
         setTimeout(() => {
@@ -1483,10 +1590,15 @@ function openContactModal() {
         if (typeof gtag !== 'undefined') {
             gtag('event', 'contact_modal_opened', {
                 'event_category': 'engagement',
-                'event_label': 'contact_form'
+                'event_label': preselectedSubject || 'contact_form'
             });
         }
     }
+}
+
+// Open Feedback Modal - pre-selects "Обратна връзка" option
+function openFeedbackModal() {
+    openContactModal('feedback');
 }
 
 function closeContactModal() {
@@ -1623,16 +1735,22 @@ function showFormSuccess(message) {
     successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Close contact modal on Escape key
+// Close modals on Escape key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         const contactModal = document.getElementById('contactModal');
         const helpModal = document.getElementById('helpCenterModal');
+        const termsModal = document.getElementById('termsModal');
+        const privacyModal = document.getElementById('privacyModal');
         
         if (contactModal && contactModal.classList.contains('active')) {
             closeContactModal();
         } else if (helpModal && helpModal.classList.contains('active')) {
             closeHelpCenter();
+        } else if (termsModal && termsModal.classList.contains('active')) {
+            closeTermsModal();
+        } else if (privacyModal && privacyModal.classList.contains('active')) {
+            closePrivacyModal();
         }
     }
 });
@@ -1641,4 +1759,60 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     initHelpCenterSearch();
 });
+
+// ===================================
+// TERMS OF SERVICE MODAL FUNCTIONS
+// ===================================
+
+function openTermsModal() {
+    const modal = document.getElementById('termsModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Track event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'terms_modal_opened', {
+                'event_category': 'engagement',
+                'event_label': 'terms_of_service'
+            });
+        }
+    }
+}
+
+function closeTermsModal() {
+    const modal = document.getElementById('termsModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===================================
+// PRIVACY POLICY MODAL FUNCTIONS
+// ===================================
+
+function openPrivacyModal() {
+    const modal = document.getElementById('privacyModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Track event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'privacy_modal_opened', {
+                'event_category': 'engagement',
+                'event_label': 'privacy_policy'
+            });
+        }
+    }
+}
+
+function closePrivacyModal() {
+    const modal = document.getElementById('privacyModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
  

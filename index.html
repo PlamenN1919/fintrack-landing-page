@@ -215,181 +215,6 @@
         </div>
     </section>
 
-    <!-- Pain Point Calculator Section -->
-    <section class="pain-calculator-section section" id="calculator">
-        <!-- Spline 3D Viewer Background -->
-        <div class="spline-viewer-background">
-            <spline-viewer url="https://prod.spline.design/J2E7pAxgnbPLO484/scene.splinecode"></spline-viewer>
-        </div>
-        <div class="container">
-            <!-- Section Header -->
-            <h2 class="section-title pain-title">
-                <span class="pain-title-line-1"><span class="highlight">КОЛКО ПАРИ ГУБИТЕ</span></span><br>
-                <span class="highlight-red">ВСЕКИ МЕСЕЦ?</span>
-            </h2>
-
-            <p class="section-subtitle pain-subtitle">
-                Без да знаете, губите между <strong>300-800 лв месечно</strong> заради лошо финансово управление.<br>
-                Изчислете вашата загуба сега:
-            </p>
-
-            <!-- Live Loss Counter -->
-            <div class="live-loss-counter">
-                <div class="loss-ticker">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Докато четете това, вие губите: </span>
-                    <span id="liveLossCounter" class="loss-amount">0.00 лв</span>
-                </div>
-            </div>
-
-            <!-- Calculator Form -->
-            <div class="calculator-container">
-                <div class="calculator-form">
-                    <div class="form-group">
-                        <label for="monthlyIncome">
-                            <i class="fas fa-wallet"></i>
-                            Месечен доход (лв)
-                        </label>
-                        <input type="number" id="monthlyIncome" value="3000" min="0" step="100">
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <i class="fas fa-chart-line"></i>
-                            Колко често следите разходите си?
-                        </label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="tracking" value="never" checked>
-                                <span>Никога</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="tracking" value="sometimes">
-                                <span>Понякога</span>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="tracking" value="always">
-                                <span>Редовно</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="savingsRate">
-                            <i class="fas fa-piggy-bank"></i>
-                            Колко % спестявате? <span id="savingsPercent">5</span>%
-                        </label>
-                        <input type="range" id="savingsRate" min="0" max="30" value="5" step="1">
-                    </div>
-
-                    <button onclick="calculateLoss()" class="calculate-btn">
-                        <i class="fas fa-calculator"></i>
-                        Изчисли загубата ми
-                    </button>
-                </div>
-
-                <!-- Results -->
-                <div id="calculatorResults" class="calculator-results" style="display: none;">
-                    <h3>Вашата финансова загуба:</h3>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <span class="result-label">Месечно:</span>
-                            <span id="monthlyLoss" class="result-value">0 лв</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">Годишно:</span>
-                            <span id="yearlyLoss" class="result-value">0 лв</span>
-                        </div>
-                        <div class="result-item highlight">
-                            <span class="result-label">За 10 години:</span>
-                            <span id="lifetimeLoss" class="result-value">0 лв</span>
-                        </div>
-                    </div>
-                    <div class="results-cta">
-                        <p class="shock-text">😱 Това е цената на бездействието!</p>
-                        <a href="#download" class="cta-btn urgent">
-                            Спри загубите сега
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pain Statistics -->
-            <div class="pain-stats">
-                <div class="pain-stat">
-                    <i class="fas fa-users"></i>
-                    <span class="stat-num">73%</span>
-                    <span class="stat-desc">от българите нямат бюджет</span>
-                </div>
-                <div class="pain-stat">
-                    <i class="fas fa-credit-card"></i>
-                    <span class="stat-num">520 лв</span>
-                    <span class="stat-desc">средна месечна загуба</span>
-                </div>
-                <div class="pain-stat">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="stat-num">40%</span>
-                    <span class="stat-desc">от доходите се губят безсмислено</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats & Achievements Section -->
-    <section class="stats-achievements-section section" id="stats">
-        <!-- Floating Shapes -->
-        <div class="stats-floating-shapes">
-            <div class="stats-shape stats-shape-1"></div>
-            <div class="stats-shape stats-shape-2"></div>
-            <div class="stats-shape stats-shape-3"></div>
-        </div>
-
-        <div class="container stats-content">
-            <!-- Left Side - Brand Text -->
-            <div class="stats-left">
-                <h2 class="stats-main-title">
-                    <span class="stats-title-line-1"><span class="highlight">КОГАТО ВЗЕМЕШ КОНТРОЛ НАД ФИНАНСИТЕ СИ</span></span>
-                </h2>
-                <p class="stats-description">
-                    Не е магия - просто интелигентна технология и твоята мотивация. 
-                    Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
-                </p>
-                <div class="stats-decorative">
-                    <div class="stats-line"></div>
-                    <div class="stats-dot"></div>
-                </div>
-            </div>
-
-            <!-- Right Side - Statistics -->
-            <div class="stats-list">
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="200">0</span>
-                        <span class="stat-label-large">лева месечно</span>
-                        <p class="stat-description-small">Спестени от потребител</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="40">0</span>
-                        <span class="stat-label-large">намалени разходи</span>
-                        <p class="stat-description-small">За излишни покупки</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="100">0</span>
-                        <span class="stat-label-large">повече спокойствие</span>
-                        <p class="stat-description-small">Знаеш къде са парите ти</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Features Section (Bento Grid) -->
     <section class="phone-section section" id="features">
         <div class="container">
@@ -527,6 +352,60 @@
                         </div>
                     </div>
                 </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats & Achievements Section -->
+    <section class="stats-achievements-section section" id="stats">
+        <!-- Floating Shapes -->
+        <div class="stats-floating-shapes">
+            <div class="stats-shape stats-shape-1"></div>
+            <div class="stats-shape stats-shape-2"></div>
+            <div class="stats-shape stats-shape-3"></div>
+        </div>
+
+        <div class="container stats-content">
+            <!-- Left Side - Brand Text -->
+            <div class="stats-left">
+                <h2 class="stats-main-title">
+                    <span class="stats-title-line-1"><span class="highlight">КОГАТО ВЗЕМЕШ КОНТРОЛ НАД ФИНАНСИТЕ СИ</span></span>
+                </h2>
+                <p class="stats-description">
+                    Не е магия - просто интелигентна технология и твоята мотивация. 
+                    Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
+                </p>
+                <div class="stats-decorative">
+                    <div class="stats-line"></div>
+                    <div class="stats-dot"></div>
+                </div>
+            </div>
+
+            <!-- Right Side - Statistics -->
+            <div class="stats-list">
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="200">0</span>
+                        <span class="stat-label-large">лева месечно</span>
+                        <p class="stat-description-small">Спестени от потребител</p>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="40">0</span>
+                        <span class="stat-label-large">намалени разходи</span>
+                        <p class="stat-description-small">За излишни покупки</p>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="100">0</span>
+                        <span class="stat-label-large">повече спокойствие</span>
+                        <p class="stat-description-small">Знаеш къде са парите ти</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -880,6 +759,127 @@
         </div>
     </section>
 
+    <!-- Pain Point Calculator Section -->
+    <section class="pain-calculator-section section" id="calculator">
+        <!-- Spline 3D Viewer Background -->
+        <div class="spline-viewer-background">
+            <spline-viewer url="https://prod.spline.design/J2E7pAxgnbPLO484/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="container">
+            <!-- Section Header -->
+            <h2 class="section-title pain-title">
+                <span class="pain-title-line-1"><span class="highlight">КОЛКО ПАРИ ГУБИТЕ</span></span><br>
+                <span class="highlight-red">ВСЕКИ МЕСЕЦ?</span>
+            </h2>
+
+            <p class="section-subtitle pain-subtitle">
+                Без да знаете, губите между <strong>300-800 лв месечно</strong> заради лошо финансово управление.<br>
+                Изчислете вашата загуба сега:
+            </p>
+
+            <!-- Live Loss Counter -->
+            <div class="live-loss-counter">
+                <div class="loss-ticker">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Докато четете това, вие губите: </span>
+                    <span id="liveLossCounter" class="loss-amount">0.00 лв</span>
+                </div>
+            </div>
+
+            <!-- Calculator Form -->
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="monthlyIncome">
+                            <i class="fas fa-wallet"></i>
+                            Месечен доход (лв)
+                        </label>
+                        <input type="number" id="monthlyIncome" value="3000" min="0" step="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-chart-line"></i>
+                            Колко често следите разходите си?
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="tracking" value="never" checked>
+                                <span>Никога</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="tracking" value="sometimes">
+                                <span>Понякога</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="tracking" value="always">
+                                <span>Редовно</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="savingsRate">
+                            <i class="fas fa-piggy-bank"></i>
+                            Колко % спестявате? <span id="savingsPercent">5</span>%
+                        </label>
+                        <input type="range" id="savingsRate" min="0" max="30" value="5" step="1">
+                    </div>
+
+                    <button onclick="calculateLoss()" class="calculate-btn">
+                        <i class="fas fa-calculator"></i>
+                        Изчисли загубата ми
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="calculatorResults" class="calculator-results" style="display: none;">
+                    <h3>Вашата финансова загуба:</h3>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <span class="result-label">Месечно:</span>
+                            <span id="monthlyLoss" class="result-value">0 лв</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Годишно:</span>
+                            <span id="yearlyLoss" class="result-value">0 лв</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="result-label">За 10 години:</span>
+                            <span id="lifetimeLoss" class="result-value">0 лв</span>
+                        </div>
+                    </div>
+                    <div class="results-cta">
+                        <p class="shock-text">😱 Това е цената на бездействието!</p>
+                        <a href="#download" class="cta-btn urgent">
+                            Спри загубите сега
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pain Statistics -->
+            <div class="pain-stats">
+                <div class="pain-stat">
+                    <i class="fas fa-users"></i>
+                    <span class="stat-num">73%</span>
+                    <span class="stat-desc">от българите нямат бюджет</span>
+                </div>
+                <div class="pain-stat">
+                    <i class="fas fa-credit-card"></i>
+                    <span class="stat-num">520 лв</span>
+                    <span class="stat-desc">средна месечна загуба</span>
+                </div>
+                <div class="pain-stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="stat-num">40%</span>
+                    <span class="stat-desc">от доходите се губят безсмислено</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Download Section -->
     <section class="download-section section" id="download">
         <div class="container">
@@ -916,15 +916,15 @@
                 <div class="download-features">
                     <div class="feature-badge">
                         <i class="fas fa-check-circle"></i>
-                        <span>Безплатно изтегляне</span>
+                        <span>AI Анализ</span>
                     </div>
                     <div class="feature-badge">
                         <i class="fas fa-check-circle"></i>
-                        <span>Без реклами</span>
+                        <span>Реално време</span>
                     </div>
                     <div class="feature-badge">
                         <i class="fas fa-check-circle"></i>
-                        <span>7 дни пробен период</span>
+                        <span>Защитени данни</span>
                     </div>
                 </div>
             </div>
@@ -942,10 +942,8 @@
                         Интелигентна система за управление на финанси и бюджетиране. Спестете повече, живейте по-добре.
                     </p>
                     <div class="footer-social">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61573000449589&locale=bg_BG" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/f1ntrack/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
@@ -966,7 +964,7 @@
                     <ul class="footer-links">
                         <li><a href="#" onclick="openHelpCenter(); return false;">Помощен център</a></li>
                         <li><a href="#" onclick="openContactModal(); return false;">Свържете се с нас</a></li>
-                        <li><a href="#">Обратна връзка</a></li>
+                        <li><a href="#" onclick="openFeedbackModal(); return false;">Обратна връзка</a></li>
                     </ul>
                 </div>
 
@@ -974,10 +972,8 @@
                 <div class="footer-column">
                     <h4 class="footer-title">Правна информация</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Условия за ползване</a></li>
-                        <li><a href="#">Политика за поверителност</a></li>
-                        <li><a href="#">Бисквитки</a></li>
-                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#" onclick="openTermsModal(); return false;">Условия за ползване</a></li>
+                        <li><a href="#" onclick="openPrivacyModal(); return false;">Политика за поверителност</a></li>
                     </ul>
                 </div>
             </div>
@@ -1091,7 +1087,7 @@
                             </div>
                             <div class="help-item">
                                 <h4>Как да докладвам проблем?</h4>
-                                <p>Можете да ни пишете на support@fintrack.bg или да използвате формата за обратна връзка в приложението. Отговаряме в рамките на 24 часа.</p>
+                                <p>Можете да ни пишете на fintrackk@gmail.com или да използвате формата за обратна връзка в приложението. Отговаряме в рамките на 24 часа.</p>
                             </div>
                         </div>
                     </div>
@@ -1187,7 +1183,7 @@
                     <i class="fas fa-envelope"></i>
                     <div>
                         <strong>Email</strong>
-                        <p>support@fintrack.bg</p>
+                        <p>fintrackk@gmail.com</p>
                     </div>
                 </div>
                 <div class="contact-info-item">
@@ -1196,6 +1192,351 @@
                         <strong>Работно време</strong>
                         <p>Понеделник - Петък: 9:00 - 18:00</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="terms-modal">
+        <div class="terms-overlay" onclick="closeTermsModal()"></div>
+        <div class="terms-container">
+            <button class="terms-close" onclick="closeTermsModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="terms-header">
+                <h2 class="terms-title">
+                    <i class="fas fa-file-contract"></i>
+                    Условия за ползване
+                </h2>
+                <p class="terms-subtitle">Последна актуализация: 11 декември 2025</p>
+            </div>
+
+            <div class="terms-content">
+                <div class="terms-section">
+                    <h3>1. Общи положения</h3>
+                    <p>Добре дошли в FinTrack! Тези Условия за ползване ("Условия") уреждат достъпа ви до и използването на мобилното приложение FinTrack и свързаните с него услуги (колективно "Услугата").</p>
+                    <p>С изтеглянето, инсталирането или използването на FinTrack, вие приемате и се съгласявате да бъдете обвързани с тези Условия. Ако не сте съгласни с някоя част от Условията, моля не използвайте Услугата.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>2. Описание на услугата</h3>
+                    <p>FinTrack е интелигентна система за управление на лични финанси и бюджетиране, която предоставя:</p>
+                    <ul>
+                        <li>Автоматизирано следене на разходи и приходи</li>
+                        <li>AI-базирана финансова аналитика и препоръки</li>
+                        <li>Инструменти за бюджетиране и планиране</li>
+                        <li>Визуализация на финансови данни</li>
+                        <li>Гамификация на процеса на спестяване</li>
+                        <li>QR сканиране на разписки</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h3>3. Регистрация и акаунт</h3>
+                    <p>За да използвате пълната функционалност на FinTrack, трябва да създадете акаунт. При регистрация се задължавате да:</p>
+                    <ul>
+                        <li>Предоставите точна и актуална информация</li>
+                        <li>Пазите поверителността на вашата парола</li>
+                        <li>Уведомите ни незабавно при неоторизиран достъп до акаунта ви</li>
+                        <li>Носите отговорност за всички дейности, извършени чрез вашия акаунт</li>
+                    </ul>
+                    <p>Запазваме си правото да прекратим или ограничим достъпа до акаунти, които нарушават тези Условия.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>4. Поверителност на данните</h3>
+                    <p>Вашата поверителност е изключително важна за нас. Обработката на лични данни се извършва в съответствие с нашата Политика за поверителност и приложимото законодателство за защита на данните, включително GDPR.</p>
+                    <p>Ключови принципи:</p>
+                    <ul>
+                        <li>Използваме 256-битово SSL криптиране за всички данни</li>
+                        <li>Финансовите ви данни се съхраняват локално на устройството и в криптирани сървъри</li>
+                        <li>Никога не продаваме или споделяме вашите лични данни с трети страни за маркетингови цели</li>
+                        <li>Имате право да поискате изтриване на всички ваши данни по всяко време</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h3>5. Интелектуална собственост</h3>
+                    <p>Всички права върху интелектуалната собственост, свързани с FinTrack, включително, но не само, софтуер, дизайн, лога, търговски марки и съдържание, принадлежат изключително на FinTrack или нашите лицензодатели.</p>
+                    <p>Нямате право да:</p>
+                    <ul>
+                        <li>Копирате, модифицирате или разпространявате приложението</li>
+                        <li>Извършвате обратен инженеринг или декомпилация</li>
+                        <li>Премахвате известия за авторски права или търговски марки</li>
+                        <li>Използвате марката FinTrack без изрично писмено разрешение</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h3>6. Правила за приемливо ползване</h3>
+                    <p>Съгласявате се да не използвате FinTrack за:</p>
+                    <ul>
+                        <li>Незаконни дейности или измами</li>
+                        <li>Нарушаване на права на трети лица</li>
+                        <li>Разпространяване на вируси или злонамерен софтуер</li>
+                        <li>Опити за неоторизиран достъп до системите ни</li>
+                        <li>Претоварване или увреждане на инфраструктурата</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section">
+                    <h3>7. Ограничение на отговорността</h3>
+                    <p>FinTrack се предоставя "както е" и "както е наличен". Не гарантираме, че Услугата ще бъде непрекъсната, сигурна или без грешки.</p>
+                    <p>FinTrack не носи отговорност за:</p>
+                    <ul>
+                        <li>Косвени, случайни или последващи щети</li>
+                        <li>Загуба на данни или печалба</li>
+                        <li>Финансови решения, взети въз основа на информация от приложението</li>
+                        <li>Действия на трети страни</li>
+                    </ul>
+                    <p><strong>Важно:</strong> FinTrack не предоставя финансови съвети. Информацията в приложението е само за информационни цели и не трябва да се счита за професионален финансов съвет.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>8. Промени в условията</h3>
+                    <p>Запазваме си правото да актуализираме тези Условия по всяко време. При съществени промени ще ви уведомим чрез приложението или email. Продължаването на използването на FinTrack след такива промени означава съгласие с новите Условия.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>9. Прекратяване</h3>
+                    <p>Можете да прекратите използването на FinTrack по всяко време, като изтриете акаунта си. Ние също можем да прекратим или ограничим достъпа ви при нарушение на тези Условия или по други причини по наше усмотрение.</p>
+                    <p>При прекратяване всички ваши данни ще бъдат изтрити в съответствие с нашата Политика за поверителност.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>10. Приложимо право</h3>
+                    <p>Тези Условия се регулират от законодателството на Република България. Всички спорове ще бъдат разрешавани от компетентните български съдилища.</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>11. Контакт</h3>
+                    <p>При въпроси относно тези Условия за ползване, моля свържете се с нас:</p>
+                    <ul>
+                        <li><strong>Email:</strong> fintrackk@gmail.com</li>
+                        <li><strong>Работно време:</strong> Понеделник - Петък: 9:00 - 18:00</li>
+                    </ul>
+                </div>
+
+                <div class="terms-footer-note">
+                    <p><i class="fas fa-info-circle"></i> С използването на FinTrack потвърждавате, че сте прочели, разбрали и приемате тези Условия за ползване.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="privacy-modal">
+        <div class="privacy-overlay" onclick="closePrivacyModal()"></div>
+        <div class="privacy-container">
+            <button class="privacy-close" onclick="closePrivacyModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="privacy-header">
+                <h2 class="privacy-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Политика за поверителност
+                </h2>
+                <p class="privacy-subtitle">Последна актуализация: 11 декември 2025</p>
+            </div>
+
+            <div class="privacy-content">
+                <div class="privacy-intro">
+                    <p>В FinTrack се ангажираме да защитаваме вашата поверителност и лични данни. Тази Политика за поверителност описва как събираме, използваме, съхраняваме и защитаваме вашата информация при използване на нашето мобилно приложение и услуги.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-database"></i> 1. Какви данни събираме</h3>
+                    <p>Събираме следните категории данни:</p>
+                    
+                    <div class="privacy-subsection">
+                        <h4>Лични данни, предоставени от вас:</h4>
+                        <ul>
+                            <li>Име и email адрес при регистрация</li>
+                            <li>Информация от социални мрежи (при вход чрез тях)</li>
+                            <li>Съобщения, изпратени до нашия екип за поддръжка</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-subsection">
+                        <h4>Финансови данни:</h4>
+                        <ul>
+                            <li>Разходи и приходи, които въвеждате ръчно</li>
+                            <li>Категории разходи и бюджетни цели</li>
+                            <li>Сканирани разписки (обработват се локално)</li>
+                            <li>Финансови навици и модели на харчене</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-subsection">
+                        <h4>Технически данни:</h4>
+                        <ul>
+                            <li>Тип устройство и операционна система</li>
+                            <li>IP адрес и приблизително местоположение</li>
+                            <li>Данни за използване на приложението</li>
+                            <li>Crash reports и технически логове</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-cogs"></i> 2. Как използваме вашите данни</h3>
+                    <p>Използваме събраните данни за:</p>
+                    <ul>
+                        <li><strong>Предоставяне на услугата:</strong> Управление на вашия акаунт и персонализиране на функционалността</li>
+                        <li><strong>AI анализ:</strong> Генериране на персонализирани финансови препоръки и прогнози</li>
+                        <li><strong>Подобряване на приложението:</strong> Анализ на използването за оптимизация на потребителското изживяване</li>
+                        <li><strong>Комуникация:</strong> Изпращане на важни известия и актуализации</li>
+                        <li><strong>Поддръжка:</strong> Отговор на вашите запитвания и решаване на проблеми</li>
+                        <li><strong>Сигурност:</strong> Защита от измами и неоторизиран достъп</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-lock"></i> 3. Как защитаваме вашите данни</h3>
+                    <p>Прилагаме най-високи стандарти за сигурност:</p>
+                    <div class="privacy-security-grid">
+                        <div class="security-item">
+                            <i class="fas fa-key"></i>
+                            <div>
+                                <strong>256-bit SSL криптиране</strong>
+                                <p>Всички данни се криптират при предаване</p>
+                            </div>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-server"></i>
+                            <div>
+                                <strong>Криптирано съхранение</strong>
+                                <p>Данните се съхраняват в криптирани сървъри</p>
+                            </div>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <strong>Локално съхранение</strong>
+                                <p>Финансовите данни се пазят локално на устройството</p>
+                            </div>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-user-shield"></i>
+                            <div>
+                                <strong>Двуфакторна автентикация</strong>
+                                <p>Допълнителен слой защита за вашия акаунт</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-share-alt"></i> 4. Споделяне на данни</h3>
+                    <p><strong>Ние НЕ продаваме вашите лични данни.</strong></p>
+                    <p>Споделяме данни само в следните случаи:</p>
+                    <ul>
+                        <li><strong>Доставчици на услуги:</strong> Технически партньори, които ни помагат да предоставяме услугата (хостинг, анализи)</li>
+                        <li><strong>Законови изисквания:</strong> При искане от компетентни органи съгласно закона</li>
+                        <li><strong>С вашето съгласие:</strong> При изричното ви разрешение за конкретни цели</li>
+                    </ul>
+                    <p>Всички трети страни са задължени да защитават вашите данни съгласно GDPR.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-clock"></i> 5. Съхранение на данни</h3>
+                    <p>Съхраняваме вашите данни докато имате активен акаунт в FinTrack. При изтриване на акаунта:</p>
+                    <ul>
+                        <li>Личните данни се изтриват в рамките на <strong>30 дни</strong></li>
+                        <li>Анонимизирани статистически данни могат да бъдат запазени</li>
+                        <li>Данни, необходими по закон, се съхраняват за изискуемия период</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-user-check"></i> 6. Вашите права (GDPR)</h3>
+                    <p>Съгласно GDPR имате следните права:</p>
+                    <div class="privacy-rights-grid">
+                        <div class="rights-item">
+                            <i class="fas fa-eye"></i>
+                            <span><strong>Право на достъп</strong> - да видите какви данни имаме за вас</span>
+                        </div>
+                        <div class="rights-item">
+                            <i class="fas fa-edit"></i>
+                            <span><strong>Право на корекция</strong> - да поправите неточни данни</span>
+                        </div>
+                        <div class="rights-item">
+                            <i class="fas fa-trash-alt"></i>
+                            <span><strong>Право на изтриване</strong> - да поискате изтриване на данните</span>
+                        </div>
+                        <div class="rights-item">
+                            <i class="fas fa-download"></i>
+                            <span><strong>Право на преносимост</strong> - да получите данните си в машинночетим формат</span>
+                        </div>
+                        <div class="rights-item">
+                            <i class="fas fa-hand-paper"></i>
+                            <span><strong>Право на възражение</strong> - да възразите срещу обработката</span>
+                        </div>
+                        <div class="rights-item">
+                            <i class="fas fa-pause-circle"></i>
+                            <span><strong>Право на ограничаване</strong> - да ограничите обработката</span>
+                        </div>
+                    </div>
+                    <p>За упражняване на правата си, свържете се с нас на <strong>fintrackk@gmail.com</strong></p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-cookie-bite"></i> 7. Бисквитки и проследяване</h3>
+                    <p>Нашето мобилно приложение използва минимални технологии за проследяване:</p>
+                    <ul>
+                        <li><strong>Аналитични данни:</strong> За разбиране как използвате приложението</li>
+                        <li><strong>Сесийни данни:</strong> За поддържане на вашата сесия активна</li>
+                        <li><strong>Предпочитания:</strong> За запомняне на вашите настройки</li>
+                    </ul>
+                    <p>Можете да контролирате тези настройки от менюто на приложението.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-child"></i> 8. Деца</h3>
+                    <p>FinTrack не е предназначен за деца под 16 години. Не събираме съзнателно данни от деца. Ако разберем, че сме събрали данни от дете под 16 години, ще ги изтрием незабавно.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-globe"></i> 9. Международни трансфери</h3>
+                    <p>Вашите данни се съхраняват предимно в Европейския съюз. При необходимост от трансфер извън ЕС, осигуряваме адекватно ниво на защита чрез стандартни договорни клаузи или други одобрени механизми.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-sync-alt"></i> 10. Промени в политиката</h3>
+                    <p>Можем да актуализираме тази Политика периодично. При съществени промени:</p>
+                    <ul>
+                        <li>Ще ви уведомим чрез приложението или email</li>
+                        <li>Ще актуализираме датата "Последна актуализация"</li>
+                        <li>При необходимост ще поискаме повторно съгласие</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-section">
+                    <h3><i class="fas fa-envelope"></i> 11. Контакт</h3>
+                    <p>При въпроси относно поверителността на вашите данни:</p>
+                    <div class="privacy-contact-info">
+                        <div class="privacy-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong>
+                                <p>fintrackk@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="privacy-contact-item">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <strong>Поддръжка:</strong>
+                                <p>fintrackk@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-footer-note">
+                    <p><i class="fas fa-shield-alt"></i> Вашата поверителност е наш приоритет. Ако имате въпроси или притеснения, не се колебайте да се свържете с нас.</p>
                 </div>
             </div>
         </div>
