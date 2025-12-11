@@ -11,6 +11,161 @@ const splineViewer = document.querySelector('spline-viewer');
 let lossCounter = 0;
 let counterInterval;
 
+// ===================================
+// SEAMLESS ENTRANCE ANIMATIONS SYSTEM
+// ===================================
+
+// Initialize Seamless Scroll Reveal System
+function initSeamlessReveal() {
+    // Observer for section visibility
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observer for generic reveal elements
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    // Observer for stagger children
+    const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Observe footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        sectionObserver.observe(footer);
+    }
+
+    // Observe all reveal elements
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-fade').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // Observe stagger children containers
+    document.querySelectorAll('.stagger-children').forEach(el => {
+        staggerObserver.observe(el);
+    });
+}
+
+// Parallax effect for floating elements
+function initParallaxEffects() {
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+function updateParallax() {
+    const scrolled = window.pageYOffset;
+    
+    // Parallax for geometric shapes
+    document.querySelectorAll('.fear-geometric-shape').forEach((shape, index) => {
+        const speed = (index + 1) * 0.03;
+        const yPos = scrolled * speed;
+        shape.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    document.querySelectorAll('.stats-shape').forEach((shape, index) => {
+        const speed = (index + 1) * 0.02;
+        const yPos = scrolled * speed;
+        shape.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    document.querySelectorAll('.how-shape').forEach((shape, index) => {
+        const speed = (index + 1) * 0.025;
+        const yPos = scrolled * speed;
+        shape.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    // Custom parallax layers
+    document.querySelectorAll('.parallax-slow').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const distanceFromTop = scrolled - elementTop + window.innerHeight;
+        const yPos = distanceFromTop * 0.05;
+        el.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    document.querySelectorAll('.parallax-medium').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const distanceFromTop = scrolled - elementTop + window.innerHeight;
+        const yPos = distanceFromTop * 0.1;
+        el.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    document.querySelectorAll('.parallax-fast').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const distanceFromTop = scrolled - elementTop + window.innerHeight;
+        const yPos = distanceFromTop * 0.15;
+        el.style.transform = `translateY(${yPos}px)`;
+    });
+}
+
+// Smooth momentum scrolling enhancement
+function initSmoothMomentum() {
+    // Add subtle easing to scroll
+    let isScrolling = false;
+    let scrollTimeout;
+    
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            document.body.classList.add('is-scrolling');
+            isScrolling = true;
+        }
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            document.body.classList.remove('is-scrolling');
+            isScrolling = false;
+        }, 150);
+    });
+}
+
+// Initialize seamless animations on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    initSeamlessReveal();
+    initParallaxEffects();
+    initSmoothMomentum();
+    console.log('Seamless entrance animations initialized! ✨');
+});
+
 // Navigation scroll effect
 window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset;
@@ -252,61 +407,42 @@ document.querySelectorAll('.download-btn').forEach(btn => {
     });
 });
 
-// Add CSS animations dynamically
+// Add CSS animations dynamically (без opacity hiding за секции)
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
         from {
-            opacity: 0;
             transform: translateX(50px);
         }
         to {
-            opacity: 1;
             transform: translateX(0);
         }
     }
     
     @keyframes slideInLeft {
         from {
-            opacity: 0;
             transform: translateX(-50px);
         }
         to {
-            opacity: 1;
             transform: translateX(0);
         }
     }
     
     @keyframes slideInUp {
         from {
-            opacity: 0;
             transform: translateY(50px);
         }
         to {
-            opacity: 1;
             transform: translateY(0);
         }
     }
     
     .feature-card {
-        opacity: 0;
         transform: translateY(30px);
-        transition: all 0.6s ease;
+        transition: transform 0.6s ease;
     }
     
     .feature-card.animate-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s ease;
-    }
-    
-    .section.animate-in {
-        opacity: 1;
         transform: translateY(0);
     }
 `;
@@ -1162,25 +1298,24 @@ function initHowItWorksAnimations() {
     initMouseGlowEffect();
 }
 
-// Progress Tracking
+// Progress Tracking - динамичен при scroll, но остава в секцията
 function initProgressTracking() {
     const progressFill = document.querySelector('.how-progress-fill');
     const progressSteps = document.querySelectorAll('.progress-step');
-    const stepCards = document.querySelectorAll('.step-card');
+    const section = document.querySelector('.how-it-works-section');
     
-    if (!progressFill || !progressSteps.length) return;
+    if (!progressFill || !progressSteps.length || !section) return;
     
     const updateProgress = () => {
-        const section = document.querySelector('.how-it-works-section');
-        if (!section) return;
-        
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const sectionRect = section.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
         const windowHeight = window.innerHeight;
-        const scrollPosition = window.scrollY;
         
+        // Изчисляване на прогреса базирано на позицията на секцията
+        // 0 = секцията е под viewport, 1 = секцията е над viewport
         const scrollProgress = Math.max(0, Math.min(1, 
-            (scrollPosition + windowHeight - sectionTop) / sectionHeight
+            (windowHeight - sectionTop) / (sectionHeight + windowHeight * 0.5)
         ));
         
         progressFill.style.height = `${scrollProgress * 100}%`;
@@ -1192,13 +1327,6 @@ function initProgressTracking() {
                 step.classList.add('active');
             } else {
                 step.classList.remove('active');
-            }
-        });
-        
-        // Update card visibility
-        stepCards.forEach((card, index) => {
-            if (index <= activeStep) {
-                card.style.opacity = '1';
             }
         });
     };

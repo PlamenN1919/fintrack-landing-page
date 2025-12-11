@@ -860,6 +860,14 @@ body {
     margin: 0;
     border: none;
     background: var(--bg-gradient);
+    /* Плавен преход за seamless ефект */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Smooth scrolling body state */
+body.is-scrolling {
+    scroll-behavior: smooth;
 }
 
 .section-title {
@@ -13549,12 +13557,13 @@ body {
     }
 }
 
-/* Progress Indicator */
+/* Progress Indicator - статичен в секцията */
 .how-progress-container {
-    position: fixed;
-    top: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     right: 40px;
-    z-index: 1000;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15581,5 +15590,457 @@ body {
         font-size: 14px;
         color: #403D39;
     }
+}
+
+/* ===================================
+   SEAMLESS ENTRANCE ANIMATIONS SYSTEM
+   Създава ефект на едно цяло без прекъсвания
+   =================================== */
+
+/* Base reveal styles - само transform, без opacity hiding */
+.reveal {
+    transform: translateY(30px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal.active {
+    transform: translateY(0);
+}
+
+/* Reveal от ляво */
+.reveal-left {
+    transform: translateX(-40px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal-left.active {
+    transform: translateX(0);
+}
+
+/* Reveal от дясно */
+.reveal-right {
+    transform: translateX(40px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal-right.active {
+    transform: translateX(0);
+}
+
+/* Reveal със scale */
+.reveal-scale {
+    transform: scale(0.95);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal-scale.active {
+    transform: scale(1);
+}
+
+/* Reveal с rotate */
+.reveal-rotate {
+    transform: translateY(20px) rotate(-2deg);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.reveal-rotate.active {
+    transform: translateY(0) rotate(0);
+}
+
+/* Reveal fade only - запазен за специални случаи */
+.reveal-fade {
+    opacity: 0.7;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade.active {
+    opacity: 1;
+}
+
+/* Staggered animations за child елементи - само transform */
+.stagger-children > * {
+    transform: translateY(20px);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.active > *:nth-child(1) { transition-delay: 0s; }
+.stagger-children.active > *:nth-child(2) { transition-delay: 0.05s; }
+.stagger-children.active > *:nth-child(3) { transition-delay: 0.1s; }
+.stagger-children.active > *:nth-child(4) { transition-delay: 0.15s; }
+.stagger-children.active > *:nth-child(5) { transition-delay: 0.2s; }
+.stagger-children.active > *:nth-child(6) { transition-delay: 0.25s; }
+.stagger-children.active > *:nth-child(7) { transition-delay: 0.3s; }
+.stagger-children.active > *:nth-child(8) { transition-delay: 0.35s; }
+.stagger-children.active > *:nth-child(9) { transition-delay: 0.4s; }
+.stagger-children.active > *:nth-child(10) { transition-delay: 0.45s; }
+
+.stagger-children.active > * {
+    transform: translateY(0);
+}
+
+/* Custom delay classes */
+.reveal-delay-1 { transition-delay: 0.1s !important; }
+.reveal-delay-2 { transition-delay: 0.2s !important; }
+.reveal-delay-3 { transition-delay: 0.3s !important; }
+.reveal-delay-4 { transition-delay: 0.4s !important; }
+.reveal-delay-5 { transition-delay: 0.5s !important; }
+
+/* Parallax layer classes */
+.parallax-slow {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+.parallax-medium {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+.parallax-fast {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* Section specific entrance animations - transform only (no opacity hiding) */
+
+/* Fear Section - плавно движение */
+.fear-of-loss-section-new .fear-main-title {
+    transform: translateY(30px);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fear-of-loss-section-new.section-visible .fear-main-title {
+    transform: translateY(0);
+}
+
+.fear-of-loss-section-new .fear-subtitle {
+    transform: translateY(20px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.fear-of-loss-section-new.section-visible .fear-subtitle {
+    transform: translateY(0);
+}
+
+.fear-of-loss-section-new .fear-impact-message {
+    transform: translateY(25px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(1) { transition-delay: 0.05s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(2) { transition-delay: 0.1s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(3) { transition-delay: 0.15s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(4) { transition-delay: 0.2s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(5) { transition-delay: 0.25s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(6) { transition-delay: 0.3s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(7) { transition-delay: 0.35s; }
+.fear-of-loss-section-new.section-visible .fear-impact-message:nth-child(8) { transition-delay: 0.4s; }
+
+.fear-of-loss-section-new.section-visible .fear-impact-message {
+    transform: translateY(0);
+}
+
+/* Features Section - Bento cards */
+.phone-section .phone-header {
+    transform: translateY(25px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-section.section-visible .phone-header {
+    transform: translateY(0);
+}
+
+.phone-section .bento-card {
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-section.section-visible .left-cards .bento-card:nth-child(1) { transition-delay: 0.05s; }
+.phone-section.section-visible .left-cards .bento-card:nth-child(2) { transition-delay: 0.1s; }
+.phone-section.section-visible .left-cards .bento-card:nth-child(3) { transition-delay: 0.15s; }
+.phone-section.section-visible .right-cards .bento-card:nth-child(1) { transition-delay: 0.08s; }
+.phone-section.section-visible .right-cards .bento-card:nth-child(2) { transition-delay: 0.13s; }
+.phone-section.section-visible .right-cards .bento-card:nth-child(3) { transition-delay: 0.18s; }
+
+.phone-section.section-visible .bento-card {
+    transform: translateY(0);
+}
+
+.phone-section .phone-mockup-center {
+    transform: translateY(40px);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-section.section-visible .phone-mockup-center {
+    transform: translateY(0);
+}
+
+/* Stats Section */
+.stats-achievements-section .stats-left {
+    transform: translateX(-30px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stats-achievements-section.section-visible .stats-left {
+    transform: translateX(0);
+}
+
+.stats-achievements-section .stats-list {
+    transform: translateX(30px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.stats-achievements-section.section-visible .stats-list {
+    transform: translateX(0);
+}
+
+/* Testimonials Section */
+.testimonials-section .testimonials-main-title {
+    transform: translateY(30px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonials-section.section-visible .testimonials-main-title {
+    transform: translateY(0);
+}
+
+.testimonials-section .testimonials-cards-group {
+    transform: translateY(30px);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.testimonials-section.section-visible .testimonials-cards-group {
+    transform: translateY(0);
+}
+
+.testimonials-section .motivational-text-block {
+    transform: translateY(20px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.testimonials-section.section-visible .motivational-text-block {
+    transform: translateY(0);
+}
+
+/* How It Works Section */
+.how-it-works-section .step-card {
+    transform: translateY(25px);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.how-it-works-section.section-visible .step-card:nth-child(1) { transition-delay: 0.02s; }
+.how-it-works-section.section-visible .step-card:nth-child(2) { transition-delay: 0.06s; }
+.how-it-works-section.section-visible .step-card:nth-child(3) { transition-delay: 0.1s; }
+.how-it-works-section.section-visible .step-card:nth-child(4) { transition-delay: 0.14s; }
+.how-it-works-section.section-visible .step-card:nth-child(5) { transition-delay: 0.18s; }
+
+.how-it-works-section.section-visible .step-card {
+    transform: translateY(0);
+}
+
+.how-it-works-section .how-cta {
+    transform: translateY(20px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.how-it-works-section.section-visible .how-cta {
+    transform: translateY(0);
+}
+
+/* Pain Calculator Section */
+.pain-calculator-section .pain-title {
+    transform: translateY(25px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pain-calculator-section.section-visible .pain-title {
+    transform: translateY(0);
+}
+
+.pain-calculator-section .calculator-container {
+    transform: translateY(30px);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.pain-calculator-section.section-visible .calculator-container {
+    transform: translateY(0);
+}
+
+.pain-calculator-section .pain-stats {
+    transform: translateY(20px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.pain-calculator-section.section-visible .pain-stats {
+    transform: translateY(0);
+}
+
+/* Download Section */
+.download-section .download-content {
+    transform: translateY(30px);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.download-section.section-visible .download-content {
+    transform: translateY(0);
+}
+
+/* Footer entrance */
+.footer {
+    transform: translateY(20px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer.section-visible {
+    transform: translateY(0);
+}
+
+/* Floating elements parallax movement */
+.fear-geometric-shape,
+.stats-shape,
+.how-shape {
+    transition: transform 0.3s ease-out;
+}
+
+/* Smooth scroll snap за секциите (optional) */
+@supports (scroll-snap-type: y proximity) {
+    html {
+        scroll-snap-type: y proximity;
+    }
+    
+    .section {
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    .reveal-rotate,
+    .reveal-fade,
+    .stagger-children > *,
+    .fear-of-loss-section-new .fear-main-title,
+    .fear-of-loss-section-new .fear-subtitle,
+    .fear-of-loss-section-new .fear-impact-message,
+    .phone-section .phone-header,
+    .phone-section .bento-card,
+    .phone-section .phone-mockup-center,
+    .stats-achievements-section .stats-left,
+    .stats-achievements-section .stats-list,
+    .testimonials-section .testimonials-main-title,
+    .testimonials-section .testimonials-cards-group,
+    .testimonials-section .motivational-text-block,
+    .how-it-works-section .step-card,
+    .how-it-works-section .how-cta,
+    .pain-calculator-section .pain-title,
+    .pain-calculator-section .calculator-container,
+    .pain-calculator-section .pain-stats,
+    .download-section .download-content,
+    .footer {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* ===================================
+   SEAMLESS SECTION TRANSITIONS
+   Премахване на визуални прекъсвания
+   =================================== */
+
+/* Continuous background flow effect */
+.section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--bg-gradient));
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, transparent, var(--bg-gradient));
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* Removed generic h2/h3 animations - using section-specific ones only */
+
+/* Subtle background parallax for depth */
+.section > .container {
+    position: relative;
+    z-index: 5;
+}
+
+/* Removed - causing black areas on scroll */
+
+/* Card hover micro-interactions for cohesiveness */
+.bento-card,
+.step-card,
+.testimonial-long-card,
+.fear-impact-message {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover,
+.step-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Buttons keep their existing styles - no opacity hiding */
+
+/* Content blocks - removed duplicate animation rules */
+
+/* Floating elements continuous animation */
+@keyframes floatContinuous {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+.parallax-slow,
+.parallax-medium,
+.parallax-fast {
+    animation: floatContinuous 8s ease-in-out infinite;
+}
+
+.parallax-medium {
+    animation-delay: -2s;
+    animation-duration: 10s;
+}
+
+.parallax-fast {
+    animation-delay: -4s;
+    animation-duration: 6s;
 }
 
