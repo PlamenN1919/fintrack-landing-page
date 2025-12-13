@@ -1336,9 +1336,11 @@ function initOrbitalFearSection() {
             const pos = calculateNodePosition(index, total, rotationAngle);
             const transform = `translate(${pos.x}px, ${pos.y}px)`;
             
-            item.style.transform = transform;
-            item.style.setProperty('--current-transform', transform);
-            item.style.opacity = pos.opacity;
+            // Use CSS custom properties instead of inline transform
+            // This allows :hover and .active CSS rules to work properly
+            item.style.setProperty('--translate-x', `${pos.x}px`);
+            item.style.setProperty('--translate-y', `${pos.y}px`);
+            item.style.setProperty('--item-opacity', pos.opacity);
         });
     }
     
