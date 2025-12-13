@@ -1260,6 +1260,237 @@ if (document.readyState === 'loading') {
 }
 
 // ===================================
+// TESTIMONIALS COLUMNS SECTION
+// ===================================
+
+function initTestimonialsColumns() {
+    // Intersection Observer for performance - pause when not visible
+    const testimonialsSection = document.querySelector('.testimonials-columns-section');
+    if (testimonialsSection) {
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const inners = entry.target.querySelectorAll('.testimonials-column-inner');
+                inners.forEach(inner => {
+                    inner.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+                });
+            });
+        }, { threshold: 0.1 });
+        
+        visibilityObserver.observe(testimonialsSection);
+    }
+}
+
+// Initialize testimonials columns
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTestimonialsColumns);
+} else {
+    initTestimonialsColumns();
+}
+
+// ===================================
+// ORBITAL FEAR SECTION
+// Like RadialOrbitalTimeline from React
+// ===================================
+
+function initOrbitalFearSection() {
+    const orbitalItems = document.querySelectorAll('.orbital-item');
+    const fearCards = document.querySelectorAll('.fear-detail-card');
+    const fearOverlay = document.querySelector('.fear-overlay');
+    const closeButtons = document.querySelectorAll('.fear-card-close');
+    const fearSection = document.querySelector('.fear-orbital-section');
+    
+    if (!orbitalItems.length) return;
+    
+    let rotationAngle = 0;
+    let autoRotate = true;
+    let animationId = null;
+    let isVisible = false;
+    
+    // Get radius based on screen size
+    function getRadius() {
+        if (window.innerWidth <= 480) return 140;
+        if (window.innerWidth <= 768) return 200;
+        return 360; // Larger radius for desktop
+    }
+    
+    // Calculate position for each item (like React version)
+    function calculateNodePosition(index, total, angle) {
+        const itemAngle = ((index / total) * 360 + angle) % 360;
+        const radius = getRadius();
+        const radian = (itemAngle * Math.PI) / 180;
+        
+        const x = radius * Math.cos(radian);
+        const y = radius * Math.sin(radian);
+        
+        // Calculate opacity based on position (front items more visible)
+        const opacity = Math.max(0.5, Math.min(1, 0.5 + 0.5 * ((1 + Math.sin(radian)) / 2)));
+        
+        return { x, y, opacity };
+    }
+    
+    // Update all item positions
+    function updatePositions() {
+        const total = orbitalItems.length;
+        
+        orbitalItems.forEach((item, index) => {
+            const pos = calculateNodePosition(index, total, rotationAngle);
+            const transform = `translate(${pos.x}px, ${pos.y}px)`;
+            
+            item.style.transform = transform;
+            item.style.setProperty('--current-transform', transform);
+            item.style.opacity = pos.opacity;
+        });
+    }
+    
+    // Animation loop
+    function animate() {
+        if (autoRotate && isVisible) {
+            rotationAngle = (rotationAngle + 0.3) % 360;
+            updatePositions();
+        }
+        animationId = requestAnimationFrame(animate);
+    }
+    
+    // Start animation
+    function startAnimation() {
+        if (!animationId) {
+            animationId = requestAnimationFrame(animate);
+        }
+    }
+    
+    // Stop animation
+    function stopAnimation() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }
+    
+    // Click on orbital item to show card
+    orbitalItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const fearId = item.getAttribute('data-fear');
+            openFearCard(fearId, index);
+        });
+    });
+    
+    // Close buttons
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeFearCards();
+        });
+    });
+    
+    // Click overlay to close
+    if (fearOverlay) {
+        fearOverlay.addEventListener('click', closeFearCards);
+    }
+    
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeFearCards();
+        }
+    });
+    
+    function openFearCard(fearId, nodeIndex) {
+        // Stop auto rotation
+        autoRotate = false;
+        
+        // Center view on clicked node (bring to front)
+        const total = orbitalItems.length;
+        const targetAngle = 270 - (nodeIndex / total) * 360;
+        rotationAngle = targetAngle;
+        updatePositions();
+        
+        // Remove active from all items
+        orbitalItems.forEach(item => item.classList.remove('active'));
+        
+        // Add active to clicked item
+        const activeItem = document.querySelector(`.orbital-item[data-fear="${fearId}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+        }
+        
+        // Hide all cards first
+        fearCards.forEach(card => card.classList.remove('active'));
+        
+        // Show the corresponding card
+        const targetCard = document.querySelector(`.fear-detail-card[data-card="${fearId}"]`);
+        if (targetCard) {
+            targetCard.classList.add('active');
+        }
+        
+        // Show overlay
+        if (fearOverlay) {
+            fearOverlay.classList.add('active');
+        }
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeFearCards() {
+        // Resume auto rotation
+        autoRotate = true;
+        
+        // Remove active from all items
+        orbitalItems.forEach(item => item.classList.remove('active'));
+        
+        // Hide all cards
+        fearCards.forEach(card => card.classList.remove('active'));
+        
+        // Hide overlay
+        if (fearOverlay) {
+            fearOverlay.classList.remove('active');
+        }
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+    }
+    
+    // Intersection Observer - pause when not visible for performance & trigger entry animation
+    if (fearSection) {
+        let hasAnimatedIn = false;
+        
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
+                    startAnimation();
+                    
+                    // Trigger entry animation only once
+                    if (!hasAnimatedIn) {
+                        hasAnimatedIn = true;
+                        fearSection.classList.add('animate-in');
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+        
+        visibilityObserver.observe(fearSection);
+    }
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        updatePositions();
+    });
+    
+    // Initial position update
+    updatePositions();
+    startAnimation();
+}
+
+// Initialize orbital fear section
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOrbitalFearSection);
+} else {
+    initOrbitalFearSection();
+}
+
+// ===================================
 // NEW SECTIONS JAVASCRIPT
 // ===================================
 

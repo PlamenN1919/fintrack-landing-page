@@ -145,73 +145,211 @@
         </div>
     </section>
 
-    <!-- Fear of Loss Section -->
-    <section class="fear-of-loss-section-new section" id="fear">
-        <div class="fear-container">
-            <!-- Geometric Background Shapes -->
-            <div class="fear-geometric-shapes">
-                <div class="fear-geometric-shape circle parallax-slow"></div>
-                <div class="fear-geometric-shape square parallax-medium"></div>
-                <div class="fear-geometric-shape triangle parallax-fast"></div>
+    <!-- Fear of Loss Section - Orbital -->
+    <section class="fear-orbital-section section" id="fear">
+        <div class="fear-orbital-container">
+            <!-- Orbital System -->
+            <div class="orbital-system">
+                <!-- Orbit Ring -->
+                <div class="orbit-ring"></div>
+                <div class="orbit-ring orbit-ring-2"></div>
+                
+                <!-- Center - Title -->
+                <div class="orbital-center">
+                    <div class="orbital-center-glow"></div>
+                    <div class="orbital-center-content">
+                        <h2 class="orbital-title">
+                            <span class="orbital-title-line">ВАШИТЕ МЕЧТИ</span>
+                            <span class="orbital-title-line orbital-title-accent">ИЗЧЕЗВАТ</span>
+                            <span class="orbital-title-line">БЕЗ КОНТРОЛ</span>
+                        </h2>
+                        <p class="orbital-subtitle">Без FinTrack</p>
+                    </div>
+                </div>
+
+                <!-- Orbiting Fear Items -->
+                <div class="orbital-items">
+                    <!-- Fear 1: Безсънни нощи -->
+                    <div class="orbital-item" data-fear="1">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <span class="orbital-item-label">Безсънни нощи</span>
+                    </div>
+
+                    <!-- Fear 2: Неочаквани разходи -->
+                    <div class="orbital-item" data-fear="2">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span class="orbital-item-label">Неочаквани разходи</span>
+                    </div>
+
+                    <!-- Fear 3: Пропуснати почивки -->
+                    <div class="orbital-item" data-fear="3">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-plane-slash"></i>
+                        </div>
+                        <span class="orbital-item-label">Пропуснати почивки</span>
+                    </div>
+
+                    <!-- Fear 4: Стрес от дългове -->
+                    <div class="orbital-item" data-fear="4">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-heart-crack"></i>
+                        </div>
+                        <span class="orbital-item-label">Стрес от дългове</span>
+                    </div>
+
+                    <!-- Fear 5: Отказване на детето -->
+                    <div class="orbital-item" data-fear="5">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <span class="orbital-item-label">Отказване на детето</span>
+                    </div>
+
+                    <!-- Fear 6: Липса на спестявания -->
+                    <div class="orbital-item" data-fear="6">
+                        <div class="orbital-item-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <span class="orbital-item-label">Липса на спестявания</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Fear Brand Section with Title -->
-            <div class="fear-brand-section">
-                <h2 class="fear-main-title">
-                    <span class="fear-title-line-1">ВАШИТЕ МЕЧТИ</span>
-                    <span class="fear-title-line-2">ИЗЧЕЗВАТ БЕЗ КОНТРОЛ</span>
-                    <span class="fear-title-line-3">БЕЗ FINTRACK</span>
-                </h2>
-                <p class="fear-subtitle">
-                    Всеки ден без контрол над финансите ви струва мечтите, целите и бъдещето ви. 
-                    Не позволявайте парите да изтичат без да знаете къде отиват.
-                </p>
+            <!-- Fear Detail Cards (Hidden by default) -->
+            <div class="fear-cards-container">
+                <!-- Card 1 -->
+                <div class="fear-detail-card" data-card="1">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-moon"></i></div>
+                        <div class="fear-card-badge">КРИТИЧЕН</div>
+                    </div>
+                    <h3 class="fear-card-title">Безсънни нощи</h3>
+                    <p class="fear-card-description">Лежиш буден в 3 сутринта, питайки се дали ще можеш да платиш сметките този месец. Стресът от финансовата несигурност разрушава съня и здравето ти.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">85%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="fear-detail-card" data-card="2">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="fear-card-badge fear-card-badge-danger">СПЕШЕН</div>
+                    </div>
+                    <h3 class="fear-card-title">Неочаквани разходи</h3>
+                    <p class="fear-card-description">Колата се развали, хладилникът спря да работи, или внезапна медицинска сметка. Без резерв, всяка неочаквана ситуация те връща назад с месеци.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">90%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="fear-detail-card" data-card="3">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-plane-slash"></i></div>
+                        <div class="fear-card-badge">ВИСОК</div>
+                    </div>
+                    <h3 class="fear-card-title">Пропуснати почивки</h3>
+                    <p class="fear-card-description">Докато другите споделят снимки от екзотични дестинации, ти отново отлагаш мечтаната почивка. "Следващата година" се превръща в безкраен цикъл.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">70%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="fear-detail-card" data-card="4">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-heart-crack"></i></div>
+                        <div class="fear-card-badge fear-card-badge-danger">КРИТИЧЕН</div>
+                    </div>
+                    <h3 class="fear-card-title">Стрес от дългове</h3>
+                    <p class="fear-card-description">Кредитните карти, заемите, ипотеката... Чувстваш се затрупан от задължения. Всяка покупка носи вина, а бъдещето изглежда мрачно.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">95%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="fear-detail-card" data-card="5">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-child"></i></div>
+                        <div class="fear-card-badge">ВИСОК</div>
+                    </div>
+                    <h3 class="fear-card-title">Отказване на детето</h3>
+                    <p class="fear-card-description">"Не можем да си го позволим" - думи, които разбиват сърцето ти всеки път. Искаш да дадеш най-доброто на децата си, но парите винаги не достигат.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">80%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="fear-detail-card" data-card="6">
+                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
+                    <div class="fear-card-header">
+                        <div class="fear-card-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="fear-card-badge fear-card-badge-danger">СПЕШЕН</div>
+                    </div>
+                    <h3 class="fear-card-title">Липса на спестявания</h3>
+                    <p class="fear-card-description">Нулев резерв за спешни случаи. Живееш от заплата до заплата, а мисълта за пенсия или голяма покупка е просто невъзможна.</p>
+                    <div class="fear-card-impact">
+                        <div class="impact-header">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ниво на въздействие</span>
+                            <span class="impact-value">88%</span>
+                        </div>
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="--impact: 88%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Glass Cards Grid -->
-            <div class="fear-glass-grid">
-            </div>
-
-            <!-- Emotional Impact Messages - Scattered -->
-            <div class="fear-impact-message fear-impact-1">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Без повече безсънни нощи в притеснение дали ще изплатиш кредита</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-6">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Всяка неочаквана разходка те връща назад с месеци</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-2">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Гледаш как другите напредват, докато ти стойш на едно място</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-3">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Спри да отказваш на детето ти това, което иска само, защото не можеш да си го позволиш</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-4">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Мечтата за почивка остава мечта, защото винаги нямаш спестени пари</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-5">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Страхът да кажеш "не мога" на приятелите ти става всекидневен</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-7">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Плановете за бъдещето се разпадат, защото парите винаги свършват</p>
-            </div>
-
-            <div class="fear-impact-message fear-impact-8">
-                <div class="fear-impact-indicator"></div>
-                <p class="fear-impact-text">Чувството на вина, че не можеш да осигуриш по-добро за семейството си</p>
-            </div>
+            <!-- Overlay for cards -->
+            <div class="fear-overlay"></div>
         </div>
     </section>
 
@@ -521,6 +659,219 @@
                 </p>
             </div>
         </div>
+    </section>
+
+    <!-- Testimonials Columns Section -->
+    <section class="testimonials-columns-section section" id="testimonials-columns">
+        <div class="testimonials-columns-container">
+            <!-- Column 1 - Fast -->
+            <div class="testimonials-column column-1">
+                <div class="testimonials-column-inner">
+                    <!-- First set of cards -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Мария Петрова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Мария Петрова</span>
+                                <span class="testimonial-column-role">Маркетинг мениджър</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Георги Стоянов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Георги Стоянов</span>
+                                <span class="testimonial-column-role">Предприемач</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Елена Костова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Елена Костова</span>
+                                <span class="testimonial-column-role">Учител</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Мария Петрова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Мария Петрова</span>
+                                <span class="testimonial-column-role">Маркетинг мениджър</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Георги Стоянов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Георги Стоянов</span>
+                                <span class="testimonial-column-role">Предприемач</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Елена Костова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Елена Костова</span>
+                                <span class="testimonial-column-role">Учител</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2 - Medium -->
+            <div class="testimonials-column column-2">
+                <div class="testimonials-column-inner">
+                    <!-- First set of cards -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Иван Димитров" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Иван Димитров</span>
+                                <span class="testimonial-column-role">Софтуерен инженер</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Анна Николова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Анна Николова</span>
+                                <span class="testimonial-column-role">Счетоводител</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Петър Василев" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Петър Василев</span>
+                                <span class="testimonial-column-role">Финансов анализатор</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Иван Димитров" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Иван Димитров</span>
+                                <span class="testimonial-column-role">Софтуерен инженер</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Анна Николова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Анна Николова</span>
+                                <span class="testimonial-column-role">Счетоводител</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Петър Василев" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Петър Василев</span>
+                                <span class="testimonial-column-role">Финансов анализатор</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3 - Slow -->
+            <div class="testimonials-column column-3">
+                <div class="testimonials-column-inner">
+                    <!-- First set of cards -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Стефан Михайлов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Стефан Михайлов</span>
+                                <span class="testimonial-column-role">Архитект</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Десислава Тодорова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Десислава Тодорова</span>
+                                <span class="testimonial-column-role">Лекар</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Николай Иванов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Николай Иванов</span>
+                                <span class="testimonial-column-role">Фотограф</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Стефан Михайлов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Стефан Михайлов</span>
+                                <span class="testimonial-column-role">Архитект</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Десислава Тодорова" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Десислава Тодорова</span>
+                                <span class="testimonial-column-role">Лекар</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-column-card">
+                        <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
+                        <div class="testimonial-column-author">
+                            <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Николай Иванов" class="testimonial-column-avatar">
+                            <div class="testimonial-column-info">
+                                <span class="testimonial-column-name">Николай Иванов</span>
+                                <span class="testimonial-column-role">Фотограф</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gradient overlays for fade effect -->
+        <div class="testimonials-columns-fade-top"></div>
+        <div class="testimonials-columns-fade-bottom"></div>
     </section>
 
     <!-- How It Works Section -->

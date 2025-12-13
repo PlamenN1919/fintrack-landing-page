@@ -16044,3 +16044,827 @@ body.is-scrolling {
     animation-duration: 6s;
 }
 
+/* ===================================
+   TESTIMONIALS COLUMNS SECTION
+   Animated scrolling testimonials
+   =================================== */
+
+.testimonials-columns-section {
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg-gradient);
+    overflow: hidden;
+    min-height: 700px;
+    margin: 0;
+    border: none;
+}
+
+.testimonials-columns-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 600px;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.testimonials-column {
+    flex: 1;
+    max-width: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonials-column-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 24px;
+    animation: scrollUp 10s linear infinite;
+}
+
+/* Different speeds for each column */
+.column-1 .testimonials-column-inner {
+    animation-duration: 25s;
+}
+
+.column-2 .testimonials-column-inner {
+    animation-duration: 30s;
+    animation-direction: reverse;
+}
+
+.column-3 .testimonials-column-inner {
+    animation-duration: 22s;
+}
+
+/* Scroll animation keyframes */
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* Testimonial Card Styles */
+.testimonial-column-card {
+    padding: 32px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+}
+
+
+.testimonial-column-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(44, 44, 44, 0.9);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.testimonial-column-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.testimonial-column-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.testimonial-column-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.testimonial-column-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(44, 44, 44, 0.95);
+    letter-spacing: 0.3px;
+}
+
+.testimonial-column-role {
+    font-size: 12px;
+    color: rgba(44, 44, 44, 0.6);
+    letter-spacing: 0.2px;
+}
+
+/* Gradient fade overlays */
+.testimonials-columns-fade-top,
+.testimonials-columns-fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.testimonials-columns-fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, var(--bg-gradient) 0%, transparent 100%);
+}
+
+.testimonials-columns-fade-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, var(--bg-gradient) 0%, transparent 100%);
+}
+
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .testimonials-columns-container {
+        gap: 16px;
+    }
+    
+    .testimonial-column-card {
+        padding: 24px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-columns-section {
+        padding: 60px 0;
+        min-height: 500px;
+    }
+    
+    .testimonials-columns-container {
+        height: 450px;
+    }
+    
+    /* Hide third column on tablets */
+    .column-3 {
+        display: none;
+    }
+    
+    .testimonials-column {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonials-columns-container {
+        height: 400px;
+        gap: 12px;
+    }
+    
+    /* Show only one column on mobile */
+    .column-2,
+    .column-3 {
+        display: none;
+    }
+    
+    .testimonials-column {
+        max-width: 100%;
+    }
+    
+    .testimonial-column-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 13px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 11px;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .testimonials-column-inner {
+        animation: none;
+    }
+}
+
+/* ===================================
+   ORBITAL FEAR SECTION
+   Орбитална визуализация на страховете
+   =================================== */
+
+.fear-orbital-section {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    overflow: hidden;
+    margin: 0;
+    border: none;
+}
+
+/* Entry animations */
+.fear-orbital-section .orbital-center {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fear-orbital-section .orbit-ring {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fear-orbital-section .orbit-ring-2 {
+    transition-delay: 0.2s;
+}
+
+.fear-orbital-section .orbital-item .orbital-item-icon {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fear-orbital-section .orbital-item .orbital-item-label {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fear-orbital-section.animate-in .orbital-center {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fear-orbital-section.animate-in .orbit-ring {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fear-orbital-section.animate-in .orbital-item:nth-child(1) .orbital-item-icon { transition-delay: 0.4s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(2) .orbital-item-icon { transition-delay: 0.5s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(3) .orbital-item-icon { transition-delay: 0.6s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(4) .orbital-item-icon { transition-delay: 0.7s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(5) .orbital-item-icon { transition-delay: 0.8s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(6) .orbital-item-icon { transition-delay: 0.9s; }
+
+.fear-orbital-section.animate-in .orbital-item:nth-child(1) .orbital-item-label { transition-delay: 0.5s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(2) .orbital-item-label { transition-delay: 0.6s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(3) .orbital-item-label { transition-delay: 0.7s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(4) .orbital-item-label { transition-delay: 0.8s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(5) .orbital-item-label { transition-delay: 0.9s; }
+.fear-orbital-section.animate-in .orbital-item:nth-child(6) .orbital-item-label { transition-delay: 1.0s; }
+
+.fear-orbital-section.animate-in .orbital-item .orbital-item-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fear-orbital-section.animate-in .orbital-item .orbital-item-label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.fear-orbital-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 950px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Orbital System */
+.orbital-system {
+    position: relative;
+    width: 850px;
+    height: 850px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Orbit Rings */
+.orbit-ring {
+    position: absolute;
+    width: 720px;
+    height: 720px;
+    border: 1px solid rgba(44, 44, 44, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.orbit-ring-2 {
+    width: 750px;
+    height: 750px;
+    border: 1px dashed rgba(44, 44, 44, 0.1);
+}
+
+/* Center Content */
+.orbital-center {
+    position: absolute;
+    z-index: 5;
+    text-align: center;
+    max-width: 420px;
+    pointer-events: none; /* Allow clicks to pass through to orbital items */
+}
+
+.orbital-center-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: centerPulse 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes centerPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+.orbital-center-content {
+    position: relative;
+    z-index: 2;
+}
+
+.orbital-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+}
+
+.orbital-title-line {
+    display: block;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #2c2c2c;
+    line-height: 1.1;
+}
+
+.orbital-title-accent {
+    font-size: 52px;
+    color: #ff6b6b;
+    letter-spacing: -2px;
+}
+
+.orbital-subtitle {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(44, 44, 44, 0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Orbital Items Container */
+.orbital-items {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 20; /* Above the center content */
+}
+
+/* Individual Orbital Item */
+.orbital-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.7s ease, opacity 0.3s ease;
+    z-index: 25; /* Ensure items are clickable */
+    /* Position will be set by JavaScript */
+}
+
+.orbital-item:hover {
+    transform: var(--current-transform) scale(1.15);
+}
+
+.orbital-item.active {
+    transform: var(--current-transform) scale(1.2);
+}
+
+.orbital-item-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(44, 44, 44, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.orbital-item-icon i {
+    font-size: 28px;
+    color: #ff6b6b;
+    transition: all 0.3s ease;
+}
+
+.orbital-item:hover .orbital-item-icon {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    box-shadow: 0 12px 32px rgba(255, 107, 107, 0.3);
+}
+
+.orbital-item:hover .orbital-item-icon i {
+    color: white;
+}
+
+.orbital-item.active .orbital-item-icon {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    box-shadow: 0 12px 32px rgba(255, 107, 107, 0.4);
+}
+
+.orbital-item.active .orbital-item-icon i {
+    color: white;
+}
+
+.orbital-item-label {
+    position: absolute;
+    top: 78px; /* Positioned below the 70px icon */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(44, 44, 44, 0.7);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.orbital-item:hover .orbital-item-label,
+.orbital-item.active .orbital-item-label {
+    color: #ff6b6b;
+}
+
+/* Fear Detail Cards */
+.fear-cards-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.fear-detail-card {
+    position: absolute;
+    width: 380px;
+    max-width: 90vw;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(44, 44, 44, 0.1);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+.fear-detail-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+.fear-card-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(44, 44, 44, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.fear-card-close i {
+    font-size: 14px;
+    color: rgba(44, 44, 44, 0.5);
+}
+
+.fear-card-close:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.fear-card-close:hover i {
+    color: #ff6b6b;
+}
+
+.fear-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.fear-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+.fear-card-icon i {
+    font-size: 20px;
+    color: white;
+}
+
+.fear-card-badge {
+    padding: 6px 12px;
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 20px;
+}
+
+.fear-card-badge-danger {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+}
+
+.fear-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+}
+
+.fear-card-description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(44, 44, 44, 0.7);
+    margin: 0 0 24px 0;
+}
+
+.fear-card-impact {
+    padding: 16px;
+    background: rgba(44, 44, 44, 0.03);
+    border-radius: 12px;
+}
+
+.impact-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: rgba(44, 44, 44, 0.6);
+}
+
+.impact-header i {
+    color: #ff6b6b;
+}
+
+.impact-value {
+    margin-left: auto;
+    font-weight: 700;
+    color: #ff6b6b;
+    font-family: 'SF Mono', 'Monaco', monospace;
+}
+
+.impact-bar {
+    height: 6px;
+    background: rgba(44, 44, 44, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.impact-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #ff6b6b 0%, #ff3b30 100%);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+}
+
+.fear-detail-card.active .impact-fill {
+    width: var(--impact);
+}
+
+/* Overlay */
+.fear-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.fear-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fear-orbital-container {
+        height: 600px;
+    }
+    
+    .orbital-system {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .orbit-ring {
+        width: 340px;
+        height: 340px;
+    }
+    
+    .orbit-ring-2 {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .orbital-item {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    
+    .orbital-item-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 18px;
+    }
+    
+    .orbital-item-label {
+        font-size: 9px;
+        top: 50px; /* Below 44px icon */
+    }
+    
+    .orbital-title-line {
+        font-size: 20px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 26px;
+    }
+    
+    .orbital-center-glow {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .fear-detail-card {
+        width: 340px;
+        padding: 24px;
+    }
+    
+    .fear-card-title {
+        font-size: 18px;
+    }
+    
+    .fear-card-description {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fear-orbital-section {
+        padding: 60px 15px;
+    }
+    
+    .fear-orbital-container {
+        height: 500px;
+    }
+    
+    .orbital-system {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .orbit-ring {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .orbit-ring-2 {
+        width: 300px;
+        height: 300px;
+    }
+    
+    
+    .orbital-item-icon {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 16px;
+    }
+    
+    .orbital-item-label {
+        display: none;
+    }
+    
+    .orbital-title-line {
+        font-size: 16px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 22px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 11px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .orbital-center-glow {
+        animation: none;
+    }
+    
+    .orbital-item {
+        transition: none;
+    }
+}
+
