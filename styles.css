@@ -41,25 +41,33 @@ body {
     right: 30px;
     top: 40%;
     transform: translateY(-50%);
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    opacity: 0;
-    animation: slideInRight 1.2s ease-out 0.8s forwards;
 }
 
 .social-link {
-    color: #666;
-    font-size: 18px;
+    color: #333;
+    font-size: 20px;
     transition: all 0.3s ease;
     text-decoration: none;
-    padding: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .social-link:hover {
-    color: #ffffff;
-    transform: translateX(5px);
+    color: #667eea;
+    transform: translateX(-5px) scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
 }
 
 /* Logo */
@@ -232,9 +240,10 @@ body {
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
-    opacity: 0;
+    opacity: 1;
     animation: fadeInScale 1.5s ease-out 0.5s forwards;
     overflow: visible;
+    pointer-events: none;
 }
 
 .spline-container spline-viewer {
@@ -242,9 +251,11 @@ body {
     height: 100%;
     border-radius: 20px;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    transform: scale(0.9);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: scale(1);
     transform-origin: center center;
+    display: block;
+    position: relative;
 }
 
 .spline-container spline-viewer canvas {
@@ -254,6 +265,7 @@ body {
 
 .spline-container spline-viewer.loaded {
     opacity: 1;
+    transform: scale(1);
 }
 
 /* Loading placeholder */
@@ -315,7 +327,7 @@ body {
     }
 }
 
-@keyframes slideInRight {
+@keyframes slideInRightSocial {
     0% {
         opacity: 0;
         transform: translateX(50px) translateY(-50%);
@@ -377,11 +389,11 @@ body {
     left: 100px;
     top: calc(35% - 100px);
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: 15;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    opacity: 0;
+    opacity: 1;
     animation: slideInLeft 1.2s ease-out 0.3s forwards;
 }
 
@@ -393,7 +405,7 @@ body {
     color: #2c2c2c;
     text-transform: uppercase;
     line-height: 1;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 0.8s ease-out 0.8s forwards;
 }
 
@@ -405,7 +417,7 @@ body {
     color: #666;
     text-transform: uppercase;
     line-height: 1;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUpSubtle 0.8s ease-out 1.1s forwards;
 }
 
@@ -414,7 +426,7 @@ body {
     align-items: center;
     gap: 8px;
     margin-top: 12px;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 0.8s ease-out 1.4s forwards;
 }
 
@@ -449,14 +461,14 @@ body {
     align-items: center;
     gap: 30px;
     margin-top: 120px;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 0.8s ease-out 1.7s forwards;
 }
 
 .hero-brand .download-pill-btn {
     margin-top: 30px;
     margin-bottom: 0;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 0.8s ease-out 1.4s forwards;
 }
 
@@ -486,11 +498,11 @@ body {
     position: absolute;
     bottom: 120px;
     left: 100px;
-    z-index: 10;
+    z-index: 15;
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    opacity: 0;
+    opacity: 1;
     animation: slideInLeft 1s ease-out 1.8s forwards;
 }
 
@@ -537,11 +549,11 @@ body {
     position: absolute;
     top: 420px;
     right: 350px;
-    z-index: 10;
+    z-index: 15;
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 1s ease-out 1.2s forwards;
 }
 
@@ -574,9 +586,9 @@ body {
     position: absolute;
     bottom: 300px;
     right: 100px;
-    z-index: 10;
+    z-index: 15;
     text-align: right;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInUp 1s ease-out 1.5s forwards;
 }
 
@@ -758,7 +770,7 @@ body {
     align-items: center;
     gap: 0;
     z-index: 100;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInScale 1s ease-out 2.1s forwards;
 }
 
@@ -797,7 +809,7 @@ body {
     align-items: flex-end;
     gap: 5px;
     z-index: 15;
-    opacity: 0;
+    opacity: 1;
     animation: fadeInScale 1.2s ease-out 2.5s forwards;
 }
 
@@ -8728,18 +8740,11 @@ body.is-scrolling {
     
     .social-links {
         right: 20px;
+        gap: 16px;
     }
     
     .hero {
         padding: 0 30px;
-    }
-    
-    .spline-container {
-        height: 85vh;
-        left: 300px;
-        width: 90vw;
-        max-width: 900px;
-        max-height: 700px;
     }
     
     .app-preview-content {
@@ -8795,24 +8800,20 @@ body.is-scrolling {
         right: 15px;
         top: 35%;
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         padding: 0;
         transform: translateY(-50%);
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
     
     .hero {
         height: auto;
         min-height: 100vh;
-    }
-    
-    .spline-container {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: none;
-        height: 60vh;
-        max-width: 400px;
-        margin: 0 auto;
     }
     
     .hero-brand {
@@ -9060,11 +9061,6 @@ body.is-scrolling {
 @media (max-width: 480px) {
     .section-title {
         font-size: 1.8rem;
-    }
-    
-    .spline-container {
-        height: 50vh;
-        max-width: 300px;
     }
     
     .container {
@@ -16111,15 +16107,6 @@ body.is-scrolling {
     }
 }
 
-@keyframes scrollDown {
-    0% {
-        transform: translateY(-50%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
 /* Testimonial Card Styles */
 .testimonial-column-card {
     padding: 32px;
@@ -16876,3 +16863,7953 @@ body.is-scrolling {
         transition: none;
     }
 }
+
+/* ==================================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   ================================== */
+
+/* ===== EXTRA LARGE SCREENS (1440px+) ===== */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero {
+        padding: 0 80px;
+    }
+    
+    .hero-brand {
+        left: 120px;
+    }
+    
+    .brand-title {
+        font-size: 42px;
+    }
+    
+    .spline-container {
+        max-width: 3500px;
+        max-height: 2800px;
+    }
+    
+    .bottom-left-design {
+        left: 120px;
+    }
+    
+    .phone-title {
+        font-size: 80px;
+    }
+    
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3 {
+        font-size: 72px;
+    }
+}
+
+/* ===== LARGE DESKTOP (1200px - 1439px) ===== */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .hero {
+        padding: 0 60px;
+    }
+    
+    .hero-brand {
+        left: 80px;
+    }
+    
+    .bottom-left-design {
+        left: 80px;
+    }
+}
+
+/* ===== MEDIUM DESKTOP / TABLET LANDSCAPE (992px - 1199px) ===== */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+        padding: 0 30px;
+    }
+    
+    .hero {
+        padding: 0 40px;
+    }
+    
+    .hero-brand {
+        left: 60px;
+        top: calc(35% - 80px);
+    }
+    
+    .brand-title {
+        font-size: 32px;
+        letter-spacing: 4px;
+    }
+    
+    .brand-subtitle {
+        font-size: 16px;
+    }
+    
+    .spline-container {
+        width: 150vw;
+        height: 150vh;
+        max-width: 2000px;
+        max-height: 1800px;
+    }
+    
+    .bottom-left-design {
+        left: 60px;
+        bottom: 100px;
+    }
+    
+    .glass-morphism-card {
+        width: 260px;
+        height: 160px;
+    }
+    
+    /* Features Section */
+    .phone-title {
+        font-size: 56px;
+    }
+    
+    .features-layout {
+        gap: 30px;
+    }
+    
+    .bento-card.medium {
+        padding: 24px;
+    }
+    
+    /* Stats */
+    .stats-main-title .highlight {
+        font-size: 42px;
+    }
+    
+    /* Testimonials */
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3 {
+        font-size: 52px;
+    }
+}
+
+/* ===== TABLET PORTRAIT (768px - 991px) ===== */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 720px;
+        padding: 0 25px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 30px 60px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .logo {
+        height: 45px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 40px;
+        z-index: 20;
+        animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    .brand-title {
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+    
+    .brand-subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 40px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 30px auto 0;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 50vh;
+        max-width: 600px;
+        max-height: 500px;
+        margin: 0 auto;
+    }
+    
+    .social-links {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 15px;
+        z-index: 1000;
+    }
+    
+    .social-link {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 30px;
+        justify-content: center;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 200px;
+    }
+    
+    .design-text p {
+        font-size: 9px;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 280px;
+        height: auto;
+        margin: 30px auto 0;
+        padding: 25px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: 15px;
+    }
+    
+    .card-text p {
+        font-size: 9px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+    
+    /* Features Section */
+    .phone-section {
+        padding: 80px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 50px;
+    }
+    
+    .phone-badge {
+        font-size: 11px;
+    }
+    
+    .phone-title {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+    
+    .phone-subtitle {
+        font-size: 15px;
+        max-width: 500px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .features-column {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 40px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 280px;
+    }
+    
+    .bento-card.medium {
+        padding: 22px;
+    }
+    
+    .card-title {
+        font-size: 16px;
+    }
+    
+    .card-description {
+        font-size: 13px;
+    }
+    
+    /* Fear Orbital */
+    .fear-orbital-section {
+        padding: 80px 20px;
+    }
+    
+    .fear-orbital-container {
+        height: 550px;
+    }
+    
+    .orbital-system {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .orbit-ring {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .orbit-ring-2 {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .orbital-title-line {
+        font-size: 20px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 28px;
+    }
+    
+    .fear-detail-card {
+        width: 380px;
+        padding: 28px;
+    }
+    
+    /* Stats Section */
+    .stats-achievements-section {
+        padding: 80px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .stats-left {
+        max-width: 100%;
+    }
+    
+    .stats-main-title {
+        text-align: center;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 38px;
+    }
+    
+    .stats-description {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .stats-decorative {
+        justify-content: center;
+    }
+    
+    .stats-list {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+    
+    .stat-item {
+        flex: 0 0 auto;
+    }
+    
+    .stat-number-large {
+        font-size: 48px;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 80px 0;
+    }
+    
+    .testimonials-main-title {
+        margin-bottom: 50px;
+    }
+    
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3,
+    .testimonials-main-title .title-line-4 {
+        font-size: 36px;
+    }
+    
+    .testimonial-long-card {
+        flex-direction: column;
+        height: auto;
+        padding: 30px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 30px;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px 0;
+    }
+    
+    .motivational-text-block {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
+    
+    /* Testimonials Columns */
+    .testimonials-columns-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 450px;
+    }
+    
+    /* How It Works Section */
+    .how-it-works-section {
+        padding: 80px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .step-card[data-step="5"] {
+        grid-column: span 2;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    /* Calculator Section */
+    .pain-calculator-section {
+        padding: 80px 0;
+    }
+    
+    .pain-title {
+        font-size: 42px;
+    }
+    
+    .calculator-container {
+        max-width: 100%;
+    }
+    
+    .pain-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .pain-stat {
+        flex: 1 1 calc(33% - 20px);
+        min-width: 180px;
+    }
+    
+    /* Download Section */
+    .download-section {
+        padding: 80px 0;
+    }
+    
+    .download-title {
+        font-size: 2.8rem;
+    }
+    
+    .download-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .download-btn {
+        min-width: 220px;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .footer-column:first-child {
+        grid-column: span 2;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 15px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+/* ===== LARGE MOBILE (576px - 767px) ===== */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        max-width: 540px;
+        padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 90px 20px 50px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 30px;
+        z-index: 20;
+        animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    .brand-title {
+        font-size: 24px;
+        letter-spacing: 2.5px;
+    }
+    
+    .brand-subtitle {
+        font-size: 12px;
+        letter-spacing: 1.8px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .brand-icon {
+        font-size: 14px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 30px;
+        gap: 25px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 25px auto 0;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 45vh;
+        max-width: 450px;
+        max-height: 400px;
+        margin: 0 auto;
+    }
+    
+    .social-links {
+        position: fixed;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 12px;
+        z-index: 1000;
+    }
+    
+    .social-link {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 25px;
+        justify-content: center;
+    }
+    
+    .design-squares {
+        display: none;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 250px;
+    }
+    
+    .design-text p {
+        font-size: 8px;
+        letter-spacing: 0.8px;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        margin: 25px auto 0;
+        padding: 20px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .card-text p {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+    }
+    
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    /* Features Section */
+    .phone-section {
+        padding: 60px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 40px;
+        padding: 0 15px;
+    }
+    
+    .phone-badge {
+        font-size: 10px;
+        padding: 10px 20px;
+    }
+    
+    .phone-title {
+        font-size: 32px;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+    }
+    
+    .phone-subtitle {
+        font-size: 14px;
+        max-width: 400px;
+        padding: 0 10px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .features-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 240px;
+    }
+    
+    .bento-card.medium {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-size: 15px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .card-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .card-icon i {
+        font-size: 20px;
+    }
+    
+    /* Fear Orbital */
+    .fear-orbital-section {
+        padding: 60px 15px;
+    }
+    
+    .fear-orbital-container {
+        height: 500px;
+    }
+    
+    .orbital-system {
+        width: 340px;
+        height: 340px;
+    }
+    
+    .orbit-ring {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .orbit-ring-2 {
+        width: 340px;
+        height: 340px;
+    }
+    
+    .orbital-center-content {
+        padding: 15px;
+    }
+    
+    .orbital-title-line {
+        font-size: 16px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 24px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 11px;
+    }
+    
+    .orbital-item-icon {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 18px;
+    }
+    
+    .orbital-item-label {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+    
+    .fear-detail-card {
+        width: calc(100% - 30px);
+        max-width: 360px;
+        padding: 24px;
+    }
+    
+    .fear-card-title {
+        font-size: 18px;
+    }
+    
+    .fear-card-description {
+        font-size: 13px;
+    }
+    
+    /* Stats Section */
+    .stats-achievements-section {
+        padding: 60px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 32px;
+    }
+    
+    .stats-description {
+        font-size: 14px;
+    }
+    
+    .stats-list {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .stat-number-large {
+        font-size: 44px;
+    }
+    
+    .stat-label-large {
+        font-size: 14px;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-main-title {
+        margin-bottom: 40px;
+    }
+    
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3,
+    .testimonials-main-title .title-line-4 {
+        font-size: 28px;
+    }
+    
+    .testimonials-avatars {
+        display: none;
+    }
+    
+    .title-accent {
+        font-size: 14px;
+    }
+    
+    .testimonial-long-card {
+        flex-direction: column;
+        height: auto;
+        padding: 25px;
+        border-radius: 20px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 25px;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 25px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px 0;
+    }
+    
+    .motivational-text-block {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 30px;
+        padding: 0 15px;
+    }
+    
+    .motivational-link {
+        font-size: 14px;
+    }
+    
+    .motivational-text {
+        font-size: 11px;
+    }
+    
+    /* Testimonials Columns */
+    .testimonials-columns-section {
+        padding: 50px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 420px;
+        gap: 12px;
+    }
+    
+    .testimonial-column-card {
+        padding: 18px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 13px;
+    }
+    
+    /* How It Works Section */
+    .how-it-works-section {
+        padding: 60px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .step-card {
+        padding: 24px;
+    }
+    
+    .step-number {
+        font-size: 24px;
+    }
+    
+    .step-title {
+        font-size: 16px;
+    }
+    
+    .step-description {
+        font-size: 13px;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    /* Calculator Section */
+    .pain-calculator-section {
+        padding: 60px 0;
+    }
+    
+    .pain-title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    
+    .pain-subtitle {
+        font-size: 14px;
+    }
+    
+    .calculator-container {
+        padding: 25px;
+    }
+    
+    .pain-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .pain-stat {
+        padding: 20px;
+    }
+    
+    .stat-num {
+        font-size: 28px;
+    }
+    
+    /* Download Section */
+    .download-section {
+        padding: 60px 0;
+    }
+    
+    .download-title {
+        font-size: 2.2rem;
+    }
+    
+    .download-subtitle {
+        font-size: 14px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .download-btn {
+        min-width: 100%;
+        max-width: 300px;
+    }
+    
+    .download-features {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .feature-badge {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 60px 0 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .footer-column {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 12px;
+        width: 60px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* ===== SMALL MOBILE (up to 575px) ===== */
+@media (max-width: 575px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 15px 40px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 12px;
+        left: 12px;
+    }
+    
+    .logo {
+        height: 35px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 25px;
+        z-index: 20;
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .brand-title {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+    
+    .brand-subtitle {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 8px;
+        gap: 6px;
+    }
+    
+    .brand-icon {
+        font-size: 12px;
+    }
+    
+    .brand-icon-separator {
+        font-size: 9px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 25px;
+        gap: 20px;
+    }
+    
+    .dot {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 20px auto 0;
+    }
+    
+    .download-pill-btn {
+        padding: 10px 20px;
+    }
+    
+    .pill-btn-text {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    
+    .pill-btn-circle {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .pill-btn-circle i {
+        font-size: 14px;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 40vh;
+        min-height: 280px;
+        max-width: 350px;
+        max-height: 350px;
+        margin: 0 auto;
+    }
+    
+    .social-links {
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 10px;
+        z-index: 1000;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 20px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .design-squares {
+        display: none;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 220px;
+    }
+    
+    .design-text p {
+        font-size: 7px;
+        letter-spacing: 0.6px;
+        line-height: 1.4;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        margin: 20px auto 0;
+        padding: 18px;
+        border-radius: 16px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .card-content {
+        padding-right: 0;
+    }
+    
+    .card-text p {
+        font-size: 7px;
+        letter-spacing: 0.4px;
+        line-height: 1.4;
+    }
+    
+    .glass-morphism-card .card-icon i {
+        font-size: 12px;
+    }
+    
+    .scroll-indicator {
+        bottom: 10px;
+    }
+    
+    .scroll-mouse {
+        width: 20px;
+        height: 30px;
+    }
+    
+    /* Features Section */
+    .phone-section {
+        padding: 50px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+    
+    .phone-badge {
+        font-size: 9px;
+        padding: 8px 16px;
+        letter-spacing: 1.5px;
+    }
+    
+    .phone-title {
+        font-size: 26px;
+        letter-spacing: -0.5px;
+        line-height: 1.15;
+    }
+    
+    .highlight-word {
+        display: inline;
+    }
+    
+    .phone-subtitle {
+        font-size: 13px;
+        max-width: 300px;
+        padding: 0 5px;
+        line-height: 1.5;
+    }
+    
+    .phone-header .download-pill-btn {
+        margin-top: 20px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 10px;
+    }
+    
+    .features-column {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 25px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 200px;
+    }
+    
+    .bento-card.medium {
+        padding: 18px;
+        border-radius: 16px;
+    }
+    
+    .card-header {
+        margin-bottom: 12px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+    
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    
+    .card-icon i {
+        font-size: 18px;
+    }
+    
+    .health-bars {
+        height: 50px;
+    }
+    
+    .goal-rings {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Fear Orbital */
+    .fear-orbital-section {
+        padding: 50px 10px;
+    }
+    
+    .fear-orbital-container {
+        height: 450px;
+    }
+    
+    .orbital-system {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .orbit-ring {
+        width: 260px;
+        height: 260px;
+        border-width: 1px;
+    }
+    
+    .orbit-ring-2 {
+        width: 290px;
+        height: 290px;
+    }
+    
+    .orbital-center-content {
+        padding: 12px;
+    }
+    
+    .orbital-center-glow {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .orbital-title-line {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 20px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 10px;
+    }
+    
+    .orbital-item-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 14px;
+    }
+    
+    .orbital-item-label {
+        display: none;
+    }
+    
+    .fear-detail-card {
+        width: calc(100% - 20px);
+        max-width: 320px;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .fear-card-header {
+        margin-bottom: 12px;
+    }
+    
+    .fear-card-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .fear-card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .fear-card-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .fear-card-impact {
+        margin-top: 15px;
+    }
+    
+    /* Stats Section */
+    .stats-achievements-section {
+        padding: 50px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+    
+    .stats-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    
+    .stats-list {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .stat-item {
+        padding: 20px 15px;
+    }
+    
+    .stat-number-large {
+        font-size: 38px;
+    }
+    
+    .stat-label-large {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    
+    .stat-description-small {
+        font-size: 11px;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 50px 0;
+        overflow: hidden;
+    }
+    
+    .testimonials-main-title {
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+    
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3,
+    .testimonials-main-title .title-line-4 {
+        font-size: 22px;
+        letter-spacing: -0.5px;
+    }
+    
+    .testimonials-avatars {
+        display: none;
+    }
+    
+    .title-accent {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    
+    .title-icon-orange {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .testimonials-cards-group {
+        padding: 0 10px;
+    }
+    
+    .testimonial-long-card {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .card-circular-elements {
+        display: none;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 20px;
+        padding: 18px;
+    }
+    
+    .overlay-card-title {
+        font-size: 14px;
+    }
+    
+    .overlay-card-description {
+        font-size: 12px;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .top-left-testimonial {
+        padding: 16px;
+    }
+    
+    .testimonial-avatar-small {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+    
+    .testimonial-text-small {
+        font-size: 12px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 15px 0;
+        padding: 16px;
+    }
+    
+    .motivational-text-block {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        padding: 0 10px;
+    }
+    
+    .motivational-link {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    
+    .motivational-text {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+    
+    /* Testimonials Columns */
+    .testimonials-columns-section {
+        padding: 40px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 380px;
+        gap: 10px;
+        padding: 0 10px;
+    }
+    
+    .testimonial-column-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+    
+    .testimonial-column-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 12px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 10px;
+    }
+    
+    /* How It Works Section */
+    .how-it-works-section {
+        padding: 50px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .step-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .step-number-wrapper {
+        margin-bottom: 12px;
+    }
+    
+    .step-number {
+        font-size: 20px;
+    }
+    
+    .step-icon-wrapper {
+        margin-bottom: 12px;
+    }
+    
+    .step-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .step-icon i {
+        font-size: 18px;
+    }
+    
+    .step-title {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .step-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .step-meta {
+        margin-top: 12px;
+    }
+    
+    .step-time {
+        font-size: 11px;
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    .how-cta {
+        margin-top: 30px;
+    }
+    
+    /* Calculator Section */
+    .pain-calculator-section {
+        padding: 50px 0;
+    }
+    
+    .pain-title {
+        font-size: 24px;
+        line-height: 1.25;
+        padding: 0 10px;
+    }
+    
+    .pain-title-line-1 {
+        font-size: 20px;
+    }
+    
+    .highlight-red {
+        font-size: 24px;
+    }
+    
+    .pain-subtitle {
+        font-size: 13px;
+        padding: 0 15px;
+        line-height: 1.5;
+    }
+    
+    .live-loss-counter {
+        margin: 20px 10px;
+    }
+    
+    .loss-ticker {
+        font-size: 12px;
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .loss-amount {
+        font-size: 18px;
+    }
+    
+    .calculator-container {
+        margin: 0 10px;
+        padding: 20px 15px;
+        border-radius: 16px;
+    }
+    
+    .calculator-form {
+        gap: 18px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .form-group input[type="number"],
+    .form-group input[type="range"] {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .radio-option {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    .calculate-btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .calculator-results {
+        padding: 20px 15px;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .result-item {
+        padding: 15px;
+    }
+    
+    .result-value {
+        font-size: 22px;
+    }
+    
+    .result-label {
+        font-size: 12px;
+    }
+    
+    .shock-text {
+        font-size: 16px;
+    }
+    
+    .cta-btn.urgent {
+        padding: 14px 25px;
+        font-size: 14px;
+    }
+    
+    .pain-stats {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+        padding: 0 10px;
+    }
+    
+    .pain-stat {
+        padding: 18px 15px;
+        border-radius: 14px;
+    }
+    
+    .pain-stat i {
+        font-size: 24px;
+    }
+    
+    .stat-num {
+        font-size: 24px;
+    }
+    
+    .stat-desc {
+        font-size: 12px;
+    }
+    
+    /* Download Section */
+    .download-section {
+        padding: 50px 0;
+    }
+    
+    .download-content {
+        padding: 0 15px;
+    }
+    
+    .download-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+    
+    .download-subtitle {
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+    
+    .download-btn {
+        min-width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+        border-radius: 14px;
+    }
+    
+    .download-btn-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 24px;
+    }
+    
+    .download-btn .btn-small {
+        font-size: 9px;
+    }
+    
+    .download-btn .btn-large {
+        font-size: 16px;
+    }
+    
+    .download-features {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .feature-badge {
+        width: 100%;
+        max-width: 250px;
+        padding: 10px 16px;
+        font-size: 12px;
+        justify-content: center;
+    }
+    
+    .feature-badge i {
+        font-size: 14px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 50px 0 25px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+    }
+    
+    .footer-column {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 10px;
+        width: 50px;
+    }
+    
+    .footer-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    
+    .footer-social {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .footer-social .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .footer-title {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-links {
+        gap: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 13px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 25px;
+        text-align: center;
+    }
+    
+    .footer-bottom p,
+    .footer-made {
+        font-size: 12px;
+    }
+}
+
+/* ===== VERY SMALL MOBILE (up to 375px) ===== */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .hero {
+        padding: 70px 12px 35px;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    .brand-title {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+    
+    .brand-subtitle {
+        font-size: 9px;
+    }
+    
+    .spline-container {
+        height: 35vh;
+        min-height: 250px;
+        max-width: 300px;
+    }
+    
+    .phone-title {
+        font-size: 22px;
+    }
+    
+    .phone-subtitle {
+        font-size: 12px;
+    }
+    
+    .bento-card.medium {
+        padding: 15px;
+    }
+    
+    .card-title {
+        font-size: 13px;
+    }
+    
+    .card-description {
+        font-size: 11px;
+    }
+    
+    .orbital-system {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .orbit-ring {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .orbit-ring-2 {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .orbital-title-line {
+        font-size: 12px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 18px;
+    }
+    
+    .testimonials-main-title .title-line-1,
+    .testimonials-main-title .title-line-2,
+    .testimonials-main-title .title-line-3,
+    .testimonials-main-title .title-line-4 {
+        font-size: 18px;
+    }
+    
+    .stat-number-large {
+        font-size: 32px;
+    }
+    
+    .pain-title {
+        font-size: 20px;
+    }
+    
+    .highlight-red {
+        font-size: 20px;
+    }
+    
+    .download-title {
+        font-size: 1.5rem;
+    }
+    
+    .download-btn {
+        padding: 12px 16px;
+    }
+    
+    .download-btn-icon {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .download-btn .btn-large {
+        font-size: 14px;
+    }
+}
+
+/* ===== LANDSCAPE ORIENTATION FOR MOBILE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 60px 30px 40px;
+    }
+    
+    .hero-brand {
+        margin-bottom: 20px;
+    }
+    
+    .brand-title {
+        font-size: 22px;
+    }
+    
+    .spline-container {
+        height: 60vh;
+        max-height: 300px;
+    }
+    
+    .brand-dots {
+        margin-top: 15px;
+    }
+    
+    .scroll-indicator {
+        display: none;
+    }
+    
+    .section {
+        padding: 50px 0;
+    }
+    
+    .fear-orbital-container {
+        height: 400px;
+    }
+    
+    .orbital-system {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets */
+    .nav-btn,
+    .social-link,
+    .download-btn,
+    .download-pill-btn,
+    .calculate-btn,
+    .footer-links a,
+    .orbital-item {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover-only effects */
+    .bento-card:hover {
+        transform: none;
+    }
+    
+    .step-card:hover {
+        transform: none;
+    }
+    
+    .social-link:hover {
+        transform: none;
+    }
+    
+    /* Add active states instead */
+    .bento-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .step-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .download-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .social-link:active {
+        transform: scale(0.9);
+    }
+    
+    .orbital-item:active {
+        transform: scale(1.1);
+    }
+}
+
+/* ===== HIGH DPI / RETINA DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo,
+    .footer-logo,
+    .phone-mockup-image {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .hero,
+    .spline-container,
+    .social-links,
+    .scroll-indicator,
+    .fear-orbital-section,
+    .testimonials-columns-section,
+    .how-progress-container {
+        display: none;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+        padding: 20px 0;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   OPTIMIZED RESPONSIVE SYSTEM v2.0
+   Full device coverage with smooth transitions
+   ============================================ */
+
+/* ----- CSS Custom Properties for Responsive ----- */
+:root {
+    /* Fluid spacing scale */
+    --space-xs: clamp(4px, 1vw, 8px);
+    --space-sm: clamp(8px, 2vw, 16px);
+    --space-md: clamp(16px, 3vw, 24px);
+    --space-lg: clamp(24px, 4vw, 40px);
+    --space-xl: clamp(40px, 6vw, 80px);
+    
+    /* Fluid typography scale */
+    --text-xs: clamp(10px, 2vw, 12px);
+    --text-sm: clamp(12px, 2.5vw, 14px);
+    --text-base: clamp(14px, 3vw, 16px);
+    --text-lg: clamp(16px, 3.5vw, 18px);
+    --text-xl: clamp(18px, 4vw, 24px);
+    --text-2xl: clamp(24px, 5vw, 32px);
+    --text-3xl: clamp(28px, 6vw, 42px);
+    --text-4xl: clamp(32px, 7vw, 56px);
+    --text-5xl: clamp(36px, 8vw, 72px);
+    
+    /* Touch target minimum */
+    --touch-target: 44px;
+    
+    /* Safe area insets for notched devices */
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+/* ----- Safe Area Support ----- */
+@supports (padding: max(0px)) {
+    .hero {
+        padding-top: max(80px, calc(var(--safe-area-top) + 60px));
+        padding-left: max(15px, var(--safe-area-left));
+        padding-right: max(15px, var(--safe-area-right));
+    }
+    
+    .footer {
+        padding-bottom: max(30px, calc(var(--safe-area-bottom) + 20px));
+    }
+    
+    .social-links {
+        right: max(15px, calc(var(--safe-area-right) + 10px));
+    }
+}
+
+/* =============================================
+   HERO SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .hero {
+        padding: 0 120px;
+    }
+    
+    .hero-brand {
+        left: 150px;
+    }
+    
+    .brand-title {
+        font-size: 48px;
+        letter-spacing: 6px;
+    }
+    
+    .brand-subtitle {
+        font-size: 22px;
+    }
+    
+    .spline-container {
+        max-width: 4000px;
+        max-height: 3200px;
+    }
+    
+    .bottom-left-design {
+        left: 150px;
+        bottom: 150px;
+    }
+    
+    .glass-morphism-card {
+        width: 320px;
+        height: 180px;
+        left: 600px;
+    }
+    
+    .right-top-text {
+        right: 400px;
+    }
+}
+
+/* --- Large Desktop Override (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .spline-container {
+        width: 180vw;
+        height: 180vh;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .hero {
+        padding: 0 50px;
+    }
+    
+    .hero-brand {
+        left: 80px;
+    }
+    
+    .brand-title {
+        font-size: 34px;
+        letter-spacing: 4.5px;
+    }
+    
+    .brand-subtitle {
+        font-size: 17px;
+    }
+    
+    .spline-container {
+        width: 170vw;
+        height: 170vh;
+        max-width: 2500px;
+        max-height: 2200px;
+    }
+    
+    .bottom-left-design {
+        left: 80px;
+    }
+    
+    .glass-morphism-card {
+        left: 450px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero {
+        padding: 0 40px;
+    }
+    
+    .hero-brand {
+        left: 50px;
+        top: calc(35% - 70px);
+    }
+    
+    .brand-title {
+        font-size: 30px;
+        letter-spacing: 4px;
+    }
+    
+    .brand-subtitle {
+        font-size: 15px;
+        letter-spacing: 2.5px;
+    }
+    
+    .brand-dots {
+        margin-top: 80px;
+        gap: 25px;
+    }
+    
+    .spline-container {
+        width: 140vw;
+        height: 140vh;
+        max-width: 1800px;
+        max-height: 1600px;
+    }
+    
+    .bottom-left-design {
+        left: 50px;
+        bottom: 80px;
+    }
+    
+    .design-text p {
+        font-size: 7px;
+    }
+    
+    .glass-morphism-card {
+        width: 250px;
+        height: 150px;
+        left: 380px;
+        padding: 25px;
+    }
+    
+    .glass-morphism-card .card-number {
+        font-size: 50px !important;
+    }
+    
+    .card-text p {
+        font-size: 8px;
+    }
+    
+    .right-top-text {
+        right: 280px;
+        top: 380px;
+    }
+    
+    .right-bottom-text {
+        right: 60px;
+        bottom: 250px;
+    }
+    
+    .vertical-design {
+        right: 60px;
+    }
+    
+    .rhythmic-rectangles {
+        right: 100px;
+    }
+    
+    .social-links {
+        right: 20px;
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero {
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile browsers */
+        padding: 80px 30px 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .logo {
+        height: 45px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 30px;
+        z-index: 20;
+    }
+    
+    .brand-title {
+        font-size: 28px;
+        letter-spacing: 3px;
+    }
+    
+    .brand-subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 30px;
+        gap: 25px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 25px auto 0;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: 200px;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 55vh;
+        max-width: 600px;
+        max-height: 550px;
+        margin: 280px auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .social-links {
+        display: none;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 25px;
+        justify-content: center;
+    }
+    
+    .design-squares {
+        transform: scale(0.8);
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 180px;
+    }
+    
+    .design-text p {
+        font-size: 8px;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 90%;
+        max-width: 300px;
+        height: auto;
+        min-height: 140px;
+        margin: 25px auto 0;
+        padding: 22px;
+        border-radius: 30px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+    
+    .glass-morphism-card .card-number {
+        font-size: 40px !important;
+    }
+    
+    .card-content {
+        align-items: center;
+        padding-right: 0;
+    }
+    
+    .card-text {
+        text-align: center;
+    }
+    
+    .card-text p {
+        font-size: 8px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .hero {
+        height: 100vh;
+        height: 100dvh;
+        padding: 70px 20px 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .logo {
+        height: 38px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 25px;
+        z-index: 20;
+    }
+    
+    .brand-title {
+        font-size: 24px;
+        letter-spacing: 2.5px;
+    }
+    
+    .brand-subtitle {
+        font-size: 12px;
+        letter-spacing: 1.8px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 12px;
+    }
+    
+    .brand-icon {
+        font-size: 14px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 25px;
+        gap: 22px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 20px auto 0;
+    }
+    
+    .download-pill-btn {
+        padding: 12px 22px;
+    }
+    
+    .pill-btn-text {
+        font-size: 12px;
+    }
+    
+    .pill-btn-circle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: 160px;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 50vh;
+        max-width: 500px;
+        max-height: 450px;
+        margin: 300px auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .social-links {
+        display: none;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    
+    .design-squares {
+        display: none;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 220px;
+    }
+    
+    .design-text p {
+        font-size: 8px;
+        letter-spacing: 0.7px;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 90%;
+        max-width: 300px;
+        height: auto;
+        min-height: 130px;
+        margin: 20px auto 0;
+        padding: 20px;
+        border-radius: 25px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    
+    .glass-morphism-card .card-number {
+        font-size: 36px !important;
+    }
+    
+    .card-content {
+        align-items: center;
+        padding-right: 0;
+    }
+    
+    .card-text {
+        text-align: center;
+    }
+    
+    .card-text p {
+        font-size: 7.5px;
+        letter-spacing: 0.5px;
+    }
+    
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .scroll-mouse {
+        width: 22px;
+        height: 34px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .hero {
+        height: 100vh;
+        height: 100dvh;
+        padding: 60px 15px 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 12px;
+        left: 12px;
+    }
+    
+    .logo {
+        height: 35px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 20px;
+        z-index: 20;
+    }
+    
+    .brand-title {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+    
+    .brand-subtitle {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 10px;
+        gap: 6px;
+    }
+    
+    .brand-icon {
+        font-size: 13px;
+    }
+    
+    .brand-icon-separator {
+        font-size: 9px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 22px;
+        gap: 18px;
+    }
+    
+    .dot {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 18px auto 0;
+    }
+    
+    .download-pill-btn {
+        padding: 10px 20px;
+    }
+    
+    .pill-btn-text {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    
+    .pill-btn-circle {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .pill-btn-circle i {
+        font-size: 14px;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: 130px;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 45vh;
+        min-height: 320px;
+        max-width: 420px;
+        max-height: 380px;
+        margin: 320px auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .social-links {
+        display: none;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 15px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .design-squares {
+        display: none;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 200px;
+    }
+    
+    .design-text p {
+        font-size: 7px;
+        letter-spacing: 0.6px;
+        line-height: 1.5;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 92%;
+        max-width: 280px;
+        height: auto;
+        min-height: 120px;
+        margin: 15px auto 0;
+        padding: 18px;
+        border-radius: 20px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+    
+    .glass-morphism-card .card-number {
+        font-size: 32px !important;
+    }
+    
+    .card-content {
+        align-items: center;
+        padding-right: 0;
+    }
+    
+    .glass-morphism-card .card-icon {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .glass-morphism-card .card-icon i {
+        font-size: 14px;
+    }
+    
+    .card-text {
+        text-align: center;
+    }
+    
+    .card-text p {
+        font-size: 7px;
+        letter-spacing: 0.4px;
+        line-height: 1.4;
+    }
+    
+    .scroll-indicator {
+        bottom: 12px;
+    }
+    
+    .scroll-mouse {
+        width: 20px;
+        height: 30px;
+        border-width: 1.5px;
+    }
+    
+    .scroll-wheel {
+        width: 2px;
+        height: 5px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .hero {
+        height: 100vh;
+        height: 100dvh;
+        padding: 50px 12px 25px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo-container {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    .hero-brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin-bottom: 15px;
+        z-index: 20;
+    }
+    
+    .brand-title {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+    
+    .brand-subtitle {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+    }
+    
+    .brand-icons {
+        justify-content: center;
+        margin-top: 8px;
+        gap: 5px;
+    }
+    
+    .brand-icon {
+        font-size: 11px;
+    }
+    
+    .brand-icon-separator {
+        font-size: 8px;
+    }
+    
+    .brand-dots {
+        justify-content: center;
+        margin-top: 18px;
+        gap: 15px;
+    }
+    
+    .dot {
+        width: 4px;
+        height: 4px;
+    }
+    
+    .hero-brand .download-pill-btn {
+        margin: 15px auto 0;
+    }
+    
+    .download-pill-btn {
+        padding: 8px 16px;
+    }
+    
+    .pill-btn-text {
+        font-size: 10px;
+        letter-spacing: 0.8px;
+    }
+    
+    .pill-btn-circle {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .pill-btn-circle i {
+        font-size: 12px;
+    }
+    
+    .spline-container {
+        position: relative;
+        left: 100px;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: 40vh;
+        min-height: 280px;
+        max-width: 350px;
+        max-height: 320px;
+        margin: 330px auto 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .social-links {
+        display: none;
+    }
+    
+    .bottom-left-design {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 12px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .design-squares {
+        display: none;
+    }
+    
+    .design-text {
+        text-align: center;
+        max-width: 180px;
+    }
+    
+    .design-text p {
+        font-size: 6px;
+        letter-spacing: 0.5px;
+        line-height: 1.5;
+    }
+    
+    .right-top-text,
+    .right-bottom-text,
+    .vertical-design,
+    .rhythmic-rectangles {
+        display: none;
+    }
+    
+    .glass-morphism-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        width: 94%;
+        max-width: 260px;
+        height: auto;
+        min-height: 110px;
+        margin: 12px auto 0;
+        padding: 15px;
+        border-radius: 18px;
+    }
+    
+    .card-number {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+    
+    .glass-morphism-card .card-number {
+        font-size: 28px !important;
+    }
+    
+    .card-content {
+        align-items: center;
+        padding-right: 0;
+    }
+    
+    .glass-morphism-card .card-icon {
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    
+    .glass-morphism-card .card-icon i {
+        font-size: 12px;
+    }
+    
+    .card-text {
+        text-align: center;
+    }
+    
+    .card-text p {
+        font-size: 6px;
+        letter-spacing: 0.3px;
+        line-height: 1.4;
+    }
+    
+    .scroll-indicator {
+        bottom: 10px;
+    }
+    
+    .scroll-mouse {
+        width: 18px;
+        height: 26px;
+        border-width: 1.5px;
+    }
+    
+    .scroll-wheel {
+        width: 2px;
+        height: 4px;
+    }
+}
+
+/* --- Landscape Mode on Mobile (height < 500px) --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        height: auto;
+        padding: 60px 30px 40px;
+    }
+    
+    .hero-brand {
+        margin-bottom: 15px;
+    }
+    
+    .brand-title {
+        font-size: 22px;
+    }
+    
+    .brand-subtitle {
+        font-size: 11px;
+    }
+    
+    .brand-dots {
+        margin-top: 15px;
+    }
+    
+    .spline-container {
+        height: 55vh;
+        max-height: 280px;
+    }
+    
+    .bottom-left-design,
+    .glass-morphism-card {
+        display: none;
+    }
+    
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* =============================================
+   FEAR ORBITAL SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .fear-orbital-section {
+        padding: 120px 40px;
+    }
+    
+    .fear-orbital-container {
+        height: 1100px;
+        max-width: 1400px;
+    }
+    
+    .orbital-system {
+        width: 950px;
+        height: 950px;
+    }
+    
+    .orbit-ring {
+        width: 820px;
+        height: 820px;
+    }
+    
+    .orbit-ring-2 {
+        width: 860px;
+        height: 860px;
+    }
+    
+    .orbital-center {
+        max-width: 480px;
+    }
+    
+    .orbital-title-line {
+        font-size: 32px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 48px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 16px;
+    }
+    
+    .orbital-item-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 28px;
+    }
+    
+    .orbital-item-label {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    
+    .fear-detail-card {
+        width: 480px;
+        padding: 40px;
+    }
+    
+    .fear-card-title {
+        font-size: 26px;
+    }
+    
+    .fear-card-description {
+        font-size: 16px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .fear-orbital-section {
+        padding: 100px 30px;
+    }
+    
+    .fear-orbital-container {
+        height: 1000px;
+    }
+    
+    .orbital-system {
+        width: 900px;
+        height: 900px;
+    }
+    
+    .orbit-ring {
+        width: 780px;
+        height: 780px;
+    }
+    
+    .orbit-ring-2 {
+        width: 820px;
+        height: 820px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .fear-orbital-section {
+        padding: 90px 25px;
+    }
+    
+    .fear-orbital-container {
+        height: 900px;
+    }
+    
+    .orbital-system {
+        width: 800px;
+        height: 800px;
+    }
+    
+    .orbit-ring {
+        width: 680px;
+        height: 680px;
+    }
+    
+    .orbit-ring-2 {
+        width: 720px;
+        height: 720px;
+    }
+    
+    .orbital-title-line {
+        font-size: 26px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 38px;
+    }
+    
+    .orbital-item-icon {
+        width: 58px;
+        height: 58px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 24px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .fear-orbital-section {
+        padding: 80px 20px;
+    }
+    
+    .fear-orbital-container {
+        height: 750px;
+    }
+    
+    .orbital-system {
+        width: 650px;
+        height: 650px;
+    }
+    
+    .orbit-ring {
+        width: 560px;
+        height: 560px;
+    }
+    
+    .orbit-ring-2 {
+        width: 600px;
+        height: 600px;
+    }
+    
+    .orbital-center {
+        max-width: 340px;
+    }
+    
+    .orbital-title-line {
+        font-size: 22px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 32px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 12px;
+    }
+    
+    .orbital-item-icon {
+        width: 52px;
+        height: 52px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 22px;
+    }
+    
+    .orbital-item-label {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+    
+    .fear-detail-card {
+        width: 400px;
+        padding: 30px;
+    }
+    
+    .fear-card-title {
+        font-size: 20px;
+    }
+    
+    .fear-card-description {
+        font-size: 14px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .fear-orbital-section {
+        padding: 70px 20px;
+        min-height: auto;
+    }
+    
+    .fear-orbital-container {
+        height: 600px;
+    }
+    
+    .orbital-system {
+        width: 500px;
+        height: 500px;
+    }
+    
+    .orbit-ring {
+        width: 440px;
+        height: 440px;
+    }
+    
+    .orbit-ring-2 {
+        width: 480px;
+        height: 480px;
+    }
+    
+    .orbital-center {
+        max-width: 280px;
+    }
+    
+    .orbital-center-glow {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .orbital-title-line {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 26px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 11px;
+    }
+    
+    .orbital-item-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 20px;
+    }
+    
+    .orbital-item-label {
+        font-size: 10px;
+        padding: 4px 10px;
+        white-space: nowrap;
+    }
+    
+    .fear-detail-card {
+        width: 360px;
+        padding: 25px;
+    }
+    
+    .fear-card-title {
+        font-size: 18px;
+    }
+    
+    .fear-card-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    
+    .fear-card-impact {
+        margin-top: 18px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .fear-orbital-section {
+        padding: 60px 15px;
+        min-height: auto;
+    }
+    
+    .fear-orbital-container {
+        height: 520px;
+    }
+    
+    .orbital-system {
+        width: 420px;
+        height: 420px;
+    }
+    
+    .orbit-ring {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .orbit-ring-2 {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .orbital-center {
+        max-width: 240px;
+    }
+    
+    .orbital-center-glow {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .orbital-title-line {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 22px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 10px;
+    }
+    
+    .orbital-item-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 18px;
+    }
+    
+    .orbital-item-label {
+        font-size: 9px;
+        padding: 4px 8px;
+        max-width: 100px;
+        text-align: center;
+        line-height: 1.3;
+    }
+    
+    .fear-detail-card {
+        width: calc(100% - 30px);
+        max-width: 340px;
+        padding: 22px;
+    }
+    
+    .fear-card-header {
+        margin-bottom: 14px;
+    }
+    
+    .fear-card-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .fear-card-title {
+        font-size: 17px;
+    }
+    
+    .fear-card-description {
+        font-size: 13px;
+        line-height: 1.55;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .fear-orbital-section {
+        padding: 50px 12px;
+        min-height: auto;
+    }
+    
+    .fear-orbital-container {
+        height: 460px;
+    }
+    
+    .orbital-system {
+        width: 340px;
+        height: 340px;
+    }
+    
+    .orbit-ring {
+        width: 290px;
+        height: 290px;
+    }
+    
+    .orbit-ring-2 {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .orbital-center {
+        max-width: 200px;
+    }
+    
+    .orbital-center-content {
+        padding: 10px;
+    }
+    
+    .orbital-center-glow {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .orbital-title-line {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 18px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 9px;
+        margin-top: 6px;
+    }
+    
+    .orbital-item-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 16px;
+    }
+    
+    /* Show shortened labels on standard phones */
+    .orbital-item-label {
+        font-size: 8px;
+        padding: 3px 6px;
+        max-width: 80px;
+        text-align: center;
+        line-height: 1.2;
+        display: block;
+    }
+    
+    .fear-detail-card {
+        width: calc(100% - 24px);
+        max-width: 320px;
+        padding: 20px;
+        border-radius: 18px;
+    }
+    
+    .fear-card-header {
+        margin-bottom: 12px;
+    }
+    
+    .fear-card-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .fear-card-badge {
+        font-size: 9px;
+        padding: 4px 10px;
+    }
+    
+    .fear-card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .fear-card-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .fear-card-impact {
+        margin-top: 15px;
+    }
+    
+    .impact-header {
+        font-size: 11px;
+    }
+    
+    .impact-value {
+        font-size: 14px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .fear-orbital-section {
+        padding: 40px 10px;
+        min-height: auto;
+    }
+    
+    .fear-orbital-container {
+        height: 400px;
+    }
+    
+    .orbital-system {
+        width: 290px;
+        height: 290px;
+    }
+    
+    .orbit-ring {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .orbit-ring-2 {
+        width: 275px;
+        height: 275px;
+    }
+    
+    .orbital-center {
+        max-width: 170px;
+    }
+    
+    .orbital-center-content {
+        padding: 8px;
+    }
+    
+    .orbital-center-glow {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .orbital-title-line {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+    }
+    
+    .orbital-title-accent {
+        font-size: 16px;
+    }
+    
+    .orbital-subtitle {
+        font-size: 8px;
+        margin-top: 4px;
+    }
+    
+    .orbital-item-icon {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .orbital-item-icon i {
+        font-size: 14px;
+    }
+    
+    /* Hide labels on very small screens */
+    .orbital-item-label {
+        display: none;
+    }
+    
+    .fear-detail-card {
+        width: calc(100% - 20px);
+        max-width: 290px;
+        padding: 18px;
+        border-radius: 16px;
+    }
+    
+    .fear-card-header {
+        margin-bottom: 10px;
+    }
+    
+    .fear-card-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .fear-card-badge {
+        font-size: 8px;
+        padding: 3px 8px;
+    }
+    
+    .fear-card-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .fear-card-description {
+        font-size: 11px;
+        line-height: 1.45;
+    }
+    
+    .fear-card-impact {
+        margin-top: 12px;
+    }
+    
+    .impact-header {
+        font-size: 10px;
+    }
+    
+    .impact-value {
+        font-size: 12px;
+    }
+}
+
+/* --- Landscape Mode for Fear Orbital --- */
+@media (max-height: 600px) and (orientation: landscape) {
+    .fear-orbital-section {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    .fear-orbital-container {
+        height: 400px;
+    }
+    
+    .orbital-system {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .orbit-ring {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .orbit-ring-2 {
+        width: 330px;
+        height: 330px;
+    }
+    
+    .orbital-item-label {
+        display: none;
+    }
+    
+    .fear-detail-card {
+        max-height: 280px;
+        overflow-y: auto;
+    }
+}
+
+/* =============================================
+   TESTIMONIALS MAIN SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .testimonials-section {
+        padding: 240px 0;
+        min-height: 900px;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 220px;
+    }
+    
+    .testimonials-main-title {
+        margin-left: 700px;
+    }
+    
+    .testimonials-avatars {
+        left: -280px;
+    }
+    
+    .testimonial-avatar {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .title-indented {
+        font-size: 72px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 68px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 900px;
+        padding: 50px;
+        min-height: 300px;
+    }
+    
+    .motivational-text-block {
+        max-width: 450px;
+    }
+    
+    .motivational-link {
+        font-size: 18px;
+    }
+    
+    .motivational-text {
+        font-size: 14px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .testimonials-section {
+        padding: 200px 0;
+    }
+    
+    .testimonials-main-title {
+        margin-left: 650px;
+    }
+    
+    .title-indented {
+        font-size: 64px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 60px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .testimonials-section {
+        padding: 180px 0;
+        min-height: 750px;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 180px;
+    }
+    
+    .testimonials-main-title {
+        margin-left: 550px;
+    }
+    
+    .testimonials-avatars {
+        left: -220px;
+    }
+    
+    .testimonial-avatar {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .title-indented {
+        font-size: 56px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 52px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 750px;
+        padding: 38px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .testimonials-section {
+        padding: 140px 0;
+        min-height: 650px;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 140px;
+    }
+    
+    .testimonials-main-title {
+        margin-left: 380px;
+        top: 25px;
+    }
+    
+    .testimonials-avatars {
+        left: -180px;
+        top: 140px;
+    }
+    
+    .testimonial-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .title-indented {
+        font-size: 46px;
+        margin-left: 60px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 44px;
+    }
+    
+    .title-accent {
+        font-size: 16px;
+    }
+    
+    .title-accent-small {
+        font-size: 11px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 650px;
+        padding: 32px;
+        border-radius: 32px;
+        min-height: 200px;
+    }
+    
+    .overlay-card {
+        padding: 20px;
+    }
+    
+    .overlay-card-title {
+        font-size: 14px;
+    }
+    
+    .overlay-card-description {
+        font-size: 12px;
+    }
+    
+    .motivational-text-block {
+        max-width: 300px;
+    }
+    
+    .motivational-link {
+        font-size: 13px;
+    }
+    
+    .motivational-text {
+        font-size: 11px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .testimonials-section {
+        padding: 80px 0;
+        min-height: auto;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 0;
+        align-items: center;
+    }
+    
+    .testimonials-main-title {
+        position: relative;
+        top: auto;
+        margin-left: 0;
+        margin-bottom: 40px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .testimonials-avatars {
+        position: relative;
+        left: auto;
+        top: auto;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .testimonial-avatar {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .title-indented {
+        font-size: 38px;
+        margin-left: 0;
+    }
+    
+    .title-line-1 {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 36px;
+        text-align: center;
+    }
+    
+    .title-accent {
+        font-size: 14px;
+        margin: 0 10px;
+    }
+    
+    .title-icon-orange {
+        display: none;
+    }
+    
+    .testimonials-cards-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .testimonial-long-card {
+        max-width: 100%;
+        padding: 30px;
+        border-radius: 28px;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .card-circular-elements {
+        display: none;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 25px;
+    }
+    
+    .top-left-testimonial {
+        padding: 18px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px 0;
+        padding: 18px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 25px;
+        padding: 22px;
+    }
+    
+    .motivational-text-block {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 40px;
+        text-align: center;
+    }
+    
+    .motivational-link {
+        font-size: 14px;
+        justify-content: center;
+    }
+    
+    .motivational-text {
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .testimonials-section {
+        padding: 60px 0;
+        min-height: auto;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 0;
+        align-items: center;
+    }
+    
+    .testimonials-main-title {
+        position: relative;
+        top: auto;
+        margin-left: 0;
+        margin-bottom: 35px;
+        text-align: center;
+        width: 100%;
+        padding: 0 15px;
+    }
+    
+    .testimonials-avatars {
+        display: none;
+    }
+    
+    .title-indented {
+        font-size: 30px;
+        margin-left: 0;
+    }
+    
+    .title-line-1 {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .title-accent {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    
+    .title-accent-small {
+        font-size: 9px;
+    }
+    
+    .title-icon-orange {
+        display: none;
+    }
+    
+    .testimonials-cards-group {
+        width: 100%;
+        padding: 0 15px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 100%;
+        padding: 25px;
+        border-radius: 22px;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .card-circular-elements {
+        display: none;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .top-left-testimonial {
+        padding: 16px;
+    }
+    
+    .testimonial-avatar-small {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+    
+    .testimonial-rating-small i {
+        font-size: 12px;
+    }
+    
+    .testimonial-text-small {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .testimonial-author-small strong {
+        font-size: 13px;
+    }
+    
+    .testimonial-author-small span {
+        font-size: 11px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 18px 0;
+        padding: 16px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 20px;
+        padding: 20px;
+    }
+    
+    .overlay-card-title {
+        font-size: 14px;
+    }
+    
+    .overlay-card-description {
+        font-size: 12px;
+    }
+    
+    .motivational-text-block {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 30px;
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    .motivational-link {
+        font-size: 13px;
+        justify-content: center;
+    }
+    
+    .motivational-text {
+        font-size: 11px;
+        text-align: center;
+        line-height: 1.6;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .testimonials-section {
+        padding: 50px 0;
+        min-height: auto;
+        overflow: hidden;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 0;
+        align-items: center;
+    }
+    
+    .testimonials-main-title {
+        position: relative;
+        top: auto;
+        margin-left: 0;
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100%;
+        padding: 0 12px;
+    }
+    
+    .testimonials-avatars {
+        display: none;
+    }
+    
+    .title-indented {
+        font-size: 24px;
+        margin-left: 0;
+    }
+    
+    .title-line-1 {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 22px;
+        text-align: center;
+        letter-spacing: -0.5px;
+    }
+    
+    .title-accent {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+    
+    .title-accent-small {
+        font-size: 8px;
+    }
+    
+    .title-icon-orange {
+        display: none;
+    }
+    
+    .testimonials-cards-group {
+        width: 100%;
+        padding: 0 12px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 18px;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .card-circular-elements {
+        display: none;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+    
+    .top-left-testimonial {
+        padding: 14px;
+    }
+    
+    .testimonial-avatar-small {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+    
+    .testimonial-rating-small {
+        margin: 8px 0;
+    }
+    
+    .testimonial-rating-small i {
+        font-size: 11px;
+    }
+    
+    .testimonial-text-small {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .testimonial-author-small strong {
+        font-size: 12px;
+    }
+    
+    .testimonial-author-small span {
+        font-size: 10px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 14px 0;
+        padding: 14px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 16px;
+        padding: 18px;
+        border-radius: 14px;
+    }
+    
+    .overlay-card-title {
+        font-size: 13px;
+    }
+    
+    .overlay-card-description {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+    
+    .motivational-text-block {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 25px;
+        text-align: center;
+        padding: 0 12px;
+    }
+    
+    .motivational-link {
+        font-size: 12px;
+        justify-content: center;
+        letter-spacing: 1px;
+    }
+    
+    .motivational-text {
+        font-size: 10px;
+        text-align: center;
+        line-height: 1.55;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .testimonials-section {
+        padding: 40px 0;
+        min-height: auto;
+        overflow: hidden;
+    }
+    
+    .testimonials-section .container {
+        padding-top: 0;
+        align-items: center;
+    }
+    
+    .testimonials-main-title {
+        position: relative;
+        top: auto;
+        margin-left: 0;
+        margin-bottom: 25px;
+        text-align: center;
+        width: 100%;
+        padding: 0 10px;
+    }
+    
+    .testimonials-avatars {
+        display: none;
+    }
+    
+    .title-indented {
+        font-size: 20px;
+        margin-left: 0;
+    }
+    
+    .title-line-1 {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .title-line-2,
+    .title-line-3,
+    .title-line-4 {
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: -0.5px;
+    }
+    
+    .title-accent {
+        font-size: 9px;
+        padding: 3px 8px;
+    }
+    
+    .title-accent-small {
+        font-size: 7px;
+    }
+    
+    .title-icon-orange {
+        display: none;
+    }
+    
+    .testimonials-cards-group {
+        width: 100%;
+        padding: 0 10px;
+    }
+    
+    .testimonial-long-card {
+        max-width: 100%;
+        padding: 16px;
+        border-radius: 14px;
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .card-circular-elements {
+        display: none;
+    }
+    
+    .top-left-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: 100%;
+        margin-bottom: 14px;
+    }
+    
+    .top-left-testimonial {
+        padding: 12px;
+    }
+    
+    .testimonial-avatar-small {
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+    
+    .testimonial-rating-small {
+        margin: 6px 0;
+    }
+    
+    .testimonial-rating-small i {
+        font-size: 10px;
+    }
+    
+    .testimonial-text-small {
+        font-size: 11px;
+        line-height: 1.45;
+    }
+    
+    .testimonial-author-small strong {
+        font-size: 11px;
+    }
+    
+    .testimonial-author-small span {
+        font-size: 9px;
+    }
+    
+    .card-internal-testimonial {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 12px 0;
+        padding: 12px;
+    }
+    
+    .overlay-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 12px;
+    }
+    
+    .overlay-card-title {
+        font-size: 12px;
+    }
+    
+    .overlay-card-description {
+        font-size: 10px;
+        line-height: 1.45;
+    }
+    
+    .motivational-text-block {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin-top: 20px;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .motivational-link {
+        font-size: 11px;
+        justify-content: center;
+        letter-spacing: 0.8px;
+    }
+    
+    .motivational-text {
+        font-size: 9px;
+        text-align: center;
+        line-height: 1.5;
+    }
+}
+
+/* =============================================
+   TESTIMONIALS COLUMNS SECTION - 2 COLUMNS ON MOBILE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .testimonials-columns-section {
+        padding: 100px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 650px;
+        gap: 25px;
+    }
+    
+    .testimonial-column-card {
+        padding: 28px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 16px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 15px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 13px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .testimonials-columns-container {
+        height: 600px;
+        gap: 22px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .testimonials-columns-section {
+        padding: 80px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 550px;
+        gap: 18px;
+    }
+    
+    .testimonial-column-card {
+        padding: 22px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 14px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .testimonials-columns-section {
+        padding: 70px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 500px;
+        gap: 15px;
+    }
+    
+    .testimonial-column-card {
+        padding: 20px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 13px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 13px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 11px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .testimonials-columns-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 480px;
+        gap: 14px;
+        padding: 0 20px;
+    }
+    
+    /* Keep 3 columns on tablet */
+    .testimonials-column {
+        flex: 1;
+    }
+    
+    .testimonial-column-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .testimonial-column-avatar {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 12px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 10px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) - 2 COLUMNS --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .testimonials-columns-section {
+        padding: 50px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 450px;
+        gap: 12px;
+        padding: 0 15px;
+    }
+    
+    /* Hide third column, show 2 */
+    .testimonials-column.column-3 {
+        display: none;
+    }
+    
+    .testimonials-column {
+        flex: 1;
+    }
+    
+    .testimonial-column-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .testimonial-column-author {
+        margin-top: 12px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 11px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 9px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) - 2 COLUMNS --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .testimonials-columns-section {
+        padding: 40px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 420px;
+        gap: 10px;
+        padding: 0 12px;
+    }
+    
+    /* Hide third column, show 2 */
+    .testimonials-column.column-3 {
+        display: none;
+    }
+    
+    .testimonials-column {
+        flex: 1;
+    }
+    
+    .testimonial-column-card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 11px;
+        line-height: 1.45;
+    }
+    
+    .testimonial-column-author {
+        margin-top: 10px;
+        gap: 8px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 10px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 8px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) - 2 COLUMNS --- */
+@media (max-width: 374px) {
+    .testimonials-columns-section {
+        padding: 35px 0;
+    }
+    
+    .testimonials-columns-container {
+        height: 380px;
+        gap: 8px;
+        padding: 0 10px;
+    }
+    
+    /* Hide third column, show 2 */
+    .testimonials-column.column-3 {
+        display: none;
+    }
+    
+    .testimonials-column {
+        flex: 1;
+    }
+    
+    .testimonial-column-card {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .testimonial-column-text {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+    
+    .testimonial-column-author {
+        margin-top: 8px;
+        gap: 6px;
+    }
+    
+    .testimonial-column-avatar {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .testimonial-column-name {
+        font-size: 9px;
+    }
+    
+    .testimonial-column-role {
+        font-size: 7px;
+    }
+}
+
+/* =============================================
+   FEATURES/BENTO SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .phone-section {
+        padding: 140px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 80px;
+    }
+    
+    .phone-badge {
+        font-size: 14px;
+        padding: 14px 28px;
+    }
+    
+    .phone-title {
+        font-size: 88px;
+    }
+    
+    .phone-subtitle {
+        font-size: 22px;
+        max-width: 800px;
+    }
+    
+    .features-layout {
+        gap: 50px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 480px;
+    }
+    
+    .bento-card.medium {
+        padding: 35px;
+    }
+    
+    .card-title {
+        font-size: 22px;
+    }
+    
+    .card-description {
+        font-size: 16px;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icon i {
+        font-size: 28px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .phone-section {
+        padding: 120px 0;
+    }
+    
+    .phone-title {
+        font-size: 76px;
+    }
+    
+    .features-layout {
+        gap: 45px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 420px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .phone-section {
+        padding: 100px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 60px;
+    }
+    
+    .phone-title {
+        font-size: 64px;
+    }
+    
+    .phone-subtitle {
+        font-size: 17px;
+    }
+    
+    .features-layout {
+        gap: 35px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 360px;
+    }
+    
+    .bento-card.medium {
+        padding: 26px;
+    }
+    
+    .card-title {
+        font-size: 17px;
+    }
+    
+    .card-description {
+        font-size: 14px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .phone-section {
+        padding: 80px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 50px;
+    }
+    
+    .phone-badge {
+        font-size: 11px;
+        padding: 10px 20px;
+    }
+    
+    .phone-title {
+        font-size: 52px;
+    }
+    
+    .phone-subtitle {
+        font-size: 15px;
+        max-width: 550px;
+    }
+    
+    .features-layout {
+        gap: 28px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 320px;
+    }
+    
+    .bento-card.medium {
+        padding: 22px;
+    }
+    
+    .card-header {
+        gap: 12px;
+    }
+    
+    .card-title {
+        font-size: 15px;
+    }
+    
+    .card-description {
+        font-size: 13px;
+    }
+    
+    .card-icon {
+        width: 46px;
+        height: 46px;
+    }
+    
+    .card-icon i {
+        font-size: 20px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .phone-section {
+        padding: 70px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 45px;
+    }
+    
+    .phone-badge {
+        font-size: 10px;
+        padding: 9px 18px;
+    }
+    
+    .phone-title {
+        font-size: 44px;
+        letter-spacing: -1px;
+    }
+    
+    .phone-subtitle {
+        font-size: 14px;
+        max-width: 480px;
+    }
+    
+    .phone-header .download-pill-btn {
+        margin-top: 25px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .features-column {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 35px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 280px;
+    }
+    
+    .bento-card.medium {
+        padding: 20px;
+    }
+    
+    .card-header {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .card-icon {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .card-icon i {
+        font-size: 18px;
+    }
+    
+    .health-bars {
+        height: 45px;
+    }
+    
+    .goal-rings {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .phone-section {
+        padding: 60px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 35px;
+        padding: 0 15px;
+    }
+    
+    .phone-badge {
+        font-size: 9px;
+        padding: 8px 16px;
+    }
+    
+    .phone-title {
+        font-size: 34px;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+    }
+    
+    .highlight-word {
+        display: inline;
+    }
+    
+    .phone-subtitle {
+        font-size: 13px;
+        max-width: 380px;
+        padding: 0 10px;
+    }
+    
+    .phone-header .download-pill-btn {
+        margin-top: 22px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 0 15px;
+    }
+    
+    .features-column {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 28px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 240px;
+    }
+    
+    .bento-card.medium {
+        padding: 18px;
+        border-radius: 18px;
+    }
+    
+    .card-header {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    
+    .card-icon i {
+        font-size: 17px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .phone-section {
+        padding: 50px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 28px;
+        padding: 0 12px;
+    }
+    
+    .phone-badge {
+        font-size: 9px;
+        padding: 8px 14px;
+        letter-spacing: 1.5px;
+    }
+    
+    .phone-title {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+        line-height: 1.15;
+    }
+    
+    .phone-subtitle {
+        font-size: 12px;
+        max-width: 300px;
+        padding: 0 5px;
+        line-height: 1.5;
+    }
+    
+    .phone-header .download-pill-btn {
+        margin-top: 18px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 0 12px;
+    }
+    
+    .features-column {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 22px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 200px;
+    }
+    
+    .bento-card.medium {
+        padding: 16px;
+        border-radius: 14px;
+    }
+    
+    .card-header {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .card-title {
+        font-size: 13px;
+    }
+    
+    .card-description {
+        font-size: 11px;
+        line-height: 1.45;
+    }
+    
+    .card-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+    }
+    
+    .card-icon i {
+        font-size: 16px;
+    }
+    
+    .health-bars {
+        height: 40px;
+        margin-top: 12px;
+    }
+    
+    .goal-rings {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .phone-section {
+        padding: 40px 0;
+    }
+    
+    .phone-header {
+        margin-bottom: 24px;
+        padding: 0 10px;
+    }
+    
+    .phone-badge {
+        font-size: 8px;
+        padding: 6px 12px;
+        letter-spacing: 1.2px;
+    }
+    
+    .phone-title {
+        font-size: 24px;
+        letter-spacing: -0.5px;
+        line-height: 1.15;
+    }
+    
+    .phone-subtitle {
+        font-size: 11px;
+        max-width: 260px;
+        line-height: 1.5;
+    }
+    
+    .phone-header .download-pill-btn {
+        margin-top: 16px;
+    }
+    
+    .features-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 10px;
+    }
+    
+    .features-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .phone-mockup-center {
+        order: -1;
+        margin-bottom: 18px;
+    }
+    
+    .phone-mockup-image {
+        max-width: 180px;
+    }
+    
+    .bento-card.medium {
+        padding: 14px;
+        border-radius: 12px;
+    }
+    
+    .card-header {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .card-title {
+        font-size: 12px;
+    }
+    
+    .card-description {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+    
+    .card-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+    }
+    
+    .card-icon i {
+        font-size: 14px;
+    }
+    
+    .health-bars {
+        height: 35px;
+        margin-top: 10px;
+    }
+    
+    .goal-rings {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* =============================================
+   STATS SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .stats-achievements-section {
+        padding: 140px 0;
+    }
+    
+    .stats-content {
+        gap: 100px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 56px;
+    }
+    
+    .stats-description {
+        font-size: 20px;
+    }
+    
+    .stat-number-large {
+        font-size: 72px;
+    }
+    
+    .stat-label-large {
+        font-size: 18px;
+    }
+    
+    .stat-description-small {
+        font-size: 15px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .stats-achievements-section {
+        padding: 120px 0;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 50px;
+    }
+    
+    .stat-number-large {
+        font-size: 64px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .stats-achievements-section {
+        padding: 100px 0;
+    }
+    
+    .stats-content {
+        gap: 70px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 44px;
+    }
+    
+    .stats-description {
+        font-size: 17px;
+    }
+    
+    .stat-number-large {
+        font-size: 56px;
+    }
+    
+    .stat-label-large {
+        font-size: 15px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .stats-achievements-section {
+        padding: 80px 0;
+    }
+    
+    .stats-content {
+        gap: 50px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 38px;
+    }
+    
+    .stats-description {
+        font-size: 15px;
+    }
+    
+    .stat-number-large {
+        font-size: 48px;
+    }
+    
+    .stat-label-large {
+        font-size: 14px;
+    }
+    
+    .stat-description-small {
+        font-size: 12px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .stats-achievements-section {
+        padding: 70px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        text-align: center;
+    }
+    
+    .stats-left {
+        max-width: 100%;
+    }
+    
+    .stats-main-title {
+        text-align: center;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 34px;
+    }
+    
+    .stats-description {
+        text-align: center;
+        max-width: 550px;
+        margin: 0 auto;
+        font-size: 14px;
+    }
+    
+    .stats-decorative {
+        justify-content: center;
+    }
+    
+    .stats-list {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 35px;
+    }
+    
+    .stat-item {
+        flex: 0 0 auto;
+        min-width: 180px;
+    }
+    
+    .stat-number-large {
+        font-size: 44px;
+    }
+    
+    .stat-label-large {
+        font-size: 13px;
+    }
+    
+    .stat-description-small {
+        font-size: 11px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .stats-achievements-section {
+        padding: 55px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 30px;
+        line-height: 1.3;
+    }
+    
+    .stats-description {
+        font-size: 13px;
+        max-width: 450px;
+    }
+    
+    .stats-list {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .stat-item {
+        padding: 18px 15px;
+    }
+    
+    .stat-number-large {
+        font-size: 40px;
+    }
+    
+    .stat-label-large {
+        font-size: 13px;
+    }
+    
+    .stat-description-small {
+        font-size: 11px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .stats-achievements-section {
+        padding: 45px 0;
+    }
+    
+    .stats-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+        padding: 0 12px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 26px;
+        line-height: 1.35;
+    }
+    
+    .stats-description {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+    
+    .stats-list {
+        flex-direction: column;
+        gap: 22px;
+    }
+    
+    .stat-item {
+        padding: 16px 12px;
+    }
+    
+    .stat-number-large {
+        font-size: 36px;
+    }
+    
+    .stat-label-large {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    
+    .stat-description-small {
+        font-size: 10px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .stats-achievements-section {
+        padding: 38px 0;
+    }
+    
+    .stats-content {
+        gap: 24px;
+        padding: 0 10px;
+    }
+    
+    .stats-main-title .highlight {
+        font-size: 22px;
+        line-height: 1.35;
+    }
+    
+    .stats-description {
+        font-size: 11px;
+    }
+    
+    .stats-list {
+        gap: 18px;
+    }
+    
+    .stat-item {
+        padding: 14px 10px;
+    }
+    
+    .stat-number-large {
+        font-size: 30px;
+    }
+    
+    .stat-label-large {
+        font-size: 11px;
+    }
+    
+    .stat-description-small {
+        font-size: 9px;
+    }
+}
+
+/* =============================================
+   HOW IT WORKS SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .how-it-works-section {
+        padding: 140px 0;
+    }
+    
+    .steps-grid {
+        gap: 35px;
+    }
+    
+    .step-card {
+        padding: 40px;
+    }
+    
+    .step-number {
+        font-size: 36px;
+    }
+    
+    .step-title {
+        font-size: 22px;
+    }
+    
+    .step-description {
+        font-size: 16px;
+    }
+    
+    .step-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .step-icon i {
+        font-size: 28px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .how-it-works-section {
+        padding: 120px 0;
+    }
+    
+    .step-card {
+        padding: 35px;
+    }
+    
+    .step-number {
+        font-size: 32px;
+    }
+    
+    .step-icon {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .how-it-works-section {
+        padding: 100px 0;
+    }
+    
+    .step-card {
+        padding: 30px;
+    }
+    
+    .step-number {
+        font-size: 28px;
+    }
+    
+    .step-title {
+        font-size: 18px;
+    }
+    
+    .step-description {
+        font-size: 14px;
+    }
+    
+    .step-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .step-icon i {
+        font-size: 23px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .how-it-works-section {
+        padding: 80px 0;
+    }
+    
+    .steps-grid {
+        gap: 22px;
+    }
+    
+    .step-card {
+        padding: 26px;
+    }
+    
+    .step-number {
+        font-size: 24px;
+    }
+    
+    .step-title {
+        font-size: 16px;
+    }
+    
+    .step-description {
+        font-size: 13px;
+    }
+    
+    .step-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .step-icon i {
+        font-size: 20px;
+    }
+    
+    .step-time {
+        font-size: 11px;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .how-it-works-section {
+        padding: 70px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .step-card[data-step="5"] {
+        grid-column: span 2;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+    
+    .step-card {
+        padding: 24px;
+    }
+    
+    .step-number {
+        font-size: 22px;
+    }
+    
+    .step-title {
+        font-size: 15px;
+    }
+    
+    .step-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .step-icon {
+        width: 46px;
+        height: 46px;
+    }
+    
+    .step-icon i {
+        font-size: 18px;
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    .how-cta {
+        margin-top: 35px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .how-it-works-section {
+        padding: 55px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 15px;
+    }
+    
+    .step-card {
+        padding: 22px;
+        border-radius: 18px;
+    }
+    
+    .step-number-wrapper {
+        margin-bottom: 12px;
+    }
+    
+    .step-number {
+        font-size: 22px;
+    }
+    
+    .step-icon-wrapper {
+        margin-bottom: 12px;
+    }
+    
+    .step-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .step-icon i {
+        font-size: 18px;
+    }
+    
+    .step-title {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .step-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .step-meta {
+        margin-top: 12px;
+    }
+    
+    .step-time {
+        font-size: 11px;
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    .how-cta {
+        margin-top: 28px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .how-it-works-section {
+        padding: 45px 0;
+    }
+    
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 0 12px;
+    }
+    
+    .step-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+    
+    .step-number-wrapper {
+        margin-bottom: 10px;
+    }
+    
+    .step-number {
+        font-size: 18px;
+    }
+    
+    .step-icon-wrapper {
+        margin-bottom: 10px;
+    }
+    
+    .step-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .step-icon i {
+        font-size: 16px;
+    }
+    
+    .step-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .step-description {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+    
+    .step-meta {
+        margin-top: 10px;
+    }
+    
+    .step-time {
+        font-size: 10px;
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    .how-progress-container {
+        display: none;
+    }
+    
+    .how-cta {
+        margin-top: 24px;
+    }
+    
+    .step-success-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .how-it-works-section {
+        padding: 38px 0;
+    }
+    
+    .steps-grid {
+        gap: 12px;
+        padding: 0 10px;
+    }
+    
+    .step-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .step-number {
+        font-size: 16px;
+    }
+    
+    .step-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .step-icon i {
+        font-size: 14px;
+    }
+    
+    .step-title {
+        font-size: 13px;
+    }
+    
+    .step-description {
+        font-size: 10px;
+    }
+    
+    .step-time {
+        font-size: 9px;
+    }
+    
+    .how-cta {
+        margin-top: 20px;
+    }
+    
+    .step-success-badge {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
+
+/* =============================================
+   CALCULATOR SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .pain-calculator-section {
+        padding: 140px 0;
+    }
+    
+    .pain-title {
+        font-size: 64px;
+    }
+    
+    .pain-subtitle {
+        font-size: 20px;
+    }
+    
+    .calculator-container {
+        max-width: 700px;
+        padding: 45px;
+    }
+    
+    .pain-stats {
+        gap: 35px;
+    }
+    
+    .pain-stat {
+        padding: 30px;
+    }
+    
+    .stat-num {
+        font-size: 38px;
+    }
+    
+    .stat-desc {
+        font-size: 16px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .pain-calculator-section {
+        padding: 120px 0;
+    }
+    
+    .pain-title {
+        font-size: 56px;
+    }
+    
+    .calculator-container {
+        max-width: 650px;
+        padding: 40px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .pain-calculator-section {
+        padding: 100px 0;
+    }
+    
+    .pain-title {
+        font-size: 48px;
+    }
+    
+    .pain-subtitle {
+        font-size: 17px;
+    }
+    
+    .calculator-container {
+        max-width: 600px;
+        padding: 35px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .pain-calculator-section {
+        padding: 80px 0;
+    }
+    
+    .pain-title {
+        font-size: 42px;
+    }
+    
+    .pain-subtitle {
+        font-size: 15px;
+    }
+    
+    .calculator-container {
+        max-width: 550px;
+        padding: 30px;
+    }
+    
+    .pain-stats {
+        gap: 25px;
+    }
+    
+    .pain-stat {
+        padding: 22px;
+    }
+    
+    .stat-num {
+        font-size: 30px;
+    }
+    
+    .stat-desc {
+        font-size: 13px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .pain-calculator-section {
+        padding: 70px 0;
+    }
+    
+    .pain-title {
+        font-size: 38px;
+        line-height: 1.2;
+    }
+    
+    .pain-subtitle {
+        font-size: 14px;
+        padding: 0 20px;
+    }
+    
+    .live-loss-counter {
+        margin: 25px 15px;
+    }
+    
+    .loss-ticker {
+        font-size: 13px;
+        padding: 14px 20px;
+    }
+    
+    .calculator-container {
+        max-width: 100%;
+        margin: 0 20px;
+        padding: 28px;
+    }
+    
+    .pain-stats {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+    
+    .pain-stat {
+        flex: 1 1 calc(33% - 18px);
+        min-width: 160px;
+        padding: 20px;
+    }
+    
+    .stat-num {
+        font-size: 26px;
+    }
+    
+    .stat-desc {
+        font-size: 12px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .pain-calculator-section {
+        padding: 55px 0;
+    }
+    
+    .pain-title {
+        font-size: 32px;
+        line-height: 1.25;
+        padding: 0 15px;
+    }
+    
+    .pain-subtitle {
+        font-size: 13px;
+        padding: 0 20px;
+        line-height: 1.6;
+    }
+    
+    .live-loss-counter {
+        margin: 22px 15px;
+    }
+    
+    .loss-ticker {
+        font-size: 12px;
+        padding: 12px 18px;
+    }
+    
+    .loss-amount {
+        font-size: 18px;
+    }
+    
+    .calculator-container {
+        margin: 0 15px;
+        padding: 24px;
+        border-radius: 18px;
+    }
+    
+    .calculator-form {
+        gap: 18px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .radio-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .radio-option {
+        flex: 1 1 calc(33% - 10px);
+        min-width: 100px;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .calculate-btn {
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+    
+    .pain-stats {
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 15px;
+    }
+    
+    .pain-stat {
+        padding: 18px;
+    }
+    
+    .stat-num {
+        font-size: 26px;
+    }
+    
+    .stat-desc {
+        font-size: 12px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .pain-calculator-section {
+        padding: 45px 0;
+    }
+    
+    .pain-title {
+        font-size: 26px;
+        line-height: 1.25;
+        padding: 0 12px;
+    }
+    
+    .highlight-red {
+        font-size: 26px;
+    }
+    
+    .pain-subtitle {
+        font-size: 12px;
+        padding: 0 15px;
+        line-height: 1.55;
+    }
+    
+    .live-loss-counter {
+        margin: 18px 12px;
+    }
+    
+    .loss-ticker {
+        font-size: 11px;
+        padding: 10px 14px;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .loss-amount {
+        font-size: 16px;
+    }
+    
+    .calculator-container {
+        margin: 0 12px;
+        padding: 20px;
+        border-radius: 14px;
+    }
+    
+    .calculator-form {
+        gap: 16px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    .form-group input[type="number"] {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .radio-option {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+    
+    .calculate-btn {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .result-item {
+        padding: 14px;
+    }
+    
+    .result-value {
+        font-size: 20px;
+    }
+    
+    .result-label {
+        font-size: 11px;
+    }
+    
+    .shock-text {
+        font-size: 15px;
+    }
+    
+    .cta-btn.urgent {
+        padding: 12px 22px;
+        font-size: 13px;
+    }
+    
+    .pain-stats {
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 25px;
+        padding: 0 12px;
+    }
+    
+    .pain-stat {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    .pain-stat i {
+        font-size: 22px;
+    }
+    
+    .stat-num {
+        font-size: 22px;
+    }
+    
+    .stat-desc {
+        font-size: 11px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .pain-calculator-section {
+        padding: 38px 0;
+    }
+    
+    .pain-title {
+        font-size: 22px;
+        padding: 0 10px;
+    }
+    
+    .highlight-red {
+        font-size: 22px;
+    }
+    
+    .pain-subtitle {
+        font-size: 11px;
+        padding: 0 12px;
+    }
+    
+    .live-loss-counter {
+        margin: 15px 10px;
+    }
+    
+    .loss-ticker {
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+    
+    .loss-amount {
+        font-size: 14px;
+    }
+    
+    .calculator-container {
+        margin: 0 10px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    .calculator-form {
+        gap: 14px;
+    }
+    
+    .form-group label {
+        font-size: 11px;
+    }
+    
+    .form-group input[type="number"] {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .radio-option {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .calculate-btn {
+        padding: 10px 18px;
+        font-size: 12px;
+    }
+    
+    .result-value {
+        font-size: 18px;
+    }
+    
+    .shock-text {
+        font-size: 14px;
+    }
+    
+    .pain-stats {
+        gap: 12px;
+        padding: 0 10px;
+    }
+    
+    .pain-stat {
+        padding: 14px;
+    }
+    
+    .stat-num {
+        font-size: 20px;
+    }
+    
+    .stat-desc {
+        font-size: 10px;
+    }
+}
+
+/* =============================================
+   DOWNLOAD SECTION - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .download-section {
+        padding: 140px 0;
+    }
+    
+    .download-title {
+        font-size: 4.5rem;
+    }
+    
+    .download-subtitle {
+        font-size: 22px;
+    }
+    
+    .download-btn {
+        min-width: 280px;
+        padding: 20px 30px;
+    }
+    
+    .download-btn-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 32px;
+    }
+    
+    .btn-large {
+        font-size: 22px;
+    }
+    
+    .feature-badge {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .download-section {
+        padding: 120px 0;
+    }
+    
+    .download-title {
+        font-size: 4rem;
+    }
+    
+    .download-btn {
+        min-width: 260px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .download-section {
+        padding: 100px 0;
+    }
+    
+    .download-title {
+        font-size: 3.5rem;
+    }
+    
+    .download-subtitle {
+        font-size: 18px;
+    }
+    
+    .download-btn {
+        min-width: 240px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .download-section {
+        padding: 80px 0;
+    }
+    
+    .download-title {
+        font-size: 3rem;
+    }
+    
+    .download-subtitle {
+        font-size: 16px;
+    }
+    
+    .download-btn {
+        min-width: 220px;
+        padding: 16px 24px;
+    }
+    
+    .download-btn-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .btn-large {
+        font-size: 18px;
+    }
+    
+    .feature-badge {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .download-section {
+        padding: 70px 0;
+    }
+    
+    .download-title {
+        font-size: 2.6rem;
+    }
+    
+    .download-subtitle {
+        font-size: 15px;
+        margin-bottom: 35px;
+    }
+    
+    .download-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 18px;
+    }
+    
+    .download-btn {
+        min-width: 200px;
+        padding: 14px 22px;
+    }
+    
+    .download-btn-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 24px;
+    }
+    
+    .btn-small {
+        font-size: 10px;
+    }
+    
+    .btn-large {
+        font-size: 16px;
+    }
+    
+    .download-features {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+    
+    .feature-badge {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .download-section {
+        padding: 55px 0;
+    }
+    
+    .download-content {
+        padding: 0 20px;
+    }
+    
+    .download-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .download-subtitle {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 30px;
+    }
+    
+    .download-btn {
+        min-width: 100%;
+        max-width: 300px;
+        padding: 14px 22px;
+    }
+    
+    .download-btn-icon {
+        width: 46px;
+        height: 46px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 24px;
+    }
+    
+    .btn-small {
+        font-size: 10px;
+    }
+    
+    .btn-large {
+        font-size: 16px;
+    }
+    
+    .download-features {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .feature-badge {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .download-section {
+        padding: 45px 0;
+    }
+    
+    .download-content {
+        padding: 0 15px;
+    }
+    
+    .download-title {
+        font-size: 1.9rem;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+    
+    .download-subtitle {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    
+    .download-btn {
+        min-width: 100%;
+        max-width: 280px;
+        padding: 12px 18px;
+        border-radius: 14px;
+    }
+    
+    .download-btn-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 22px;
+    }
+    
+    .btn-small {
+        font-size: 9px;
+    }
+    
+    .btn-large {
+        font-size: 15px;
+    }
+    
+    .download-features {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .feature-badge {
+        width: 100%;
+        max-width: 260px;
+        padding: 9px 14px;
+        font-size: 11px;
+    }
+    
+    .feature-badge i {
+        font-size: 13px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .download-section {
+        padding: 38px 0;
+    }
+    
+    .download-content {
+        padding: 0 12px;
+    }
+    
+    .download-title {
+        font-size: 1.6rem;
+        letter-spacing: -0.5px;
+    }
+    
+    .download-subtitle {
+        font-size: 12px;
+        margin-bottom: 22px;
+    }
+    
+    .download-buttons {
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+    
+    .download-btn {
+        max-width: 260px;
+        padding: 10px 16px;
+        border-radius: 12px;
+    }
+    
+    .download-btn-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    
+    .download-btn-icon i {
+        font-size: 20px;
+    }
+    
+    .btn-small {
+        font-size: 8px;
+    }
+    
+    .btn-large {
+        font-size: 14px;
+    }
+    
+    .download-features {
+        gap: 8px;
+    }
+    
+    .feature-badge {
+        max-width: 240px;
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+}
+
+/* =============================================
+   FOOTER - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Extra Large Screens (1920px+) --- */
+@media (min-width: 1920px) {
+    .footer {
+        padding: 120px 0 50px;
+    }
+    
+    .footer-content {
+        gap: 80px;
+    }
+    
+    .footer-logo {
+        width: 100px;
+    }
+    
+    .footer-description {
+        font-size: 16px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-links a {
+        font-size: 15px;
+    }
+    
+    .footer-social .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+}
+
+/* --- Large Desktop (1440px - 1919px) --- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .footer {
+        padding: 100px 0 45px;
+    }
+    
+    .footer-content {
+        gap: 60px;
+    }
+    
+    .footer-logo {
+        width: 85px;
+    }
+}
+
+/* --- Medium Desktop (1200px - 1439px) --- */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .footer {
+        padding: 90px 0 40px;
+    }
+    
+    .footer-content {
+        gap: 50px;
+    }
+    
+    .footer-logo {
+        width: 75px;
+    }
+    
+    .footer-description {
+        font-size: 14px;
+    }
+    
+    .footer-links a {
+        font-size: 14px;
+    }
+}
+
+/* --- Small Desktop / Large Tablet Landscape (992px - 1199px) --- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .footer {
+        padding: 80px 0 35px;
+    }
+    
+    .footer-content {
+        gap: 40px;
+    }
+    
+    .footer-logo {
+        width: 70px;
+    }
+    
+    .footer-description {
+        font-size: 13px;
+    }
+    
+    .footer-title {
+        font-size: 13px;
+    }
+    
+    .footer-links a {
+        font-size: 13px;
+    }
+    
+    .footer-social .social-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer {
+        padding: 70px 0 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+    
+    .footer-column:first-child {
+        grid-column: span 2;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        width: 65px;
+        margin: 0 auto 15px;
+    }
+    
+    .footer-description {
+        max-width: 450px;
+        margin: 0 auto 20px;
+        font-size: 13px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-title {
+        font-size: 12px;
+    }
+    
+    .footer-links a {
+        font-size: 13px;
+    }
+    
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .footer {
+        padding: 55px 0 25px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .footer-column {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        width: 60px;
+        margin: 0 auto 12px;
+    }
+    
+    .footer-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    
+    .footer-social {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .footer-social .social-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+    
+    .footer-title {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+    
+    .footer-links {
+        gap: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 13px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding-top: 25px;
+    }
+    
+    .footer-bottom p,
+    .footer-made {
+        font-size: 12px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .footer {
+        padding: 45px 0 22px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 0 15px;
+    }
+    
+    .footer-column {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-logo {
+        width: 55px;
+        margin: 0 auto 10px;
+    }
+    
+    .footer-description {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+    
+    .footer-social {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-social .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .footer-title {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+    
+    .footer-links {
+        gap: 9px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding-top: 22px;
+    }
+    
+    .footer-bottom p,
+    .footer-made {
+        font-size: 11px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .footer {
+        padding: 38px 0 18px;
+    }
+    
+    .footer-content {
+        gap: 22px;
+        padding: 0 12px;
+    }
+    
+    .footer-logo {
+        width: 48px;
+    }
+    
+    .footer-description {
+        font-size: 11px;
+    }
+    
+    .footer-social .social-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .footer-title {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 11px;
+    }
+    
+    .footer-bottom {
+        gap: 8px;
+        padding-top: 18px;
+    }
+    
+    .footer-bottom p,
+    .footer-made {
+        font-size: 10px;
+    }
+}
+
+/* =============================================
+   GLOBAL TOUCH TARGETS & ACCESSIBILITY
+   ============================================= */
+
+/* Ensure minimum touch target size of 44x44px on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    /* Buttons and Links */
+    .download-pill-btn,
+    .download-btn,
+    .calculate-btn,
+    .cta-btn,
+    .motivational-link,
+    .nav-btn,
+    .nav-link {
+        min-height: 44px;
+    }
+    
+    /* Social Links */
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Form Elements */
+    .radio-option {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .form-group input[type="number"],
+    .form-group input[type="range"],
+    .form-group select {
+        min-height: 44px;
+    }
+    
+    /* Interactive Cards */
+    .orbital-item {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .orbital-item-icon {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Close buttons */
+    .fear-card-close,
+    .help-center-close,
+    .contact-close,
+    .terms-close,
+    .privacy-close {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Footer Links */
+    .footer-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Feature badges */
+    .feature-badge {
+        min-height: 44px;
+    }
+    
+    /* Dots navigation */
+    .dot {
+        min-width: 24px;
+        min-height: 24px;
+        padding: 8px;
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Focus visible styles for keyboard navigation */
+@media (hover: hover) {
+    .download-pill-btn:focus-visible,
+    .download-btn:focus-visible,
+    .calculate-btn:focus-visible,
+    .cta-btn:focus-visible,
+    .social-link:focus-visible,
+    .nav-link:focus-visible,
+    .footer-links a:focus-visible,
+    .orbital-item:focus-visible,
+    .bento-card:focus-visible,
+    .step-card:focus-visible {
+        outline: 2px solid #667eea;
+        outline-offset: 3px;
+    }
+}
+
+/* =============================================
+   MODAL WINDOWS - OPTIMIZED RESPONSIVE
+   ============================================= */
+
+/* --- Common Modal Styles for All Screen Sizes --- */
+.help-center-modal,
+.contact-modal,
+.terms-modal,
+.privacy-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+}
+
+.help-center-container,
+.contact-container,
+.terms-container,
+.privacy-container {
+    position: relative;
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* --- Tablet Portrait (768px - 991px) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .help-center-container,
+    .contact-container,
+    .terms-container,
+    .privacy-container {
+        width: 90%;
+        max-width: 600px;
+        padding: 35px;
+        border-radius: 24px;
+    }
+    
+    .help-center-title,
+    .contact-title,
+    .terms-title,
+    .privacy-title {
+        font-size: 24px;
+    }
+    
+    .help-center-subtitle,
+    .contact-subtitle,
+    .terms-subtitle,
+    .privacy-subtitle {
+        font-size: 14px;
+    }
+    
+    .help-category-header h3 {
+        font-size: 15px;
+    }
+    
+    .help-item h4 {
+        font-size: 14px;
+    }
+    
+    .help-item p {
+        font-size: 13px;
+    }
+    
+    .terms-section h3,
+    .privacy-section h3 {
+        font-size: 17px;
+    }
+    
+    .terms-section p,
+    .privacy-section p {
+        font-size: 13px;
+    }
+}
+
+/* --- Large Phone / Small Tablet (576px - 767px) --- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .help-center-container,
+    .contact-container,
+    .terms-container,
+    .privacy-container {
+        width: 95%;
+        max-width: 500px;
+        padding: 28px;
+        border-radius: 20px;
+        max-height: 85vh;
+        max-height: 85dvh;
+    }
+    
+    .help-center-close,
+    .contact-close,
+    .terms-close,
+    .privacy-close {
+        width: 36px;
+        height: 36px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .help-center-title,
+    .contact-title,
+    .terms-title,
+    .privacy-title {
+        font-size: 22px;
+    }
+    
+    .help-center-subtitle,
+    .contact-subtitle,
+    .terms-subtitle,
+    .privacy-subtitle {
+        font-size: 13px;
+    }
+    
+    .help-search-input {
+        padding: 12px 40px 12px 14px;
+        font-size: 14px;
+    }
+    
+    .help-category-header h3 {
+        font-size: 14px;
+    }
+    
+    .help-item h4 {
+        font-size: 13px;
+    }
+    
+    .help-item p {
+        font-size: 12px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .contact-submit-btn {
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+    
+    .terms-section h3,
+    .privacy-section h3 {
+        font-size: 16px;
+    }
+    
+    .terms-section p,
+    .privacy-section p,
+    .terms-section li,
+    .privacy-section li {
+        font-size: 12px;
+    }
+}
+
+/* --- Standard Phone (375px - 575px) --- */
+@media (min-width: 375px) and (max-width: 575px) {
+    .help-center-container,
+    .contact-container,
+    .terms-container,
+    .privacy-container {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        max-height: 100dvh;
+        padding: 20px 16px;
+        border-radius: 0;
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+    
+    .help-center-close,
+    .contact-close,
+    .terms-close,
+    .privacy-close {
+        width: 40px;
+        height: 40px;
+        top: max(12px, env(safe-area-inset-top));
+        right: 12px;
+    }
+    
+    .help-center-header,
+    .contact-header,
+    .terms-header,
+    .privacy-header {
+        margin-bottom: 20px;
+        padding-right: 45px;
+    }
+    
+    .help-center-title,
+    .contact-title,
+    .terms-title,
+    .privacy-title {
+        font-size: 20px;
+    }
+    
+    .help-center-title i,
+    .contact-title i,
+    .terms-title i,
+    .privacy-title i {
+        font-size: 22px;
+    }
+    
+    .help-center-subtitle,
+    .contact-subtitle,
+    .terms-subtitle,
+    .privacy-subtitle {
+        font-size: 12px;
+    }
+    
+    .help-center-search {
+        margin-bottom: 20px;
+    }
+    
+    .help-search-input {
+        padding: 12px 38px 12px 12px;
+        font-size: 14px;
+    }
+    
+    .help-categories {
+        gap: 12px;
+    }
+    
+    .help-category {
+        border-radius: 12px;
+    }
+    
+    .help-category-header {
+        padding: 14px;
+    }
+    
+    .help-category-header i {
+        font-size: 18px;
+    }
+    
+    .help-category-header h3 {
+        font-size: 13px;
+    }
+    
+    .help-category-content {
+        padding: 0 14px 14px;
+    }
+    
+    .help-item {
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .help-item h4 {
+        font-size: 12px;
+    }
+    
+    .help-item p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+    
+    .help-contact-card {
+        padding: 20px;
+    }
+    
+    .help-contact-card h3 {
+        font-size: 15px;
+    }
+    
+    .help-contact-card p {
+        font-size: 12px;
+    }
+    
+    .help-contact-btn {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+    
+    .contact-form {
+        gap: 16px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+    
+    .checkbox-label {
+        font-size: 11px;
+    }
+    
+    .contact-submit-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 24px;
+    }
+    
+    .contact-info-item {
+        padding: 14px;
+    }
+    
+    .contact-info-item strong {
+        font-size: 12px;
+    }
+    
+    .contact-info-item p {
+        font-size: 11px;
+    }
+    
+    .terms-content,
+    .privacy-content {
+        padding-right: 0;
+    }
+    
+    .terms-section,
+    .privacy-section {
+        margin-bottom: 24px;
+    }
+    
+    .terms-section h3,
+    .privacy-section h3 {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    .terms-section p,
+    .privacy-section p,
+    .terms-section li,
+    .privacy-section li {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+    
+    .terms-section ul,
+    .privacy-section ul {
+        padding-left: 18px;
+    }
+    
+    .privacy-security-grid,
+    .privacy-rights-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .security-item,
+    .rights-item {
+        padding: 12px;
+    }
+    
+    .security-item i,
+    .rights-item i {
+        font-size: 20px;
+    }
+    
+    .security-item strong,
+    .rights-item strong {
+        font-size: 12px;
+    }
+    
+    .security-item p {
+        font-size: 11px;
+    }
+    
+    .privacy-contact-info {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .privacy-contact-item {
+        padding: 14px;
+    }
+    
+    .terms-footer-note,
+    .privacy-footer-note {
+        padding: 16px;
+        font-size: 11px;
+    }
+}
+
+/* --- Small Phone (320px - 374px) --- */
+@media (max-width: 374px) {
+    .help-center-container,
+    .contact-container,
+    .terms-container,
+    .privacy-container {
+        padding: 16px 12px;
+        padding-top: max(16px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+    
+    .help-center-close,
+    .contact-close,
+    .terms-close,
+    .privacy-close {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .help-center-title,
+    .contact-title,
+    .terms-title,
+    .privacy-title {
+        font-size: 18px;
+    }
+    
+    .help-center-title i,
+    .contact-title i,
+    .terms-title i,
+    .privacy-title i {
+        font-size: 20px;
+    }
+    
+    .help-center-subtitle,
+    .contact-subtitle,
+    .terms-subtitle,
+    .privacy-subtitle {
+        font-size: 11px;
+    }
+    
+    .help-search-input {
+        padding: 10px 36px 10px 10px;
+        font-size: 13px;
+    }
+    
+    .help-category-header {
+        padding: 12px;
+    }
+    
+    .help-category-header h3 {
+        font-size: 12px;
+    }
+    
+    .help-item h4 {
+        font-size: 11px;
+    }
+    
+    .help-item p {
+        font-size: 10px;
+    }
+    
+    .form-group label {
+        font-size: 11px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .contact-submit-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .terms-section h3,
+    .privacy-section h3 {
+        font-size: 14px;
+    }
+    
+    .terms-section p,
+    .privacy-section p,
+    .terms-section li,
+    .privacy-section li {
+        font-size: 11px;
+    }
+}
+
+/* --- Landscape Mode for Modals --- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .help-center-container,
+    .contact-container,
+    .terms-container,
+    .privacy-container {
+        max-height: 100vh;
+        max-height: 100dvh;
+        height: 100%;
+        border-radius: 0;
+    }
+    
+    .help-center-header,
+    .contact-header,
+    .terms-header,
+    .privacy-header {
+        position: sticky;
+        top: 0;
+        background: inherit;
+        padding-bottom: 15px;
+        z-index: 10;
+    }
+}
+
