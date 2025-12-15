@@ -14,8 +14,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Spline 3D -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    <!-- Spline 3D - Lazy loaded -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
@@ -38,7 +38,7 @@
         </div>
         <!-- Spline 3D Container -->
         <div class="spline-container">
-            <spline-viewer loading-anim-type="none" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
+            <spline-viewer loading-anim-type="none" loading="lazy" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->

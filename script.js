@@ -87,7 +87,7 @@ function initParallaxEffects() {
             });
             ticking = true;
         }
-    });
+    }, { passive: true });
 }
 
 function updateParallax() {
@@ -155,7 +155,7 @@ function initSmoothMomentum() {
             document.body.classList.remove('is-scrolling');
             isScrolling = false;
         }, 150);
-    });
+    }, { passive: true });
 }
 
 // Initialize seamless animations on DOM load
@@ -183,7 +183,7 @@ window.addEventListener('scroll', () => {
     } else {
         scrollIndicator.style.opacity = '1';
     }
-});
+}, { passive: true });
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -370,7 +370,7 @@ window.addEventListener('scroll', () => {
     if (heroTitle) {
         heroTitle.style.transform = `translateY(${rate}px)`;
     }
-});
+}, { passive: true });
 
 // Add mouseenter/mouseleave effects to feature cards
 featureCards.forEach(card => {
@@ -1562,7 +1562,7 @@ function initProgressTracking() {
         });
     };
     
-    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 }
 
