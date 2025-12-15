@@ -19,6 +19,8 @@ html, body {
 
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -27,6 +29,8 @@ body {
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -223,11 +227,11 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-bottom: 0;
+    background-attachment: fixed;
+    width: 100%;
+    margin: 0;
     padding: 0 50px 0 50px;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .spline-container {
@@ -287,7 +291,7 @@ body {
 @media (max-width: 480px) {
     .spline-container spline-viewer,
     .spline-container spline-viewer.loaded {
-        transform: scale(0.75);
+        transform: scale(0.65);
         transform-origin: center center;
     }
 }
@@ -295,7 +299,7 @@ body {
 @media (max-width: 390px) {
     .spline-container spline-viewer,
     .spline-container spline-viewer.loaded {
-        transform: scale(0.7);
+        transform: scale(0.6);
         transform-origin: center center;
     }
 }
@@ -505,8 +509,8 @@ body {
 }
 
 .dot {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: #ccc;
     opacity: 0.4;
@@ -8801,6 +8805,18 @@ body.is-scrolling {
 }
 
 @media (max-width: 768px) {
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .hero + section,
+    .hero + .section,
+    .hero + .fear-orbital-section {
+        margin-top: -20px !important;
+        padding-top: 100px !important;
+    }
+
     .nav {
         flex-direction: column;
         gap: 20px;
@@ -8844,8 +8860,20 @@ body.is-scrolling {
     }
     
     .hero {
-        height: auto;
-        min-height: 100vh;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+        background-attachment: scroll !important;
+        padding: 0 20px 0 20px !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+        display: flex !important;
+        width: 100% !important;
     }
     
     .hero-brand {
@@ -8947,10 +8975,9 @@ body.is-scrolling {
     }
     
     .dot {
-        width: 5px;
-        height: 5px;
+        display: none !important;
     }
-    
+
     .section {
         padding: 80px 0;
     }
@@ -18048,14 +18075,13 @@ body.is-scrolling {
     }
     
     .dot {
-        width: 5px;
-        height: 5px;
+        display: none !important;
     }
-    
+
     .hero-brand .download-pill-btn {
         margin: 20px auto 0;
     }
-    
+
     .download-pill-btn {
         padding: 10px 20px;
     }
@@ -18079,12 +18105,12 @@ body.is-scrolling {
         left: auto;
         top: auto;
         transform: none;
-        width: 200% !important;
-        height: 90vh !important;
+        width: 220% !important;
+        height: 95vh !important;
         min-height: 650px !important;
-        max-width: 1200px !important;
-        max-height: 1000px !important;
-        margin: 200px auto 0;
+        max-width: 1400px !important;
+        max-height: 1100px !important;
+        margin: 180px auto 0;
         margin-left: -50%;
         overflow: visible !important;
     }
@@ -18909,11 +18935,11 @@ body.is-scrolling {
     }
     
     .spline-container {
-        width: 140%;
-        height: 55vh;
-        min-height: 400px;
-        max-width: 500px;
-        margin-left: -20%;
+        width: 160%;
+        height: 60vh;
+        min-height: 450px;
+        max-width: 600px;
+        margin-left: -30%;
         margin-top: 25px;
     }
     
@@ -19013,8 +19039,8 @@ body.is-scrolling {
     }
     
     .spline-container {
-        height: 60vh;
-        max-height: 300px;
+        height: 65vh;
+        max-height: 350px;
         margin-top: 30px;
     }
     
@@ -19556,8 +19582,7 @@ body.is-scrolling {
     }
     
     .dot {
-        width: 6px;
-        height: 6px;
+        display: none !important;
     }
     
     .hero-brand .download-pill-btn {
@@ -19737,8 +19762,7 @@ body.is-scrolling {
     }
     
     .dot {
-        width: 5px;
-        height: 5px;
+        display: none !important;
     }
     
     .hero-brand .download-pill-btn {
@@ -19944,14 +19968,13 @@ body.is-scrolling {
     }
     
     .dot {
-        width: 4px;
-        height: 4px;
+        display: none !important;
     }
-    
+
     .hero-brand .download-pill-btn {
         margin: 15px auto 0;
     }
-    
+
     .download-pill-btn {
         padding: 8px 16px;
     }
@@ -24859,13 +24882,37 @@ body.is-scrolling {
    MOBILE SPLINE OVERRIDE - FINAL (HIGHEST PRIORITY)
    ============================================= */
 @media (max-width: 767px) {
+    .hero {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+        background-attachment: scroll !important;
+        padding: 0 20px 0 20px !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+        display: flex !important;
+        width: 100% !important;
+    }
+
+    .hero + section,
+    .hero + .section,
+    .hero + .fear-orbital-section {
+        margin-top: -20px !important;
+        padding-top: 80px !important;
+    }
+
     .hero .spline-container {
         position: absolute !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
-        width: 300% !important;
-        height: 120vh !important;
+        width: 350% !important;
+        height: 140vh !important;
         min-height: 850px !important;
         max-width: none !important;
         max-height: none !important;
@@ -24900,8 +24947,7 @@ body.is-scrolling {
     }
     
     .hero .hero-brand .brand-dots .dot {
-        width: 4px !important;
-        height: 4px !important;
+        display: none !important;
     }
     
     .hero .design-squares,
@@ -24920,14 +24966,38 @@ body.is-scrolling {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+        background-attachment: scroll !important;
+        padding: 0 15px 0 15px !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+        display: flex !important;
+        width: 100% !important;
+    }
+
+    .hero + section,
+    .hero + .section,
+    .hero + .fear-orbital-section {
+        margin-top: -20px !important;
+        padding-top: 80px !important;
+    }
+
     .hero .spline-container {
         position: absolute !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
-        width: 320% !important;
-        height: 130vh !important;
-        min-height: 900px !important;
+        width: 380% !important;
+        height: 150vh !important;
+        min-height: 950px !important;
         max-width: none !important;
         max-height: none !important;
         margin: 0 !important;
@@ -24970,16 +25040,17 @@ body.is-scrolling {
     .hero .bottom-left-design {
         position: absolute !important;
         bottom: 40px !important;
-        left: 180px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         margin: 0 !important;
         z-index: 100 !important;
     }
     
     .hero .bottom-left-design .design-text {
-        text-align: left !important;
-        max-width: 150px !important;
+        text-align: center !important;
+        max-width: 250px !important;
     }
-    
+
     .hero .bottom-left-design .design-text p {
         font-size: 7px !important;
         line-height: 1.3 !important;
