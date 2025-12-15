@@ -16659,6 +16659,8 @@ body.is-scrolling {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .fear-card-close i {
@@ -16864,15 +16866,29 @@ body.is-scrolling {
 @media (max-width: 480px) {
     .fear-orbital-section {
         padding: 60px 15px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 100vh;
     }
     
     .fear-orbital-container {
-        height: 500px;
+        height: auto;
+        min-height: 500px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto;
     }
     
     .orbital-system {
         width: 320px;
         height: 320px;
+        margin: 0 auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
     }
     
     .orbit-ring {
