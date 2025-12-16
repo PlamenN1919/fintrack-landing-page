@@ -1170,14 +1170,14 @@ body.is-scrolling {
 }
 
 .pain-title {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 800;
-    line-height: 0.76;
+    line-height: 0.8;
     color: #2c2c2c;
     margin-top: 80px;
     margin-bottom: 24px;
     text-transform: uppercase;
-    letter-spacing: -2px;
+    letter-spacing: 0.5px;
     text-align: center;
     position: relative;
     z-index: 2;
@@ -1196,6 +1196,7 @@ body.is-scrolling {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 900;
+    font-size: 28px;
 }
 
 .highlight-red {
@@ -1602,12 +1603,16 @@ body.is-scrolling {
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 8px;
+    justify-content: center;
 }
 
 .radio-option {
     position: relative;
     flex: 1;
     min-width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .radio-option input[type="radio"] {
@@ -5183,7 +5188,166 @@ body.is-scrolling {
     }
     
     .phone-header {
-        margin-bottom: 60px;
+        margin-bottom: 0px;
+        display: flex !important;
+        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: relative !important;
+        left: 0 !important;
+        order: 1;
+    }
+    
+    .phone-header .download-pill-btn {
+        order: 3;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    
+    /* Show mobile phone mockup */
+    .phone-mockup-mobile {
+        display: flex !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        left: -370px !important;
+        transform: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 5;
+    }
+    
+    .phone-mockup-image-mobile {
+        max-width: 900px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Hide desktop phone mockup */
+    .phone-mockup-center {
+        display: none !important;
+    }
+    
+    .features-layout {
+        display: block;
+        position: relative;
+        overflow: visible;
+        padding: 0;
+        min-height: 600px;
+    }
+    
+    /* Hide desktop columns */
+    .features-column {
+        display: none !important;
+    }
+    
+    /* Show Carousel Container on mobile */
+    .features-carousel-container {
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        overflow: visible;
+        padding: 0;
+        z-index: 30;
+    }
+    
+    .features-carousel-wrapper {
+        display: flex;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        gap: 20px;
+        padding: 0 40px;
+        will-change: transform;
+        cursor: grab;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .features-carousel-wrapper.dragging {
+        transition: none;
+        cursor: grabbing;
+    }
+    
+    /* Carousel Cards */
+    .features-carousel-wrapper .bento-card {
+        flex: 0 0 calc(100vw - 120px);
+        max-width: 400px;
+        min-height: 220px;
+        scroll-snap-align: center;
+        transform: scale(0.92);
+        opacity: 0.65;
+        transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        pointer-events: auto;
+        filter: blur(1px);
+    }
+    
+    .features-carousel-wrapper .bento-card.active {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Carousel Indicators */
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 280px;
+        padding: 0 20px;
+    }
+    
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(44, 44, 44, 0.2);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .carousel-indicator.active {
+        width: 24px;
+        border-radius: 4px;
+        background: rgba(44, 44, 44, 0.6);
+    }
+    
+    /* Swipe hint animation */
+    .swipe-hint {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(44, 44, 44, 0.5);
+        animation: swipeHintFade 3s ease-in-out infinite;
+        pointer-events: none;
+    }
+    
+    .swipe-hint i {
+        animation: swipeHintMove 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes swipeHintFade {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+    }
+    
+    @keyframes swipeHintMove {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(10px); }
     }
     
     .phone-badge {
@@ -5196,6 +5360,12 @@ body.is-scrolling {
     .phone-title {
         font-size: 48px;
         letter-spacing: -1.5px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
     }
     
     .phone-title .title-gradient {
@@ -5260,6 +5430,101 @@ body.is-scrolling {
 }
 
 @media (max-width: 480px) {
+    .phone-header {
+        display: flex !important;
+        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: relative !important;
+        left: 0 !important;
+        order: 1;
+        margin-bottom: 0;
+    }
+    
+    .phone-header .download-pill-btn {
+        order: 3;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    
+    /* Show mobile phone mockup */
+    .phone-mockup-mobile {
+        display: flex !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        left: -380px !important;
+        transform: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 5;
+    }
+    
+    .phone-mockup-image-mobile {
+        max-width: 850px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Hide desktop phone mockup */
+    .phone-mockup-center {
+        display: none !important;
+    }
+    
+    .features-layout {
+        display: block;
+        overflow: visible;
+        min-height: 550px;
+    }
+    
+    .features-carousel-wrapper .bento-card {
+        flex: 0 0 calc(100vw - 100px);
+        min-height: 200px;
+    }
+    
+    .features-carousel-wrapper {
+        padding: 0 30px;
+    }
+    
+    .swipe-hint {
+        font-size: 11px;
+        bottom: -50px;
+    }
+    
+    .carousel-indicators {
+        gap: 6px;
+        margin-top: 260px;
+    }
+    
+    .carousel-indicator {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .carousel-indicator.active {
+        width: 20px;
+    }
+}
+
+@media (max-width: 390px) {
+    .phone-mockup-mobile {
+        left: -390px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .phone-mockup-mobile {
+        left: -400px !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .phone-mockup-mobile {
+        left: -380px !important;
+    }
+    
     .phone-badge {
         font-size: 9px;
         letter-spacing: 1.5px;
@@ -5270,6 +5535,12 @@ body.is-scrolling {
     .phone-title {
         font-size: 36px;
         letter-spacing: -1px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
     }
     
     .phone-title .title-gradient {
@@ -5304,6 +5575,48 @@ body.is-scrolling {
     
     .pill-btn-circle i {
         font-size: 12px;
+    }
+    
+    /* Carousel adjustments for small screens */
+    .features-layout {
+        min-height: 500px;
+    }
+    
+    .features-carousel-wrapper .bento-card {
+        flex: 0 0 calc(100vw - 90px);
+        min-height: 180px;
+    }
+    
+    .features-carousel-wrapper {
+        padding: 0 25px;
+        gap: 15px;
+    }
+    
+    .carousel-indicators {
+        gap: 5px;
+        margin-top: 240px;
+    }
+    
+    .carousel-indicator {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .carousel-indicator.active {
+        width: 18px;
+    }
+    
+    .swipe-hint {
+        font-size: 10px;
+        bottom: -45px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 11px;
     }
 }
 
@@ -5341,6 +5654,11 @@ body.is-scrolling {
     margin: 0 auto;
     min-height: 900px;
     padding: 60px 0;
+}
+
+/* Hide mobile carousel on desktop */
+.features-carousel-container {
+    display: none;
 }
 
 .features-column {
@@ -5438,6 +5756,24 @@ body.is-scrolling {
 .phone-mockup-center .phone-mockup-image {
     width: 1200px;
     max-width: none;
+}
+
+/* Mobile Phone Mockup */
+.phone-mockup-mobile {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.phone-mockup-image-mobile {
+    max-width: 900px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .features-column .bento-card {
@@ -8977,7 +9313,7 @@ body.is-scrolling {
     .dot {
         display: none !important;
     }
-
+    
     .section {
         padding: 80px 0;
     }
@@ -12337,8 +12673,10 @@ body.is-scrolling {
     width: 100%;
     max-width: 800px;
     margin: 0;
+    margin-left: 0px;
+    margin-right: 0px;
     background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 50%, #6a6a6a 100%);
-    border-radius: 40px;
+    border-radius: 12px;
     padding: 40px;
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.1),
@@ -12426,13 +12764,15 @@ body.is-scrolling {
     right: -40px;
     background: #ffffff;
     border-radius: 25px;
-    padding: 16px;
+    padding: 16px 20px;
     box-shadow: 
         0 15px 40px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(0, 0, 0, 0.05);
     z-index: 3;
+    width: 250px;
     max-width: 180px;
     min-width: 160px;
+    margin-left: 65px;
 }
 
 .overlay-card-icon {
@@ -12476,6 +12816,7 @@ body.is-scrolling {
     line-height: 1.3;
     margin-bottom: 8px;
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
 .overlay-card-description {
@@ -12483,13 +12824,14 @@ body.is-scrolling {
     color: #2c2c2c;
     line-height: 1.4;
     font-weight: 400;
+    text-align: center;
 }
 
 /* Top Left Card */
 .top-left-card {
     position: absolute;
-    top: -220px;
-    left: 50px;
+    top: -25px;
+    left: 75px;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -12500,6 +12842,7 @@ body.is-scrolling {
         0 15px 40px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(255, 255, 255, 0.2) inset;
     z-index: 3;
+    width: 200px;
     max-width: 200px;
     min-width: 180px;
 }
@@ -12610,15 +12953,16 @@ body.is-scrolling {
 /* Internal Testimonial - Inside the gray card */
 .card-internal-testimonial {
     position: absolute;
-    top: 30px;
-    left: 30px;
-    right: 30px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     z-index: 2;
-    max-width: calc(100% - 60px);
 }
 
 .card-internal-testimonial .testimonial-avatar-small {
@@ -12790,7 +13134,7 @@ body.is-scrolling {
     display: flex;
     align-items: baseline;
     gap: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 .title-indented {
@@ -12876,7 +13220,11 @@ body.is-scrolling {
     position: relative;
     width: 100%;
     margin-top: 100px;
-    margin-left: -40px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Motivational Text Block - Bottom Right */
@@ -14439,7 +14787,7 @@ body.is-scrolling {
     
     .testimonial-long-card {
         padding: 35px 30px;
-        border-radius: 35px;
+        border-radius: 12px;
         min-height: 220px;
         max-width: 700px;
     }
@@ -14482,10 +14830,10 @@ body.is-scrolling {
     }
 
     .card-internal-testimonial {
-        top: 25px;
-        left: 25px;
-        right: 25px;
-        max-width: calc(100% - 50px);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
     .card-internal-testimonial .testimonial-avatar-small {
@@ -14541,10 +14889,12 @@ body.is-scrolling {
     .overlay-card-title {
         font-size: 12px;
         margin-bottom: 6px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 9px;
+        text-align: center;
     }
     
     .card-circular-elements {
@@ -14875,7 +15225,7 @@ body.is-scrolling {
     
     .testimonial-long-card {
         padding: 30px 20px;
-        border-radius: 30px;
+        border-radius: 12px;
         min-height: 200px;
         max-width: 100%;
     }
@@ -14927,10 +15277,10 @@ body.is-scrolling {
     }
 
     .card-internal-testimonial {
-        top: 20px;
-        left: 20px;
-        right: 20px;
-        max-width: calc(100% - 40px);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
     .card-internal-testimonial .testimonial-avatar-small {
@@ -15003,10 +15353,12 @@ body.is-scrolling {
     .overlay-card-title {
         font-size: 11px;
         margin-bottom: 6px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 8px;
+        text-align: center;
     }
     
     .card-circular-elements {
@@ -15289,19 +15641,16 @@ body.is-scrolling {
 .stats-main-title {
     font-size: 78px;
     font-weight: 900;
-    line-height: 1.0;
+    line-height: 0.95;
     margin-bottom: 30px;
     color: #1a1a1a;
     text-transform: uppercase;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     text-align: left;
     opacity: 0;
-}
-
-.stats-title-line-1,
-.stats-title-line-2,
-.stats-title-line-3 {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Title Animation on Scroll */
@@ -15320,7 +15669,7 @@ body.is-scrolling {
     }
 }
 
-.stats-title-line-1 .highlight {
+.stats-main-title .highlight {
     color: #2c2c2c;
     position: relative;
     display: inline;
@@ -15331,7 +15680,7 @@ body.is-scrolling {
     font-weight: 900;
 }
 
-.stats-title-line-1 .highlight::after {
+.stats-main-title .highlight::after {
     content: '';
     position: absolute;
     bottom: 8px;
@@ -17213,7 +17562,23 @@ body.is-scrolling {
     }
     
     .phone-header {
-        margin-bottom: 50px;
+        margin-bottom: 0px;
+        display: flex !important;
+        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: relative !important;
+        left: -380px !important;
+        order: 1;
+    }
+    
+    .phone-header .download-pill-btn {
+        order: 3;
+        margin-top: 20px;
+        margin-bottom: 0;
     }
     
     .phone-badge {
@@ -17223,6 +17588,12 @@ body.is-scrolling {
     .phone-title {
         font-size: 42px;
         letter-spacing: -1px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
     }
     
     .phone-subtitle {
@@ -17242,12 +17613,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 40px;
+        order: 2;
+        margin: 30px auto 40px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 280px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -17365,7 +17739,9 @@ body.is-scrolling {
     .testimonial-long-card {
         flex-direction: column;
         height: auto;
-        padding: 30px;
+        padding: 24px;
+        max-width: 100%;
+        min-height: auto;
     }
     
     .overlay-card {
@@ -17388,7 +17764,10 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 20px 0;
+        margin: 0;
+        padding: 16px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .motivational-text-block {
@@ -17647,8 +18026,29 @@ body.is-scrolling {
     }
     
     .phone-header {
-        margin-bottom: 40px;
+        margin-bottom: 0;
         padding: 0 15px;
+        display: flex !important;
+        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: relative !important;
+        left: -390px !important;
+        order: 1;
+    }
+    
+    .phone-header .download-pill-btn {
+        order: 3;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    
+    .features-layout {
+        display: flex;
+        flex-direction: column;
     }
     
     .phone-badge {
@@ -17660,6 +18060,12 @@ body.is-scrolling {
         font-size: 32px;
         letter-spacing: -0.5px;
         line-height: 1.1;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
     }
     
     .phone-subtitle {
@@ -17680,12 +18086,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 30px;
+        order: 2;
+        margin: 25px auto 30px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 240px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -17823,7 +18232,7 @@ body.is-scrolling {
     .testimonials-main-title .title-line-2,
     .testimonials-main-title .title-line-3,
     .testimonials-main-title .title-line-4 {
-        font-size: 28px;
+        font-size: 36px;
     }
     
     .testimonials-avatars {
@@ -17837,8 +18246,10 @@ body.is-scrolling {
     .testimonial-long-card {
         flex-direction: column;
         height: auto;
-        padding: 25px;
-        border-radius: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 100%;
+        min-height: auto;
     }
     
     .overlay-card {
@@ -17861,7 +18272,10 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 20px 0;
+        margin: 0;
+        padding: 16px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .motivational-text-block {
@@ -17933,8 +18347,8 @@ body.is-scrolling {
     }
     
     .pain-title {
-        font-size: 32px;
-        line-height: 1.2;
+        font-size: 36px;
+        line-height: 0.8;
     }
     
     .pain-subtitle {
@@ -18093,11 +18507,11 @@ body.is-scrolling {
     .dot {
         display: none !important;
     }
-
+    
     .hero-brand .download-pill-btn {
         margin: 20px auto 0;
     }
-
+    
     .download-pill-btn {
         padding: 10px 20px;
     }
@@ -18232,6 +18646,14 @@ body.is-scrolling {
     .phone-header {
         margin-bottom: 30px;
         padding: 0 10px;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        position: relative !important;
+        left: -400px !important;
     }
     
     .phone-badge {
@@ -18244,6 +18666,12 @@ body.is-scrolling {
         font-size: 26px;
         letter-spacing: -0.5px;
         line-height: 1.15;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
     }
     
     .highlight-word {
@@ -18274,12 +18702,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 25px;
+        order: 2;
+        margin: 25px auto 30px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 200px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -18468,7 +18899,7 @@ body.is-scrolling {
     .testimonials-main-title .title-line-2,
     .testimonials-main-title .title-line-3,
     .testimonials-main-title .title-line-4 {
-        font-size: 22px;
+        font-size: 30px;
         letter-spacing: -0.5px;
     }
     
@@ -18493,8 +18924,8 @@ body.is-scrolling {
     .testimonial-long-card {
         flex-direction: column;
         height: auto;
-        padding: 20px;
-        border-radius: 16px;
+        padding: 18px;
+        border-radius: 12px;
     }
     
     .card-circular-elements {
@@ -18512,10 +18943,12 @@ body.is-scrolling {
     
     .overlay-card-title {
         font-size: 14px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 12px;
+        text-align: center;
     }
     
     .top-left-card {
@@ -18544,8 +18977,16 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 15px 0;
+        margin: 0;
         padding: 16px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .card-internal-testimonial .testimonial-avatar-small {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
     }
     
     .motivational-text-block {
@@ -18672,8 +19113,8 @@ body.is-scrolling {
     }
     
     .pain-title {
-        font-size: 24px;
-        line-height: 1.25;
+        font-size: 28px;
+        line-height: 0.8;
         padding: 0 10px;
     }
     
@@ -19006,7 +19447,7 @@ body.is-scrolling {
     .testimonials-main-title .title-line-2,
     .testimonials-main-title .title-line-3,
     .testimonials-main-title .title-line-4 {
-        font-size: 18px;
+        font-size: 24px;
     }
     
     .stat-number-large {
@@ -19986,11 +20427,11 @@ body.is-scrolling {
     .dot {
         display: none !important;
     }
-
+    
     .hero-brand .download-pill-btn {
         margin: 15px auto 0;
     }
-
+    
     .download-pill-btn {
         padding: 8px 16px;
     }
@@ -20982,7 +21423,7 @@ body.is-scrolling {
     .testimonial-long-card {
         max-width: 650px;
         padding: 32px;
-        border-radius: 32px;
+        border-radius: 12px;
         min-height: 200px;
     }
     
@@ -20992,10 +21433,12 @@ body.is-scrolling {
     
     .overlay-card-title {
         font-size: 14px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 12px;
+        text-align: center;
     }
     
     .motivational-text-block {
@@ -21046,7 +21489,7 @@ body.is-scrolling {
     }
     
     .title-indented {
-        font-size: 38px;
+        font-size: 48px;
         margin-left: 0;
     }
     
@@ -21080,7 +21523,7 @@ body.is-scrolling {
     .testimonial-long-card {
         max-width: 100%;
         padding: 30px;
-        border-radius: 28px;
+        border-radius: 12px;
         flex-direction: column;
         min-height: auto;
     }
@@ -21100,13 +21543,15 @@ body.is-scrolling {
     .top-left-testimonial {
         padding: 18px;
     }
-    
+
     .card-internal-testimonial {
         position: relative;
         top: auto;
         left: auto;
-        margin: 20px 0;
+        margin: 0;
         padding: 18px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .overlay-card {
@@ -21165,7 +21610,7 @@ body.is-scrolling {
     }
     
     .title-indented {
-        font-size: 30px;
+        font-size: 40px;
         margin-left: 0;
     }
     
@@ -21203,7 +21648,7 @@ body.is-scrolling {
     .testimonial-long-card {
         max-width: 100%;
         padding: 25px;
-        border-radius: 22px;
+        border-radius: 12px;
         flex-direction: column;
         min-height: auto;
     }
@@ -21251,8 +21696,16 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 18px 0;
+        margin: 0;
         padding: 16px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .card-internal-testimonial .testimonial-avatar-small {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
     }
     
     .overlay-card {
@@ -21266,10 +21719,12 @@ body.is-scrolling {
     
     .overlay-card-title {
         font-size: 14px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 12px;
+        text-align: center;
     }
     
     .motivational-text-block {
@@ -21322,7 +21777,7 @@ body.is-scrolling {
     }
     
     .title-indented {
-        font-size: 24px;
+        font-size: 32px;
         margin-left: 0;
     }
     
@@ -21361,7 +21816,7 @@ body.is-scrolling {
     .testimonial-long-card {
         max-width: 100%;
         padding: 20px;
-        border-radius: 18px;
+        border-radius: 12px;
         flex-direction: column;
         min-height: auto;
     }
@@ -21413,8 +21868,16 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 14px 0;
+        margin: 0;
         padding: 14px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .card-internal-testimonial .testimonial-avatar-small {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
     }
     
     .overlay-card {
@@ -21429,11 +21892,13 @@ body.is-scrolling {
     
     .overlay-card-title {
         font-size: 13px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 11px;
         line-height: 1.5;
+        text-align: center;
     }
     
     .motivational-text-block {
@@ -21487,7 +21952,7 @@ body.is-scrolling {
     }
     
     .title-indented {
-        font-size: 20px;
+        font-size: 28px;
         margin-left: 0;
     }
     
@@ -21526,7 +21991,7 @@ body.is-scrolling {
     .testimonial-long-card {
         max-width: 100%;
         padding: 16px;
-        border-radius: 14px;
+        border-radius: 12px;
         flex-direction: column;
         min-height: auto;
     }
@@ -21578,8 +22043,8 @@ body.is-scrolling {
         position: relative;
         top: auto;
         left: auto;
-        margin: 12px 0;
-        padding: 12px;
+        margin: 0;
+        padding: 0;
     }
     
     .overlay-card {
@@ -21594,11 +22059,13 @@ body.is-scrolling {
     
     .overlay-card-title {
         font-size: 12px;
+        text-align: center;
     }
     
     .overlay-card-description {
         font-size: 10px;
         line-height: 1.45;
+        text-align: center;
     }
     
     .motivational-text-block {
@@ -22104,6 +22571,10 @@ body.is-scrolling {
     .phone-title {
         font-size: 44px;
         letter-spacing: -1px;
+        text-align: left;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .phone-subtitle {
@@ -22127,12 +22598,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 35px;
+        order: 2;
+        margin: 30px auto 35px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 280px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -22192,6 +22666,10 @@ body.is-scrolling {
         font-size: 34px;
         letter-spacing: -0.5px;
         line-height: 1.1;
+        text-align: left;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .highlight-word {
@@ -22221,12 +22699,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 28px;
+        order: 2;
+        margin: 25px auto 28px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 240px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -22280,6 +22761,10 @@ body.is-scrolling {
         font-size: 28px;
         letter-spacing: -0.5px;
         line-height: 1.15;
+        text-align: left;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .phone-subtitle {
@@ -22306,12 +22791,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 22px;
+        order: 2;
+        margin: 20px auto 22px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 200px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -22375,6 +22863,10 @@ body.is-scrolling {
         font-size: 24px;
         letter-spacing: -0.5px;
         line-height: 1.15;
+        text-align: left;
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .phone-subtitle {
@@ -22400,12 +22892,15 @@ body.is-scrolling {
     }
     
     .phone-mockup-center {
-        order: -1;
-        margin-bottom: 18px;
+        order: 2;
+        margin: 20px auto 18px;
+        display: block !important;
     }
     
     .phone-mockup-image {
         max-width: 180px;
+        display: block;
+        margin: 0 auto;
     }
     
     .bento-card.medium {
@@ -22570,10 +23065,16 @@ body.is-scrolling {
     
     .stats-left {
         max-width: 100%;
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
     
     .stats-main-title {
-        text-align: center;
+        text-align: left;
+        max-width: 550px;
+        margin: 0 auto;
+        line-height: 0.95;
     }
     
     .stats-main-title .highlight {
@@ -22601,6 +23102,11 @@ body.is-scrolling {
     .stat-item {
         flex: 0 0 auto;
         min-width: 180px;
+        text-align: center;
+    }
+    
+    .stat-content {
+        align-items: center;
     }
     
     .stat-number-large {
@@ -22629,9 +23135,21 @@ body.is-scrolling {
         padding: 0 15px;
     }
     
+    .stats-left {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .stats-main-title {
+        text-align: left;
+        max-width: 450px;
+        margin: 0 auto;
+        line-height: 0.95;
+    }
+    
     .stats-main-title .highlight {
         font-size: 30px;
-        line-height: 1.3;
     }
     
     .stats-description {
@@ -22642,10 +23160,17 @@ body.is-scrolling {
     .stats-list {
         flex-direction: column;
         gap: 25px;
+        align-items: center;
     }
     
     .stat-item {
         padding: 18px 15px;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .stat-content {
+        align-items: center;
     }
     
     .stat-number-large {
@@ -22674,9 +23199,21 @@ body.is-scrolling {
         padding: 0 12px;
     }
     
+    .stats-left {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .stats-main-title {
+        text-align: left;
+        max-width: 400px;
+        margin: 0 auto;
+        line-height: 0.95;
+    }
+    
     .stats-main-title .highlight {
         font-size: 26px;
-        line-height: 1.35;
     }
     
     .stats-description {
@@ -22687,10 +23224,17 @@ body.is-scrolling {
     .stats-list {
         flex-direction: column;
         gap: 22px;
+        align-items: center;
     }
     
     .stat-item {
         padding: 16px 12px;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .stat-content {
+        align-items: center;
     }
     
     .stat-number-large {
@@ -22718,9 +23262,21 @@ body.is-scrolling {
         padding: 0 10px;
     }
     
+    .stats-left {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .stats-main-title {
+        text-align: left;
+        max-width: 350px;
+        margin: 0 auto;
+        line-height: 0.95;
+    }
+    
     .stats-main-title .highlight {
         font-size: 22px;
-        line-height: 1.35;
     }
     
     .stats-description {
@@ -22729,10 +23285,17 @@ body.is-scrolling {
     
     .stats-list {
         gap: 18px;
+        align-items: center;
     }
     
     .stat-item {
         padding: 14px 10px;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .stat-content {
+        align-items: center;
     }
     
     .stat-number-large {
@@ -23254,7 +23817,7 @@ body.is-scrolling {
     
     .pain-title {
         font-size: 38px;
-        line-height: 1.2;
+        line-height: 0.8;
     }
     
     .pain-subtitle {
@@ -23305,7 +23868,7 @@ body.is-scrolling {
     
     .pain-title {
         font-size: 32px;
-        line-height: 1.25;
+        line-height: 0.8;
         padding: 0 15px;
     }
     
@@ -23386,8 +23949,8 @@ body.is-scrolling {
     }
     
     .pain-title {
-        font-size: 26px;
-        line-height: 1.25;
+        font-size: 30px;
+        line-height: 0.8;
         padding: 0 12px;
     }
     
@@ -25066,7 +25629,7 @@ body.is-scrolling {
         text-align: center !important;
         max-width: 250px !important;
     }
-
+    
     .hero .bottom-left-design .design-text p {
         font-size: 7px !important;
         line-height: 1.3 !important;

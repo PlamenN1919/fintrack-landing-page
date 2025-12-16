@@ -87,7 +87,7 @@ function initParallaxEffects() {
             });
             ticking = true;
         }
-    }, { passive: true });
+    });
 }
 
 function updateParallax() {
@@ -155,7 +155,7 @@ function initSmoothMomentum() {
             document.body.classList.remove('is-scrolling');
             isScrolling = false;
         }, 150);
-    }, { passive: true });
+    });
 }
 
 // Initialize seamless animations on DOM load
@@ -183,7 +183,7 @@ window.addEventListener('scroll', () => {
     } else {
         scrollIndicator.style.opacity = '1';
     }
-}, { passive: true });
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -370,7 +370,7 @@ window.addEventListener('scroll', () => {
     if (heroTitle) {
         heroTitle.style.transform = `translateY(${rate}px)`;
     }
-}, { passive: true });
+});
 
 // Add mouseenter/mouseleave effects to feature cards
 featureCards.forEach(card => {
@@ -1562,7 +1562,7 @@ function initProgressTracking() {
         });
     };
     
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('scroll', updateProgress);
     updateProgress();
 }
 
@@ -2173,5 +2173,190 @@ function closePrivacyModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
+}
+
+// ===================================
+// FEATURES SWIPE CAROUSEL
+// ===================================
+
+function initFeaturesCarousel() {
+    const wrapper = document.querySelector('.features-carousel-wrapper');
+    const cards = document.querySelectorAll('.features-carousel-wrapper .bento-card');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    const swipeHint = document.querySelector('.swipe-hint');
+    
+    if (!wrapper || !cards.length) return;
+    
+    let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let startTime = 0;
+    
+    // Calculate card width including gap
+    function getCardWidth() {
+        const card = cards[0];
+        const cardWidth = card.offsetWidth;
+        const gap = 20; // gap between cards
+        return cardWidth + gap;
+    }
+    
+    // Update carousel position
+    function updateCarousel(animate = true) {
+        const cardWidth = getCardWidth();
+        const offset = -currentIndex * cardWidth;
+        
+        if (animate) {
+            wrapper.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        } else {
+            wrapper.style.transition = 'none';
+        }
+        
+        wrapper.style.transform = `translateX(${offset}px)`;
+        
+        // Update active card
+        cards.forEach((card, index) => {
+            if (index === currentIndex) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+        
+        // Hide swipe hint after first interaction
+        if (swipeHint && currentIndex > 0) {
+            swipeHint.style.opacity = '0';
+            setTimeout(() => {
+                swipeHint.style.display = 'none';
+            }, 300);
+        }
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, cards.length - 1));
+        updateCarousel(true);
+    }
+    
+    // Touch/Mouse start
+    function handleStart(e) {
+        isDragging = true;
+        startTime = Date.now();
+        startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        currentX = startX;
+        wrapper.classList.add('dragging');
+        wrapper.style.transition = 'none';
+    }
+    
+    // Touch/Mouse move
+    function handleMove(e) {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        const diff = currentX - startX;
+        const cardWidth = getCardWidth();
+        const offset = -currentIndex * cardWidth + diff;
+        
+        wrapper.style.transform = `translateX(${offset}px)`;
+    }
+    
+    // Touch/Mouse end
+    function handleEnd(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        wrapper.classList.remove('dragging');
+        
+        const diff = currentX - startX;
+        const cardWidth = getCardWidth();
+        const threshold = cardWidth * 0.2; // 20% threshold
+        const velocity = Math.abs(diff) / (Date.now() - startTime);
+        
+        // Determine if we should change slide
+        if (Math.abs(diff) > threshold || velocity > 0.5) {
+            if (diff > 0 && currentIndex > 0) {
+                // Swipe right - go to previous
+                currentIndex--;
+            } else if (diff < 0 && currentIndex < cards.length - 1) {
+                // Swipe left - go to next
+                currentIndex++;
+            }
+        }
+        
+        updateCarousel(true);
+    }
+    
+    // Mouse events
+    wrapper.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+    
+    // Touch events
+    wrapper.addEventListener('touchstart', handleStart, { passive: true });
+    wrapper.addEventListener('touchmove', handleMove, { passive: false });
+    wrapper.addEventListener('touchend', handleEnd);
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!wrapper.closest('.phone-section')) return;
+        
+        const section = wrapper.closest('.phone-section');
+        const rect = section.getBoundingClientRect();
+        
+        // Only handle keyboard if section is visible
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            if (e.key === 'ArrowLeft') {
+                goToSlide(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                goToSlide(currentIndex + 1);
+            }
+        }
+    });
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateCarousel(false);
+        }, 100);
+    });
+    
+    // Initialize
+    updateCarousel(false);
+    
+    // Auto-hide swipe hint after 5 seconds
+    if (swipeHint) {
+        setTimeout(() => {
+            swipeHint.style.opacity = '0';
+            setTimeout(() => {
+                swipeHint.style.display = 'none';
+            }, 300);
+        }, 5000);
+    }
+}
+
+// Initialize carousel when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeaturesCarousel);
+} else {
+    initFeaturesCarousel();
 }
  

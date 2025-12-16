@@ -14,8 +14,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Spline 3D - Lazy loaded -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" defer></script>
+    <!-- Spline 3D -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
@@ -29,16 +29,17 @@
         <img src="assets/logos/logo.png" alt="FinTrack Logo" class="logo">
     </div>
 
+    <!-- Social Links -->
+    <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61573000449589&locale=bg_BG" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/f1ntrack/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Social Links -->
-        <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61573000449589&locale=bg_BG" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/f1ntrack/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-        </div>
         <!-- Spline 3D Container -->
         <div class="spline-container">
-            <spline-viewer loading-anim-type="none" loading="lazy" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
+            <spline-viewer loading-anim-type="none" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->
@@ -354,11 +355,13 @@
 
     <!-- Features Section (Bento Grid) -->
     <section class="phone-section section" id="features">
+        <!-- Phone Title -->
+        <h2 class="phone-title">ВСИЧКО ОТ КОЕТО СЕ<br><span class="highlight-word">НУЖДАЕТЕ</span></h2>
+        
         <div class="container">
             <!-- Section Header -->
             <div class="phone-header">
                 <div class="phone-badge">✨ ФУНКЦИИ</div>
-                <h2 class="phone-title">ВСИЧКО ОТ КОЕТО СЕ <span class="highlight-word">НУЖДАЕТЕ</span></h2>
                 <p class="phone-subtitle">
                     Мощни инструменти за пълен контрол върху вашите финанси
                 </p>
@@ -370,6 +373,11 @@
                         <i class="fas fa-download"></i>
                     </div>
                 </a>
+            </div>
+            
+            <!-- Phone Mockup for Mobile (outside phone-header) -->
+            <div class="phone-mockup-mobile">
+                <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile">
             </div>
 
             <!-- Features Layout with Phone -->
@@ -432,7 +440,7 @@
 
                 <!-- Phone Mockup -->
                 <div class="phone-mockup-center">
-                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image">
+                    
                 </div>
 
                 <!-- Right Cards -->
@@ -490,6 +498,133 @@
                     </div>
                 </div>
                 </div>
+                
+                <!-- Mobile Carousel (hidden on desktop) -->
+                <div class="features-carousel-container">
+                    <div class="features-carousel-wrapper">
+                        <!-- Card 1: Gamification -->
+                        <div class="bento-card medium active" data-feature="gamification">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-purple">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <h3 class="card-title">Гамификация</h3>
+                                </div>
+                                <p class="card-description">
+                                    Спестяването става игра! Печелете значки, отключвайте постижения и състезавайте се с приятели.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2: Health Index -->
+                        <div class="bento-card medium" data-feature="health">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-green">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <h3 class="card-title">Финансово здраве</h3>
+                                </div>
+                                <p class="card-description">
+                                    Індекс на финансовото ви здраве с персонализирани препоръки.
+                                </p>
+                                <div class="health-bars">
+                                    <div class="health-bar" style="--bar-height: 85%;"></div>
+                                    <div class="health-bar" style="--bar-height: 92%;"></div>
+                                    <div class="health-bar" style="--bar-height: 78%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3: QR Scanner -->
+                        <div class="bento-card medium" data-feature="qr">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-blue">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                    <h3 class="card-title">QR Scanner</h3>
+                                </div>
+                                <p class="card-description">
+                                    Сканирайте разписки и автоматично добавяйте разходи.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4: What-If -->
+                        <div class="bento-card medium" data-feature="whatif">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-pink">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <h3 class="card-title">What-If сценарии</h3>
+                                </div>
+                                <p class="card-description">
+                                    Симулирайте различни финансови решения преди да ги вземете.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5: AI Assistant -->
+                        <div class="bento-card medium" data-feature="ai">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-indigo">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h3 class="card-title">AI Асистент</h3>
+                                </div>
+                                <p class="card-description">
+                                    Вашият личен финансов съветник, винаги на разположение.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 6: Budget Goals -->
+                        <div class="bento-card medium" data-feature="budget">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <div class="card-icon gradient-teal">
+                                        <i class="fas fa-bullseye"></i>
+                                    </div>
+                                    <h3 class="card-title">Бюджети и цели</h3>
+                                </div>
+                                <p class="card-description">
+                                    Поставяйте цели и следете прогреса си в реално време.
+                                </p>
+                                <div class="goal-rings">
+                                    <div class="goal-ring"></div>
+                                    <div class="goal-ring"></div>
+                                    <div class="goal-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <button class="carousel-indicator active" data-index="0"></button>
+                        <button class="carousel-indicator" data-index="1"></button>
+                        <button class="carousel-indicator" data-index="2"></button>
+                        <button class="carousel-indicator" data-index="3"></button>
+                        <button class="carousel-indicator" data-index="4"></button>
+                        <button class="carousel-indicator" data-index="5"></button>
+                    </div>
+                    
+                    <!-- Swipe Hint -->
+                    <div class="swipe-hint">
+                        <span>Плъзнете за повече</span>
+                        <i class="fas fa-hand-point-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -507,7 +642,7 @@
             <!-- Left Side - Brand Text -->
             <div class="stats-left">
                 <h2 class="stats-main-title">
-                    <span class="stats-title-line-1"><span class="highlight">КОГАТО ВЗЕМЕШ КОНТРОЛ НАД ФИНАНСИТЕ СИ</span></span>
+                    <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
                 </h2>
                 <p class="stats-description">
                     Не е магия - просто интелигентна технология и твоята мотивация. 
@@ -574,58 +709,7 @@
             <div class="testimonials-cards-group">
                 <!-- Long Card with Rounded Corners -->
                 <div class="testimonial-long-card">
-                    <!-- Small Circular Elements -->
-                    <div class="card-circular-elements">
-                        <div class="circular-element target-icon">
-                            <div class="target-ring ring-1"></div>
-                            <div class="target-ring ring-2"></div>
-                            <div class="target-ring ring-3"></div>
-                            <div class="target-center"></div>
-                        </div>
-                        <div class="circular-element solid-circle"></div>
-                    </div>
-                    
-                    <!-- Overlay Card in Bottom Right -->
-                    <div class="overlay-card">
-                        <div class="overlay-card-icon">
-                            <div class="icon-circle-filled"></div>
-                            <div class="icon-circle-outline"></div>
-                        </div>
-                        <h3 class="overlay-card-title">
-                            ДОВОЛНИ КЛИЕНТИ /<br>
-                            ПРОВЕРЕНИ ОТЗИВИ
-                        </h3>
-                        <p class="overlay-card-description">
-                            Средно 250 лв спестени<br>
-                            на месец от всеки<br>
-                            потребител ±
-                        </p>
-                    </div>
-                    
-                    <!-- Top Left Card -->
-                    <div class="top-left-card">
-                        <div class="top-left-testimonial">
-                            <div class="testimonial-avatar-small">
-                                <span>МП</span>
-                            </div>
-                            <div class="testimonial-rating-small">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="testimonial-text-small">
-                                "FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"
-                            </p>
-                            <div class="testimonial-author-small">
-                                <strong>Мария Петрова</strong>
-                                <span>Маркетинг мениджър</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Internal Testimonial - Inside Card -->
+                    <!-- Internal Testimonial - Inside Card (Иван Димитров) -->
                     <div class="card-internal-testimonial">
                         <div class="testimonial-avatar-small">
                             <span>ИД</span>
@@ -645,6 +729,29 @@
                             <span>Софтуерен инженер</span>
                         </div>
                     </div>
+                    </div>
+                    
+                <!-- Top Left Card - Outside long card -->
+                    <div class="top-left-card">
+                        <div class="top-left-testimonial">
+                            <div class="testimonial-avatar-small">
+                                <span>МП</span>
+                            </div>
+                            <div class="testimonial-rating-small">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text-small">
+                                "FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"
+                            </p>
+                            <div class="testimonial-author-small">
+                                <strong>Мария Петрова</strong>
+                                <span>Маркетинг мениджър</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -657,6 +764,22 @@
                     ВСЕКИ ДЕН БЕЗ FINTRACK СТРУВА ПАРИ. ВИЕ ГУБИТЕ <strong>17 ЛВ НА ДЕН</strong> ОТ НЕСЛЕДЕНИ РАЗХОДИ. НЕ ПОЗВОЛЯВАЙТЕ ПАРИТЕ ДА ИЗТИЧАТ ПРЕЗ ПРЪСТИТЕ ВИ. ИЗТЕГЛИ ПРИЛОЖЕНИЕТО СЕГА И ЗАПОЧНИ ДА СПЕСТЯВАШ ОЩЕ ДНЕС.
                 </p>
             </div>
+        </div>
+        <!-- Overlay Card - Positioned absolutely -->
+        <div class="overlay-card">
+            <div class="overlay-card-icon">
+                <div class="icon-circle-filled"></div>
+                <div class="icon-circle-outline"></div>
+            </div>
+            <h3 class="overlay-card-title">
+                ДОВОЛНИ КЛИЕНТИ /<br>
+                ПРОВЕРЕНИ ОТЗИВИ
+            </h3>
+            <p class="overlay-card-description">
+                Средно 250 лв спестени<br>
+                на месец от всеки<br>
+                потребител ±
+            </p>
         </div>
     </section>
 
