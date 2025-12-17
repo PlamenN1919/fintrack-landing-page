@@ -4712,13 +4712,22 @@ body.is-scrolling {
 /* Header */
 .phone-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+    margin-top: 20px;
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+}
+
+@media (min-width: 1025px) {
+    .phone-header {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .phone-badge {
@@ -4757,12 +4766,68 @@ body.is-scrolling {
     font-weight: 800;
     line-height: 0.95;
     color: #2c2c2c;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: -2px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Desktop Layout - Заглавието най-отгоре, header под него, features най-отдолу */
+@media (min-width: 1025px) {
+    .phone-section {
+        padding-top: 60px !important;
+    }
+    
+    .phone-section > .phone-title {
+        margin-bottom: 80px !important;
+        font-size: 90px !important;
+        padding-top: 20px !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+    
+    .phone-section > .container {
+        display: block !important;
+        width: 100% !important;
+        max-width: 2200px !important;
+        margin: 0 auto !important;
+    }
+    
+    .phone-section .container .phone-header {
+        margin-bottom: 60px !important;
+        margin-top: 0 !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    .phone-section .container .features-layout {
+        margin-top: -300px !important;
+        margin-bottom: -900px !important;
+        position: relative !important;
+        z-index: 10 !important;
+        pointer-events: none;
+    }
+    
+    /* Връщаме pointer events на картите */
+    .phone-section .container .features-layout .bento-card {
+        pointer-events: auto;
+    }
+    
+    /* Намаляваме празното пространство след features-layout */
+    .phone-section .container {
+        padding-bottom: 0 !important;
+    }
 }
 
 .phone-title .highlight-word {
@@ -4773,9 +4838,8 @@ body.is-scrolling {
     position: relative;
     display: inline-block;
     font-size: 1.15em;
-    filter: drop-shadow(0 0 25px rgba(255, 107, 107, 0.5))
-            drop-shadow(0 0 50px rgba(255, 193, 7, 0.4));
-    animation: glowPulseWord 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.6))
+            drop-shadow(0 0 60px rgba(255, 193, 7, 0.5));
 }
 
 @keyframes glowPulseWord {
@@ -5625,12 +5689,21 @@ body.is-scrolling {
     min-height: 100vh;
     background: var(--bg-gradient);
     position: relative;
-    overflow: hidden;
-    padding: 120px 0;
+    overflow: visible;
+    padding: 80px 0 120px 0;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     margin: 0;
     border: none;
+}
+
+/* Desktop - правим phone-section да работи с order */
+@media (min-width: 1025px) {
+    .phone-section {
+        display: block;
+    }
 }
 
 .phone-section::before {
@@ -5650,10 +5723,12 @@ body.is-scrolling {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 2200px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
     min-height: 900px;
-    padding: 60px 0;
+    padding: 40px 0;
+    overflow: visible;
 }
 
 /* Hide mobile carousel on desktop */
@@ -5670,16 +5745,16 @@ body.is-scrolling {
 }
 
 .left-cards {
-    left: -150px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 50px;
+    top: -250px;
+    transform: translateY(0);
     max-width: 420px;
 }
 
 .right-cards {
-    right: -150px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 50px;
+    top: -250px;
+    transform: translateY(0);
     max-width: 420px;
 }
 
@@ -5774,6 +5849,40 @@ body.is-scrolling {
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+/* Phone Mockup in Header (Desktop) */
+.phone-mockup-header {
+    display: none;
+}
+
+@media (min-width: 1025px) {
+    .phone-mockup-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 60px;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .phone-mockup-image-header {
+        max-width: 1200px !important;
+        width: 1200px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+        filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.2)) !important;
+        transition: transform 0.3s ease !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .phone-mockup-image-header:hover {
+        transform: translateY(-10px);
+    }
 }
 
 .features-column .bento-card {
@@ -22388,31 +22497,35 @@ body.is-scrolling {
 /* --- Extra Large Screens (1920px+) --- */
 @media (min-width: 1920px) {
     .phone-section {
-        padding: 140px 0;
+        padding: 100px 0 140px 0;
     }
-    
+
     .phone-header {
-        margin-bottom: 80px;
+        margin-bottom: 50px;
+        margin-top: 30px;
     }
-    
+
     .phone-badge {
         font-size: 14px;
         padding: 14px 28px;
     }
-    
+
     .phone-title {
         font-size: 88px;
+        margin-bottom: 80px;
+        padding-top: 50px;
     }
-    
+
     .phone-subtitle {
         font-size: 22px;
         max-width: 800px;
     }
-    
+
     .features-layout {
         gap: 50px;
+        padding: 30px 0;
     }
-    
+
     .phone-mockup-image {
         max-width: 480px;
     }
@@ -22442,17 +22555,25 @@ body.is-scrolling {
 /* --- Large Desktop (1440px - 1919px) --- */
 @media (min-width: 1440px) and (max-width: 1919px) {
     .phone-section {
-        padding: 120px 0;
+        padding: 90px 0 120px 0;
     }
-    
+
     .phone-title {
         font-size: 76px;
+        margin-bottom: 70px;
+        padding-top: 40px;
     }
-    
+
+    .phone-header {
+        margin-bottom: 45px;
+        margin-top: 25px;
+    }
+
     .features-layout {
         gap: 45px;
+        padding: 25px 0;
     }
-    
+
     .phone-mockup-image {
         max-width: 420px;
     }
@@ -22461,25 +22582,29 @@ body.is-scrolling {
 /* --- Medium Desktop (1200px - 1439px) --- */
 @media (min-width: 1200px) and (max-width: 1439px) {
     .phone-section {
-        padding: 100px 0;
+        padding: 80px 0 100px 0;
     }
-    
+
     .phone-header {
-        margin-bottom: 60px;
+        margin-bottom: 40px;
+        margin-top: 20px;
     }
-    
+
     .phone-title {
         font-size: 64px;
+        margin-bottom: 60px;
+        padding-top: 35px;
     }
-    
+
     .phone-subtitle {
         font-size: 17px;
     }
-    
+
     .features-layout {
         gap: 35px;
+        padding: 20px 0;
     }
-    
+
     .phone-mockup-image {
         max-width: 360px;
     }
@@ -25638,3 +25763,53 @@ body.is-scrolling {
     }
 }
 
+/* Cache bust: 1765970387 */
+
+/* Desktop Features Layout Positioning - OVERRIDE ALL */
+@media (min-width: 1025px) {
+    section.phone-section .container .features-layout {
+        margin-top: 0 !important;
+        margin-bottom: -1000px !important;
+        position: relative !important;
+        z-index: 10 !important;
+        pointer-events: none !important;
+    }
+    
+    section.phone-section .container .features-layout .bento-card {
+        pointer-events: auto !important;
+    }
+    
+    section.phone-section > .container {
+        padding-bottom: 0 !important;
+        margin-bottom: -500px !important;
+    }
+    
+    section.phone-section {
+        padding-bottom: 50px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Също така да се увери, че телефонът е видим */
+    section.phone-section .phone-mockup-header {
+        display: flex !important;
+        margin-top: 60px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    section.phone-section .phone-mockup-image-header {
+        max-width: 1200px !important;
+        width: 1200px !important;
+    }
+}
+
+    
+/* Позиция на картите - FORCE */
+@media (min-width: 1025px) {
+    .features-layout .left-cards {
+        top: -800px !important;
+    }
+    
+    .features-layout .right-cards {
+        top: -800px !important;
+    }
+}
