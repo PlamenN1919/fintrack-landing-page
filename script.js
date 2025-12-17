@@ -1,3 +1,111 @@
+// ===================================
+// LOCOMOTIVE SCROLL INITIALIZATION
+// ===================================
+
+// Locomotive Scroll instance
+let locomotiveScroll = null;
+
+// Function to forcefully remove section borders
+function removeSectionBorders() {
+    // Remove borders from all scroll sections
+    const sections = document.querySelectorAll('[data-scroll-section], .section, section');
+    sections.forEach(section => {
+        section.style.setProperty('border', 'none', 'important');
+        section.style.setProperty('outline', 'none', 'important');
+        section.style.setProperty('box-shadow', 'none', 'important');
+        section.style.setProperty('border-top', '0', 'important');
+        section.style.setProperty('border-bottom', '0', 'important');
+        section.style.setProperty('border-left', '0', 'important');
+        section.style.setProperty('border-right', '0', 'important');
+        section.style.setProperty('border-width', '0', 'important');
+        section.style.setProperty('border-style', 'none', 'important');
+    });
+    
+    // Remove borders from container
+    const container = document.querySelector('[data-scroll-container]');
+    if (container) {
+        container.style.setProperty('border', 'none', 'important');
+        container.style.setProperty('outline', 'none', 'important');
+        container.style.setProperty('box-shadow', 'none', 'important');
+    }
+}
+
+// Continuously check and remove borders during scroll
+function keepBordersRemoved() {
+    removeSectionBorders();
+    requestAnimationFrame(keepBordersRemoved);
+}
+
+// Initialize Locomotive Scroll
+function initLocomotiveScroll() {
+    const isMobile = window.innerWidth <= 768;
+    
+    locomotiveScroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: !isMobile, // Smooth scroll only on desktop
+        lerp: 0.08, // Balanced speed (0.8-1s ease)
+        multiplier: 1.0, // Scroll speed multiplier
+        smartphone: {
+            smooth: false // Native scroll on mobile
+        },
+        tablet: {
+            smooth: false // Native scroll on tablet
+        },
+        reloadOnContextChange: true,
+        touchMultiplier: 2.5,
+        smoothMobile: false
+    });
+    
+    // FORCE remove any borders from sections after Locomotive initializes
+    setTimeout(() => {
+        removeSectionBorders();
+        // Start continuous border removal with RAF
+        keepBordersRemoved();
+    }, 100);
+    
+    // Also remove on Locomotive scroll events
+    if (locomotiveScroll) {
+        locomotiveScroll.on('scroll', removeSectionBorders);
+        locomotiveScroll.on('call', removeSectionBorders);
+    }
+    
+    // Update on window resize with debounce
+    let resizeTimeout;
+    let wasMobile = isMobile;
+    
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const nowMobile = window.innerWidth <= 768;
+            
+            // If switched between mobile/desktop, reload Locomotive
+            if (wasMobile !== nowMobile && locomotiveScroll) {
+                locomotiveScroll.destroy();
+                locomotiveScroll = initLocomotiveScroll();
+                console.log('🔄 Locomotive reloaded for device change');
+            } else if (locomotiveScroll) {
+                locomotiveScroll.update();
+            }
+            
+            wasMobile = nowMobile;
+        }, 250);
+    });
+    
+    // Update after images load
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        if (img.complete) {
+            if (locomotiveScroll) locomotiveScroll.update();
+        } else {
+            img.addEventListener('load', () => {
+                if (locomotiveScroll) locomotiveScroll.update();
+            });
+        }
+    });
+    
+    return locomotiveScroll;
+}
+
 // DOM Elements
 const nav = document.querySelector('.main-nav');
 const heroTitle = document.querySelector('.brand-title');
@@ -15,13 +123,35 @@ let counterInterval;
 // SEAMLESS ENTRANCE ANIMATIONS SYSTEM
 // ===================================
 
-// Initialize Seamless Scroll Reveal System
+// Initialize Seamless Scroll Reveal System - Integrated with Locomotive
 function initSeamlessReveal() {
-    // Observer for section visibility
+    // Check if we're using Locomotive Scroll or native
+    const useLocomotiveCallbacks = locomotiveScroll && window.innerWidth > 768;
+    
+    if (useLocomotiveCallbacks) {
+        // Use Locomotive Scroll's native event system for better performance
+        locomotiveScroll.on('call', (func, way, obj) => {
+            // Locomotive scroll triggered events
+            if (func === 'revealSection') {
+                obj.el.classList.add('section-visible');
+            }
+        });
+        
+        // Update Locomotive to recognize elements
+        setTimeout(() => {
+            if (locomotiveScroll) locomotiveScroll.update();
+        }, 500);
+    }
+    
+    // Keep Intersection Observers as fallback for mobile and compatibility
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('section-visible');
+                // Update Locomotive if active
+                if (locomotiveScroll && window.innerWidth > 768) {
+                    locomotiveScroll.update();
+                }
             }
         });
     }, {
@@ -34,6 +164,9 @@ function initSeamlessReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                if (locomotiveScroll && window.innerWidth > 768) {
+                    locomotiveScroll.update();
+                }
             }
         });
     }, {
@@ -46,6 +179,9 @@ function initSeamlessReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                if (locomotiveScroll && window.innerWidth > 768) {
+                    locomotiveScroll.update();
+                }
             }
         });
     }, {
@@ -75,39 +211,52 @@ function initSeamlessReveal() {
     });
 }
 
-// Parallax effect for floating elements
+// Parallax effect for floating elements - Integrated with Locomotive
 function initParallaxEffects() {
-    let ticking = false;
+    const isMobile = window.innerWidth <= 768;
     
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateParallax();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
+    // On desktop, Locomotive handles main parallax via data attributes
+    // Keep native parallax for elements without data attributes
+    if (isMobile || !locomotiveScroll) {
+        // Mobile/fallback - lightweight native parallax
+        let ticking = false;
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateParallax(window.pageYOffset);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    } else {
+        // Desktop with Locomotive - use its scroll event
+        locomotiveScroll.on('scroll', (args) => {
+            updateParallax(args.scroll.y);
+        });
+    }
 }
 
-function updateParallax() {
-    const scrolled = window.pageYOffset;
+function updateParallax(scrolled) {
+    const isMobile = window.innerWidth <= 768;
+    const speedMultiplier = isMobile ? 0.7 : 1.0; // Lighter on mobile
     
     // Parallax for geometric shapes
     document.querySelectorAll('.fear-geometric-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.03;
+        const speed = (index + 1) * 0.03 * speedMultiplier;
         const yPos = scrolled * speed;
         shape.style.transform = `translateY(${yPos}px)`;
     });
     
     document.querySelectorAll('.stats-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.02;
+        const speed = (index + 1) * 0.02 * speedMultiplier;
         const yPos = scrolled * speed;
         shape.style.transform = `translateY(${yPos}px)`;
     });
     
     document.querySelectorAll('.how-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.025;
+        const speed = (index + 1) * 0.025 * speedMultiplier;
         const yPos = scrolled * speed;
         shape.style.transform = `translateY(${yPos}px)`;
     });
@@ -117,7 +266,7 @@ function updateParallax() {
         const rect = el.getBoundingClientRect();
         const elementTop = rect.top + scrolled;
         const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.05;
+        const yPos = distanceFromTop * 0.05 * speedMultiplier;
         el.style.transform = `translateY(${yPos}px)`;
     });
     
@@ -125,7 +274,7 @@ function updateParallax() {
         const rect = el.getBoundingClientRect();
         const elementTop = rect.top + scrolled;
         const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.1;
+        const yPos = distanceFromTop * 0.1 * speedMultiplier;
         el.style.transform = `translateY(${yPos}px)`;
     });
     
@@ -133,7 +282,7 @@ function updateParallax() {
         const rect = el.getBoundingClientRect();
         const elementTop = rect.top + scrolled;
         const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.15;
+        const yPos = distanceFromTop * 0.15 * speedMultiplier;
         el.style.transform = `translateY(${yPos}px)`;
     });
 }
@@ -144,7 +293,7 @@ function initSmoothMomentum() {
     let isScrolling = false;
     let scrollTimeout;
     
-    window.addEventListener('scroll', () => {
+    const handleScrollState = () => {
         if (!isScrolling) {
             document.body.classList.add('is-scrolling');
             isScrolling = true;
@@ -155,21 +304,63 @@ function initSmoothMomentum() {
             document.body.classList.remove('is-scrolling');
             isScrolling = false;
         }, 150);
-    });
+    };
+    
+    window.addEventListener('scroll', handleScrollState);
+    
+    // Also listen to Locomotive scroll events
+    if (locomotiveScroll) {
+        locomotiveScroll.on('scroll', handleScrollState);
+    }
 }
+
+// Cleanup Locomotive on page unload
+window.addEventListener('beforeunload', () => {
+    if (locomotiveScroll) {
+        locomotiveScroll.destroy();
+        console.log('🧹 Locomotive cleaned up');
+    }
+});
 
 // Initialize seamless animations on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    initSeamlessReveal();
-    initParallaxEffects();
-    initSmoothMomentum();
-    console.log('Seamless entrance animations initialized! ✨');
+    // Initialize Locomotive Scroll first
+    locomotiveScroll = initLocomotiveScroll();
+    console.log('🚂 Locomotive Scroll initialized!');
+    
+    // Wait a bit for Locomotive to set up, then initialize other features
+    setTimeout(() => {
+        initSeamlessReveal();
+        initParallaxEffects();
+        initSmoothMomentum();
+        console.log('Seamless entrance animations initialized! ✨');
+        
+        // Force Locomotive to recalculate heights (fixes footer visibility)
+        if (locomotiveScroll) {
+            locomotiveScroll.update();
+            console.log('📏 Locomotive heights updated');
+        }
+    }, 100);
+    
+    // Additional update after everything has loaded
+    setTimeout(() => {
+        if (locomotiveScroll) {
+            locomotiveScroll.update();
+            console.log('📏 Final Locomotive update');
+        }
+    }, 500);
+    
+    // Update on window load (after all images/content)
+    window.addEventListener('load', () => {
+        if (locomotiveScroll) {
+            locomotiveScroll.update();
+            console.log('📏 Locomotive updated on window load');
+        }
+    });
 });
 
-// Navigation scroll effect
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset;
-    
+// Navigation scroll effect - works with both Locomotive and native scroll
+function handleScrollEffects(scrollTop) {
     // Update navigation background opacity
     if (nav && scrollTop > 100) {
         nav.style.background = 'rgba(26, 26, 26, 0.3)';
@@ -178,23 +369,47 @@ window.addEventListener('scroll', () => {
     }
     
     // Hide scroll indicator when scrolling
-    if (scrollTop > 200) {
-        scrollIndicator.style.opacity = '0';
-    } else {
-        scrollIndicator.style.opacity = '1';
+    if (scrollIndicator) {
+        if (scrollTop > 200) {
+            scrollIndicator.style.opacity = '0';
+        } else {
+            scrollIndicator.style.opacity = '1';
+        }
     }
+}
+
+// Listen to both Locomotive scroll and native scroll
+if (locomotiveScroll) {
+    locomotiveScroll.on('scroll', (args) => {
+        handleScrollEffects(args.scroll.y);
+    });
+}
+window.addEventListener('scroll', () => {
+    handleScrollEffects(window.pageYOffset);
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links - integrated with Locomotive
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            if (locomotiveScroll && window.innerWidth > 768) {
+                // Use Locomotive scrollTo on desktop
+                locomotiveScroll.scrollTo(target, {
+                    offset: 0,
+                    duration: 1000,
+                    easing: [0.25, 0.0, 0.35, 1.0]
+                });
+            } else {
+                // Fallback to native smooth scroll on mobile
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
 });

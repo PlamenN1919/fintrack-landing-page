@@ -15,10 +15,11 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    height: 100%;
 }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior removed for Locomotive Scroll */
     margin: 0;
     padding: 0;
 }
@@ -31,6 +32,7 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    min-height: 100%;
 }
 
 .container {
@@ -41,11 +43,11 @@ body {
 
 /* Social Links */
 .social-links {
-    position: absolute;
+    position: fixed !important;
     right: 30px;
     top: 40%;
     transform: translateY(-50%);
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -9291,13 +9293,14 @@ body.is-scrolling {
     }
     
     .social-links {
-        position: absolute;
+        position: fixed !important;
         right: 15px;
         top: 35%;
         flex-direction: column;
         gap: 12px;
         padding: 0;
         transform: translateY(-50%);
+        z-index: 1000;
     }
     
     .social-link {
@@ -12787,7 +12790,7 @@ body.is-scrolling {
     margin-left: 0px;
     margin-right: 0px;
     background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 50%, #6a6a6a 100%);
-    border-radius: 12px;
+    border-radius: 24px;
     padding: 40px;
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.1),
@@ -12871,12 +12874,12 @@ body.is-scrolling {
 /* Overlay Card in Bottom Right */
 .overlay-card {
     position: absolute;
-    bottom: 100px;
-    right: 700px;
+    bottom: 150px;
+    right: 650px;
     background: #ffffff;
     border-radius: 25px;
     padding: 16px 20px;
-    box-shadow: 
+    box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(0, 0, 0, 0.05);
     z-index: 10;
@@ -13074,6 +13077,7 @@ body.is-scrolling {
     align-items: center;
     text-align: center;
     z-index: 2;
+    border-radius: 25px;
 }
 
 .card-internal-testimonial .testimonial-avatar-small {
@@ -13121,11 +13125,11 @@ body.is-scrolling {
 /* Main Title with Special Layout */
 .testimonials-main-title {
     position: absolute;
-    top: 40px;
+    top: 100px;
     z-index: 2;
     margin-bottom: 60px;
     width: 100%;
-    margin-left: 600px;
+    margin-left: 650px;
 }
 
 /* User Avatars - Left Side of Title */
@@ -25816,4 +25820,136 @@ body.is-scrolling {
     .features-layout .right-cards {
         top: -800px !important;
     }
+}
+
+/* ===================================
+   LOCOMOTIVE SCROLL OPTIMIZATION
+   =================================== */
+
+/* Locomotive Scroll Container */
+[data-scroll-container] {
+    min-height: 100vh;
+}
+
+/* Remove section borders/outlines during scroll */
+[data-scroll-section] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    position: relative;
+    overflow: visible;
+}
+
+/* Override Locomotive debug styles if any */
+[data-scroll-section]::before,
+[data-scroll-section]::after {
+    display: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+/* GPU Acceleration for smooth scrolling */
+[data-scroll] {
+    will-change: transform;
+    border: none !important;
+    outline: none !important;
+}
+
+/* Smooth transitions for scroll-triggered elements */
+[data-scroll-class] {
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Initial state for scroll-triggered visibility */
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimize 3D transforms */
+.spline-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Smooth parallax elements */
+.hero-brand,
+.bottom-left-design,
+.right-top-text,
+.right-bottom-text,
+.glass-morphism-card {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Performance optimization for fixed elements */
+.hero-background-fixed {
+    will-change: auto;
+    transform: translateZ(0);
+}
+
+/* Disable smooth scroll on mobile for better performance */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    [data-scroll] {
+        will-change: auto;
+    }
+}
+
+/* Remove ALL possible borders and outlines from sections */
+section {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.section {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure smooth rendering without artifacts */
+[data-scroll-container] *,
+[data-scroll-section] * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+/* FORCE remove Locomotive Scroll debug borders */
+.c-scrollbar,
+.c-scrollbar_thumb,
+[data-scroll-section],
+[data-scroll-container],
+[data-scroll-container] > *,
+body.has-scroll-scrolling [data-scroll-section],
+body.has-scroll-dragging [data-scroll-section],
+body.has-scroll-smooth [data-scroll-section] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+/* Remove any transform artifacts */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Override any Locomotive debugging styles */
+html.has-scroll-smooth,
+html.has-scroll-smooth body {
+    overflow: hidden;
+}
+
+html.has-scroll-init [data-scroll-container] {
+    opacity: 1;
 }

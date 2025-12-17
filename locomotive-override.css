@@ -1,0 +1,111 @@
+/* Locomotive Scroll Override - Remove Section Borders */
+
+/* Force remove ALL borders from scroll sections - ALWAYS */
+[data-scroll-section],
+[data-scroll-container],
+[data-scroll-container] > section,
+section[data-scroll-section],
+.section[data-scroll-section],
+[data-scroll-section].is-inview,
+[data-scroll-section]:not(.is-inview) {
+    border: 0 none !important;
+    outline: 0 none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    border-color: transparent !important;
+}
+
+/* Remove pseudo-element borders */
+[data-scroll-section]::before,
+[data-scroll-section]::after,
+[data-scroll-container]::before,
+[data-scroll-container]::after {
+    content: none !important;
+    display: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+/* Override Locomotive's state classes - ALL STATES */
+body.has-scroll-scrolling [data-scroll-section],
+body.has-scroll-dragging [data-scroll-section],
+body.has-scroll-smooth [data-scroll-section],
+html.has-scroll-smooth [data-scroll-section],
+html.has-scroll-scrolling [data-scroll-section],
+html.has-scroll-dragging [data-scroll-section],
+body.has-scroll-init [data-scroll-section],
+html.has-scroll-init [data-scroll-section] {
+    border: 0 none !important;
+    outline: 0 none !important;
+    box-shadow: none !important;
+    border-width: 0 !important;
+    border-style: none !important;
+}
+
+/* CRITICAL: Override during active scrolling */
+[data-scroll-section][style],
+[data-scroll-section][class*="is-"],
+[data-scroll-section][class*="has-"] {
+    border: 0 none !important;
+    outline: 0 none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any visual artifacts during scroll */
+[data-scroll-section] {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+/* Ensure smooth rendering */
+[data-scroll-container] {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Remove Locomotive scrollbar if visible */
+.c-scrollbar {
+    display: none !important;
+}
+
+/* Override any inline styles */
+[data-scroll-section][style*="border"],
+[data-scroll-section][style*="outline"],
+[data-scroll-section][style*="transform"] {
+    border: 0 none !important;
+    outline: 0 none !important;
+    box-shadow: none !important;
+}
+
+/* NUCLEAR OPTION: Remove borders from EVERYTHING during transform */
+[data-scroll-container] [data-scroll-section],
+[data-scroll-container] > * {
+    border: 0 none !important;
+    outline: 0 none !important;
+    box-shadow: none !important;
+}
+
+/* Target transforms specifically */
+[style*="transform"][data-scroll-section],
+[data-scroll-section][style*="translate"] {
+    border: 0 none !important;
+    outline: 0 none !important;
+}
+
+/* Remove sub-pixel rendering artifacts */
+[data-scroll-section] {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
