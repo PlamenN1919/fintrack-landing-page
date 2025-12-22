@@ -5249,8 +5249,21 @@ body.is-scrolling {
         min-height: auto;
     }
     
+    .phone-section {
+        padding: 80px 0 0px 0 !important;
+        min-height: auto !important;
+        margin-bottom: -600px !important;
+    }
+    
     .phone-container {
         padding: 0 30px;
+    }
+    
+    .phone-section .container {
+        position: relative;
+        z-index: 100;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
     
     .phone-header {
@@ -5276,19 +5289,28 @@ body.is-scrolling {
     /* Show mobile phone mockup */
     .phone-mockup-mobile {
         display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
         margin: 0 auto !important;
+        width: 100% !important;
         position: relative !important;
-        left: -370px !important;
+        left: 0 !important;
         transform: none !important;
         visibility: visible !important;
         opacity: 1 !important;
-        z-index: 5;
+        z-index: 1;
     }
     
     .phone-mockup-image-mobile {
-        max-width: 900px !important;
+        max-width: 3500px !important;
+        width: 300% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
         visibility: visible !important;
         opacity: 1 !important;
+        position: relative;
+        z-index: 1;
     }
     
     /* Hide desktop phone mockup */
@@ -5301,7 +5323,11 @@ body.is-scrolling {
         position: relative;
         overflow: visible;
         padding: 0;
-        min-height: 600px;
+        min-height: 0px;
+        height: 200px;
+        margin-top: -200px;
+        margin-bottom: -1200px;
+        z-index: 100;
     }
     
     /* Hide desktop columns */
@@ -5314,12 +5340,12 @@ body.is-scrolling {
         display: block !important;
         position: absolute;
         width: 100%;
-        top: 50%;
+        top: -450px;
         left: 0;
-        transform: translateY(-50%);
+        transform: translateY(0);
         overflow: visible;
         padding: 0;
-        z-index: 30;
+        z-index: 100;
     }
     
     .features-carousel-wrapper {
@@ -5341,18 +5367,21 @@ body.is-scrolling {
     /* Carousel Cards */
     .features-carousel-wrapper .bento-card {
         flex: 0 0 calc(100vw - 120px);
-        max-width: 400px;
-        min-height: 220px;
+        max-width: 450px;
+        min-height: 280px;
         scroll-snap-align: center;
         transform: scale(0.92);
         opacity: 0.65;
         transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
         pointer-events: auto;
         filter: blur(1px);
+        position: relative;
+        z-index: 101;
+        padding: 30px;
     }
     
     .features-carousel-wrapper .bento-card.active {
-        transform: scale(1);
+        transform: scale(1.05);
         opacity: 1;
         filter: blur(0);
         box-shadow:
@@ -5361,12 +5390,63 @@ body.is-scrolling {
             0 0 40px rgba(255, 255, 255, 0.2);
     }
     
+    /* Card text visibility */
+    .features-carousel-wrapper .card-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        width: 100% !important;
+        height: 100% !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .features-carousel-wrapper .card-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    
+    .features-carousel-wrapper .card-title {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        color: #2c2c2c !important;
+        margin: 0 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .features-carousel-wrapper .card-description {
+        font-size: 14px !important;
+        color: #666 !important;
+        line-height: 1.6 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        margin: 0 !important;
+    }
+    
+    .features-carousel-wrapper .card-icon {
+        font-size: 24px !important;
+        width: 50px !important;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+    
     /* Carousel Indicators */
     .carousel-indicators {
         display: flex;
         justify-content: center;
         gap: 8px;
-        margin-top: 280px;
+        margin-top: 30px;
+        margin-bottom: -300px;
         padding: 0 20px;
     }
     
@@ -5424,8 +5504,8 @@ body.is-scrolling {
     }
     
     .phone-title {
-        font-size: 48px;
-        letter-spacing: -1.5px;
+        font-size: 38px !important;
+        letter-spacing: -1.5px !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -5435,7 +5515,11 @@ body.is-scrolling {
     }
     
     .phone-title .title-gradient {
-        font-size: 56px;
+        font-size: 44px !important;
+    }
+    
+    .phone-title .highlight-word {
+        font-size: 44px !important;
     }
     
     .phone-subtitle {
@@ -5519,19 +5603,28 @@ body.is-scrolling {
     /* Show mobile phone mockup */
     .phone-mockup-mobile {
         display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
         margin: 0 auto !important;
+        width: 100% !important;
         position: relative !important;
-        left: -380px !important;
+        left: 0 !important;
         transform: none !important;
         visibility: visible !important;
         opacity: 1 !important;
-        z-index: 5;
+        z-index: 1;
     }
     
     .phone-mockup-image-mobile {
-        max-width: 850px !important;
+        max-width: 3200px !important;
+        width: 300% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
         visibility: visible !important;
         opacity: 1 !important;
+        position: relative;
+        z-index: 1;
     }
     
     /* Hide desktop phone mockup */
@@ -5576,19 +5669,19 @@ body.is-scrolling {
 
 @media (max-width: 390px) {
     .phone-mockup-mobile {
-        left: -390px !important;
+        left: 0 !important;
     }
 }
 
 @media (max-width: 375px) {
     .phone-mockup-mobile {
-        left: -400px !important;
+        left: 0 !important;
     }
 }
 
 @media (max-width: 320px) {
     .phone-mockup-mobile {
-        left: -380px !important;
+        left: 0 !important;
     }
     
     .phone-badge {
@@ -5599,8 +5692,8 @@ body.is-scrolling {
     }
     
     .phone-title {
-        font-size: 36px;
-        letter-spacing: -1px;
+        font-size: 32px !important;
+        letter-spacing: -1px !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -5610,7 +5703,11 @@ body.is-scrolling {
     }
     
     .phone-title .title-gradient {
-        font-size: 42px;
+        font-size: 38px !important;
+    }
+    
+    .phone-title .highlight-word {
+        font-size: 38px !important;
     }
     
     .phone-subtitle {
@@ -17701,14 +17798,18 @@ body.is-scrolling {
     }
     
     .phone-title {
-        font-size: 42px;
-        letter-spacing: -1px;
+        font-size: 36px !important;
+        letter-spacing: -1px !important;
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
         text-align: center !important;
         width: 100% !important;
         margin: 0 auto !important;
+    }
+    
+    .phone-title .highlight-word {
+        font-size: 42px !important;
     }
     
     .phone-subtitle {
@@ -18172,7 +18273,7 @@ body.is-scrolling {
     }
     
     .phone-title {
-        font-size: 32px;
+        font-size: 74px;
         letter-spacing: -0.5px;
         line-height: 1.1;
         display: block !important;
@@ -18778,7 +18879,7 @@ body.is-scrolling {
     }
     
     .phone-title {
-        font-size: 26px;
+        font-size: 66px;
         letter-spacing: -0.5px;
         line-height: 1.15;
         display: block !important;
