@@ -2759,3 +2759,257 @@ if (document.readyState === 'loading') {
     initFeaturesCarousel();
 }
  
+// ===================================
+// TUBELIGHT NAVIGATION
+// ===================================
+
+/**
+ * Tubelight Navigation System
+ * - Active tab tracking based on scroll position
+ * - Smooth scroll to sections
+ * - Animated lamp effect
+ * - Keyboard navigation support
+ */
+
+let tubelightNav = {
+    navItems: null,
+    sections: null,
+    currentActiveIndex: 0,
+    isScrolling: false,
+    scrollTimeout: null,
+    
+    // Initialize the navigation
+    init: function() {
+        this.navItems = document.querySelectorAll('.tubelight-item');
+        this.sections = document.querySelectorAll('[data-scroll-section]');
+        
+        if (!this.navItems.length || !this.sections.length) {
+            console.warn('Tubelight nav: Missing navigation items or sections');
+            return;
+        }
+        
+        // Setup click handlers
+        this.setupClickHandlers();
+        
+        // Setup scroll spy
+        this.setupScrollSpy();
+        
+        // Setup keyboard navigation
+        this.setupKeyboardNav();
+        
+        console.log('✅ Tubelight Navigation initialized');
+    },
+    
+    // Setup click event handlers
+    setupClickHandlers: function() {
+        this.navItems.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const sectionId = item.dataset.section;
+                this.scrollToSection(sectionId, index);
+            });
+        });
+    },
+    
+    // Scroll to a specific section
+    scrollToSection: function(sectionId, index) {
+        // Find the target section
+        let targetSection = null;
+        
+        // Try to find by ID first
+        targetSection = document.getElementById(sectionId);
+        
+        // If not found, try to find by class or data attribute
+        if (!targetSection) {
+            targetSection = document.querySelector(`.${sectionId}`);
+        }
+        
+        // Special handling for hero section
+        if (sectionId === 'hero') {
+            targetSection = document.querySelector('.hero');
+        }
+        
+        if (!targetSection) {
+            console.warn(`Section not found: ${sectionId}`);
+            return;
+        }
+        
+        // Set active immediately for better UX
+        this.setActiveTab(index);
+        
+        // Use Locomotive Scroll if available
+        if (window.locomotiveScroll) {
+            this.isScrolling = true;
+            window.locomotiveScroll.scrollTo(targetSection, {
+                duration: 1200,
+                easing: [0.25, 0.0, 0.35, 1.0],
+                disableLerp: false,
+                callback: () => {
+                    this.isScrolling = false;
+                }
+            });
+        } else {
+            // Fallback to native smooth scroll
+            this.isScrolling = true;
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            setTimeout(() => {
+                this.isScrolling = false;
+            }, 1200);
+        }
+    },
+    
+    // Set active tab with animation
+    setActiveTab: function(index) {
+        if (index === this.currentActiveIndex) return;
+        
+        this.navItems.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('active');
+                item.setAttribute('aria-current', 'page');
+            } else {
+                item.classList.remove('active');
+                item.removeAttribute('aria-current');
+            }
+        });
+        
+        this.currentActiveIndex = index;
+    },
+    
+    // Setup scroll spy with Intersection Observer
+    setupScrollSpy: function() {
+        // Create a map of section IDs to nav indices
+        const sectionMap = new Map();
+        
+        this.navItems.forEach((item, index) => {
+            const sectionId = item.dataset.section;
+            sectionMap.set(sectionId, index);
+        });
+        
+        // Intersection Observer options
+        const options = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px', // Trigger when section is 20% from top
+            threshold: [0, 0.1, 0.5, 0.9, 1]
+        };
+        
+        // Track which sections are currently visible
+        const visibleSections = new Map();
+        
+        const observer = new IntersectionObserver((entries) => {
+            // Don't update during manual scrolling
+            if (this.isScrolling) return;
+            
+            entries.forEach(entry => {
+                const section = entry.target;
+                const sectionId = this.getSectionId(section);
+                
+                if (entry.isIntersecting) {
+                    visibleSections.set(sectionId, {
+                        ratio: entry.intersectionRatio,
+                        top: entry.boundingClientRect.top
+                    });
+                } else {
+                    visibleSections.delete(sectionId);
+                }
+            });
+            
+            // Find the most visible section (highest ratio, or topmost if equal)
+            let mostVisibleSection = null;
+            let highestRatio = 0;
+            let topMostPosition = Infinity;
+            
+            visibleSections.forEach((data, sectionId) => {
+                if (data.ratio > highestRatio || 
+                    (data.ratio === highestRatio && data.top < topMostPosition)) {
+                    highestRatio = data.ratio;
+                    topMostPosition = data.top;
+                    mostVisibleSection = sectionId;
+                }
+            });
+            
+            // Update active tab
+            if (mostVisibleSection && sectionMap.has(mostVisibleSection)) {
+                const index = sectionMap.get(mostVisibleSection);
+                this.setActiveTab(index);
+            }
+        }, options);
+        
+        // Observe all sections
+        this.sections.forEach(section => {
+            observer.observe(section);
+        });
+    },
+    
+    // Get section ID from element
+    getSectionId: function(section) {
+        // Try ID first
+        if (section.id) return section.id;
+        
+        // Try data-section attribute
+        if (section.dataset.section) return section.dataset.section;
+        
+        // Check if it's hero section
+        if (section.classList.contains('hero')) return 'hero';
+        
+        // Try to extract from class names
+        const classList = Array.from(section.classList);
+        for (let className of classList) {
+            if (className.includes('features')) return 'features';
+            if (className.includes('pricing')) return 'pricing';
+            if (className.includes('download')) return 'download';
+        }
+        
+        return null;
+    },
+    
+    // Setup keyboard navigation
+    setupKeyboardNav: function() {
+        document.addEventListener('keydown', (e) => {
+            // Only handle if nav is visible (desktop)
+            const nav = document.querySelector('.tubelight-nav');
+            if (!nav || window.getComputedStyle(nav).display === 'none') {
+                return;
+            }
+            
+            // Arrow Up/Down navigation
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                
+                let newIndex = this.currentActiveIndex;
+                
+                if (e.key === 'ArrowUp') {
+                    newIndex = Math.max(0, this.currentActiveIndex - 1);
+                } else {
+                    newIndex = Math.min(this.navItems.length - 1, this.currentActiveIndex + 1);
+                }
+                
+                if (newIndex !== this.currentActiveIndex) {
+                    const targetItem = this.navItems[newIndex];
+                    const sectionId = targetItem.dataset.section;
+                    this.scrollToSection(sectionId, newIndex);
+                }
+            }
+        });
+    }
+};
+
+// Initialize Tubelight Navigation after DOM is ready
+function initTubelightNavigation() {
+    // Wait a bit for Locomotive Scroll to initialize
+    setTimeout(() => {
+        tubelightNav.init();
+    }, 500);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTubelightNavigation);
+} else {
+    initTubelightNavigation();
+}
+
