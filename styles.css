@@ -25953,3 +25953,438 @@ html.has-scroll-smooth body {
 html.has-scroll-init [data-scroll-container] {
     opacity: 1;
 }
+
+/* ===================================
+   FEATURES SECTION ANIMATIONS
+   =================================== */
+
+/* Title Animation */
+.phone-title {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-title.title-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.phone-title .highlight-word {
+    display: inline-block;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.phone-title.title-revealed .highlight-word {
+    animation: highlightPulse 1.5s ease-out 0.5s;
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Header Animation */
+.phone-header {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.phone-header.header-revealed {
+    opacity: 1;
+}
+
+.phone-badge {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-revealed .phone-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.phone-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.header-revealed .phone-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Feature Cards Animation */
+.feature-card-animated {
+    opacity: 0;
+    transform: translateY(80px) scale(0.95) rotateX(10deg);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Border Gradient on Reveal */
+.feature-card-animated::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, 
+        transparent 0%,
+        rgba(102, 126, 234, 0.5) 25%,
+        rgba(118, 75, 162, 0.5) 50%,
+        rgba(102, 126, 234, 0.5) 75%,
+        transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, 
+                  linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.feature-card-animated.card-revealed::after {
+    opacity: 1;
+    animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Stagger delays using data attribute */
+.feature-card-animated[data-scroll-delay="0.1"] {
+    transition-delay: 0.1s;
+}
+
+.feature-card-animated[data-scroll-delay="0.15"] {
+    transition-delay: 0.15s;
+}
+
+.feature-card-animated[data-scroll-delay="0.2"] {
+    transition-delay: 0.2s;
+}
+
+.feature-card-animated[data-scroll-delay="0.25"] {
+    transition-delay: 0.25s;
+}
+
+.feature-card-animated[data-scroll-delay="0.3"] {
+    transition-delay: 0.3s;
+}
+
+.feature-card-animated[data-scroll-delay="0.35"] {
+    transition-delay: 0.35s;
+}
+
+.feature-card-animated.card-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+}
+
+/* Enhanced Hover Effects for Feature Cards */
+.bento-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Glow Animation on Reveal */
+.card-glow {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.card-revealed .card-glow {
+    opacity: 1;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* Icon Animation on Card Reveal */
+.card-icon {
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-revealed .card-icon {
+    animation: iconBounce 0.8s ease-out 0.3s;
+}
+
+@keyframes iconBounce {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    60% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* Icon Hover Effect */
+.bento-card:hover .card-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.bento-card:hover .card-icon i {
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Health Bars Animation */
+.health-bar {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-revealed .health-bar:nth-child(1) {
+    opacity: 1;
+    transform: scaleY(1);
+    transition-delay: 0.5s;
+}
+
+.card-revealed .health-bar:nth-child(2) {
+    opacity: 1;
+    transform: scaleY(1);
+    transition-delay: 0.6s;
+}
+
+.card-revealed .health-bar:nth-child(3) {
+    opacity: 1;
+    transform: scaleY(1);
+    transition-delay: 0.7s;
+}
+
+/* Goal Rings Animation */
+.goal-ring {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-revealed .goal-ring:nth-child(1) {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.5s;
+    animation: ringPulse 2s ease-in-out infinite;
+}
+
+.card-revealed .goal-ring:nth-child(2) {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.6s;
+    animation: ringPulse 2s ease-in-out 0.3s infinite;
+}
+
+.card-revealed .goal-ring:nth-child(3) {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.7s;
+    animation: ringPulse 2s ease-in-out 0.6s infinite;
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+/* Text Content Fade In */
+.card-title,
+.card-description {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-revealed .card-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.card-revealed .card-description {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* Shimmer Effect on Hover */
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    transition: left 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bento-card:hover::before {
+    left: 100%;
+}
+
+/* Ripple Effect on Click */
+.card-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: scale(0);
+    animation: rippleAnimation 0.6s ease-out;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Magnetic Hover Effect */
+.bento-card {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+/* Card Content 3D Effect */
+.card-content {
+    transform-style: preserve-3d;
+    transform: translateZ(20px);
+}
+
+/* Icon 3D Lift */
+.bento-card:hover .card-icon {
+    transform: translateZ(30px) scale(1.15) rotate(5deg);
+}
+
+/* Text 3D Depth */
+.bento-card:hover .card-title {
+    transform: translateZ(25px);
+}
+
+.bento-card:hover .card-description {
+    transform: translateZ(15px);
+}
+
+/* Particle Effect on Hover */
+@keyframes particleFloat {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Enhanced Glow on Active Card */
+.bento-card:active {
+    transform: scale(0.98);
+}
+
+.bento-card:active .card-glow {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Sparkle Animation */
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(1.5) rotate(180deg);
+    }
+}
+
+.sparkle {
+    will-change: transform, opacity;
+}
+
+/* Mobile: Simplified animations */
+@media (max-width: 768px) {
+    .feature-card-animated {
+        transform: translateY(40px) scale(0.98);
+    }
+    
+    .bento-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    /* Disable 3D effects on mobile for performance */
+    .bento-card,
+    .card-content,
+    .card-icon,
+    .card-title,
+    .card-description {
+        transform: none !important;
+        transform-style: flat;
+    }
+}

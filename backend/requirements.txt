@@ -1,0 +1,34 @@
+# ===================================
+# FINTRACK ANALYTICS BACKEND
+# Python Dependencies
+# ===================================
+
+# Core Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.5
+
+# Database
+SQLAlchemy==2.0.23
+psycopg[binary]==3.1.18
+alembic==1.13.1
+
+# WebSocket Support
+python-socketio==5.10.0
+eventlet==0.33.3
+
+# Security & Authentication
+werkzeug==3.0.1
+python-dotenv==1.0.0
+bcrypt==4.1.2
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Rate Limiting
+Flask-Limiter==3.5.0
+
+# Optional: IP Geolocation
+# geoip2==4.7.0  # Uncomment if you want country detection
+

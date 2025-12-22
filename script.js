@@ -322,6 +322,189 @@ window.addEventListener('beforeunload', () => {
     }
 });
 
+// ===================================
+// FEATURES SECTION ANIMATIONS
+// ===================================
+
+function initFeaturesAnimations() {
+    const featureCards = document.querySelectorAll('.feature-card-animated');
+    const isMobile = window.innerWidth <= 768;
+    
+    // Skip 3D effects on mobile for performance
+    if (isMobile) {
+        console.log('✨ Features animations initialized (mobile mode)!');
+        return;
+    }
+    
+    // Add magnetic effect on mouse move
+    featureCards.forEach(card => {
+        let isHovering = false;
+        
+        card.addEventListener('mouseenter', () => {
+            isHovering = true;
+            card.style.transition = 'none';
+        });
+        
+        card.addEventListener('mousemove', (e) => {
+            if (!isHovering) return;
+            
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+            
+            // Move glow effect
+            const glow = card.querySelector('.card-glow');
+            if (glow) {
+                const glowX = (x / rect.width) * 100;
+                const glowY = (y / rect.height) * 100;
+                glow.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.15), transparent 60%)`;
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            isHovering = false;
+            card.style.transition = '';
+            card.style.transform = '';
+            
+            const glow = card.querySelector('.card-glow');
+            if (glow) {
+                glow.style.background = '';
+            }
+        });
+        
+        // Add click ripple effect
+        card.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.className = 'card-ripple';
+            
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height) * 2;
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            card.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+        
+        // Sparkle effect on hover
+        card.addEventListener('mouseenter', () => {
+            createSparkles(card);
+        });
+    });
+    
+    // Animate icons subtly on scroll
+    if (locomotiveScroll) {
+        locomotiveScroll.on('scroll', (args) => {
+            featureCards.forEach(card => {
+                if (card.classList.contains('card-revealed')) {
+                    const icon = card.querySelector('.card-icon i');
+                    if (icon) {
+                        const rect = card.getBoundingClientRect();
+                        const scrollProgress = (window.innerHeight - rect.top) / window.innerHeight;
+                        if (scrollProgress > 0 && scrollProgress < 1) {
+                            icon.style.transform = `scale(${1 + scrollProgress * 0.1})`;
+                        }
+                    }
+                }
+            });
+        });
+    }
+    
+    console.log('✨ Features animations initialized!');
+}
+
+// Create sparkle particles
+function createSparkles(card) {
+    const sparkleCount = 3;
+    
+    for (let i = 0; i < sparkleCount; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            sparkle.style.position = 'absolute';
+            sparkle.style.left = x + '%';
+            sparkle.style.top = y + '%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.fontSize = '12px';
+            sparkle.style.opacity = '0';
+            sparkle.style.animation = 'sparkleFloat 1.5s ease-out forwards';
+            sparkle.style.zIndex = '20';
+            
+            card.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 1500);
+        }, i * 100);
+    }
+}
+
+// Animate numbers on reveal
+function animateCardNumbers() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('numbers-animated')) {
+                entry.target.classList.add('numbers-animated');
+                
+                // Animate any numbers in the card
+                const numbers = entry.target.querySelectorAll('[data-number]');
+                numbers.forEach(num => {
+                    const target = parseInt(num.getAttribute('data-number'));
+                    animateNumber(num, 0, target, 1500);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.feature-card-animated').forEach(card => {
+        observer.observe(card);
+    });
+}
+
+function animateNumber(element, start, end, duration) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(start + (end - start) * easeOutQuart);
+        
+        element.textContent = current;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            element.textContent = end;
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+// Initialize number animations
+setTimeout(() => {
+    animateCardNumbers();
+}, 500);
+
 // Initialize seamless animations on DOM load
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Locomotive Scroll first
@@ -333,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initSeamlessReveal();
         initParallaxEffects();
         initSmoothMomentum();
+        initFeaturesAnimations();
         console.log('Seamless entrance animations initialized! ✨');
         
         // Force Locomotive to recalculate heights (fixes footer visibility)

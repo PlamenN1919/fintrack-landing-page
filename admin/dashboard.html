@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack Analytics - Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../app/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Socket.IO Client (for WebSocket) -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    
+    <!-- Admin Styles -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="sidebar-logo-text">
+                        <h2>FinTrack</h2>
+                        <p>Analytics</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Меню</h3>
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#events" class="nav-item">
+                        <i class="fas fa-list"></i>
+                        <span>Събития</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Настройки</h3>
+                    <a href="../index.html" class="nav-item" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Към сайта</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-danger" style="width: 100%;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Изход
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p class="header-subtitle">
+                        Добре дошли в админ панела на FinTrack Analytics
+                    </p>
+                </div>
+                <div class="header-right">
+                    <div class="realtime-indicator">
+                        <span class="realtime-dot"></span>
+                        <span>Real-time</span>
+                    </div>
+                    <div class="header-time">
+                        <i class="fas fa-clock"></i>
+                        <span id="currentTime">--:--</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div>
+                            <p class="stat-card-title">Посещения (24ч)</p>
+                            <h3 class="stat-card-value" id="visits24h">--</h3>
+                        </div>
+                        <div class="stat-card-icon primary">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-footer">
+                        <span class="stat-trend up" id="visitsTrend">
+                            <i class="fas fa-arrow-up"></i> --
+                        </span>
+                        <span>спрямо миналата седмица</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div>
+                            <p class="stat-card-title">Кликвания (24ч)</p>
+                            <h3 class="stat-card-value" id="clicks24h">--</h3>
+                        </div>
+                        <div class="stat-card-icon success">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-footer">
+                        <span class="stat-trend up" id="clicksTrend">
+                            <i class="fas fa-arrow-up"></i> --
+                        </span>
+                        <span>спрямо миналата седмица</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div>
+                            <p class="stat-card-title">Активни потребители</p>
+                            <h3 class="stat-card-value" id="activeUsers">--</h3>
+                        </div>
+                        <div class="stat-card-icon warning">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-footer">
+                        <span>в последните 5 минути</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div>
+                            <p class="stat-card-title">Conversion Rate</p>
+                            <h3 class="stat-card-value" id="conversionRate">--%</h3>
+                        </div>
+                        <div class="stat-card-icon info">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-footer">
+                        <span>кликвания / посещения</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Charts -->
+            <section class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Трафик по дни</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="visitsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Топ бутони</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="buttonsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Трафик източници</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sourcesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Events Table -->
+            <section class="events-section" id="events">
+                <div class="events-header">
+                    <h3 class="events-title">Последни събития</h3>
+                    <div class="events-filters">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-list"></i> Всички
+                        </button>
+                        <button class="filter-btn" data-filter="visits">
+                            <i class="fas fa-eye"></i> Посещения
+                        </button>
+                        <button class="filter-btn" data-filter="clicks">
+                            <i class="fas fa-mouse-pointer"></i> Кликвания
+                        </button>
+                        <button class="filter-btn" onclick="refreshEvents()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="eventsTableContainer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Зареждане на събития...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
+
