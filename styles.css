@@ -98,6 +98,162 @@ body {
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
 }
 
+/* Hero Desktop Navigation - Top Right - FinTrack Style */
+.hero-desktop-nav {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeInDown 1s ease-out 0.3s forwards;
+}
+
+.nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(44, 44, 44, 0.05);
+    border: 1px solid rgba(44, 44, 44, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 4px;
+    border-radius: 50px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    position: relative;
+}
+
+.nav-pill-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(44, 44, 44, 0.45);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.nav-pill-text {
+    display: inline;
+    transition: color 0.4s ease;
+}
+
+.nav-pill-icon {
+    display: none;
+    font-size: 16px;
+}
+
+.nav-pill-item:hover {
+    color: rgba(44, 44, 44, 0.75);
+}
+
+.nav-pill-item.active {
+    color: #2c2c2c;
+}
+
+.nav-pill-lamp {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(25% - 4px);
+    height: calc(100% - 8px);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.85) 100%);
+    border-radius: 50px;
+    z-index: 1;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+        0 2px 12px rgba(44, 44, 44, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 4px 24px rgba(44, 44, 44, 0.08);
+}
+
+/* Minimalist indicator bar on top */
+.nav-pill-lamp::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 2px;
+    background: #2c2c2c;
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+/* Subtle shadow underneath lamp */
+.nav-pill-lamp::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(44, 44, 44, 0.15) 0%,
+        transparent 70%
+    );
+    filter: blur(3px);
+}
+
+/* Update lamp position based on active item */
+.nav-pill:has(.nav-pill-item:nth-child(1).active) .nav-pill-lamp {
+    left: 4px;
+}
+
+.nav-pill:has(.nav-pill-item:nth-child(2).active) .nav-pill-lamp {
+    left: calc(25%);
+}
+
+.nav-pill:has(.nav-pill-item:nth-child(3).active) .nav-pill-lamp {
+    left: calc(50% - 4px);
+}
+
+.nav-pill:has(.nav-pill-item:nth-child(4).active) .nav-pill-lamp {
+    left: calc(75% - 8px);
+}
+
+/* Hover effect for nav container */
+.nav-pill:hover {
+    border-color: rgba(44, 44, 44, 0.12);
+    box-shadow: 
+        0 6px 30px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Hide on tablet and mobile */
+@media (max-width: 1024px) {
+    .hero-desktop-nav {
+        display: none;
+    }
+}
+
+/* Responsive adjustments for smaller desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .hero-desktop-nav {
+        right: 40px;
+    }
+    
+    .nav-pill-item {
+        padding: 10px 20px;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
+
 /* Main Navigation */
 .main-nav {
     position: absolute;
@@ -16415,7 +16571,132 @@ body.is-scrolling {
     transform: translateX(0);
 }
 
-/* Testimonials Section */
+/* Testimonials Section - Enhanced Animations */
+
+/* Initial state - hidden */
+.testimonial-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Title lines animate in sequence */
+.testimonial-title-line {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Cards group with scale effect */
+.testimonial-cards-reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Overlay card slides in from right */
+.testimonial-overlay-reveal {
+    opacity: 0;
+    transform: translateX(50px) rotate(2deg);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Avatars stagger animation */
+.testimonials-avatars .testimonial-avatar {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Active states when visible */
+.testimonials-section.section-visible .testimonial-reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonials-section.section-visible .testimonial-title-line {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.testimonials-section.section-visible .testimonial-title-line:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.testimonials-section.section-visible .testimonial-title-line:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.testimonials-section.section-visible .testimonial-title-line:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.testimonials-section.section-visible .testimonial-title-line:nth-child(5) {
+    transition-delay: 0.4s;
+}
+
+.testimonials-section.section-visible .testimonial-cards-reveal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.3s;
+}
+
+.testimonials-section.section-visible .testimonial-overlay-reveal {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+    transition-delay: 0.5s;
+}
+
+.testimonials-section.section-visible .testimonials-avatars .testimonial-avatar {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.testimonials-section.section-visible .testimonials-avatars .testimonial-avatar:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.testimonials-section.section-visible .testimonials-avatars .testimonial-avatar:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+.testimonials-section.section-visible .testimonials-avatars .testimonial-avatar:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+/* Cards inside testimonials-cards-group animate individually */
+.testimonial-long-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.top-left-card {
+    opacity: 0;
+    transform: translateY(-30px) translateX(-20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonials-section.section-visible .testimonial-long-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.5s;
+}
+
+.testimonials-section.section-visible .top-left-card {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+    transition-delay: 0.6s;
+}
+
+/* Legacy support for old classes */
 .testimonials-section .testimonials-main-title {
     transform: translateY(30px);
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -16693,6 +16974,31 @@ body.is-scrolling {
     max-width: 350px;
     overflow: hidden;
     position: relative;
+}
+
+/* Column reveal animations */
+.testimonial-column-reveal {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonials-columns-section.section-visible .testimonial-column-reveal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.testimonials-columns-section.section-visible .testimonial-column-reveal.column-1 {
+    transition-delay: 0.1s;
+}
+
+.testimonials-columns-section.section-visible .testimonial-column-reveal.column-2 {
+    transition-delay: 0.2s;
+}
+
+.testimonials-columns-section.section-visible .testimonial-column-reveal.column-3 {
+    transition-delay: 0.3s;
 }
 
 .testimonials-column-inner {

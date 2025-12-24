@@ -37,12 +37,31 @@
             <img src="assets/logos/logo.png" alt="FinTrack Logo" class="logo">
         </div>
 
+        <!-- Desktop Navigation - Hero Top Right -->
+        <nav class="hero-desktop-nav">
+            <div class="nav-pill">
+                <a href="#hero" class="nav-pill-item active" data-section="hero">
+                    <span class="nav-pill-text">Начало</span>
+                </a>
+                <a href="#features" class="nav-pill-item" data-section="features">
+                    <span class="nav-pill-text">Функции</span>
+                </a>
+                <a href="#testimonials" class="nav-pill-item" data-section="testimonials">
+                    <span class="nav-pill-text">Отзиви</span>
+                </a>
+                <a href="#download" class="nav-pill-item" data-section="download">
+                    <span class="nav-pill-text">Изтегли</span>
+                </a>
+                <div class="nav-pill-lamp"></div>
+            </div>
+        </nav>
+
 
         <!-- Fixed Background Layer -->
         <div class="hero-background-fixed"></div>
         
         <!-- Hero Section -->
-        <section class="hero" data-scroll-section>
+        <section class="hero" id="hero" data-scroll-section>
         <!-- Spline 3D Container -->
         <div class="spline-container" data-scroll data-scroll-speed="-0.3">
             <spline-viewer loading-anim-type="none" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
@@ -698,7 +717,7 @@
     <section class="testimonials-section section" id="testimonials" data-scroll-section>
         <div class="container">
             <!-- Main Title with Special Layout -->
-            <div class="testimonials-main-title">
+            <div class="testimonials-main-title testimonial-reveal">
                 <!-- User Avatars - Left Side -->
                 <div class="testimonials-avatars stagger-children">
                     <div class="testimonial-avatar avatar-1"></div>
@@ -706,18 +725,18 @@
                     <div class="testimonial-avatar avatar-3"></div>
                 </div>
                 
-                <div class="title-line-1">
+                <div class="title-line-1 testimonial-title-line">
                     <span class="title-indented">КАКВО</span>
                     <span class="title-accent">+100% <span class="title-accent-small">спокойствие</span></span>
                     <div class="title-icon-orange"></div>
                 </div>
-                <div class="title-line-2">КАЗВАТ НАШИТЕ -</div>
-                <div class="title-line-3">КЛИЕНТИ | НОВИЯ FT</div>
-                <div class="title-line-4">Е ТУК +</div>
+                <div class="title-line-2 testimonial-title-line">КАЗВАТ НАШИТЕ -</div>
+                <div class="title-line-3 testimonial-title-line">КЛИЕНТИ | НОВИЯ FT</div>
+                <div class="title-line-4 testimonial-title-line">Е ТУК +</div>
             </div>
             
             <!-- Grouped Cards Container -->
-            <div class="testimonials-cards-group" data-scroll data-scroll-speed="0.18">
+            <div class="testimonials-cards-group testimonial-cards-reveal" data-scroll data-scroll-speed="0.18">
                 <!-- Long Card with Rounded Corners -->
                 <div class="testimonial-long-card">
                     <!-- Internal Testimonial - Inside Card (Иван Димитров) -->
@@ -767,7 +786,7 @@
             </div>
             
             <!-- Motivational Text Block - Bottom Right -->
-            <div class="motivational-text-block">
+            <div class="motivational-text-block testimonial-reveal">
                 <a href="#download" class="motivational-link" data-track-id="stats-motivational-link" data-track-label="Stats Section Motivational Link">
                     ИЗТЕГЛИ FINTRACK СЕГА →
                 </a>
@@ -777,7 +796,7 @@
             </div>
         </div>
         <!-- Overlay Card - Positioned absolutely -->
-        <div class="overlay-card">
+        <div class="overlay-card testimonial-overlay-reveal">
             <div class="overlay-card-icon">
                 <div class="icon-circle-filled"></div>
                 <div class="icon-circle-outline"></div>
@@ -798,7 +817,7 @@
     <section class="testimonials-columns-section section" id="testimonials-columns" data-scroll-section>
         <div class="testimonials-columns-container">
             <!-- Column 1 - Fast -->
-            <div class="testimonials-column column-1">
+            <div class="testimonials-column column-1 testimonial-column-reveal">
                 <div class="testimonials-column-inner">
                     <!-- First set of cards -->
                     <div class="testimonial-column-card">
@@ -866,7 +885,7 @@
             </div>
 
             <!-- Column 2 - Medium -->
-            <div class="testimonials-column column-2">
+            <div class="testimonials-column column-2 testimonial-column-reveal">
                 <div class="testimonials-column-inner">
                     <!-- First set of cards -->
                     <div class="testimonial-column-card">
@@ -934,7 +953,7 @@
             </div>
 
             <!-- Column 3 - Slow -->
-            <div class="testimonials-column column-3">
+            <div class="testimonials-column column-3 testimonial-column-reveal">
                 <div class="testimonials-column-inner">
                     <!-- First set of cards -->
                     <div class="testimonial-column-card">
