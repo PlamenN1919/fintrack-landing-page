@@ -41,3 +41,6 @@ reportlab==4.0.9
 # Optional: IP Geolocation
 # geoip2==4.7.0  # Uncomment if you want country detection
 
+# Production Server
+gunicorn==21.2.0
+
