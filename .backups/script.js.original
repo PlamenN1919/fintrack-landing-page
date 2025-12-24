@@ -1,4 +1,80 @@
 // ===================================
+// PERFORMANCE UTILITIES
+// ===================================
+
+// Debounce function - delays execution until after wait time
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Throttle function - limits execution to once per wait time
+function throttle(func, wait) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, wait);
+        }
+    };
+}
+
+// RequestAnimationFrame throttle for scroll events
+function rafThrottle(func) {
+    let rafId = null;
+    return function(...args) {
+        if (rafId === null) {
+            rafId = requestAnimationFrame(() => {
+                func.apply(this, args);
+                rafId = null;
+            });
+        }
+    };
+}
+
+// ===================================
+// DOM CACHE - Cache frequently accessed elements
+// ===================================
+const DOMCache = {
+    // Will be populated after DOM loads
+    elements: {},
+    
+    // Cache an element
+    cache(key, selector) {
+        if (!this.elements[key]) {
+            this.elements[key] = document.querySelector(selector);
+        }
+        return this.elements[key];
+    },
+    
+    // Cache multiple elements
+    cacheAll(key, selector) {
+        if (!this.elements[key]) {
+            this.elements[key] = document.querySelectorAll(selector);
+        }
+        return this.elements[key];
+    },
+    
+    // Get cached element
+    get(key) {
+        return this.elements[key];
+    },
+    
+    // Clear cache
+    clear() {
+        this.elements = {};
+    }
+};
+
+// ===================================
 // LOCOMOTIVE SCROLL INITIALIZATION
 // ===================================
 
@@ -30,8 +106,11 @@ function removeSectionBorders() {
     }
 }
 
-// ОПТИМИЗИРАНО: Премахнато continuous RAF loop за по-добра производителност
-// Borders се премахват само веднъж при инициализация
+// Continuously check and remove borders during scroll
+function keepBordersRemoved() {
+    removeSectionBorders();
+    requestAnimationFrame(keepBordersRemoved);
+}
 
 // Initialize Locomotive Scroll
 function initLocomotiveScroll() {
@@ -40,45 +119,59 @@ function initLocomotiveScroll() {
     locomotiveScroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
         smooth: !isMobile, // Smooth scroll only on desktop
-        lerp: 0.15, // ОПТИМИЗИРАНО: Увеличено от 0.08 за по-бърз отговор (по-малко lag)
+        lerp: 0.1, // Optimized for performance (faster = less CPU)
         multiplier: 1.0, // Scroll speed multiplier
         smartphone: {
-            smooth: false // Native scroll on mobile
+            smooth: false, // Native scroll on mobile (better performance)
+            breakpoint: 768
         },
         tablet: {
-            smooth: false // Native scroll on tablet
+            smooth: false, // Native scroll on tablet (better performance)
+            breakpoint: 1024
         },
         reloadOnContextChange: true,
         touchMultiplier: 2.5,
-        smoothMobile: false
+        smoothMobile: false,
+        resetNativeScroll: true,
+        // Performance optimization
+        class: 'is-inview',
+        scrollbarContainer: false,
+        getDirection: true,
+        getSpeed: true
     });
     
-    // ОПТИМИЗИРАНО: Премахваме borders само веднъж, не на всеки frame
+    // FORCE remove any borders from sections after Locomotive initializes
     setTimeout(() => {
         removeSectionBorders();
+        // Start continuous border removal with RAF
+        keepBordersRemoved();
     }, 100);
     
-    // Update on window resize with debounce
-    let resizeTimeout;
+    // Also remove on Locomotive scroll events
+    if (locomotiveScroll) {
+        locomotiveScroll.on('scroll', removeSectionBorders);
+        locomotiveScroll.on('call', removeSectionBorders);
+    }
+    
+    // Update on window resize with optimized debounce
     let wasMobile = isMobile;
     
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const nowMobile = window.innerWidth <= 768;
-            
-            // If switched between mobile/desktop, reload Locomotive
-            if (wasMobile !== nowMobile && locomotiveScroll) {
-                locomotiveScroll.destroy();
-                locomotiveScroll = initLocomotiveScroll();
-                console.log('🔄 Locomotive reloaded for device change');
-            } else if (locomotiveScroll) {
-                locomotiveScroll.update();
-            }
-            
-            wasMobile = nowMobile;
-        }, 250);
-    });
+    const handleResize = debounce(() => {
+        const nowMobile = window.innerWidth <= 768;
+        
+        // If switched between mobile/desktop, reload Locomotive
+        if (wasMobile !== nowMobile && locomotiveScroll) {
+            locomotiveScroll.destroy();
+            locomotiveScroll = initLocomotiveScroll();
+            console.log('🔄 Locomotive reloaded for device change');
+        } else if (locomotiveScroll) {
+            locomotiveScroll.update();
+        }
+        
+        wasMobile = nowMobile;
+    }, 250);
+    
+    window.addEventListener('resize', handleResize, { passive: true });
     
     // Update after images load
     const images = document.querySelectorAll('img');
@@ -95,14 +188,32 @@ function initLocomotiveScroll() {
     return locomotiveScroll;
 }
 
-// DOM Elements
-const nav = document.querySelector('.main-nav');
-const heroTitle = document.querySelector('.brand-title');
-const sections = document.querySelectorAll('.section');
-const featureCards = document.querySelectorAll('.feature-card');
-const scrollIndicator = document.querySelector('.scroll-indicator');
-const splineContainer = document.querySelector('.spline-container');
-const splineViewer = document.querySelector('spline-viewer');
+// ===================================
+// DOM ELEMENTS CACHE - Cached for performance
+// ===================================
+const DOM = {
+    nav: null,
+    heroTitle: null,
+    sections: null,
+    featureCards: null,
+    scrollIndicator: null,
+    splineContainer: null,
+    splineViewer: null,
+    
+    // Initialize cache
+    init() {
+        this.nav = document.querySelector('.main-nav');
+        this.heroTitle = document.querySelector('.brand-title');
+        this.sections = document.querySelectorAll('.section');
+        this.featureCards = document.querySelectorAll('.feature-card');
+        this.scrollIndicator = document.querySelector('.scroll-indicator');
+        this.splineContainer = document.querySelector('.spline-container');
+        this.splineViewer = document.querySelector('spline-viewer');
+    }
+};
+
+// Legacy references for backward compatibility
+let nav, heroTitle, sections, featureCards, scrollIndicator, splineContainer, splineViewer;
 
 // Pain Point Calculator Variables
 let lossCounter = 0;
@@ -200,63 +311,59 @@ function initSeamlessReveal() {
     });
 }
 
-// Parallax effect for floating elements - Integrated with Locomotive
+// Parallax effect for floating elements - Optimized with RAF throttle
 function initParallaxEffects() {
     const isMobile = window.innerWidth <= 768;
     
     // On desktop, Locomotive handles main parallax via data attributes
     // Keep native parallax for elements without data attributes
     if (isMobile || !locomotiveScroll) {
-        // Mobile/fallback - lightweight native parallax
-        let ticking = false;
+        // Mobile/fallback - optimized with RAF throttle
+        const handleScroll = rafThrottle(() => {
+            updateParallax(window.pageYOffset);
+        });
         
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateParallax(window.pageYOffset);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
+        window.addEventListener('scroll', handleScroll, { passive: true });
     } else {
-        // Desktop with Locomotive - use its scroll event
-        locomotiveScroll.on('scroll', (args) => {
+        // Desktop with Locomotive - throttled update
+        const handleLocomotiveScroll = throttle((args) => {
             updateParallax(args.scroll.y);
-        });
+        }, 16); // ~60fps
+        
+        locomotiveScroll.on('scroll', handleLocomotiveScroll);
     }
 }
 
 function updateParallax(scrolled) {
     const isMobile = window.innerWidth <= 768;
-    const speedMultiplier = isMobile ? 0.5 : 0.7; // ОПТИМИЗИРАНО: Намалена сила на паралакс
+    const speedMultiplier = isMobile ? 0.7 : 1.0; // Lighter on mobile
     
-    // ОПТИМИЗИРАНО: По-леки паралакс ефекти за по-добра производителност
+    // Parallax for geometric shapes
     document.querySelectorAll('.fear-geometric-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.015 * speedMultiplier; // Намалено от 0.03
+        const speed = (index + 1) * 0.03 * speedMultiplier;
         const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`; // GPU ускорение
+        shape.style.transform = `translateY(${yPos}px)`;
     });
     
     document.querySelectorAll('.stats-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.01 * speedMultiplier; // Намалено от 0.02
+        const speed = (index + 1) * 0.02 * speedMultiplier;
         const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        shape.style.transform = `translateY(${yPos}px)`;
     });
     
     document.querySelectorAll('.how-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.012 * speedMultiplier; // Намалено от 0.025
+        const speed = (index + 1) * 0.025 * speedMultiplier;
         const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        shape.style.transform = `translateY(${yPos}px)`;
     });
     
-    // ОПТИМИЗИРАНО: По-леки custom parallax layers
+    // Custom parallax layers
     document.querySelectorAll('.parallax-slow').forEach(el => {
         const rect = el.getBoundingClientRect();
         const elementTop = rect.top + scrolled;
         const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.025 * speedMultiplier; // Намалено от 0.05
-        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        const yPos = distanceFromTop * 0.05 * speedMultiplier;
+        el.style.transform = `translateY(${yPos}px)`;
     });
     
     document.querySelectorAll('.parallax-medium').forEach(el => {
@@ -494,8 +601,26 @@ setTimeout(() => {
     animateCardNumbers();
 }, 500);
 
-// Initialize seamless animations on DOM load
+// ===================================
+// MAIN INITIALIZATION - Optimized for performance
+// ===================================
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 FinTrack Landing Page - Starting optimized initialization...');
+    
+    // Initialize DOM cache first
+    DOM.init();
+    
+    // Set legacy references for backward compatibility
+    nav = DOM.nav;
+    heroTitle = DOM.heroTitle;
+    sections = DOM.sections;
+    featureCards = DOM.featureCards;
+    scrollIndicator = DOM.scrollIndicator;
+    splineContainer = DOM.splineContainer;
+    splineViewer = DOM.splineViewer;
+    
+    console.log('✅ DOM cache initialized');
+    
     // Initialize Locomotive Scroll first
     locomotiveScroll = initLocomotiveScroll();
     console.log('🚂 Locomotive Scroll initialized!');
@@ -506,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initParallaxEffects();
         initSmoothMomentum();
         initFeaturesAnimations();
-        console.log('Seamless entrance animations initialized! ✨');
+        console.log('✨ Seamless entrance animations initialized!');
         
         // Force Locomotive to recalculate heights (fixes footer visibility)
         if (locomotiveScroll) {
@@ -648,8 +773,8 @@ function animateCounter(element, finalValue) {
     
     const numericValue = parseInt(finalValue.replace(/\D/g, ''));
     const suffix = finalValue.replace(/[\d,]/g, '');
-    const duration = 1500; // ОПТИМИЗИРАНО: Намалено от 2000ms
-    const steps = 40; // ОПТИМИЗИРАНО: Намалено от 60 за по-малко updates
+    const duration = 2000;
+    const steps = 60;
     const increment = numericValue / steps;
     
     let current = 0;
@@ -918,31 +1043,102 @@ document.querySelectorAll('a, button, input, textarea').forEach(element => {
     });
 });
 
-// Spline loading optimization
-if (splineViewer && splineContainer) {
-    // Preload and show Spline faster
-    splineViewer.addEventListener('load', function() {
-        setTimeout(() => {
-            splineViewer.classList.add('loaded');
-            splineContainer.classList.add('loaded');
-        }, 100);
+// ===================================
+// SPLINE 3D LAZY LOADING & PERFORMANCE OPTIMIZATION
+// ===================================
+
+// Spline lazy loading and pause/resume optimization
+function initSplineOptimization() {
+    if (!splineViewer || !splineContainer) return;
+    
+    let splineLoaded = false;
+    let splineActive = false;
+    
+    // Intersection Observer for lazy loading
+    const splineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !splineLoaded) {
+                // Load Spline when hero section is visible
+                loadSpline();
+                splineLoaded = true;
+            }
+            
+            // Pause/Resume based on visibility
+            if (splineLoaded) {
+                if (entry.isIntersecting && !splineActive) {
+                    resumeSpline();
+                } else if (!entry.isIntersecting && splineActive) {
+                    pauseSpline();
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '100px'
     });
     
-    // Fallback if load event doesn't fire
-    setTimeout(() => {
-        if (!splineViewer.classList.contains('loaded')) {
-            splineViewer.classList.add('loaded');
-            splineContainer.classList.add('loaded');
-        }
-    }, 2000);
+    // Observe hero section
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        splineObserver.observe(heroSection);
+    }
     
-    // Immediate visibility for better UX
-    setTimeout(() => {
-        if (splineViewer) {
-            splineViewer.style.opacity = '0.7';
+    // Load Spline function
+    function loadSpline() {
+        console.log('🎨 Loading Spline 3D...');
+        
+        // Show loading state
+        splineContainer.classList.add('loading');
+        
+        // Spline load event
+        splineViewer.addEventListener('load', function() {
+            setTimeout(() => {
+                splineViewer.classList.add('loaded');
+                splineContainer.classList.add('loaded');
+                splineContainer.classList.remove('loading');
+                splineActive = true;
+                console.log('✅ Spline 3D loaded successfully');
+            }, 100);
+        });
+        
+        // Fallback if load event doesn't fire
+        setTimeout(() => {
+            if (!splineViewer.classList.contains('loaded')) {
+                splineViewer.classList.add('loaded');
+                splineContainer.classList.add('loaded');
+                splineContainer.classList.remove('loading');
+                splineActive = true;
+            }
+        }, 3000);
+    }
+    
+    // Pause Spline rendering (reduce CPU usage)
+    function pauseSpline() {
+        if (splineViewer && splineActive) {
+            splineViewer.style.visibility = 'hidden';
+            splineActive = false;
+            console.log('⏸️ Spline paused');
         }
-    }, 500);
+    }
+    
+    // Resume Spline rendering
+    function resumeSpline() {
+        if (splineViewer && !splineActive) {
+            splineViewer.style.visibility = 'visible';
+            splineActive = true;
+            console.log('▶️ Spline resumed');
+        }
+    }
+    
+    // Reduce quality on mobile devices
+    if (window.innerWidth <= 768) {
+        splineContainer.style.transform = 'scale(0.85)';
+        console.log('📱 Mobile: Reduced Spline quality');
+    }
 }
+
+// Initialize Spline optimization
+initSplineOptimization();
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {

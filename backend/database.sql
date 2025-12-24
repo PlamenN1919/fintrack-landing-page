@@ -18,6 +18,24 @@ CREATE TABLE page_visits (
     page_url VARCHAR(512) NOT NULL,
     referrer VARCHAR(512),
     country_code VARCHAR(2), -- ISO 3166-1 alpha-2 (опционално)
+    
+    -- Device information
+    device_type VARCHAR(20), -- mobile, tablet, desktop
+    os_name VARCHAR(50), -- iOS, Android, Windows, Mac, Linux
+    os_version VARCHAR(50),
+    browser_name VARCHAR(50), -- Chrome, Firefox, Safari, etc
+    browser_version VARCHAR(50),
+    
+    -- Screen information
+    screen_width INTEGER,
+    screen_height INTEGER,
+    viewport_width INTEGER,
+    viewport_height INTEGER,
+    
+    -- Time tracking
+    time_on_page INTEGER, -- seconds
+    exit_page BOOLEAN DEFAULT FALSE,
+    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -25,6 +43,10 @@ CREATE TABLE page_visits (
 CREATE INDEX idx_pv_session_id ON page_visits(session_id);
 CREATE INDEX idx_pv_created_at ON page_visits(created_at DESC);
 CREATE INDEX idx_pv_page_url ON page_visits(page_url);
+CREATE INDEX idx_pv_device_type ON page_visits(device_type);
+CREATE INDEX idx_pv_os_name ON page_visits(os_name);
+CREATE INDEX idx_pv_browser_name ON page_visits(browser_name);
+CREATE INDEX idx_pv_country_code ON page_visits(country_code);
 
 -- ===================================
 -- TABLE: click_events
@@ -75,6 +97,56 @@ CREATE INDEX idx_cc_session_id ON cookie_consents(session_id);
 CREATE INDEX idx_cc_created_at ON cookie_consents(created_at DESC);
 
 -- ===================================
+-- TABLE: click_heatmap
+-- Проследяване на координати на кликванията за heatmap
+-- ===================================
+CREATE TABLE click_heatmap (
+    id SERIAL PRIMARY KEY,
+    session_id UUID NOT NULL,
+    page_url VARCHAR(512) NOT NULL,
+    
+    -- Click coordinates
+    x_position INTEGER NOT NULL,
+    y_position INTEGER NOT NULL,
+    
+    -- Viewport dimensions
+    viewport_width INTEGER NOT NULL,
+    viewport_height INTEGER NOT NULL,
+    
+    -- Element information
+    element_selector VARCHAR(512),
+    element_text VARCHAR(255),
+    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+-- Indexes за click_heatmap
+CREATE INDEX idx_ch_session_id ON click_heatmap(session_id);
+CREATE INDEX idx_ch_page_url ON click_heatmap(page_url);
+CREATE INDEX idx_ch_created_at ON click_heatmap(created_at DESC);
+CREATE INDEX idx_ch_coordinates ON click_heatmap(x_position, y_position);
+
+-- ===================================
+-- TABLE: conversion_events
+-- Проследяване на conversion funnel събития
+-- ===================================
+CREATE TABLE conversion_events (
+    id SERIAL PRIMARY KEY,
+    session_id UUID NOT NULL,
+    event_name VARCHAR(100) NOT NULL,
+    event_order INTEGER NOT NULL,
+    page_url VARCHAR(512) NOT NULL,
+    event_data TEXT, -- JSON data
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+-- Indexes за conversion_events
+CREATE INDEX idx_conv_session_id ON conversion_events(session_id);
+CREATE INDEX idx_conv_event_name ON conversion_events(event_name);
+CREATE INDEX idx_conv_created_at ON conversion_events(created_at DESC);
+CREATE INDEX idx_conv_event_order ON conversion_events(event_order);
+
+-- ===================================
 -- FUNCTION: Cleanup old data (GDPR - 90 days retention)
 -- ===================================
 CREATE OR REPLACE FUNCTION cleanup_old_analytics_data()
@@ -90,6 +162,14 @@ BEGIN
     
     -- Delete cookie consents older than 90 days
     DELETE FROM cookie_consents 
+    WHERE created_at < CURRENT_TIMESTAMP - INTERVAL '90 days';
+    
+    -- Delete click heatmap data older than 90 days
+    DELETE FROM click_heatmap 
+    WHERE created_at < CURRENT_TIMESTAMP - INTERVAL '90 days';
+    
+    -- Delete conversion events older than 90 days
+    DELETE FROM conversion_events 
     WHERE created_at < CURRENT_TIMESTAMP - INTERVAL '90 days';
     
     -- Delete inactive sessions (older than 30 minutes)

@@ -22,6 +22,9 @@
     let consentGiven = false;
     let eventQueue = [];
     let batchTimer = null;
+    let pageLoadTime = null;
+    let heatmapQueue = [];
+    let conversionStep = 0;
     
     // ===================================
     // UTILITY FUNCTIONS
@@ -177,6 +180,18 @@
     // ===================================
     
     /**
+     * Get screen and viewport information
+     */
+    function getScreenInfo() {
+        return {
+            screen_width: window.screen.width,
+            screen_height: window.screen.height,
+            viewport_width: window.innerWidth,
+            viewport_height: window.innerHeight
+        };
+    }
+    
+    /**
      * Track page visit
      */
     function trackPageVisit() {
@@ -184,11 +199,15 @@
         
         updateSessionTimestamp();
         
+        // Record page load time
+        pageLoadTime = Date.now();
+        
         const data = {
             session_id: getSessionId(),
             page_url: window.location.href,
             referrer: document.referrer || '',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            ...getScreenInfo()
         };
         
         if (checkConsent()) {
@@ -196,6 +215,33 @@
         } else {
             // Queue for later if consent not given
             queueEvent('/track/visit', data);
+        }
+    }
+    
+    /**
+     * Track page exit and time on page
+     */
+    function trackPageExit() {
+        if (!pageLoadTime) return;
+        
+        const timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // seconds
+        
+        // Send synchronously using sendBeacon if available
+        const data = {
+            session_id: getSessionId(),
+            page_url: window.location.href,
+            time_on_page: timeOnPage
+        };
+        
+        if (navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            navigator.sendBeacon(`${CONFIG.apiUrl}/track/page-exit`, blob);
+        } else {
+            // Fallback to synchronous XHR
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `${CONFIG.apiUrl}/track/page-exit`, false);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(data));
         }
     }
     
@@ -259,6 +305,109 @@
         });
     }
     
+    /**
+     * Track heatmap click
+     */
+    function trackHeatmapClick(event) {
+        if (!checkConsent()) return;
+        
+        const rect = event.target.getBoundingClientRect();
+        const clickData = {
+            page_url: window.location.href,
+            x: event.clientX,
+            y: event.clientY + window.scrollY,
+            viewport_width: window.innerWidth,
+            viewport_height: window.innerHeight,
+            element_selector: getElementSelector(event.target),
+            element_text: event.target.textContent ? event.target.textContent.substring(0, 100) : ''
+        };
+        
+        heatmapQueue.push(clickData);
+        
+        // Send in batches
+        if (heatmapQueue.length >= 5) {
+            flushHeatmapQueue();
+        }
+    }
+    
+    /**
+     * Get CSS selector for element
+     */
+    function getElementSelector(element) {
+        if (element.id) return `#${element.id}`;
+        if (element.className) {
+            const classes = element.className.split(' ').filter(c => c).join('.');
+            return `${element.tagName.toLowerCase()}.${classes}`;
+        }
+        return element.tagName.toLowerCase();
+    }
+    
+    /**
+     * Flush heatmap queue
+     */
+    function flushHeatmapQueue() {
+        if (heatmapQueue.length === 0) return;
+        
+        const data = {
+            session_id: getSessionId(),
+            clicks: [...heatmapQueue],
+            consent_given: consentGiven
+        };
+        
+        sendRequest('/track/heatmap', data);
+        heatmapQueue = [];
+    }
+    
+    /**
+     * Track conversion event
+     */
+    function trackConversion(eventName, eventData = {}) {
+        if (!checkConsent()) return;
+        
+        conversionStep++;
+        
+        const data = {
+            session_id: getSessionId(),
+            event_name: eventName,
+            page_url: window.location.href,
+            event_data: eventData,
+            consent_given: consentGiven
+        };
+        
+        sendRequest('/track/conversion', data);
+    }
+    
+    /**
+     * Auto-detect conversion events
+     */
+    function setupConversionTracking() {
+        // Track page landing
+        trackConversion('page_land');
+        
+        // Track scroll depth
+        let scrollTracked = false;
+        window.addEventListener('scroll', function() {
+            if (scrollTracked) return;
+            
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > 50) {
+                trackConversion('scroll_50');
+                scrollTracked = true;
+            }
+        });
+        
+        // Track CTA clicks (buttons with data-track-id)
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('[data-track-id]');
+            if (target) {
+                const buttonId = target.getAttribute('data-track-id');
+                if (buttonId.includes('cta') || buttonId.includes('download') || buttonId.includes('signup')) {
+                    trackConversion('cta_click', { button_id: buttonId });
+                }
+            }
+        });
+    }
+    
     // ===================================
     // INITIALIZATION
     // ===================================
@@ -282,28 +431,43 @@
             if (target) {
                 trackClick(target);
             }
+            
+            // Track heatmap clicks
+            trackHeatmapClick(e);
         }, true);
         
         // Track page visibility changes (for active session tracking)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 trackPageVisit();
+            } else {
+                // Flush heatmap when page hidden
+                flushHeatmapQueue();
             }
         });
         
-        // Flush queue before page unload
+        // Flush queue and track page exit before page unload
         window.addEventListener('beforeunload', function() {
+            trackPageExit();
             flushEventQueue();
+            flushHeatmapQueue();
         });
+        
+        // Periodic flush of heatmap data
+        setInterval(flushHeatmapQueue, 10000); // Every 10 seconds
         
         // Track SPA navigation (for single-page apps)
         if (window.history && window.history.pushState) {
             const originalPushState = window.history.pushState;
             window.history.pushState = function(...args) {
+                trackPageExit(); // Track exit from previous page
                 originalPushState.apply(this, args);
                 setTimeout(trackPageVisit, 100);
             };
         }
+        
+        // Setup conversion tracking
+        setupConversionTracking();
         
         console.log('✅ FinTrack Analytics initialized', {
             sessionId: sessionId,
@@ -320,6 +484,7 @@
         trackPageVisit: trackPageVisit,
         trackClick: trackClick,
         trackEvent: trackEvent,
+        trackConversion: trackConversion,
         
         // Consent management
         setConsent: setConsent,
@@ -334,7 +499,10 @@
         },
         
         // Manual initialization (if auto-init disabled)
-        init: init
+        init: init,
+        
+        // Utility
+        flushHeatmap: flushHeatmapQueue
     };
     
     // Auto-initialize when DOM is ready

@@ -57,6 +57,10 @@
             </nav>
             
             <div class="sidebar-footer">
+                <button onclick="showExportModal()" class="btn btn-primary" style="width: 100%; margin-bottom: 10px;">
+                    <i class="fas fa-download"></i>
+                    Експорт данни
+                </button>
                 <button onclick="logout()" class="btn btn-danger" style="width: 100%;">
                     <i class="fas fa-sign-out-alt"></i>
                     Изход
@@ -153,6 +157,21 @@
                         <span>кликвания / посещения</span>
                     </div>
                 </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div>
+                            <p class="stat-card-title">Средно време</p>
+                            <h3 class="stat-card-value" id="avgTimeOnPage">-- мин</h3>
+                        </div>
+                        <div class="stat-card-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-footer">
+                        <span>време на страницата</span>
+                    </div>
+                </div>
             </section>
             
             <!-- Charts -->
@@ -198,6 +217,105 @@
                         <canvas id="sourcesChart"></canvas>
                     </div>
                 </div>
+                
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Устройства</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="devicesChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Операционни системи</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="osChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Браузъри</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="browsersChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Geographic Section -->
+            <section class="charts-grid">
+                <div class="chart-card chart-card-wide">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Географско разпределение</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="geoChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Conversion Funnel Section -->
+            <section class="charts-grid">
+                <div class="chart-card chart-card-wide">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Conversion Funnel</h3>
+                        <div class="chart-card-actions">
+                            <button class="chart-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="funnelChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Heatmap Section -->
+            <section class="heatmap-section">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <h3 class="chart-card-title">Heatmap на кликванията</h3>
+                        <div class="chart-card-actions">
+                            <select id="heatmapPageSelect" class="heatmap-select">
+                                <option value="">Всички страници</option>
+                            </select>
+                            <button class="chart-btn" onclick="refreshHeatmap()">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="heatmap-container" id="heatmapContainer">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>Зареждане на heatmap данни...</p>
+                        </div>
+                    </div>
+                </div>
             </section>
             
             <!-- Events Table -->
@@ -233,6 +351,49 @@
     <!-- Mobile Menu Toggle -->
     <div class="mobile-menu-toggle" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Експорт на данни</h3>
+                <button class="modal-close" onclick="closeExportModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Тип данни</label>
+                    <select id="exportType" class="form-control">
+                        <option value="all">Всички данни</option>
+                        <option value="visits">Само посещения</option>
+                        <option value="clicks">Само кликвания</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Период</label>
+                    <select id="exportDays" class="form-control">
+                        <option value="7">Последните 7 дни</option>
+                        <option value="30" selected>Последните 30 дни</option>
+                        <option value="90">Последните 90 дни</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Формат</label>
+                    <select id="exportFormat" class="form-control">
+                        <option value="csv">CSV</option>
+                        <option value="excel" disabled>Excel (скоро)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeExportModal()">Отказ</button>
+                <button class="btn btn-primary" onclick="executeExport()">
+                    <i class="fas fa-download"></i> Експорт
+                </button>
+            </div>
+        </div>
     </div>
     
     <script src="admin.js"></script>

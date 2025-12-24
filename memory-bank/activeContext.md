@@ -1,9 +1,115 @@
-# Активен контекст - Seamless Entrance Animations
+# Активен контекст - Hero Desktop Navigation
 
 ## Текуща фокусна област
-✅ ЗАВЪРШЕНА: Seamless Entrance Animations System - сайтът изглежда като едно цяло
+✅ ЗАВЪРШЕНА: Hero Desktop Navigation - Модерна навигация в горния десен ъгъл
 
 ## Последни промени
+
+### 🎯 Hero Desktop Navigation - FinTrack Custom Style (24.12.2024)
+- ✅ **Minimalist FinTrack Design** - Персонализиран дизайн в стила на сайта
+- ✅ **Тъмна цветова палитра** - #2c2c2c акценти вместо purple/blue
+- ✅ **Refined Glassmorphism** - Суптилни прозрачности с тъмни тонове
+- ✅ **Animated Lamp Indicator** - Елегантна бяла "лампа" с минимална индикаторна лента
+- ✅ **Bulgarian Text** - Навигация на български: Начало, Функции, Отзиви, Изтегли
+- ✅ **Desktop Only** - Показва се само на desktop (>1024px)
+- ✅ **Static Position** - Остава в hero секцията, не скролва със страницата
+- ✅ **Locomotive Scroll Integration** - Интегрирана с Locomotive Scroll за плавен скрол
+
+#### Design Specifications - FinTrack Style
+**Navigation Container (`.hero-desktop-nav`)**:
+- Position: Absolute - top: 30px, right: 50px
+- Z-index: 1000
+- Animation: fadeInDown (1s, 0.3s delay)
+- Font: Inter (съответства на brand typography)
+
+**Pill Container (`.nav-pill`)**:
+- Background: rgba(44, 44, 44, 0.05) - тъмен тон
+- Border: 1px solid rgba(44, 44, 44, 0.08)
+- Backdrop-filter: blur(20px)
+- Border-radius: 50px
+- Padding: 4px (компактен)
+- Gap: 4px между елементите
+- Box-shadow: 
+  - 0 4px 20px rgba(0, 0, 0, 0.08)
+  - inset 0 1px 0 rgba(255, 255, 255, 0.6) - внътрешен highlight
+- Hover: Enhanced border и shadow
+
+**Navigation Items (`.nav-pill-item`)**:
+- Padding: 12px 24px (просторен)
+- Font-family: 'Inter', sans-serif
+- Font-size: 13px, Font-weight: 500
+- Letter-spacing: 1.2px
+- Text-transform: UPPERCASE (като brand-title)
+- Color: rgba(44, 44, 44, 0.45) (inactive)
+- Hover: rgba(44, 44, 44, 0.75)
+- Active: #2c2c2c (пълен тъмен цвят)
+- Border-radius: 50px
+- Transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+
+**Lamp Effect (`.nav-pill-lamp`)**:
+- Background: Linear gradient white (elegant)
+  - rgba(255, 255, 255, 0.95) → rgba(255, 255, 255, 0.85)
+- Width: 25% - 4px
+- Height: 100% - 8px
+- Border-radius: 50px
+- Transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1) (по-бавен за elegance)
+- Box-shadow: 
+  - 0 2px 12px rgba(44, 44, 44, 0.12)
+  - inset 0 1px 0 rgba(255, 255, 255, 1) - glossy finish
+  - 0 4px 24px rgba(44, 44, 44, 0.08)
+
+**Minimalist Indicator Bar (`.nav-pill-lamp::before`)**:
+- Top bar: 24px width, 2px height (фин)
+- Background: #2c2c2c
+- Border-radius: 2px
+- Opacity: 0.85
+- Без glow - минималистичен подход
+
+**Subtle Shadow (`.nav-pill-lamp::after`)**:
+- Radial gradient под лампата
+- Subtler effect: rgba(44, 44, 44, 0.15)
+- Filter: blur(3px)
+- По-малък размер за фин детайл
+
+#### Navigation Items - FinTrack Sections
+1. **Начало** (#hero) - Hero секция
+2. **Функции** (#features) - Features/Phone секция
+3. **Отзиви** (#testimonials) - Testimonials секция
+4. **Изтегли** (#download) - Download секция
+
+#### JavaScript Functionality
+**Function: `initHeroDesktopNav()`**:
+- Click handler за навигационните елементи
+- Плавен scroll към секциите (Locomotive Scroll или native)
+- Manual active state при клик
+- Интегриран с Locomotive Scroll за smooth scrolling
+
+**Behavior**:
+- Статична позиция в hero секцията
+- Активното състояние се променя само при клик
+- Не следи scroll позицията (остава в hero)
+- Изчезва когато потребителят скролне надолу
+
+#### Responsive Behavior
+- **Desktop (>1024px)**: Пълна видимост
+- **Tablet & Mobile (≤1024px)**: Скрита (display: none)
+
+#### Technical Implementation
+- **HTML**: Semantic nav структура в hero секцията
+- **CSS**: 
+  - Glassmorphism с backdrop-filter
+  - Complex positioning система за lamp
+  - CSS :has() селектор за lamp позициониране
+  - Multiple pseudo-elements за light effects
+- **JavaScript**:
+  - Event listeners за click
+  - Scroll tracking
+  - Locomotive Scroll integration
+  - Active state management
+
+## Предишни промени
+
+### 🎯 Seamless Entrance Animations System (11.12.2024)
 
 ### 🎯 Seamless Entrance Animations System (11.12.2024)
 - ✅ **CSS Reveal Classes** - Добавена пълна система за reveal анимации

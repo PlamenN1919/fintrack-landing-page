@@ -6,28 +6,35 @@
     <meta name="description" content="FinTrack - Интелигентна система за управление на финанси и бюджетиране">
     <title>FinTrack - Интелигентно финансово управление</title>
     
-    <!-- Google Fonts -->
+    <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://prod.spline.design">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- Google Fonts with font-display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome - Async loading for non-critical icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Spline 3D -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    <!-- Spline 3D - Async loading for better performance -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" async></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
     
-    <!-- Locomotive Scroll CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <!-- Locomotive Scroll CSS - Async loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"></noscript>
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Performance Optimizations CSS -->
-    <link rel="stylesheet" href="performance-optimizations.css">
+    <!-- Stylesheet - Minified for performance -->
+    <link rel="stylesheet" href="styles.min.css">
     
     <!-- Locomotive Override CSS - Must be LAST to remove section borders -->
     <link rel="stylesheet" href="locomotive-override.css">
@@ -37,7 +44,16 @@
     <div data-scroll-container>
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/logos/logo.png" alt="FinTrack Logo" class="logo">
+            <img 
+                src="assets/logos/optimized/logo-256.png" 
+                srcset="assets/logos/optimized/logo-128.png 128w,
+                        assets/logos/optimized/logo-256.png 256w,
+                        assets/logos/optimized/logo-512.png 512w"
+                sizes="(max-width: 768px) 40px, 60px"
+                alt="FinTrack Logo" 
+                class="logo"
+                width="60"
+                height="60">
         </div>
 
         <!-- Desktop Navigation - Hero Top Right -->
@@ -66,12 +82,12 @@
         <!-- Hero Section -->
         <section class="hero" id="hero" data-scroll-section>
         <!-- Spline 3D Container -->
-        <div class="spline-container" data-scroll data-scroll-speed="-0.1">
+        <div class="spline-container" data-scroll data-scroll-speed="-0.3">
             <spline-viewer loading-anim-type="none" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->
-        <div class="hero-brand" data-scroll data-scroll-speed="0.08">
+        <div class="hero-brand" data-scroll data-scroll-speed="0.2">
             <h1 class="brand-title">FIN. TRACK™</h1>
             <p class="brand-subtitle">INTELLIGENT BUDGETING — ©2025</p>
             
@@ -99,7 +115,7 @@
         </div>
 
         <!-- Bottom Left Design Element -->
-        <div class="bottom-left-design" data-scroll data-scroll-speed="0.06">
+        <div class="bottom-left-design" data-scroll data-scroll-speed="0.15">
             <div class="design-squares">
                 <div class="square black"></div>
                 <div class="square gray"></div>
@@ -112,7 +128,7 @@
         </div>
 
         <!-- Right Top Text -->
-        <div class="right-top-text" data-scroll data-scroll-speed="0.1">
+        <div class="right-top-text" data-scroll data-scroll-speed="0.25">
             <div class="text-indicator"></div>
             <div class="text-content">
                 <p>AI-БАЗИРАНА</p>
@@ -121,7 +137,7 @@
         </div>
 
         <!-- Right Bottom Text -->
-        <div class="right-bottom-text" data-scroll data-scroll-speed="0.12">
+        <div class="right-bottom-text" data-scroll data-scroll-speed="0.3">
             <div class="text-content">
                 <p>СПЕСТЕТЕ ПОВЕЧЕ</p>
                 <p>ЖИВЕЙТЕ ПО-ДОБРЕ</p>
@@ -129,7 +145,7 @@
         </div>
 
         <!-- Glass Morphism Card -->
-        <div class="glass-morphism-card" data-scroll data-scroll-speed="0.14">
+        <div class="glass-morphism-card" data-scroll data-scroll-speed="0.35">
             <div class="card-number">01</div>
             <div class="card-content">
                 <div class="card-icon">
@@ -384,13 +400,13 @@
     <!-- Features Section (Bento Grid) -->
     <section class="phone-section section" id="features" data-scroll-section>
         <!-- Phone Title -->
-        <h2 class="phone-title" data-scroll data-scroll-speed="0.2" data-scroll-class="title-revealed">ВСИЧКО ОТ КОЕТО СЕ<br><span class="highlight-word">НУЖДАЕТЕ</span></h2>
+        <h2 class="phone-title" data-scroll data-scroll-speed="0.5" data-scroll-class="title-revealed">ВСИЧКО ОТ КОЕТО СЕ<br><span class="highlight-word">НУЖДАЕТЕ</span></h2>
         
         <div class="container">
             <!-- Section Header -->
             <div class="phone-header" data-scroll data-scroll-class="header-revealed">
-                <div class="phone-badge" data-scroll data-scroll-speed="0.12">✨ ФУНКЦИИ</div>
-                <p class="phone-subtitle" data-scroll data-scroll-speed="0.16">
+                <div class="phone-badge" data-scroll data-scroll-speed="0.3">✨ ФУНКЦИИ</div>
+                <p class="phone-subtitle" data-scroll data-scroll-speed="0.4">
                     Мощни инструменти за пълен контрол върху вашите финанси
                 </p>
                 
@@ -403,14 +419,33 @@
                 </a>
                 
                 <!-- Phone Mockup in Header (Desktop only) -->
-                <div class="phone-mockup-header" data-scroll data-scroll-speed="0.08">
-                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image-header">
+                <div class="phone-mockup-header" data-scroll data-scroll-speed="0.2">
+                    <img 
+                        src="assets/mockups/optimized/mockup-iphone-desktop.png"
+                        srcset="assets/mockups/optimized/mockup-iphone-mobile.png 500w,
+                                assets/mockups/optimized/mockup-iphone-tablet.png 800w,
+                                assets/mockups/optimized/mockup-iphone-desktop.png 1200w"
+                        sizes="(max-width: 768px) 250px, (max-width: 1200px) 300px, 400px"
+                        alt="FinTrack App Interface" 
+                        class="phone-mockup-image-header"
+                        loading="lazy"
+                        width="400"
+                        height="533">
                 </div>
             </div>
             
             <!-- Phone Mockup for Mobile (outside phone-header) -->
             <div class="phone-mockup-mobile">
-                <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile">
+                <img 
+                    src="assets/mockups/optimized/mockup-iphone-mobile.png"
+                    srcset="assets/mockups/optimized/mockup-iphone-mobile.png 500w,
+                            assets/mockups/optimized/mockup-iphone-tablet.png 800w"
+                    sizes="(max-width: 768px) 250px, 300px"
+                    alt="FinTrack App Interface" 
+                    class="phone-mockup-image-mobile"
+                    loading="lazy"
+                    width="250"
+                    height="333">
             </div>
 
             <!-- Features Layout with Phone -->
@@ -673,7 +708,7 @@
 
         <div class="container stats-content">
             <!-- Left Side - Brand Text -->
-            <div class="stats-left" data-scroll data-scroll-speed="0.06">
+            <div class="stats-left" data-scroll data-scroll-speed="0.15">
                 <h2 class="stats-main-title">
                     <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
                 </h2>
@@ -688,7 +723,7 @@
             </div>
 
             <!-- Right Side - Statistics -->
-            <div class="stats-list" data-scroll data-scroll-speed="0.1">
+            <div class="stats-list" data-scroll data-scroll-speed="0.25">
                 <div class="stat-item">
                     <div class="stat-content">
                         <span class="stat-number-large" data-target="200">0</span>
@@ -739,7 +774,7 @@
             </div>
             
             <!-- Grouped Cards Container -->
-            <div class="testimonials-cards-group testimonial-cards-reveal" data-scroll data-scroll-speed="0.07">
+            <div class="testimonials-cards-group testimonial-cards-reveal" data-scroll data-scroll-speed="0.18">
                 <!-- Long Card with Rounded Corners -->
                 <div class="testimonial-long-card">
                     <!-- Internal Testimonial - Inside Card (Иван Димитров) -->
@@ -1387,7 +1422,7 @@
     <!-- Download Section -->
     <section class="download-section section" id="download" data-scroll-section>
         <div class="container">
-            <div class="download-content" data-scroll data-scroll-speed="0.09">
+            <div class="download-content" data-scroll data-scroll-speed="0.22">
                 <h2 class="download-title">
                     Готови да вземете<br>
                     <span class="highlight">контрол?</span>
@@ -1441,7 +1476,16 @@
             <div class="footer-content">
                 <!-- Column 1: About -->
                 <div class="footer-column">
-                    <img src="assets/logos/logo.png" alt="FinTrack Logo" class="footer-logo">
+                    <img 
+                        src="assets/logos/optimized/logo-256.png"
+                        srcset="assets/logos/optimized/logo-128.png 128w,
+                                assets/logos/optimized/logo-256.png 256w"
+                        sizes="80px"
+                        alt="FinTrack Logo" 
+                        class="footer-logo"
+                        loading="lazy"
+                        width="80"
+                        height="80">
                     <p class="footer-description">
                         Интелигентна система за управление на финанси и бюджетиране. Спестете повече, живейте по-добре.
                     </p>
@@ -2047,18 +2091,18 @@
     </div>
     </div><!-- End Locomotive Scroll Container -->
 
-    <!-- Locomotive Scroll JS -->
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <!-- Locomotive Scroll JS - Defer for non-blocking -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
     
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <!-- Main JavaScript - Minified and deferred for better performance -->
+    <script src="script.min.js" defer></script>
     
-    <!-- FinTrack Analytics Tracking -->
+    <!-- FinTrack Analytics Tracking - Async loading -->
     <script>
         // Configure Analytics API URL (change to your production URL)
         window.ANALYTICS_API_URL = 'http://localhost:5001/api';
     </script>
-    <script src="assets/js/cookie-consent.js"></script>
-    <script src="assets/js/tracking.js"></script>
+    <script src="assets/js/cookie-consent.js" defer></script>
+    <script src="assets/js/tracking.js" defer></script>
 </body>
 </html>
