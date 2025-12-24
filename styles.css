@@ -18077,6 +18077,7 @@ body.is-scrolling {
     /* Features Section */
     .phone-section {
         padding: 80px 0;
+        margin-top: 300px !important;
     }
     
     .phone-header {
@@ -20380,13 +20381,14 @@ body.is-scrolling {
     }
     
     .hero-brand {
-        position: relative;
-        left: auto;
-        top: auto;
+        position: absolute;
+        left: 40px;
+        top: 100px;
         transform: none;
-        text-align: center;
-        margin-bottom: 30px;
+        text-align: left;
+        margin-bottom: 0;
         z-index: 20;
+        width: auto;
     }
     
     .brand-title {
@@ -20400,33 +20402,40 @@ body.is-scrolling {
     }
     
     .brand-icons {
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 15px;
     }
     
     .brand-dots {
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 30px;
         gap: 25px;
     }
     
     .hero-brand .download-pill-btn {
-        margin: 25px auto 0;
+        margin: 25px 0 0 0;
     }
     
     .spline-container {
         position: relative;
-        left: 200px;
+        left: 50%;
         top: auto;
-        transform: none;
-        width: 100%;
-        height: 55vh;
-        max-width: 600px;
-        max-height: 550px;
-        margin: 280px auto 20px;
+        transform: translateX(-50%);
+        width: 280%;
+        height: 220vh;
+        max-width: 2800px;
+        max-height: 3000px;
+        margin: 800px auto 20px;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: visible !important;
+    }
+    
+    .spline-container spline-viewer,
+    .spline-container spline-viewer.loaded {
+        transform: scale(0.7) !important;
+        transform-origin: center center;
     }
     
     .social-links {
@@ -20434,11 +20443,12 @@ body.is-scrolling {
     }
     
     .bottom-left-design {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        margin-top: 25px;
-        justify-content: center;
+        position: absolute;
+        left: 30px;
+        bottom: 50px;
+        margin-top: 0;
+        justify-content: flex-start;
+        z-index: 15;
     }
     
     .design-squares {
@@ -20446,7 +20456,7 @@ body.is-scrolling {
     }
     
     .design-text {
-        text-align: center;
+        text-align: left;
         max-width: 180px;
     }
     
@@ -20462,16 +20472,18 @@ body.is-scrolling {
     }
     
     .glass-morphism-card {
-        position: relative;
+        position: absolute;
         top: auto;
-        left: auto;
+        bottom: 100px;
+        left: 50%;
         right: auto;
-        transform: none;
+        transform: translateX(-50%);
         width: 90%;
         max-width: 300px;
         height: auto;
         min-height: 140px;
-        margin: 25px auto 0;
+        margin: 0;
+        z-index: 15;
         padding: 22px;
         border-radius: 30px;
     }
@@ -23098,84 +23110,237 @@ body.is-scrolling {
 /* --- Tablet Portrait (768px - 991px) --- */
 @media (min-width: 768px) and (max-width: 991px) {
     .phone-section {
-        padding: 70px 0;
+        padding: 20px 0;
+        margin-top: 300px;
+        min-height: 400px;
     }
     
     .phone-header {
         margin-bottom: 45px;
+        position: relative;
     }
     
     .phone-badge {
-        font-size: 10px;
-        padding: 9px 18px;
+        display: none;
     }
     
     .phone-title {
         font-size: 44px;
         letter-spacing: -1px;
-        text-align: left;
+        text-align: center;
         max-width: 480px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 20px;
     }
     
     .phone-subtitle {
         font-size: 14px;
-        max-width: 480px;
+        max-width: 650px;
+        text-align: center;
+        margin: 0 0 20px 0;
+        margin-left: 750px;
     }
     
     .phone-header .download-pill-btn {
-        margin-top: 25px;
+        margin: 25px 0 0 750px;
+        display: inline-flex;
+    }
+    
+    /* Hide desktop phone mockup */
+    .phone-mockup-center {
+        display: none !important;
+    }
+    
+    /* Show mobile phone mockup on tablet */
+    .phone-mockup-mobile {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 60px auto 40px auto !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+    
+    .phone-mockup-image-mobile {
+        max-width: none !important;
+        width: 150% !important;
+        height: auto !important;
+    }
+    
+    .phone-section .container {
+        overflow: visible !important;
+        min-height: 400px !important;
     }
     
     .features-layout {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-    
-    .features-column {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-    
-    .phone-mockup-center {
-        order: 2;
-        margin: 30px auto 35px;
-        display: block !important;
-    }
-    
-    .phone-mockup-image {
-        max-width: 280px;
         display: block;
-        margin: 0 auto;
+        position: relative;
+        overflow: visible;
+        padding: 0;
+        min-height: 200px;
+        height: auto;
+        margin-top: -200px;
+        margin-bottom: 50px;
+        z-index: 100;
     }
     
-    .bento-card.medium {
-        padding: 20px;
+    /* Hide desktop columns */
+    .features-column {
+        display: none !important;
     }
     
-    .card-header {
-        gap: 10px;
-        margin-bottom: 12px;
+    /* Show Carousel Container on tablet */
+    .features-carousel-container {
+        display: block !important;
+        position: absolute;
+        width: 100%;
+        top: -100px;
+        left: 0;
+        transform: translateY(0);
+        overflow: visible;
+        padding: 0;
+        z-index: 100;
     }
     
-    .card-title {
-        font-size: 14px;
+    .features-carousel-wrapper {
+        display: flex;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        gap: 20px;
+        padding: 0 40px;
+        will-change: transform;
+        cursor: grab;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
     }
     
-    .card-description {
+    .features-carousel-wrapper.dragging {
+        transition: none;
+        cursor: grabbing;
+    }
+    
+    /* Carousel Cards */
+    .features-carousel-wrapper .bento-card {
+        flex: 0 0 calc(100vw - 120px);
+        max-width: 350px;
+        min-height: 220px;
+        scroll-snap-align: center;
+        transform: scale(0.92);
+        opacity: 0.65;
+        transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        pointer-events: auto;
+        filter: blur(1px);
+        position: relative;
+        z-index: 101;
+        padding: 24px;
+    }
+    
+    .features-carousel-wrapper .bento-card.active {
+        transform: scale(1.05);
+        opacity: 1;
+        filter: blur(0);
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Card text visibility */
+    .features-carousel-wrapper .card-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        width: 100% !important;
+        height: 100% !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .features-carousel-wrapper .card-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    
+    .features-carousel-wrapper .card-title {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        color: #2c2c2c !important;
+        margin: 0 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .features-carousel-wrapper .card-description {
+        font-size: 14px !important;
+        color: #666 !important;
+        line-height: 1.6 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        margin: 0 !important;
+    }
+    
+    .features-carousel-wrapper .card-icon {
+        font-size: 24px !important;
+        width: 50px !important;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Carousel Indicators */
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 30px;
+        margin-bottom: -300px;
+        padding: 0 20px;
+    }
+    
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(44, 44, 44, 0.2);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .carousel-indicator.active {
+        width: 24px;
+        border-radius: 4px;
+        background: rgba(44, 44, 44, 0.6);
+    }
+    
+    /* Swipe hint animation */
+    .swipe-hint {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-size: 12px;
-        line-height: 1.5;
+        color: rgba(44, 44, 44, 0.5);
+        animation: swipeHintFade 3s ease-in-out infinite;
+        pointer-events: none;
     }
     
-    .card-icon {
-        width: 42px;
-        height: 42px;
-    }
-    
-    .card-icon i {
-        font-size: 18px;
+    .swipe-hint i {
+        animation: swipeHintMove 1.5s ease-in-out infinite;
     }
     
     .health-bars {
