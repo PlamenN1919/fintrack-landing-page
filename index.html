@@ -2055,8 +2055,11 @@
     
     <!-- FinTrack Analytics Tracking -->
     <script>
-        // Configure Analytics API URL (change to your production URL)
-        window.ANALYTICS_API_URL = 'http://localhost:5001/api';
+        // Configure Analytics API URL
+        // ВАЖНО: Замени с твоя Railway Backend URL!
+        window.ANALYTICS_API_URL = 'REPLACE_WITH_YOUR_RAILWAY_URL/api';
+        
+        // Пример: window.ANALYTICS_API_URL = 'https://fintrack-backend-production.up.railway.app/api';
     </script>
     <script src="assets/js/cookie-consent.js"></script>
     <script src="assets/js/tracking.js"></script>
