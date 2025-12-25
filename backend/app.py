@@ -37,7 +37,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
 
 # Initialize extensions
 CORS(app, origins=app.config['CORS_ORIGINS'], supports_credentials=True)
-socketio = SocketIO(app, cors_allowed_origins=app.config['CORS_ORIGINS'])
+socketio = SocketIO(app, cors_allowed_origins=app.config['CORS_ORIGINS'], async_mode='threading')
 limiter = Limiter(
     app=app,
     key_func=get_remote_address,
