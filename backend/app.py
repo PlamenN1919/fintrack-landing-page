@@ -49,8 +49,13 @@ limiter = Limiter(
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], **app.config['SQLALCHEMY_ENGINE_OPTIONS'])
 db_session = scoped_session(sessionmaker(bind=engine))
 
-# Create tables
-Base.metadata.create_all(engine)
+# Create tables (with error handling)
+try:
+    Base.metadata.create_all(engine)
+    print("✅ Database tables created successfully")
+except Exception as e:
+    print(f"⚠️ Warning: Could not create tables: {e}")
+    print("Tables may already exist or will be created on first request")
 
 
 # Utility functions
@@ -119,11 +124,30 @@ def parse_device_info(user_agent_string):
 
 # API Routes
 
+@app.route('/', methods=['GET'])
+def index():
+    """Root endpoint"""
+    return jsonify({
+        'service': 'FinTrack Analytics Backend',
+        'status': 'running',
+        'version': '1.0.0'
+    })
+
+
+@app.route('/health', methods=['GET'])
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
+    try:
+        # Test database connection
+        db_session.execute('SELECT 1')
+        db_status = 'connected'
+    except:
+        db_status = 'disconnected'
+    
     return jsonify({
         'status': 'healthy',
+        'database': db_status,
         'timestamp': datetime.utcnow().isoformat()
     })
 
