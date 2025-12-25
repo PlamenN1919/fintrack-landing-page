@@ -16,10 +16,10 @@ class Config:
     DEBUG = False
     TESTING = False
     
-    # Database (using psycopg3)
+    # Database (using psycopg2)
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'DATABASE_URL',
-        'postgresql+psycopg://localhost/fintrack_analytics'
+        'postgresql://localhost/fintrack_analytics'
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
