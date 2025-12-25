@@ -140,10 +140,12 @@ def health_check():
     """Health check endpoint"""
     try:
         # Test database connection
-        db_session.execute('SELECT 1')
+        from sqlalchemy import text
+        db_session.execute(text('SELECT 1'))
         db_status = 'connected'
-    except:
+    except Exception as e:
         db_status = 'disconnected'
+        app.logger.error(f"Database health check failed: {str(e)}")
     
     return jsonify({
         'status': 'healthy',
