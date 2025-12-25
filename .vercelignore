@@ -1,0 +1,30 @@
+# Ignore backend folder
+backend/
+backend/**
+
+# Ignore memory bank
+memory-bank/
+memory-bank/**
+
+# Ignore documentation
+DEPLOYMENT_GUIDE.md
+FINAL_STEPS.md
+README.md
+
+# Ignore screenshots
+screenshots/
+screenshots/**
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Environment files
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
