@@ -1,0 +1,9 @@
+{
+  "name": "fintrack-landing-page",
+  "version": "1.0.0",
+  "description": "FinTrack Landing Page - Static HTML/CSS/JS",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  }
+}
+
