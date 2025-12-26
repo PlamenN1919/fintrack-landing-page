@@ -8,7 +8,9 @@
     
     // Configuration
     const CONFIG = {
-        apiUrl: window.ANALYTICS_API_URL || 'http://localhost:5000/api',
+        // Production: Use environment variable from Vercel
+        // Development: Falls back to localhost
+        apiUrl: window.ANALYTICS_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api'),
         trackVisits: true,
         trackClicks: true,
         gdprEnabled: true,
