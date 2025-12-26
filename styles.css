@@ -2610,14 +2610,7 @@ body.is-scrolling {
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 107, 107, 0.08) 0%,
-        rgba(255, 71, 87, 0.12) 25%,
-        rgba(255, 56, 56, 0.08) 50%,
-        rgba(255, 107, 107, 0.12) 75%,
-        rgba(255, 71, 87, 0.08) 100%
-    );
+    background: transparent;
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
 }
