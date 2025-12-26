@@ -2,35 +2,79 @@
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="FinTrack - Интелигентна система за управление на финанси и бюджетиране">
+    <meta name="theme-color" content="#E8E4E4">
+    
+    <!-- Performance & SEO -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
     <title>FinTrack - Интелигентно финансово управление</title>
     
-    <!-- Google Fonts -->
+    <!-- DNS Prefetch for faster external resource loading -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://prod.spline.design">
+    <link rel="dns-prefetch" href="https://fintrack-landing-page-production.up.railway.app">
+    
+    <!-- Preconnect to critical domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Optimized with display=swap and only needed weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Spline 3D -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    <!-- Font Awesome - Deferred loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- Spline 3D - Deferred loading -->
+    <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
     
-    <!-- Locomotive Scroll CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <!-- Locomotive Scroll CSS - Deferred -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"></noscript>
     
-    <!-- Stylesheet -->
+    <!-- Critical CSS - Inline for fastest First Contentful Paint -->
+    <style>
+        /* Critical above-the-fold styles */
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg-base:#E8E4E4;--bg-gradient:#E8E4E4}
+        html,body{margin:0;padding:0;overflow-x:hidden;height:100%}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#E8E4E4;color:#fff;line-height:1.6;overflow-x:hidden;min-height:100%}
+        .logo-container{position:absolute;top:30px;left:30px;z-index:1000;opacity:0;animation:fadeInDown 1s ease-out .1s forwards}
+        .logo{height:60px;width:auto;transition:all .3s ease;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background-color:#E8E4E4}
+        .hero-background-fixed{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;background:linear-gradient(135deg,#E8E4E4 0%,#E8E4E4 100%)}
+        .spline-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:auto}
+        spline-viewer{width:100%;height:100%;display:block}
+        .hero-brand{position:relative;z-index:2;padding:40px;max-width:600px;pointer-events:none}
+        .brand-title{font-size:72px;font-weight:800;letter-spacing:8px;text-transform:uppercase;color:#2c2c2c;margin-bottom:10px;line-height:1}
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+        .hero-desktop-nav{position:absolute;top:30px;right:50px;z-index:100;opacity:0;animation:fadeInDown 1s ease-out .3s forwards}
+        .nav-pill{display:flex;align-items:center;gap:4px;background:rgba(44,44,44,.05);border:1px solid rgba(44,44,44,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:4px;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6);position:relative}
+    </style>
+    
+    <!-- Main Stylesheet - Preloaded -->
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Performance Optimizations CSS -->
+    <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
-    
-    <!-- Locomotive Override CSS - Must be LAST to remove section borders -->
-    <link rel="stylesheet" href="locomotive-override.css">
 </head>
 <body>
     <!-- Locomotive Scroll Container -->
@@ -65,9 +109,9 @@
         
         <!-- Hero Section -->
         <section class="hero" id="hero" data-scroll-section>
-        <!-- Spline 3D Container -->
+        <!-- Spline 3D Container - Lazy loaded -->
         <div class="spline-container" data-scroll data-scroll-speed="-0.1">
-            <spline-viewer loading-anim-type="none" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
+            <spline-viewer loading-anim-type="spinner-small-dark" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode" loading="lazy"></spline-viewer>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->
@@ -473,7 +517,7 @@
 
                 <!-- Phone Mockup -->
                 <div class="phone-mockup-center">
-                    
+                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image">
                 </div>
 
                 <!-- Right Cards -->
@@ -2047,18 +2091,18 @@
     </div>
     </div><!-- End Locomotive Scroll Container -->
 
-    <!-- Locomotive Scroll JS -->
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <!-- Locomotive Scroll JS - Async loading -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
     
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <!-- JavaScript - Deferred -->
+    <script src="script.js" defer></script>
     
-    <!-- FinTrack Analytics Tracking -->
+    <!-- FinTrack Analytics Tracking - Async -->
     <script>
         // Configure Analytics API URL - Connected to Railway Backend
         window.ANALYTICS_API_URL = 'https://fintrack-landing-page-production.up.railway.app/api';
     </script>
-    <script src="assets/js/cookie-consent.js"></script>
-    <script src="assets/js/tracking.js"></script>
+    <script src="assets/js/cookie-consent.js" defer></script>
+    <script src="assets/js/tracking.js" defer></script>
 </body>
 </html>

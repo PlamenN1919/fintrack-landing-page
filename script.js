@@ -1,4 +1,53 @@
 // ===================================
+// PERFORMANCE OPTIMIZATIONS
+// ===================================
+
+// Passive event listeners for better scroll performance
+const passiveSupported = (() => {
+    let passive = false;
+    try {
+        const options = {
+            get passive() {
+                passive = true;
+                return false;
+            }
+        };
+        window.addEventListener('test', null, options);
+        window.removeEventListener('test', null, options);
+    } catch (err) {
+        passive = false;
+    }
+    return passive;
+})();
+
+const passiveEvent = passiveSupported ? { passive: true } : false;
+
+// Optimized debounce function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Optimized throttle function
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// ===================================
 // LOCOMOTIVE SCROLL INITIALIZATION
 // ===================================
 
@@ -207,18 +256,14 @@ function initParallaxEffects() {
     // On desktop, Locomotive handles main parallax via data attributes
     // Keep native parallax for elements without data attributes
     if (isMobile || !locomotiveScroll) {
-        // Mobile/fallback - lightweight native parallax
-        let ticking = false;
+        // Mobile/fallback - lightweight native parallax with throttle
+        const throttledParallax = throttle(() => {
+            window.requestAnimationFrame(() => {
+                updateParallax(window.pageYOffset);
+            });
+        }, 16); // ~60fps
         
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateParallax(window.pageYOffset);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
+        window.addEventListener('scroll', throttledParallax, passiveEvent);
     } else {
         // Desktop with Locomotive - use its scroll event
         locomotiveScroll.on('scroll', (args) => {
@@ -295,7 +340,7 @@ function initSmoothMomentum() {
         }, 150);
     };
     
-    window.addEventListener('scroll', handleScrollState);
+    window.addEventListener('scroll', handleScrollState, passiveEvent);
     
     // Also listen to Locomotive scroll events
     if (locomotiveScroll) {
@@ -557,9 +602,12 @@ if (locomotiveScroll) {
         handleScrollEffects(args.scroll.y);
     });
 }
-window.addEventListener('scroll', () => {
+// Throttled scroll handler for better performance
+const throttledScrollEffects = throttle(() => {
     handleScrollEffects(window.pageYOffset);
-});
+}, 16); // ~60fps
+
+window.addEventListener('scroll', throttledScrollEffects, passiveEvent);
 
 // Smooth scrolling for navigation links - integrated with Locomotive
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -750,15 +798,17 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
+// Parallax effect for hero section - Throttled for performance
+const heroParallax = throttle(() => {
     const scrolled = window.pageYOffset;
     const rate = scrolled * -0.5;
     
     if (heroTitle) {
-        heroTitle.style.transform = `translateY(${rate}px)`;
+        heroTitle.style.transform = `translate3d(0, ${rate}px, 0)`; // GPU acceleration
     }
-});
+}, 16); // ~60fps
+
+window.addEventListener('scroll', heroParallax, passiveEvent);
 
 // Add mouseenter/mouseleave effects to feature cards
 featureCards.forEach(card => {
@@ -1950,7 +2000,9 @@ function initProgressTracking() {
         });
     };
     
-    window.addEventListener('scroll', updateProgress);
+    // Throttled progress update for better performance
+    const throttledProgress = throttle(updateProgress, 16); // ~60fps
+    window.addEventListener('scroll', throttledProgress, passiveEvent);
     updateProgress();
 }
 
