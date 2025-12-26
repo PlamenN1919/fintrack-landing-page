@@ -1,9 +1,70 @@
-# Активен контекст - Performance Optimization
+# Активен контекст - Production Deployment
 
 ## Текуща фокусна област
-✅ ЗАВЪРШЕНА: Мащабна оптимизация на производителността - Без визуални промени
+🚀 В ПРОЦЕС: Production deployment на fintrackwallet.com
 
 ## Последни промени
+
+### 🌐 Production Deployment Setup (26.12.2024)
+- ✅ **Deployment документация създадена**
+  - PRODUCTION_DEPLOYMENT.md - Пълен deployment guide
+  - DEPLOYMENT_STEPS.md - Стъпка-по-стъпка инструкции (7 части)
+  - DNS_SETUP_JUMPBG.md - jump.bg специфични инструкции
+  
+- ✅ **Memory Bank обновен**
+  - techContext.md - Технически детайли и архитектура
+  - systemPatterns.md - Code patterns и best practices
+  - progress.md - Пълен проектен статус
+  
+- ✅ **Production конфигурация**
+  - tracking.js обновен за production
+  - Environment variables подготвени
+  - CORS конфигурация за fintrackwallet.com
+  
+- ⏳ **Deployment задачи (в процес)**
+  - Railway backend deployment
+  - Vercel frontend deployment
+  - DNS конфигурация в jump.bg
+  - Domain свързване с Vercel
+
+#### Deployment Architecture
+```
+fintrackwallet.com (Vercel - Frontend)
+    ↓ HTTPS API Calls
+Backend API (Railway)
+    ↓ PostgreSQL Connection
+PostgreSQL Database (Railway)
+```
+
+#### Deployment Checklist
+**Railway Backend:**
+1. Създаване на проект от GitHub repo
+2. PostgreSQL database setup
+3. Environment variables конфигурация
+4. Backend URL generation
+5. Health check тестване
+
+**Vercel Frontend:**
+1. Import на GitHub repo
+2. Environment variables (ANALYTICS_API_URL)
+3. Initial deployment
+4. Temporary URL тестване
+
+**Domain Connection:**
+1. Добавяне на fintrackwallet.com в Vercel
+2. DNS записи в jump.bg:
+   - A Record: @ → 76.76.21.21
+   - CNAME Record: www → cname.vercel-dns.com
+3. DNS propagation (15-30 минути)
+4. SSL certificate generation (автоматично)
+
+**Final Steps:**
+1. CORS update в Railway backend
+2. Backend URL update в index.html
+3. Full system testing
+4. Performance verification
+
+## Предишни промени
 
 ### 🚀 Performance Optimization - Максимална производителност (26.12.2024)
 - ✅ **Оптимизация на изображенията** - Responsive loading с srcset, lazy loading
