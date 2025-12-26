@@ -4,8 +4,8 @@
  */
 
 // Configuration
-const API_URL = window.ANALYTICS_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://fintrack-landing-page-production-f3af.up.railway.app/api');
-const WS_URL = window.ANALYTICS_WS_URL || (window.location.hostname === 'localhost' ? 'ws://localhost:5001' : 'wss://fintrack-landing-page-production-f3af.up.railway.app');
+const API_URL = 'https://fintrack-landing-page-production-f3af.up.railway.app/api';
+const WS_URL = 'wss://fintrack-landing-page-production-f3af.up.railway.app';
 
 // State
 let charts = {};
