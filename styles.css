@@ -462,44 +462,6 @@ body {
     }
 }
 
-/* Spline Lazy Loading Placeholder */
-.spline-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    z-index: 10;
-}
-
-.spline-loader {
-    text-align: center;
-    color: rgba(44, 44, 44, 0.7);
-}
-
-.spline-loader i {
-    font-size: 48px;
-    margin-bottom: 15px;
-    display: block;
-    animation: spin 1s linear infinite;
-}
-
-.spline-loader p {
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.8;
-}
-
-/* Hide placeholder when spline is loaded */
-.spline-container.spline-loaded .spline-placeholder,
-.spline-viewer-background.spline-loaded .spline-placeholder {
-    display: none;
-}
-
 /* Loading placeholder */
 .spline-container::before {
     content: '';
@@ -514,7 +476,6 @@ body {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     z-index: 1;
-    display: none; /* Hidden by default, using new placeholder */
 }
 
 .spline-container.loaded::before {

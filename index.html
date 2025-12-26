@@ -38,8 +38,9 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Spline 3D - Lazy loaded via JavaScript -->
+    <!-- Spline 3D - Deferred loading -->
     <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js" defer></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
@@ -109,14 +110,8 @@
         <!-- Hero Section -->
         <section class="hero" id="hero" data-scroll-section>
         <!-- Spline 3D Container - Lazy loaded -->
-        <div class="spline-container" data-scroll data-scroll-speed="-0.1" data-spline-lazy data-spline-url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode">
-            <!-- Placeholder for lazy loading -->
-            <div class="spline-placeholder">
-                <div class="spline-loader">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Зареждане на 3D визуализация...</p>
-                </div>
-            </div>
+        <div class="spline-container" data-scroll data-scroll-speed="-0.1">
+            <spline-viewer loading-anim-type="spinner-small-dark" url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode" loading="lazy"></spline-viewer>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->
@@ -1314,15 +1309,8 @@
 
     <!-- Pain Point Calculator Section -->
     <section class="pain-calculator-section section" id="calculator" data-scroll-section>
-        <!-- Spline 3D Viewer Background -->
-        <div class="spline-viewer-background" data-spline-lazy data-spline-url="https://prod.spline.design/J2E7pAxgnbPLO484/scene.splinecode">
-            <!-- Placeholder for lazy loading -->
-            <div class="spline-placeholder">
-                <div class="spline-loader">
-                    <i class="fas fa-spinner fa-spin"></i>
-                </div>
-            </div>
-        </div>
+        <!-- Animated Gradient Background -->
+        <div class="calculator-gradient-background"></div>
         <div class="container">
             <!-- Section Header -->
             <h2 class="section-title pain-title">
@@ -2110,7 +2098,7 @@
     <!-- FinTrack Analytics Tracking - Async -->
     <script>
         // Configure Analytics API URL - Connected to Railway Backend
-        window.ANALYTICS_API_URL = 'https://fintrack-landing-page-production.up.railway.app/api';
+        window.ANALYTICS_API_URL = 'https://fintrack-landing-page-production-f3af.up.railway.app/api';
     </script>
     <script src="assets/js/cookie-consent.js" defer></script>
     <script src="assets/js/tracking.js" defer></script>
