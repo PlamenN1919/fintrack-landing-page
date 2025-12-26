@@ -49,7 +49,7 @@ class Config:
     # Session
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
-    SESSION_COOKIE_SAMESITE = 'Lax'
+    SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies
     PERMANENT_SESSION_LIFETIME = timedelta(hours=12)
     
     # Rate Limiting
