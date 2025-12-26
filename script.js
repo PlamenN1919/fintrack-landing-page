@@ -968,7 +968,121 @@ document.querySelectorAll('a, button, input, textarea').forEach(element => {
     });
 });
 
-// Spline loading optimization
+// Spline Lazy Loading with Intersection Observer
+(function initSplineLazyLoad() {
+    // Check if Intersection Observer is supported
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: load all Spline viewers immediately
+        loadAllSplineViewers();
+        return;
+    }
+
+    // Configuration for the observer
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '200px', // Start loading 200px before element enters viewport
+        threshold: 0.1 // Trigger when 10% of element is visible
+    };
+
+    // Callback function for intersection
+    const handleIntersection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const container = entry.target;
+                loadSplineViewer(container);
+                observer.unobserve(container); // Stop observing once loaded
+            }
+        });
+    };
+
+    // Create the observer
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    // Find all elements with data-spline-lazy attribute
+    const splineContainers = document.querySelectorAll('[data-spline-lazy]');
+
+    // Observe each container
+    splineContainers.forEach(container => {
+        observer.observe(container);
+    });
+
+    // Function to load a single Spline viewer
+    function loadSplineViewer(container) {
+        const splineUrl = container.getAttribute('data-spline-url');
+        
+        if (!splineUrl) {
+            console.warn('No Spline URL found for container:', container);
+            return;
+        }
+
+        // Load the Spline viewer script if not already loaded
+        if (!window.customElements.get('spline-viewer')) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js';
+            document.head.appendChild(script);
+            
+            // Wait for script to load before creating viewer
+            script.onload = () => {
+                createSplineViewer(container, splineUrl);
+            };
+        } else {
+            // Script already loaded, create viewer immediately
+            createSplineViewer(container, splineUrl);
+        }
+    }
+
+    // Function to create the Spline viewer element
+    function createSplineViewer(container, splineUrl) {
+        // Create spline-viewer element
+        const viewer = document.createElement('spline-viewer');
+        viewer.setAttribute('url', splineUrl);
+        
+        // Add loading animation type if it's the hero spline
+        if (container.classList.contains('spline-container')) {
+            viewer.setAttribute('loading-anim-type', 'spinner-small-dark');
+        }
+
+        // Handle load event
+        viewer.addEventListener('load', function() {
+            setTimeout(() => {
+                viewer.classList.add('loaded');
+                container.classList.add('loaded', 'spline-loaded');
+            }, 100);
+        });
+
+        // Fallback if load event doesn't fire
+        setTimeout(() => {
+            if (!viewer.classList.contains('loaded')) {
+                viewer.classList.add('loaded');
+                container.classList.add('loaded', 'spline-loaded');
+            }
+        }, 3000);
+
+        // Append viewer to container
+        container.appendChild(viewer);
+
+        // Fade in effect
+        setTimeout(() => {
+            if (viewer) {
+                viewer.style.opacity = '0.7';
+                setTimeout(() => {
+                    viewer.style.opacity = '1';
+                }, 300);
+            }
+        }, 500);
+    }
+
+    // Fallback function to load all viewers
+    function loadAllSplineViewers() {
+        const containers = document.querySelectorAll('[data-spline-lazy]');
+        containers.forEach(container => {
+            loadSplineViewer(container);
+        });
+    }
+})();
+
+// Legacy Spline loading optimization (for backwards compatibility)
 if (splineViewer && splineContainer) {
     // Preload and show Spline faster
     splineViewer.addEventListener('load', function() {
