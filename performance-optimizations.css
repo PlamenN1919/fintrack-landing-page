@@ -12,10 +12,17 @@
 .phone-mockup-image-header,
 .phone-mockup-image-mobile,
 .feature-card-animated,
-.social-link {
+.social-link,
+.calculator-gradient-background {
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
+}
+
+/* Optimize calculator gradient animation */
+.calculator-gradient-background {
+    will-change: background-position;
+    contain: strict;
 }
 
 /* Optimize images for faster rendering */

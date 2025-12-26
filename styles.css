@@ -2600,8 +2600,8 @@ body.is-scrolling {
     letter-spacing: 1.5px;
 }
 
-/* Spline 3D Viewer Background */
-.spline-viewer-background {
+/* Animated Gradient Background - replaces Spline 3D */
+.calculator-gradient-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -2610,13 +2610,28 @@ body.is-scrolling {
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 107, 107, 0.08) 0%,
+        rgba(255, 71, 87, 0.12) 25%,
+        rgba(255, 56, 56, 0.08) 50%,
+        rgba(255, 107, 107, 0.12) 75%,
+        rgba(255, 71, 87, 0.08) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
 }
 
-.spline-viewer-background spline-viewer {
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: 0.6;
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Responsive Design */
@@ -2650,8 +2665,9 @@ body.is-scrolling {
         margin-top: 60px;
     }
 
-    .spline-viewer-background spline-viewer {
-        opacity: 0.5;
+    .calculator-gradient-background {
+        opacity: 0.8;
+        animation-duration: 20s; /* Slower on tablets */
     }
 }
 
@@ -2812,8 +2828,9 @@ body.is-scrolling {
         font-size: 11px;
     }
 
-    .spline-viewer-background spline-viewer {
-        opacity: 0.4;
+    .calculator-gradient-background {
+        opacity: 0.6;
+        animation-duration: 25s; /* Much slower on mobile for better performance */
     }
 }
 
