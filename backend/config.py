@@ -49,9 +49,9 @@ class Config:
     # Session
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
-    # For cross-origin (Vercel frontend → Railway backend), use 'None' with Secure=True
-    # For same-origin (local dev), use 'Lax'
-    SESSION_COOKIE_SAMESITE = os.getenv('SESSION_SAMESITE', 'Lax')
+    # IMPORTANT: For cross-origin (Vercel → Railway), MUST use 'None' with HTTPS
+    # Default to 'None' for production, can be overridden with SESSION_SAMESITE env var
+    SESSION_COOKIE_SAMESITE = os.getenv('SESSION_SAMESITE', 'None' if os.getenv('FLASK_ENV') == 'production' else 'Lax')
     SESSION_COOKIE_DOMAIN = None  # Allow same-origin cookies
     PERMANENT_SESSION_LIFETIME = timedelta(hours=12)
     
