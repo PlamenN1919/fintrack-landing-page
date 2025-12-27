@@ -577,9 +577,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Smooth scrolling for navigation links - integrated with Locomotive
+    // Use capture phase to ensure this runs before other listeners
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation(); // Stop event from bubbling to tracking listener
+            
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
             
@@ -599,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             }
-        });
+        }, true); // Use capture phase
     });
     console.log('🔗 Smooth scroll links initialized!');
 });
