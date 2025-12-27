@@ -239,8 +239,8 @@ function createVisitsChart(data) {
             datasets: [{
                 label: 'Посещения',
                 data: values,
-                borderColor: 'rgb(44, 44, 44)',
-                backgroundColor: 'rgba(44, 44, 44, 0.1)',
+                borderColor: 'rgb(0, 242, 254)',
+                backgroundColor: 'rgba(0, 242, 254, 0.1)',
                 borderWidth: 3,
                 tension: 0.4,
                 fill: true,
@@ -299,16 +299,16 @@ function createButtonsChart(data) {
                 label: 'Кликвания',
                 data: values,
                 backgroundColor: [
-                    'rgba(44, 44, 44, 0.8)',
-                    'rgba(44, 44, 44, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
                     'rgba(76, 175, 80, 0.8)',
                     'rgba(255, 193, 7, 0.8)',
-                    'rgba(0, 242, 254, 0.8)',
                     'rgba(255, 107, 107, 0.8)',
-                    'rgba(44, 44, 44, 0.6)',
-                    'rgba(44, 44, 44, 0.6)',
+                    'rgba(147, 51, 234, 0.8)',
+                    'rgba(236, 72, 153, 0.8)',
+                    'rgba(0, 242, 254, 0.6)',
                     'rgba(76, 175, 80, 0.6)',
-                    'rgba(255, 193, 7, 0.6)'
+                    'rgba(255, 193, 7, 0.6)',
+                    'rgba(255, 107, 107, 0.6)'
                 ],
                 borderWidth: 0,
                 borderRadius: 8
@@ -366,12 +366,12 @@ function createSourcesChart(data) {
             datasets: [{
                 data: values,
                 backgroundColor: [
-                    'rgba(44, 44, 44, 0.8)',
-                    'rgba(44, 44, 44, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
                     'rgba(76, 175, 80, 0.8)',
                     'rgba(255, 193, 7, 0.8)',
-                    'rgba(0, 242, 254, 0.8)',
-                    'rgba(255, 107, 107, 0.8)'
+                    'rgba(255, 107, 107, 0.8)',
+                    'rgba(147, 51, 234, 0.8)',
+                    'rgba(236, 72, 153, 0.8)'
                 ],
                 borderWidth: 0
             }]
@@ -417,7 +417,7 @@ function createDevicesChart(data) {
             datasets: [{
                 data: values,
                 backgroundColor: [
-                    'rgba(44, 44, 44, 0.8)',  // Desktop
+                    'rgba(0, 242, 254, 0.8)',  // Desktop
                     'rgba(76, 175, 80, 0.8)',    // Mobile
                     'rgba(255, 193, 7, 0.8)',    // Tablet
                     'rgba(255, 107, 107, 0.8)'   // Unknown
@@ -464,13 +464,13 @@ function createOSChart(data) {
                 label: 'Посещения',
                 data: values,
                 backgroundColor: [
-                    'rgba(44, 44, 44, 0.8)',
-                    'rgba(44, 44, 44, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
                     'rgba(76, 175, 80, 0.8)',
                     'rgba(255, 193, 7, 0.8)',
                     'rgba(0, 242, 254, 0.8)',
                     'rgba(255, 107, 107, 0.8)',
-                    'rgba(44, 44, 44, 0.6)',
+                    'rgba(0, 242, 254, 0.6)',
                     'rgba(44, 44, 44, 0.6)'
                 ],
                 borderWidth: 0,
@@ -530,13 +530,13 @@ function createBrowsersChart(data) {
                 label: 'Посещения',
                 data: values,
                 backgroundColor: [
-                    'rgba(44, 44, 44, 0.8)',
-                    'rgba(44, 44, 44, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
+                    'rgba(0, 242, 254, 0.8)',
                     'rgba(76, 175, 80, 0.8)',
                     'rgba(255, 193, 7, 0.8)',
                     'rgba(0, 242, 254, 0.8)',
                     'rgba(255, 107, 107, 0.8)',
-                    'rgba(44, 44, 44, 0.6)',
+                    'rgba(0, 242, 254, 0.6)',
                     'rgba(44, 44, 44, 0.6)'
                 ],
                 borderWidth: 0,
@@ -632,7 +632,7 @@ function createGeoChart(data) {
             datasets: [{
                 label: 'Посещения',
                 data: values,
-                backgroundColor: 'rgba(44, 44, 44, 0.8)',
+                backgroundColor: 'rgba(0, 242, 254, 0.8)',
                 borderWidth: 0,
                 borderRadius: 8
             }]
@@ -723,7 +723,7 @@ function createFunnelChart(data) {
                 data: values,
                 backgroundColor: values.map((_, idx) => {
                     const opacity = 1 - (idx * 0.15);
-                    return `rgba(44, 44, 44, ${opacity})`;
+                    return `rgba(0, 242, 254, ${opacity})`;
                 }),
                 borderWidth: 0,
                 borderRadius: 8
