@@ -5457,7 +5457,7 @@ body.is-scrolling {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        margin: 0 auto !important;
+        margin: 20px auto 40px auto !important;
         width: 100% !important;
         position: relative !important;
         left: 0 !important;
@@ -5468,8 +5468,8 @@ body.is-scrolling {
     }
     
     .phone-mockup-image-mobile {
-        max-width: 300px !important;
-        width: 75% !important;
+        max-width: 220px !important;
+        width: 55% !important;
         height: auto !important;
         display: block !important;
         margin: 0 auto !important;
@@ -5771,7 +5771,7 @@ body.is-scrolling {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        margin: 0 auto !important;
+        margin: 20px auto 40px auto !important;
         width: 100% !important;
         position: relative !important;
         left: 0 !important;
@@ -5782,8 +5782,8 @@ body.is-scrolling {
     }
     
     .phone-mockup-image-mobile {
-        max-width: 280px !important;
-        width: 70% !important;
+        max-width: 200px !important;
+        width: 50% !important;
         height: auto !important;
         display: block !important;
         margin: 0 auto !important;
