@@ -5104,6 +5104,12 @@ body.is-scrolling {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+.download-pill-btn-top {
+    display: flex !important;
+    margin: 30px auto 40px auto !important;
+    justify-content: center;
+}
+
 .download-pill-btn:active {
     transform: scale(0.95) translateY(0);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
