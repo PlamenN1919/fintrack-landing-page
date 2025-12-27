@@ -36,7 +36,7 @@ class Config:
     # CORS
     CORS_ORIGINS = os.getenv(
         'CORS_ORIGINS',
-        'http://localhost:3000,http://localhost:5000,http://127.0.0.1:3000'
+        'http://localhost:3000,http://localhost:5000,http://127.0.0.1:3000,https://fintrackwallet.com,https://www.fintrackwallet.com,https://fintrack-landing-page-production-f3af.up.railway.app'
     ).split(',')
     
     # Admin Authentication

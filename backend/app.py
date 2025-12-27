@@ -472,10 +472,21 @@ def login():
             return jsonify({'error': 'Password required'}), 400
         
         if login_admin(data['password'], app.config['ADMIN_PASSWORD_HASH']):
-            return jsonify({
+            # Debug logging
+            print(f"[LOGIN SUCCESS] Session after login: {dict(session)}")
+            print(f"[LOGIN SUCCESS] Session ID: {session.get('_id', 'N/A')}")
+            print(f"[LOGIN SUCCESS] Admin logged in: {session.get('admin_logged_in')}")
+            print(f"[LOGIN SUCCESS] Origin: {request.headers.get('Origin')}")
+            
+            response = jsonify({
                 'success': True,
                 'message': 'Успешен вход'
-            }), 200
+            })
+            
+            # Debug: Print response headers
+            print(f"[LOGIN SUCCESS] Response headers will include Set-Cookie")
+            
+            return response, 200
         else:
             return jsonify({
                 'error': 'Invalid credentials',
@@ -497,6 +508,12 @@ def logout():
 @app.route('/api/auth/check', methods=['GET'])
 def check_auth():
     """Check if user is authenticated"""
+    # Debug logging
+    print(f"[AUTH CHECK] Session: {dict(session)}")
+    print(f"[AUTH CHECK] Cookies: {request.cookies}")
+    print(f"[AUTH CHECK] Origin: {request.headers.get('Origin')}")
+    print(f"[AUTH CHECK] Authenticated: {is_authenticated()}")
+    
     return jsonify({
         'authenticated': is_authenticated()
     }), 200
