@@ -36,7 +36,7 @@ class Config:
     # CORS
     CORS_ORIGINS = os.getenv(
         'CORS_ORIGINS',
-        'http://localhost:3000,http://localhost:5000,http://127.0.0.1:3000,https://fintrackwallet.com,https://www.fintrackwallet.com,https://fintrack-landing-page-production-f3af.up.railway.app'
+        'http://localhost:3000,http://localhost:5000,http://127.0.0.1:3000,https://fintrackwallet.com,https://www.fintrackwallet.com,https://api.fintrackwallet.com'
     ).split(',')
     
     # Admin Authentication
@@ -49,10 +49,11 @@ class Config:
     # Session
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
-    # IMPORTANT: For cross-origin (Vercel → Railway), MUST use 'None' with HTTPS
-    # Default to 'None' for production, can be overridden with SESSION_SAMESITE env var
-    SESSION_COOKIE_SAMESITE = os.getenv('SESSION_SAMESITE', 'None' if os.getenv('FLASK_ENV') == 'production' else 'Lax')
-    SESSION_COOKIE_DOMAIN = None  # Allow same-origin cookies
+    # IMPORTANT: Using 'Lax' for same-site subdomain setup (fintrackwallet.com + api.fintrackwallet.com)
+    # This works because both domains share the same eTLD+1 (fintrackwallet.com)
+    SESSION_COOKIE_SAMESITE = os.getenv('SESSION_SAMESITE', 'Lax')
+    # Set domain to allow cookies across subdomains (fintrackwallet.com and api.fintrackwallet.com)
+    SESSION_COOKIE_DOMAIN = os.getenv('SESSION_COOKIE_DOMAIN', '.fintrackwallet.com' if os.getenv('FLASK_ENV') == 'production' else None)
     PERMANENT_SESSION_LIFETIME = timedelta(hours=12)
     
     # Rate Limiting
@@ -92,8 +93,11 @@ class ProductionConfig(Config):
     
     # Force HTTPS in production
     SESSION_COOKIE_SECURE = True
-    # For cross-origin requests (Vercel → Railway), MUST use SameSite=None with Secure=True
-    SESSION_COOKIE_SAMESITE = 'None'  # Required for cross-origin HTTPS cookies
+    # Using 'Lax' for same-site subdomain setup (api.fintrackwallet.com)
+    # This is more secure than 'None' and works because we use subdomain
+    SESSION_COOKIE_SAMESITE = 'Lax'
+    # Share cookies across fintrackwallet.com subdomains
+    SESSION_COOKIE_DOMAIN = '.fintrackwallet.com'
 
 
 class TestingConfig(Config):

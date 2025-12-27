@@ -1,11 +1,76 @@
-# Активен контекст - Admin Login Fix
+# Активен контекст - Admin Login Subdomain Fix
 
 ## Текуща фокусна област
-✅ ЗАВЪРШЕНА: Поправка на Admin Login проблем - Session cookies и CORS конфигурация
+🔧 В ПРОЦЕС: Поправка на Admin Login с Custom Subdomain (api.fintrackwallet.com)
 
 ## Последни промени
 
-### 🔧 Admin Login Session Fix (27.12.2024)
+### 🔧 Admin Login Subdomain Fix (27.12.2024 - ФИНАЛНО РЕШЕНИЕ)
+- ✅ **Railway Custom Domain** - Добавен api.fintrackwallet.com
+- ✅ **DNS Configuration** - CNAME запис в jump.bg (api → o44jco1u.up.railway.app)
+- ✅ **Backend Config Update** - SESSION_COOKIE_SAMESITE='Lax', SESSION_COOKIE_DOMAIN='.fintrackwallet.com'
+- ✅ **Frontend Update** - API_URL променен на https://api.fintrackwallet.com/api
+- ✅ **CORS Update** - Добавен api.fintrackwallet.com в allowed origins
+
+#### Проблем (преди):
+Когато се логваш в админ панела от `fintrackwallet.com/admin/`, backend-ът беше на `fintrack-landing-page-production-f3af.up.railway.app`. Браузърите блокираха session cookies защото бяха **third-party cookies** (различни домейни).
+
+#### Решение:
+Използване на **subdomain** (`api.fintrackwallet.com`) вместо Railway URL. Сега:
+- Frontend: `fintrackwallet.com`
+- Backend: `api.fintrackwallet.com`
+
+И двата споделят същия **eTLD+1** (`fintrackwallet.com`), което ги прави **same-site**. Браузърите приемат cookies с `SameSite=Lax`.
+
+#### Технически промени:
+
+**backend/config.py:**
+```python
+# Base Config
+SESSION_COOKIE_SAMESITE = 'Lax'  # Changed from 'None'
+SESSION_COOKIE_DOMAIN = '.fintrackwallet.com'  # Share across subdomains
+CORS_ORIGINS = [..., 'https://api.fintrackwallet.com']
+
+# ProductionConfig
+SESSION_COOKIE_SECURE = True  # HTTPS only
+SESSION_COOKIE_SAMESITE = 'Lax'  # Same-site subdomain
+SESSION_COOKIE_DOMAIN = '.fintrackwallet.com'
+```
+
+**admin/index.html & admin/admin.js:**
+```javascript
+const API_URL = 'https://api.fintrackwallet.com/api';
+const WS_URL = 'wss://api.fintrackwallet.com';
+```
+
+**index.html:**
+```javascript
+window.ANALYTICS_API_URL = 'https://api.fintrackwallet.com/api';
+```
+
+**DNS (jump.bg):**
+```
+Type: CNAME
+Name: api
+Value: o44jco1u.up.railway.app
+```
+
+#### Защо това работи:
+- `fintrackwallet.com` и `api.fintrackwallet.com` имат същ root domain
+- `SameSite=Lax` позволява cookies между same-site домейни
+- `SESSION_COOKIE_DOMAIN='.fintrackwallet.com'` споделя cookies между subdomains
+- По-сигурно от `SameSite=None` (не изисква third-party cookies)
+
+#### Тестване:
+1. Изчакай DNS propagation (15-30 мин)
+2. Провери: `nslookup api.fintrackwallet.com` → трябва да покаже `o44jco1u.up.railway.app`
+3. Deploy промените на Vercel и Railway
+4. Тествай login на https://fintrackwallet.com/admin/
+5. Session cookies трябва да се запазват успешно
+
+---
+
+### 🔧 Admin Login Session Fix (27.12.2024 - ПРЕДИШЕН ОПИТ)
 - ✅ **Поправен SESSION_COOKIE_SAMESITE** - Променен от 'None' на 'Lax' за по-добра съвместимост
 - ✅ **Добавен SESSION_COOKIE_DOMAIN** - Позволява same-origin cookies
 - ✅ **Поправен DevelopmentConfig** - Конкретни CORS origins вместо wildcard
@@ -59,8 +124,15 @@ CORS(app, **cors_config)
 
 #### Файлове променени:
 - `backend/config.py` - Session и CORS настройки
-- `backend/app.py` - CORS конфигурация
+- `backend/app.py` - CORS конфигурация + Werkzeug fix
 - `ADMIN_LOGIN_FIX.md` - Пълна документация на проблема и решението
+- `TEST_ADMIN_LOGIN.md` - Резултати от backend тестовете
+
+#### Deployment (27.12.2024):
+- ✅ Commit: "Fix admin login session issue"
+- ✅ Push към GitHub: успешен
+- ✅ Railway auto-deployment: в процес
+- ✅ Локални тестови файлове изтрити (index-local.html, dashboard-local.html, admin-local.js, ЛОКАЛНО_ТЕСТВАНЕ.md)
 
 ## Предишни промени
 

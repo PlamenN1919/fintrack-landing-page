@@ -4,8 +4,8 @@
  */
 
 // Configuration
-const API_URL = 'https://fintrack-landing-page-production-f3af.up.railway.app/api';
-const WS_URL = 'wss://fintrack-landing-page-production-f3af.up.railway.app';
+const API_URL = 'https://api.fintrackwallet.com/api';
+const WS_URL = 'wss://api.fintrackwallet.com';
 
 // State
 let charts = {};

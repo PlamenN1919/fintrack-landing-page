@@ -356,11 +356,12 @@
   - Трябва да се обнови с production URL след Railway deployment
 
 ### Решени
-- ✅ **Admin Login Loop Problem** (27.12.2024)
+- ✅ **Admin Login Loop Problem - ФИНАЛНО РЕШЕНИЕ** (27.12.2024)
   - Проблем: След успешен login, dashboard връщаше обратно на login страница
-  - Причина: SESSION_COOKIE_SAMESITE='None' и CORS wildcard конфликт
-  - Решение: Променен на 'Lax', добавени конкретни CORS origins
-  - Документация: ADMIN_LOGIN_FIX.md
+  - Причина: Cross-origin cookies (fintrackwallet.com → railway.app) блокирани от браузъра
+  - Решение: Custom subdomain api.fintrackwallet.com + SESSION_COOKIE_DOMAIN='.fintrackwallet.com'
+  - Технология: Same-site cookies с SameSite=Lax (по-сигурно от None)
+  - Документация: activeContext.md
 - ✅ Performance оптимизация (завършена 26.12.2024)
 - ✅ Image optimization (завършена 26.12.2024)
 - ✅ CSS/JS minification (завършена)
