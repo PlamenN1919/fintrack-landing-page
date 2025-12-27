@@ -5543,10 +5543,10 @@ body.is-scrolling {
         min-height: 280px;
         scroll-snap-align: center;
         transform: scale(0.92);
-        opacity: 0.65;
+        opacity: 1;
         transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
         pointer-events: auto;
-        filter: blur(1px);
+        filter: blur(0);
         position: relative;
         z-index: 101;
         padding: 30px;
