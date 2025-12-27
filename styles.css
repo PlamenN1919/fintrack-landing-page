@@ -5468,8 +5468,8 @@ body.is-scrolling {
     }
     
     .phone-mockup-image-mobile {
-        max-width: 350px !important;
-        width: 90% !important;
+        max-width: 500px !important;
+        width: 120% !important;
         height: auto !important;
         display: block !important;
         margin: 0 auto !important;
@@ -5782,8 +5782,8 @@ body.is-scrolling {
     }
     
     .phone-mockup-image-mobile {
-        max-width: 320px !important;
-        width: 85% !important;
+        max-width: 450px !important;
+        width: 110% !important;
         height: auto !important;
         display: block !important;
         margin: 0 auto !important;
