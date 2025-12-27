@@ -1,0 +1,21 @@
+# robots.txt for FinTrack Landing Page
+# https://fintrackwallet.com
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /memory-bank/
+Disallow: /*.min.js$
+Disallow: /*.min.css$
+
+# Sitemap location
+Sitemap: https://fintrackwallet.com/sitemap.xml
+
+# Crawl-delay for specific bots (optional)
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
+

@@ -26,3 +26,5 @@ except Exception as e:
     print(f"\nDatabase URL format: {database_url.split('@')[0]}@...")
 
 
+
+

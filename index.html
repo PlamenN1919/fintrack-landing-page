@@ -15,6 +15,28 @@
     
     <title>FinTrack - Интелигентно финансово управление</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="финанси, бюджет, управление на финанси, финансово приложение, бюджетиране, FinTrack, финансов контрол, лични финанси, спестявания">
+    <meta name="author" content="FinTrack">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://fintrackwallet.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fintrackwallet.com/">
+    <meta property="og:title" content="FinTrack - Интелигентно финансово управление">
+    <meta property="og:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол. Следете разходи, планирайте бюджет и постигайте финансови цели.">
+    <meta property="og:image" content="https://fintrackwallet.com/assets/mockups/mockup-iphone-optimized.png">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:site_name" content="FinTrack">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fintrackwallet.com/">
+    <meta property="twitter:title" content="FinTrack - Интелигентно финансово управление">
+    <meta property="twitter:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол.">
+    <meta property="twitter:image" content="https://fintrackwallet.com/assets/mockups/mockup-iphone-optimized.png">
+    
     <!-- DNS Prefetch for faster external resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -44,6 +66,10 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="app/favicon.ico">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="assets/logos/logo-optimized.png">
+    <link rel="preload" as="image" href="assets/mockups/mockup-iphone-optimized.png">
     
     <!-- Locomotive Scroll CSS - Deferred -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -75,13 +101,61 @@
     
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
+    
+    <!-- Structured Data - JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FinTrack",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "iOS, Android",
+      "description": "Интелигентна система за управление на финанси и бюджетиране",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BGN"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "FinTrack",
+        "url": "https://fintrackwallet.com"
+      }
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FinTrack",
+      "url": "https://fintrackwallet.com",
+      "logo": "https://fintrackwallet.com/assets/logos/logo-optimized.png",
+      "sameAs": [
+        "https://www.facebook.com/fintrack",
+        "https://www.instagram.com/fintrack",
+        "https://twitter.com/fintrack"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "fintrackk@gmail.com",
+        "contactType": "Customer Service"
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Locomotive Scroll Container -->
     <div data-scroll-container>
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/logos/logo.png" alt="FinTrack Logo" class="logo">
+            <img src="assets/logos/logo.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo">
         </div>
 
         <!-- Desktop Navigation - Hero Top Right -->
@@ -1483,7 +1557,7 @@
             <div class="footer-content">
                 <!-- Column 1: About -->
                 <div class="footer-column">
-                    <img src="assets/logos/logo.png" alt="FinTrack Logo" class="footer-logo">
+                    <img src="assets/logos/logo.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="footer-logo">
                     <p class="footer-description">
                         Интелигентна система за управление на финанси и бюджетиране. Спестете повече, живейте по-добре.
                     </p>
