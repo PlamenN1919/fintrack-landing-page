@@ -354,3 +354,4 @@ psql $DATABASE_URL < backup.sql
 - Railway: https://railway.app/help
 - jump.bg: support@jump.bg
 
+

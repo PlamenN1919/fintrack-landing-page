@@ -657,3 +657,4 @@ console.log(FinTrackAnalytics.getConsent());
 - Cohort analysis
 - Funnel optimization
 
+
