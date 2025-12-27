@@ -575,6 +575,33 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('📏 Locomotive updated on window load');
         }
     });
+    
+    // Smooth scrolling for navigation links - integrated with Locomotive
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                if (locomotiveScroll && window.innerWidth > 768) {
+                    // Use Locomotive scrollTo on desktop
+                    locomotiveScroll.scrollTo(target, {
+                        offset: 0,
+                        duration: 1000,
+                        easing: [0.25, 0.0, 0.35, 1.0]
+                    });
+                } else {
+                    // Fallback to native smooth scroll on mobile
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    console.log('🔗 Smooth scroll links initialized!');
 });
 
 // Navigation scroll effect - works with both Locomotive and native scroll
@@ -608,32 +635,6 @@ const throttledScrollEffects = throttle(() => {
 }, 16); // ~60fps
 
 window.addEventListener('scroll', throttledScrollEffects, passiveEvent);
-
-// Smooth scrolling for navigation links - integrated with Locomotive
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
-        
-        if (target) {
-            if (locomotiveScroll && window.innerWidth > 768) {
-                // Use Locomotive scrollTo on desktop
-                locomotiveScroll.scrollTo(target, {
-                    offset: 0,
-                    duration: 1000,
-                    easing: [0.25, 0.0, 0.35, 1.0]
-                });
-            } else {
-                // Fallback to native smooth scroll on mobile
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-    });
-});
 
 // Intersection Observer for animations
 const observerOptions = {
