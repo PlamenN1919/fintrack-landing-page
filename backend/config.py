@@ -49,7 +49,8 @@ class Config:
     # Session
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
-    SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-site cookies
+    SESSION_COOKIE_SAMESITE = 'Lax'  # Changed from 'None' to 'Lax' for better compatibility
+    SESSION_COOKIE_DOMAIN = None  # Allow same-origin cookies
     PERMANENT_SESSION_LIFETIME = timedelta(hours=12)
     
     # Rate Limiting
@@ -69,7 +70,17 @@ class Config:
 class DevelopmentConfig(Config):
     """Development configuration"""
     DEBUG = True
-    CORS_ORIGINS = ['*']  # Allow all origins in development
+    SESSION_COOKIE_SECURE = False  # Allow non-HTTPS in development
+    SESSION_COOKIE_SAMESITE = 'Lax'  # More permissive for local development
+    # Specific origins for development (no wildcard with credentials)
+    CORS_ORIGINS = [
+        'http://localhost:3000',
+        'http://localhost:5000', 
+        'http://127.0.0.1:3000',
+        'http://127.0.0.1:5000',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000'
+    ]
 
 
 class ProductionConfig(Config):

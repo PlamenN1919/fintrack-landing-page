@@ -356,6 +356,11 @@
   - Трябва да се обнови с production URL след Railway deployment
 
 ### Решени
+- ✅ **Admin Login Loop Problem** (27.12.2024)
+  - Проблем: След успешен login, dashboard връщаше обратно на login страница
+  - Причина: SESSION_COOKIE_SAMESITE='None' и CORS wildcard конфликт
+  - Решение: Променен на 'Lax', добавени конкретни CORS origins
+  - Документация: ADMIN_LOGIN_FIX.md
 - ✅ Performance оптимизация (завършена 26.12.2024)
 - ✅ Image optimization (завършена 26.12.2024)
 - ✅ CSS/JS minification (завършена)

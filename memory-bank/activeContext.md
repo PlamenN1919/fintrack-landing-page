@@ -1,9 +1,68 @@
-# Активен контекст - Performance Optimization
+# Активен контекст - Admin Login Fix
 
 ## Текуща фокусна област
-✅ ЗАВЪРШЕНА: Мащабна оптимизация на производителността - Без визуални промени
+✅ ЗАВЪРШЕНА: Поправка на Admin Login проблем - Session cookies и CORS конфигурация
 
 ## Последни промени
+
+### 🔧 Admin Login Session Fix (27.12.2024)
+- ✅ **Поправен SESSION_COOKIE_SAMESITE** - Променен от 'None' на 'Lax' за по-добра съвместимост
+- ✅ **Добавен SESSION_COOKIE_DOMAIN** - Позволява same-origin cookies
+- ✅ **Поправен DevelopmentConfig** - Конкретни CORS origins вместо wildcard
+- ✅ **Подобрена CORS конфигурация** - Explicit headers и methods
+- ✅ **Създадена документация** - ADMIN_LOGIN_FIX.md с пълно обяснение
+
+#### Проблем:
+Когато се логваш в админ панела (`/admin/index.html`), успешно влизаш, но когато отидеш на dashboard (`/admin/dashboard.html`), системата те връща обратно на login страницата.
+
+#### Причина:
+1. `SESSION_COOKIE_SAMESITE = 'None'` изискваше HTTPS и създаваше проблеми
+2. `CORS_ORIGINS = ['*']` (wildcard) не работи с `supports_credentials=True`
+3. Session cookies не се изпращаха правилно между login и dashboard
+
+#### Решение:
+**backend/config.py:**
+```python
+# Base Config
+SESSION_COOKIE_SAMESITE = 'Lax'  # Changed from 'None'
+SESSION_COOKIE_DOMAIN = None  # Allow same-origin cookies
+
+# DevelopmentConfig
+SESSION_COOKIE_SECURE = False  # Allow non-HTTPS in development
+CORS_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
+]
+```
+
+**backend/app.py:**
+```python
+# CORS configuration with credentials support
+cors_config = {
+    'origins': app.config['CORS_ORIGINS'],
+    'supports_credentials': True,
+    'allow_headers': ['Content-Type', 'Authorization'],
+    'expose_headers': ['Content-Type'],
+    'methods': ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}
+CORS(app, **cors_config)
+```
+
+#### Тестване:
+1. Рестартирай backend: `cd backend && python app.py`
+2. Отвори `/admin/` и логни се
+3. Трябва да влезеш директно в dashboard без redirect обратно
+
+#### Файлове променени:
+- `backend/config.py` - Session и CORS настройки
+- `backend/app.py` - CORS конфигурация
+- `ADMIN_LOGIN_FIX.md` - Пълна документация на проблема и решението
+
+## Предишни промени
 
 ### 🚀 Performance Optimization - Максимална производителност (26.12.2024)
 - ✅ **Оптимизация на изображенията** - Responsive loading с srcset, lazy loading

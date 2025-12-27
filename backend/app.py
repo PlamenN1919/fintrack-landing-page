@@ -36,7 +36,15 @@ app.config.from_object(get_config())
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
 
 # Initialize extensions
-CORS(app, origins=app.config['CORS_ORIGINS'], supports_credentials=True)
+# CORS configuration with credentials support
+cors_config = {
+    'origins': app.config['CORS_ORIGINS'],
+    'supports_credentials': True,
+    'allow_headers': ['Content-Type', 'Authorization'],
+    'expose_headers': ['Content-Type'],
+    'methods': ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}
+CORS(app, **cors_config)
 socketio = SocketIO(app, cors_allowed_origins=app.config['CORS_ORIGINS'], async_mode='threading')
 limiter = Limiter(
     app=app,
@@ -864,5 +872,5 @@ def internal_error(error):
 # Run application
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
-    socketio.run(app, host='0.0.0.0', port=port, debug=app.config['DEBUG'])
+    socketio.run(app, host='0.0.0.0', port=port, debug=app.config['DEBUG'], allow_unsafe_werkzeug=True)
 
