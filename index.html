@@ -2167,6 +2167,27 @@
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
     
     <!-- JavaScript - Deferred -->
+    <!-- Marketing Overlay - Savings Message -->
+    <div id="marketingOverlay" class="marketing-overlay">
+        <div class="marketing-card">
+            <button class="marketing-close" onclick="closeMarketingOverlay()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="marketing-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+            <h3 class="marketing-title">Знаеш ли, че...</h3>
+            <p class="marketing-message">
+                средно потребителите ни спестяват 
+                <span class="marketing-highlight">15%</span> 
+                още през първия месец?
+            </p>
+            <button class="marketing-cta" onclick="handleMarketingCTA()">
+                <i class="fas fa-download"></i> Изтегли сега
+            </button>
+        </div>
+    </div>
+
     <script src="script.js" defer></script>
     
     <!-- FinTrack Analytics Tracking - Async -->

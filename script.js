@@ -3104,3 +3104,125 @@ if (document.readyState === 'loading') {
     initHeroDesktopNav();
 }
 
+// ===================================
+// MARKETING OVERLAY - SAVINGS MESSAGE
+// ===================================
+
+/**
+ * Show marketing overlay with animation
+ */
+function showMarketingOverlay() {
+    const overlay = document.getElementById('marketingOverlay');
+    if (!overlay) {
+        console.warn('Marketing overlay element not found');
+        return;
+    }
+    
+    // Add active class to trigger animation
+    overlay.classList.add('active');
+    
+    // Track event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'marketing_overlay_shown', {
+            'event_category': 'marketing',
+            'event_label': 'savings_message'
+        });
+    }
+    
+    console.log('💰 Marketing overlay shown!');
+}
+
+/**
+ * Close marketing overlay with animation
+ */
+function closeMarketingOverlay() {
+    const overlay = document.getElementById('marketingOverlay');
+    if (!overlay) return;
+    
+    // Remove active class to trigger exit animation
+    overlay.classList.remove('active');
+    
+    // Track event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'marketing_overlay_closed', {
+            'event_category': 'marketing',
+            'event_label': 'savings_message'
+        });
+    }
+    
+    console.log('💰 Marketing overlay closed');
+}
+
+/**
+ * Handle marketing CTA button click
+ * Scrolls to download section and closes overlay
+ */
+function handleMarketingCTA() {
+    // Close the overlay first
+    closeMarketingOverlay();
+    
+    // Track CTA click
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'marketing_cta_clicked', {
+            'event_category': 'marketing',
+            'event_label': 'download_from_savings_message'
+        });
+    }
+    
+    // Wait for close animation to complete, then scroll
+    setTimeout(() => {
+        const downloadSection = document.getElementById('download');
+        if (downloadSection) {
+            // Use Locomotive Scroll if available
+            if (locomotiveScroll) {
+                locomotiveScroll.scrollTo(downloadSection, {
+                    duration: 1200,
+                    easing: [0.25, 0.0, 0.35, 1.0],
+                    offset: -50
+                });
+            } else {
+                // Fallback to native smooth scroll
+                downloadSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    }, 400); // Match the exit animation duration
+    
+    console.log('💰 Marketing CTA clicked - scrolling to download');
+}
+
+/**
+ * Initialize marketing overlay
+ * Shows overlay after 2.5 seconds delay
+ */
+function initMarketingOverlay() {
+    const overlay = document.getElementById('marketingOverlay');
+    if (!overlay) {
+        console.warn('Marketing overlay element not found');
+        return;
+    }
+    
+    // Show overlay after 2.5 seconds
+    setTimeout(() => {
+        showMarketingOverlay();
+    }, 2500);
+    
+    // Optional: Close on click outside card
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            closeMarketingOverlay();
+        }
+    });
+    
+    console.log('💰 Marketing overlay initialized - will show in 2.5s');
+}
+
+// Initialize marketing overlay when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMarketingOverlay);
+} else {
+    initMarketingOverlay();
+}
+
