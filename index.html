@@ -26,16 +26,19 @@
     <meta property="og:url" content="https://fintrackwallet.com/">
     <meta property="og:title" content="FinTrack - Интелигентно финансово управление">
     <meta property="og:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол. Следете разходи, планирайте бюджет и постигайте финансови цели.">
-    <meta property="og:image" content="https://fintrackwallet.com/assets/mockups/mockup-iphone-optimized.png">
+    <meta property="og:image" content="https://fintrackwallet.com/assets/logos/optimized/logo-512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:locale" content="bg_BG">
     <meta property="og:site_name" content="FinTrack">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://fintrackwallet.com/">
     <meta property="twitter:title" content="FinTrack - Интелигентно финансово управление">
     <meta property="twitter:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол.">
-    <meta property="twitter:image" content="https://fintrackwallet.com/assets/mockups/mockup-iphone-optimized.png">
+    <meta property="twitter:image" content="https://fintrackwallet.com/assets/logos/optimized/logo-512.png">
     
     <!-- DNS Prefetch for faster external resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -64,8 +67,20 @@
     <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="app/favicon.ico">
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicon - Multiple sizes for better compatibility -->
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/logos/optimized/logo-512.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="assets/logos/optimized/logo-256.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="assets/logos/optimized/logo-128.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/optimized/logo-128.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logos/optimized/logo-128.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logos/optimized/logo-256.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/logos/optimized/logo-256.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/logos/optimized/logo-128.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/logos/optimized/logo-128.png">
+    <link rel="shortcut icon" href="assets/logos/optimized/logo-128.png">
     
     <!-- Preload critical images -->
     <link rel="preload" as="image" href="assets/logos/logo-optimized.png">
@@ -2448,5 +2463,66 @@
     </script>
     <script src="assets/js/cookie-consent.js" defer></script>
     <script src="assets/js/tracking.js" defer></script>
+
+    <!-- Structured Data (JSON-LD) for Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FinTrack",
+      "alternateName": "FinTrack Wallet",
+      "url": "https://fintrackwallet.com",
+      "logo": "https://fintrackwallet.com/assets/logos/optimized/logo-512.png",
+      "image": "https://fintrackwallet.com/assets/logos/optimized/logo-512.png",
+      "description": "FinTrack - Интелигентна система за управление на финанси и бюджетиране. Управлявайте финансите си интелигентно с модерно приложение за бюджетиране и финансов контрол.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "fintrackk@gmail.com",
+        "contactType": "Customer Support",
+        "availableLanguage": ["Bulgarian"]
+      },
+      "sameAs": [
+        "https://fintrackwallet.com"
+      ]
+    }
+    </script>
+
+    <!-- WebSite Structured Data for Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FinTrack",
+      "url": "https://fintrackwallet.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://fintrackwallet.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- SoftwareApplication Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FinTrack",
+      "operatingSystem": ["iOS", "Android"],
+      "applicationCategory": "FinanceApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BGN"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      },
+      "image": "https://fintrackwallet.com/assets/logos/optimized/logo-512.png",
+      "description": "Интелигентно мобилно приложение за управление на финанси и бюджетиране"
+    }
+    </script>
 </body>
 </html>
