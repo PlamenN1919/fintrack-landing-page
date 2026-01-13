@@ -1,4 +1,90 @@
 // ===================================
+// PAGE LOADER
+// ===================================
+
+// Track loading progress
+let resourcesLoaded = 0;
+let totalResources = 0;
+
+// Function to update loader text with progress
+function updateLoaderProgress() {
+    const loaderText = document.querySelector('.loader-text');
+    if (loaderText && totalResources > 0) {
+        const percentage = Math.round((resourcesLoaded / totalResources) * 100);
+        loaderText.textContent = `Зареждане... ${percentage}%`;
+    }
+}
+
+// Count total resources to load
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    const scripts = document.querySelectorAll('script[src]');
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    
+    totalResources = images.length + scripts.length + stylesheets.length;
+    
+    // Track image loading
+    images.forEach(img => {
+        if (img.complete) {
+            resourcesLoaded++;
+            updateLoaderProgress();
+        } else {
+            img.addEventListener('load', () => {
+                resourcesLoaded++;
+                updateLoaderProgress();
+            });
+            img.addEventListener('error', () => {
+                resourcesLoaded++;
+                updateLoaderProgress();
+            });
+        }
+    });
+});
+
+// Page loader functionality
+window.addEventListener('load', function() {
+    // Ensure minimum loading time for smooth UX (800ms)
+    setTimeout(() => {
+        const loader = document.getElementById('page-loader');
+        const body = document.body;
+        const loaderText = document.querySelector('.loader-text');
+        
+        if (loaderText) {
+            loaderText.textContent = 'Зареждане завършено!';
+        }
+        
+        // Small delay to show completion message
+        setTimeout(() => {
+            if (loader) {
+                loader.classList.add('loaded');
+                body.classList.add('loaded');
+                
+                // Remove loader from DOM after animation completes
+                setTimeout(() => {
+                    if (loader.parentNode) {
+                        loader.remove();
+                    }
+                }, 500);
+            }
+        }, 300);
+    }, 800);
+});
+
+// Fallback: Remove loader if it takes too long (max 8 seconds)
+setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    if (loader && !loader.classList.contains('loaded')) {
+        loader.classList.add('loaded');
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            if (loader.parentNode) {
+                loader.remove();
+            }
+        }, 500);
+    }
+}, 8000);
+
+// ===================================
 // PERFORMANCE OPTIMIZATIONS
 // ===================================
 
@@ -968,30 +1054,14 @@ document.querySelectorAll('a, button, input, textarea').forEach(element => {
     });
 });
 
-// Spline loading optimization
-if (splineViewer && splineContainer) {
-    // Preload and show Spline faster
-    splineViewer.addEventListener('load', function() {
-        setTimeout(() => {
-            splineViewer.classList.add('loaded');
-            splineContainer.classList.add('loaded');
-        }, 100);
-    });
+// Spline Hero Container - Static in Hero
+const splineHeroContainer = document.querySelector('.spline-hero-container');
+if (splineHeroContainer) {
+    console.log('Spline Hero Container loaded - static in hero section!');
     
-    // Fallback if load event doesn't fire
-    setTimeout(() => {
-        if (!splineViewer.classList.contains('loaded')) {
-            splineViewer.classList.add('loaded');
-            splineContainer.classList.add('loaded');
-        }
-    }, 2000);
-    
-    // Immediate visibility for better UX
-    setTimeout(() => {
-        if (splineViewer) {
-            splineViewer.style.opacity = '0.7';
-        }
-    }, 500);
+    // Make sure it's visible
+    splineHeroContainer.style.opacity = '1';
+    splineHeroContainer.style.visibility = 'visible';
 }
 
 // Initialize when DOM is loaded
@@ -1723,6 +1793,219 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTestimonialsColumns);
 } else {
     initTestimonialsColumns();
+}
+
+// ===================================
+// COST OF INACTION TIMELINE SECTION
+// ===================================
+
+function initCostTimelineSection() {
+    const timelineSection = document.querySelector('.cost-timeline-section');
+    if (!timelineSection) return;
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineCards = document.querySelectorAll('.timeline-card');
+    const timelineLine = document.querySelector('.timeline-line');
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'scale(1) translateY(0)';
+                
+                // Add extra animation to the card
+                const card = entry.target.querySelector('.timeline-card');
+                if (card) {
+                    setTimeout(() => {
+                        card.style.transform = 'translateY(0)';
+                    }, 200);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all timeline items
+    timelineItems.forEach(item => {
+        itemObserver.observe(item);
+    });
+
+    // Animated line growth on scroll
+    const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                timelineLine.style.animation = 'lineGrow 2s ease forwards';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    if (timelineLine) {
+        lineObserver.observe(timelineLine);
+    }
+
+    // Add hover effects to cards
+    timelineCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+            const glow = this.querySelector('.timeline-card-glow');
+            if (glow) glow.style.opacity = '1';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            const glow = this.querySelector('.timeline-card-glow');
+            if (glow) glow.style.opacity = '0';
+        });
+    });
+
+    // Parallax effect on scroll (only on desktop)
+    const isMobile = window.innerWidth < 768;
+    let ticking = false;
+    
+    function updateParallax() {
+        if (isMobile) return; // Skip parallax on mobile for better performance
+        
+        const scrollY = window.scrollY;
+        const sectionTop = timelineSection.offsetTop;
+        const sectionHeight = timelineSection.offsetHeight;
+        const windowHeight = window.innerHeight;
+
+        // Check if section is in viewport
+        if (scrollY + windowHeight > sectionTop && scrollY < sectionTop + sectionHeight) {
+            const relativeScroll = scrollY - sectionTop + windowHeight;
+            const scrollPercent = relativeScroll / (sectionHeight + windowHeight);
+
+            timelineItems.forEach((item, index) => {
+                const speed = 0.3 + (index * 0.05);
+                const offset = (scrollPercent * 50) * speed;
+                const currentTransform = item.style.transform || '';
+                // Preserve other transforms
+                if (!currentTransform.includes('translateY')) {
+                    item.style.transform += ` translateY(${-offset}px)`;
+                }
+            });
+        }
+
+        ticking = false;
+    }
+
+    if (!isMobile) {
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+    }
+
+    // Counter animation for loss amounts
+    function animateCounter(element, target, suffix = ' лв', duration = 2000) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        // Запази оригиналния текст структура
+        const originalText = element.textContent;
+        const textParts = originalText.split(/\d[\d,\s]*/);
+        const prefix = textParts[0] || '';
+        const postfix = textParts[1] || suffix;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            const formatted = Math.floor(current).toLocaleString('bg-BG');
+            element.textContent = prefix + formatted + postfix;
+        }, 16);
+    }
+
+    // Animate counters when they come into view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const lossText = entry.target.querySelector('.loss-text');
+                const gainAmount = entry.target.querySelector('.gain-amount');
+                
+                if (lossText && !lossText.dataset.animated) {
+                    const text = lossText.textContent;
+                    const matches = text.match(/[\d,\s]+/g);
+                    if (matches) {
+                        const amount = parseInt(matches[0].replace(/[,\s]/g, ''));
+                        // Анимирай само ако числото е по-голямо от 100 (за да избегнем текст като "Губиш 15 лв")
+                        if (!isNaN(amount) && amount >= 100) {
+                            lossText.dataset.animated = 'true';
+                            animateCounter(lossText, amount, ' лв', 1500);
+                        } else {
+                            lossText.dataset.animated = 'true'; // Маркирай като animated без анимация
+                        }
+                    }
+                }
+                
+                if (gainAmount && !gainAmount.dataset.animated) {
+                    const text = gainAmount.textContent;
+                    const matches = text.match(/[\d,\s]+/g);
+                    if (matches) {
+                        const amount = parseInt(matches[0].replace(/[,\s]/g, ''));
+                        if (!isNaN(amount)) {
+                            gainAmount.dataset.animated = 'true';
+                            animateCounter(gainAmount, amount, '', 2000);
+                        }
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    timelineCards.forEach(card => {
+        counterObserver.observe(card);
+    });
+
+    // Smooth scroll for CTA button
+    const ctaButton = document.querySelector('.timeline-cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetSection = document.querySelector(this.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+
+    // Add pulse animation to markers
+    const markers = document.querySelectorAll('.marker-pulse');
+    markers.forEach((marker, index) => {
+        marker.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // Mobile touch interactions
+    if ('ontouchstart' in window) {
+        timelineCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-8px) scale(0.98)';
+            });
+
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    }
+
+    console.log('Cost Timeline Section initialized');
+}
+
+// Initialize Cost Timeline Section
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCostTimelineSection);
+} else {
+    initCostTimelineSection();
 }
 
 // ===================================
