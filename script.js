@@ -88,6 +88,169 @@ setTimeout(() => {
 // PERFORMANCE OPTIMIZATIONS
 // ===================================
 
+// Lazy load Spline 3D viewer for better LCP
+let splineLoaded = false;
+function loadSpline3D() {
+    if (splineLoaded) return;
+    
+    const container = document.getElementById('spline-container');
+    if (!container) return;
+    
+    // Load Spline module dynamically
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js';
+    script.onload = () => {
+        // Create spline viewer after module loads
+        setTimeout(() => {
+            const viewer = document.createElement('spline-viewer');
+            viewer.setAttribute('url', 'https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode');
+            viewer.setAttribute('loading-anim', 'true');
+            container.appendChild(viewer);
+            container.classList.add('loaded');
+            splineLoaded = true;
+            console.log('🎨 Spline 3D loaded');
+        }, 100);
+    };
+    document.head.appendChild(script);
+}
+
+// Initialize Spline loading with Intersection Observer
+function initSplineLazyLoad() {
+    const container = document.getElementById('spline-container');
+    if (!container) return;
+    
+    // Use Intersection Observer for lazy loading
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadSpline3D();
+                    observer.disconnect();
+                }
+            });
+        }, {
+            rootMargin: '100px', // Start loading slightly before visible
+            threshold: 0
+        });
+        observer.observe(container);
+    } else {
+        // Fallback for older browsers
+        loadSpline3D();
+    }
+}
+
+// Start Spline lazy loading on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', initSplineLazyLoad);
+
+// ===================================
+// ENHANCED IMAGE LAZY LOADING
+// ===================================
+
+// Progressive image loading with blur-up effect
+function initEnhancedImageLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('loading' in HTMLImageElement.prototype) {
+        // Native lazy loading supported
+        images.forEach(img => {
+            // Add loaded class when image loads for smooth transition
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                }, { once: true });
+            }
+        });
+    } else {
+        // Fallback for older browsers using Intersection Observer
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+}
+
+// Preload critical images that are about to enter viewport
+function preloadUpcomingImages() {
+    const images = document.querySelectorAll('img[data-preload]');
+    
+    const preloadObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                // Create a new image to preload
+                const preloadImg = new Image();
+                preloadImg.src = img.src || img.dataset.src;
+                preloadObserver.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '200px 0px', // Start preloading 200px before visible
+        threshold: 0
+    });
+    
+    images.forEach(img => preloadObserver.observe(img));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initEnhancedImageLoading();
+    preloadUpcomingImages();
+});
+
+// ===================================
+// EVENT LISTENER OPTIMIZATION
+// ===================================
+
+// Cleanup function for removing event listeners
+const eventListenerRegistry = new Map();
+
+function addOptimizedEventListener(element, event, handler, options = {}) {
+    const key = `${element.tagName || 'window'}-${event}`;
+    
+    // Merge with passive by default for scroll/touch events
+    const passiveEvents = ['scroll', 'touchstart', 'touchmove', 'wheel'];
+    if (passiveEvents.includes(event) && options.passive === undefined) {
+        options.passive = true;
+    }
+    
+    element.addEventListener(event, handler, options);
+    
+    // Track for cleanup
+    if (!eventListenerRegistry.has(key)) {
+        eventListenerRegistry.set(key, []);
+    }
+    eventListenerRegistry.get(key).push({ element, event, handler, options });
+}
+
+// Cleanup all event listeners on page unload
+window.addEventListener('beforeunload', () => {
+    eventListenerRegistry.forEach((listeners) => {
+        listeners.forEach(({ element, event, handler, options }) => {
+            try {
+                element.removeEventListener(event, handler, options);
+            } catch (e) {
+                // Ignore errors during cleanup
+            }
+        });
+    });
+    eventListenerRegistry.clear();
+});
+
 // Passive event listeners for better scroll performance
 const passiveSupported = (() => {
     let passive = false;

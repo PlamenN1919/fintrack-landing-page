@@ -55,17 +55,17 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     
-    <!-- Google Fonts - Optimized with display=swap and only needed weights -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Google Fonts - Optimized with display=swap, subset and only critical weights -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic" as="style" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Font Awesome - Deferred loading -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Font Awesome - Deferred loading with lower priority -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Spline 3D - Deferred loading -->
-    <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    <!-- Spline 3D - Lazy loaded via Intersection Observer (see script.js) -->
+    <!-- Removed synchronous loading for better LCP -->
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -82,9 +82,9 @@
     <link rel="apple-touch-icon" sizes="76x76" href="assets/logos/optimized/logo-128.png">
     <link rel="shortcut icon" href="assets/logos/optimized/logo-128.png">
     
-    <!-- Preload critical images -->
-    <link rel="preload" as="image" href="assets/logos/logo-optimized.png">
-    <link rel="preload" as="image" href="assets/mockups/mockup-iphone-optimized.png">
+    <!-- Preload critical images with fetchpriority -->
+    <link rel="preload" as="image" href="assets/logos/logo-optimized.png" fetchpriority="high">
+    <!-- Defer non-critical image loading to improve LCP -->
     
     <!-- Locomotive Scroll CSS - Deferred -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -128,6 +128,10 @@
         @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
         .hero-desktop-nav{position:absolute;top:30px;right:50px;z-index:100;opacity:0;animation:fadeInDown 1s ease-out .3s forwards}
         .nav-pill{display:flex;align-items:center;gap:4px;background:rgba(44,44,44,.05);border:1px solid rgba(44,44,44,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:4px;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6);position:relative}
+        /* Spline placeholder for better LCP */
+        .spline-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:transparent}
+        .spline-loading-indicator{width:60px;height:60px;border:3px solid rgba(102,126,234,.2);border-top-color:#667eea;border-radius:50%;animation:spinnerRotate 1s linear infinite}
+        .spline-hero-container.loaded .spline-placeholder{display:none}
     </style>
     
     <!-- Main Stylesheet - Preloaded -->
@@ -208,7 +212,7 @@
     <div data-scroll-container>
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/logos/logo.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo">
+            <img src="assets/logos/logo-optimized.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo" width="60" height="60" fetchpriority="high">
         </div>
 
         <!-- Desktop Navigation - Hero Top Right -->
@@ -237,9 +241,12 @@
         <!-- Hero Section -->
         <section class="hero" id="hero" data-scroll-section>
         
-        <!-- Spline 3D Container - Inside Hero -->
-        <div class="spline-hero-container">
-            <spline-viewer url="https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode"></spline-viewer>
+        <!-- Spline 3D Container - Inside Hero (Lazy loaded for performance) -->
+        <div class="spline-hero-container" id="spline-container">
+            <!-- Spline viewer loaded dynamically via JavaScript for better LCP -->
+            <div class="spline-placeholder" aria-hidden="true">
+                <div class="spline-loading-indicator"></div>
+            </div>
         </div>
 
         <!-- Hero Brand Text (Left Side) -->
@@ -568,7 +575,7 @@
                 
                 <!-- Phone Mockup for Mobile (after subtitle, before button) -->
                 <div class="phone-mockup-mobile">
-                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile">
+                    <img src="assets/mockups/optimized/mockup-iphone-mobile.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile" loading="lazy" decoding="async" width="250" height="500">
                 </div>
                 
                 <!-- Download Button -->
@@ -581,7 +588,7 @@
                 
                 <!-- Phone Mockup in Header (Desktop only) -->
                 <div class="phone-mockup-header" data-scroll data-scroll-speed="0.08">
-                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image-header">
+                    <img src="assets/mockups/optimized/mockup-iphone-tablet.png" alt="FinTrack App Interface" class="phone-mockup-image-header" loading="lazy" decoding="async" width="300" height="600">
                 </div>
             </div>
 
@@ -645,7 +652,7 @@
 
                 <!-- Phone Mockup -->
                 <div class="phone-mockup-center">
-                    <img src="assets/mockups/mockup-iphone.png" alt="FinTrack App Interface" class="phone-mockup-image">
+                    <img src="assets/mockups/optimized/mockup-iphone-desktop.png" alt="FinTrack App Interface" class="phone-mockup-image" loading="lazy" decoding="async" width="400" height="800">
                 </div>
 
                 <!-- Right Cards -->
@@ -1210,7 +1217,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Мария Петрова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-1.webp" alt="Мария Петрова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Мария Петрова</span>
                                 <span class="testimonial-column-role">Маркетинг мениджър</span>
@@ -1220,7 +1227,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Георги Стоянов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-2.webp" alt="Георги Стоянов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Георги Стоянов</span>
                                 <span class="testimonial-column-role">Предприемач</span>
@@ -1230,7 +1237,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Елена Костова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-3.webp" alt="Елена Костова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Елена Костова</span>
                                 <span class="testimonial-column-role">Учител</span>
@@ -1241,7 +1248,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Мария Петрова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-1.webp" alt="Мария Петрова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Мария Петрова</span>
                                 <span class="testimonial-column-role">Маркетинг мениджър</span>
@@ -1251,7 +1258,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Георги Стоянов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-2.webp" alt="Георги Стоянов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Георги Стоянов</span>
                                 <span class="testimonial-column-role">Предприемач</span>
@@ -1261,7 +1268,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Елена Костова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-3.webp" alt="Елена Костова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Елена Костова</span>
                                 <span class="testimonial-column-role">Учител</span>
@@ -1278,7 +1285,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Иван Димитров" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-4.webp" alt="Иван Димитров" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Иван Димитров</span>
                                 <span class="testimonial-column-role">Софтуерен инженер</span>
@@ -1288,7 +1295,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Анна Николова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-5.webp" alt="Анна Николова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Анна Николова</span>
                                 <span class="testimonial-column-role">Счетоводител</span>
@@ -1298,7 +1305,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Петър Василев" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-6.webp" alt="Петър Василев" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Петър Василев</span>
                                 <span class="testimonial-column-role">Финансов анализатор</span>
@@ -1309,7 +1316,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Иван Димитров" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-4.webp" alt="Иван Димитров" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Иван Димитров</span>
                                 <span class="testimonial-column-role">Софтуерен инженер</span>
@@ -1319,7 +1326,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Анна Николова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-5.webp" alt="Анна Николова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Анна Николова</span>
                                 <span class="testimonial-column-role">Счетоводител</span>
@@ -1329,7 +1336,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Петър Василев" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-6.webp" alt="Петър Василев" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Петър Василев</span>
                                 <span class="testimonial-column-role">Финансов анализатор</span>
@@ -1346,7 +1353,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Стефан Михайлов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-7.webp" alt="Стефан Михайлов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Стефан Михайлов</span>
                                 <span class="testimonial-column-role">Архитект</span>
@@ -1356,7 +1363,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Десислава Тодорова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-8.webp" alt="Десислава Тодорова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Десислава Тодорова</span>
                                 <span class="testimonial-column-role">Лекар</span>
@@ -1366,7 +1373,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Николай Иванов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-9.webp" alt="Николай Иванов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Николай Иванов</span>
                                 <span class="testimonial-column-role">Фотограф</span>
@@ -1377,7 +1384,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Стефан Михайлов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-7.webp" alt="Стефан Михайлов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Стефан Михайлов</span>
                                 <span class="testimonial-column-role">Архитект</span>
@@ -1387,7 +1394,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Десислава Тодорова" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-8.webp" alt="Десислава Тодорова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Десислава Тодорова</span>
                                 <span class="testimonial-column-role">Лекар</span>
@@ -1397,7 +1404,7 @@
                     <div class="testimonial-column-card">
                         <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
                         <div class="testimonial-column-author">
-                            <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Николай Иванов" class="testimonial-column-avatar">
+                            <img src="assets/testimonials/avatar-9.webp" alt="Николай Иванов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
                             <div class="testimonial-column-info">
                                 <span class="testimonial-column-name">Николай Иванов</span>
                                 <span class="testimonial-column-role">Фотограф</span>
@@ -1823,7 +1830,7 @@
             <div class="footer-content">
                 <!-- Column 1: About -->
                 <div class="footer-column">
-                    <img src="assets/logos/logo.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="footer-logo">
+                    <img src="assets/logos/optimized/logo-128.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="footer-logo" loading="lazy" decoding="async" width="60" height="60">
                     <p class="footer-description">
                         Интелигентна система за управление на финанси и бюджетиране. Спестете повече, живейте по-добре.
                     </p>

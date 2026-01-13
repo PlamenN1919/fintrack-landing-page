@@ -1,6 +1,16 @@
 {
   "name": "fintrack-landing-page",
   "version": "1.0.0",
-  "description": "FinTrack Landing Page - Static HTML/CSS/JS"
+  "description": "FinTrack Landing Page - Static HTML/CSS/JS",
+  "scripts": {
+    "minify:css": "npx csso styles.css -o styles.min.css && npx csso performance-optimizations.css -o performance-optimizations.min.css",
+    "minify:js": "npx terser script.js -c -m -o script.min.js",
+    "minify": "npm run minify:css && npm run minify:js",
+    "build": "npm run minify"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "terser": "^5.27.0"
+  }
 }
 
