@@ -335,6 +335,15 @@ function removeSectionBorders() {
 function initLocomotiveScroll() {
     const isMobile = window.innerWidth <= 768;
     
+    // CRITICAL: Completely disable Locomotive Scroll on mobile to fix scrolling issues
+    if (isMobile) {
+        console.log('📱 Mobile detected - Using native scroll (Locomotive disabled)');
+        // Remove has-scroll classes that might interfere
+        document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init');
+        document.body.classList.remove('has-scroll-smooth', 'has-scroll-init');
+        return; // Don't initialize Locomotive on mobile
+    }
+    
     locomotiveScroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
         smooth: !isMobile, // Smooth scroll only on desktop
@@ -402,9 +411,7 @@ const scrollIndicator = document.querySelector('.scroll-indicator');
 const splineContainer = document.querySelector('.spline-container');
 const splineViewer = document.querySelector('spline-viewer');
 
-// Pain Point Calculator Variables
-let lossCounter = 0;
-let counterInterval;
+// Pain Point Calculator Variables (counter removed for performance)
 
 // ===================================
 // SEAMLESS ENTRANCE ANIMATIONS SYSTEM
@@ -534,12 +541,6 @@ function updateParallax(scrolled) {
     
     document.querySelectorAll('.stats-shape').forEach((shape, index) => {
         const speed = (index + 1) * 0.01 * speedMultiplier; // Намалено от 0.02
-        const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
-    });
-    
-    document.querySelectorAll('.how-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.012 * speedMultiplier; // Намалено от 0.025
         const yPos = scrolled * speed;
         shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
@@ -790,9 +791,53 @@ setTimeout(() => {
 
 // Initialize seamless animations on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Locomotive Scroll first
+    const isMobile = window.innerWidth <= 768;
+    
+    // CRITICAL: Fix mobile scrolling issues
+    if (isMobile) {
+        console.log('📱 Mobile Mode - Fixing scroll issues...');
+        
+        // Remove any scroll-blocking classes
+        document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
+        document.body.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
+        
+        // Force enable scrolling
+        document.documentElement.style.overflow = 'visible';
+        document.body.style.overflow = 'visible';
+        document.body.style.overflowY = 'auto';
+        
+        // Ensure hero allows scrolling
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            hero.style.overflow = 'visible';
+            hero.style.touchAction = 'auto';
+        }
+        
+        // Disable pointer events on all Spline elements
+        const splineElements = document.querySelectorAll('spline-viewer, canvas, .spline-container, .spline-hero-container');
+        splineElements.forEach(el => {
+            el.style.pointerEvents = 'none';
+            el.style.touchAction = 'auto';
+        });
+        
+        // Fix scroll container
+        const scrollContainer = document.querySelector('[data-scroll-container]');
+        if (scrollContainer) {
+            scrollContainer.style.transform = 'none';
+            scrollContainer.style.height = 'auto';
+            scrollContainer.style.overflow = 'visible';
+            scrollContainer.style.position = 'static';
+        }
+        
+        // Glass effect is now handled by CSS in <head> for better performance
+        console.log('✅ Mobile scroll fixes applied!');
+    }
+    
+    // Initialize Locomotive Scroll first (will skip on mobile)
     locomotiveScroll = initLocomotiveScroll();
-    console.log('🚂 Locomotive Scroll initialized!');
+    if (!isMobile) {
+        console.log('🚂 Locomotive Scroll initialized!');
+    }
     
     // Wait a bit for Locomotive to set up, then initialize other features
     setTimeout(() => {
@@ -1236,22 +1281,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Pain Point Calculator Functions
 function initPainPointCalculator() {
-    initLossCounter();
+    // initLossCounter(); // Removed for performance - static values used
     initCalculatorEvents();
     initPainPointAnimations();
     enhanceFloatingIcons();
 }
 
-// Start live loss counter
-function initLossCounter() {
-    counterInterval = setInterval(() => {
-        lossCounter += 0.33;
-        const lossElement = document.getElementById('liveLossCounter');
-        if (lossElement) {
-            lossElement.textContent = lossCounter.toFixed(2) + ' лв';
-        }
-    }, 1000);
-}
+// Live loss counter removed for performance - static values used instead
 
 // Initialize calculator events
 function initCalculatorEvents() {
@@ -1830,32 +1866,12 @@ function scrollToDownload() {
     }
 }
 
-// Add new keyframe animations via CSS
+// Add new keyframe animations via CSS (loss animations removed for performance)
 const enhancedAnimationsCSS = `
 @keyframes cardShock {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(255, 71, 87, 0.4); }
     100% { transform: scale(1); }
-}
-
-
-
-@keyframes lossShock {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); color: #ffd700; }
-    100% { transform: scale(1); color: #fff; }
-}
-
-@keyframes urgentFlicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; color: #ff1a1a; }
-}
-
-
-
-@keyframes countUp {
-    0% { transform: translateY(10px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
 }
 `;
 
@@ -2066,69 +2082,7 @@ function initCostTimelineSection() {
         });
     }
 
-    // Counter animation for loss amounts
-    function animateCounter(element, target, suffix = ' лв', duration = 2000) {
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-        
-        // Запази оригиналния текст структура
-        const originalText = element.textContent;
-        const textParts = originalText.split(/\d[\d,\s]*/);
-        const prefix = textParts[0] || '';
-        const postfix = textParts[1] || suffix;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            const formatted = Math.floor(current).toLocaleString('bg-BG');
-            element.textContent = prefix + formatted + postfix;
-        }, 16);
-    }
-
-    // Animate counters when they come into view
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const lossText = entry.target.querySelector('.loss-text');
-                const gainAmount = entry.target.querySelector('.gain-amount');
-                
-                if (lossText && !lossText.dataset.animated) {
-                    const text = lossText.textContent;
-                    const matches = text.match(/[\d,\s]+/g);
-                    if (matches) {
-                        const amount = parseInt(matches[0].replace(/[,\s]/g, ''));
-                        // Анимирай само ако числото е по-голямо от 100 (за да избегнем текст като "Губиш 15 лв")
-                        if (!isNaN(amount) && amount >= 100) {
-                            lossText.dataset.animated = 'true';
-                            animateCounter(lossText, amount, ' лв', 1500);
-                        } else {
-                            lossText.dataset.animated = 'true'; // Маркирай като animated без анимация
-                        }
-                    }
-                }
-                
-                if (gainAmount && !gainAmount.dataset.animated) {
-                    const text = gainAmount.textContent;
-                    const matches = text.match(/[\d,\s]+/g);
-                    if (matches) {
-                        const amount = parseInt(matches[0].replace(/[,\s]/g, ''));
-                        if (!isNaN(amount)) {
-                            gainAmount.dataset.animated = 'true';
-                            animateCounter(gainAmount, amount, '', 2000);
-                        }
-                    }
-                }
-            }
-        });
-    }, { threshold: 0.5 });
-
-    timelineCards.forEach(card => {
-        counterObserver.observe(card);
-    });
+    // Counter animation removed for performance - static values displayed
 
     // Smooth scroll for CTA button
     const ctaButton = document.querySelector('.timeline-cta-button');
@@ -3070,9 +3024,9 @@ function initFeaturesCarousel() {
     const cards = document.querySelectorAll('.features-carousel-wrapper .bento-card');
     const indicators = document.querySelectorAll('.carousel-indicator');
     const swipeHint = document.querySelector('.swipe-hint');
-    
+
     if (!wrapper || !cards.length) return;
-    
+
     let currentIndex = 0;
     let startX = 0;
     let currentX = 0;

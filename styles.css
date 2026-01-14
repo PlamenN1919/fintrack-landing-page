@@ -203,7 +203,8 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
 }
 
 html {
@@ -592,10 +593,9 @@ body {
     transform: translate(-50%, -50%);
     opacity: 1 !important;
     visibility: visible !important;
-    pointer-events: auto;
+    pointer-events: none;
     animation: fadeInScale 1.5s ease-out 0.5s forwards;
     overflow: visible;
-    pointer-events: none;
 }
 
 .spline-container spline-viewer {
@@ -608,11 +608,13 @@ body {
     transform-origin: center center;
     display: block;
     position: relative;
+    pointer-events: none !important;
 }
 
 .spline-container spline-viewer canvas {
     width: 100% !important;
     height: 100% !important;
+    pointer-events: none !important;
 }
 
 .spline-container spline-viewer.loaded {
@@ -1672,7 +1674,6 @@ body.is-scrolling {
     font-family: 'Inter', monospace;
     letter-spacing: -1px;
     text-shadow: 0 2px 10px rgba(255, 56, 56, 0.4);
-    animation: countUp 0.5s ease-out;
 }
 
 @keyframes urgentPulse {
@@ -1699,17 +1700,6 @@ body.is-scrolling {
 @keyframes pulseIcon {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-@keyframes countUp {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
 }
 
 /* Live Counter - Old class kept for compatibility */
@@ -5722,30 +5712,38 @@ body.is-scrolling {
         cursor: grabbing;
     }
     
-    /* Carousel Cards */
+    /* Carousel Cards - PERMANENT GLASS EFFECT */
     .features-carousel-wrapper .bento-card {
         flex: 0 0 calc(100vw - 120px);
         max-width: 450px;
         min-height: 280px;
         scroll-snap-align: center;
-        transform: scale(0.92);
-        opacity: 0.65;
-        transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        transform: scale(0.98);
+        opacity: 1 !important;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
         pointer-events: auto;
-        filter: blur(1px);
+        filter: none !important;
         position: relative;
         z-index: 101;
         padding: 30px;
-    }
-    
-    .features-carousel-wrapper .bento-card.active {
-        transform: scale(1.05);
-        opacity: 1;
-        filter: blur(0);
+        /* Постоянен Glass Effect */
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
         box-shadow:
-            0 25px 70px rgba(0, 0, 0, 0.25),
+            0 15px 40px rgba(0, 0, 0, 0.15),
             inset 0 1px 0 rgba(255, 255, 255, 0.6),
-            0 0 40px rgba(255, 255, 255, 0.2);
+            0 0 30px rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .features-carousel-wrapper .bento-card.active {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.5) !important;
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            0 0 50px rgba(255, 255, 255, 0.25) !important;
     }
     
     /* Card text visibility */
@@ -5999,12 +5997,23 @@ body.is-scrolling {
     .features-carousel-wrapper .bento-card {
         flex: 0 0 calc(100vw - 100px);
         min-height: 200px;
+        /* Постоянен Glass Effect */
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.15) !important;
     }
-    
+
     .features-carousel-wrapper {
         padding: 0 30px;
     }
-    
+
     .swipe-hint {
         font-size: 11px;
         bottom: -50px;
@@ -6102,12 +6111,23 @@ body.is-scrolling {
     .features-layout {
         min-height: 500px;
     }
-    
+
     .features-carousel-wrapper .bento-card {
         flex: 0 0 calc(100vw - 90px);
         min-height: 180px;
+        /* Постоянен Glass Effect */
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.15) !important;
     }
-    
+
     .features-carousel-wrapper {
         padding: 0 25px;
         gap: 15px;
@@ -6215,65 +6235,57 @@ body.is-scrolling {
     max-width: 420px;
 }
 
-/* Стилно подреждане на отделните карти */
-.left-cards .bento-card:nth-child(1) {
-    transform: translateX(0) translateY(-60px) rotate(-2deg) !important;
-    opacity: 0.92 !important;
-}
+/* Стилно подреждане на отделните карти - Desktop only */
+@media (min-width: 769px) {
+    .left-cards .bento-card:nth-child(1) {
+        transform: translateX(0) translateY(-60px) rotate(-2deg) !important;
+    }
 
-.left-cards .bento-card:nth-child(1):hover {
-    transform: translateX(0) translateY(-72px) rotate(-2deg) scale(1.03) !important;
-    opacity: 1 !important;
-}
+    .left-cards .bento-card:nth-child(1):hover {
+        transform: translateX(0) translateY(-72px) rotate(-2deg) scale(1.03) !important;
+    }
 
-.left-cards .bento-card:nth-child(2) {
-    transform: translateX(50px) translateY(0) rotate(1deg) !important;
-    opacity: 1 !important;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
-}
+    .left-cards .bento-card:nth-child(2) {
+        transform: translateX(50px) translateY(0) rotate(1deg) !important;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
+    }
 
-.left-cards .bento-card:nth-child(2):hover {
-    transform: translateX(50px) translateY(-12px) rotate(1deg) scale(1.03) !important;
-}
+    .left-cards .bento-card:nth-child(2):hover {
+        transform: translateX(50px) translateY(-12px) rotate(1deg) scale(1.03) !important;
+    }
 
-.left-cards .bento-card:nth-child(3) {
-    transform: translateX(100px) translateY(60px) rotate(-1deg) !important;
-    opacity: 0.92 !important;
-}
+    .left-cards .bento-card:nth-child(3) {
+        transform: translateX(100px) translateY(60px) rotate(-1deg) !important;
+    }
 
-.left-cards .bento-card:nth-child(3):hover {
-    transform: translateX(100px) translateY(48px) rotate(-1deg) scale(1.03) !important;
-    opacity: 1 !important;
-}
+    .left-cards .bento-card:nth-child(3):hover {
+        transform: translateX(100px) translateY(48px) rotate(-1deg) scale(1.03) !important;
+    }
 
-.right-cards .bento-card:nth-child(1) {
-    transform: translateX(0) translateY(-60px) rotate(2deg) !important;
-    opacity: 0.92 !important;
-}
+    .right-cards .bento-card:nth-child(1) {
+        transform: translateX(0) translateY(-60px) rotate(2deg) !important;
+    }
 
-.right-cards .bento-card:nth-child(1):hover {
-    transform: translateX(0) translateY(-72px) rotate(2deg) scale(1.03) !important;
-    opacity: 1 !important;
-}
+    .right-cards .bento-card:nth-child(1):hover {
+        transform: translateX(0) translateY(-72px) rotate(2deg) scale(1.03) !important;
+    }
 
-.right-cards .bento-card:nth-child(2) {
-    transform: translateX(-50px) translateY(0) rotate(-1deg) !important;
-    opacity: 1 !important;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
-}
+    .right-cards .bento-card:nth-child(2) {
+        transform: translateX(-50px) translateY(0) rotate(-1deg) !important;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
+    }
 
-.right-cards .bento-card:nth-child(2):hover {
-    transform: translateX(-50px) translateY(-12px) rotate(-1deg) scale(1.03) !important;
-}
+    .right-cards .bento-card:nth-child(2):hover {
+        transform: translateX(-50px) translateY(-12px) rotate(-1deg) scale(1.03) !important;
+    }
 
-.right-cards .bento-card:nth-child(3) {
-    transform: translateX(-100px) translateY(60px) rotate(1deg) !important;
-    opacity: 0.92 !important;
-}
+    .right-cards .bento-card:nth-child(3) {
+        transform: translateX(-100px) translateY(60px) rotate(1deg) !important;
+    }
 
-.right-cards .bento-card:nth-child(3):hover {
-    transform: translateX(-100px) translateY(48px) rotate(1deg) scale(1.03) !important;
-    opacity: 1 !important;
+    .right-cards .bento-card:nth-child(3):hover {
+        transform: translateX(-100px) translateY(48px) rotate(1deg) scale(1.03) !important;
+    }
 }
 
 .phone-mockup-center {
@@ -6285,9 +6297,18 @@ body.is-scrolling {
     z-index: 10;
 }
 
-.phone-mockup-center .phone-mockup-image {
+.phone-mockup-center .phone-mockup-image,
+.phone-mockup-center picture,
+.phone-mockup-center img {
     width: 1200px;
     max-width: none;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.phone-mockup-center picture,
+.phone-mockup-header picture {
+    display: block;
 }
 
 /* Mobile Phone Mockup */
@@ -6300,12 +6321,20 @@ body.is-scrolling {
     padding: 0 20px;
 }
 
-.phone-mockup-image-mobile {
+.phone-mockup-image-mobile,
+.phone-mockup-mobile picture,
+.phone-mockup-mobile img {
     max-width: 900px;
     width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.phone-mockup-mobile picture {
+    display: block;
 }
 
 /* Phone Mockup in Header (Desktop) */
@@ -6381,10 +6410,11 @@ body.is-scrolling {
 
 /* Base Card Styling - Hero Glass Style */
 .bento-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 24px 28px;
     position: relative;
     overflow: hidden;
@@ -6394,8 +6424,8 @@ body.is-scrolling {
     flex-direction: column;
     align-items: flex-start;
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .bento-card::before {
@@ -6717,19 +6747,32 @@ body.is-scrolling {
     50% { transform: scale(1.1); opacity: 1; }
 }
 
-/* Entrance Animations */
-.bento-card {
-    opacity: 0;
-    animation: cardFadeIn 0.6s ease-out forwards;
+/* Entrance Animations - Desktop only */
+@media (min-width: 769px) {
+    .bento-card {
+        opacity: 0;
+        animation: cardFadeIn 0.6s ease-out forwards;
+    }
+
+    .bento-card:nth-child(1) { animation-delay: 0.1s; }
+    .bento-card:nth-child(2) { animation-delay: 0.15s; }
+    .bento-card:nth-child(3) { animation-delay: 0.2s; }
+    .bento-card:nth-child(4) { animation-delay: 0.25s; }
+    .bento-card:nth-child(5) { animation-delay: 0.3s; }
+    .bento-card:nth-child(6) { animation-delay: 0.35s; }
+    .bento-card:nth-child(7) { animation-delay: 0.4s; }
 }
 
-.bento-card:nth-child(1) { animation-delay: 0.1s; }
-.bento-card:nth-child(2) { animation-delay: 0.15s; }
-.bento-card:nth-child(3) { animation-delay: 0.2s; }
-.bento-card:nth-child(4) { animation-delay: 0.25s; }
-.bento-card:nth-child(5) { animation-delay: 0.3s; }
-.bento-card:nth-child(6) { animation-delay: 0.35s; }
-.bento-card:nth-child(7) { animation-delay: 0.4s; }
+/* Mobile: No fade animation, always visible with glass effect */
+@media (max-width: 768px) {
+    .bento-card {
+        opacity: 1 !important;
+        animation: none !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+    }
+}
 
 @keyframes cardFadeIn {
     from {
@@ -9989,7 +10032,7 @@ body.is-scrolling {
         height: 100vh !important;
         min-height: 100vh !important;
         max-height: 100vh !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         background-size: cover !important;
         background-position: center bottom !important;
         background-attachment: scroll !important;
@@ -10000,6 +10043,7 @@ body.is-scrolling {
         position: relative !important;
         display: flex !important;
         width: 100% !important;
+        touch-action: auto !important;
     }
     
     .hero-brand {
@@ -10540,6 +10584,7 @@ body.is-scrolling {
 .fear-spline-container spline-viewer canvas {
     width: 100% !important;
     height: 100% !important;
+    pointer-events: none !important;
 }
 
 
@@ -14684,141 +14729,6 @@ body.is-scrolling {
     z-index: 0;
 }
 
-/* Animated Background Shapes - Subtle for light background */
-.how-bg-shapes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.how-shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.08;
-    animation: floatShape 20s infinite ease-in-out;
-}
-
-.how-shape-1 {
-    width: 600px;
-    height: 600px;
-    background: linear-gradient(135deg, #2c2c2c, #2c2c2c);
-    top: -200px;
-    left: -200px;
-    animation-delay: 0s;
-}
-
-.how-shape-2 {
-    width: 500px;
-    height: 500px;
-    background: linear-gradient(135deg, #f093fb, #f5576c);
-    top: 50%;
-    right: -150px;
-    animation-delay: 5s;
-}
-
-.how-shape-3 {
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    bottom: -100px;
-    left: 20%;
-    animation-delay: 10s;
-}
-
-.how-shape-4 {
-    width: 350px;
-    height: 350px;
-    background: linear-gradient(135deg, #43e97b, #38f9d7);
-    top: 20%;
-    right: 10%;
-    animation-delay: 15s;
-}
-
-@keyframes floatShape {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-    }
-    33% {
-        transform: translate(50px, -50px) scale(1.1);
-    }
-    66% {
-        transform: translate(-30px, 30px) scale(0.9);
-    }
-}
-
-/* Progress Indicator - статичен в секцията */
-.how-progress-container {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 40px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.how-progress-bar {
-    width: 4px;
-    height: 300px;
-    background: rgba(44, 44, 44, 0.1);
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-.how-progress-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(180deg, #2c2c2c, #2c2c2c, #2c2c2c);
-    border-radius: 10px;
-    transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 20px rgba(44, 44, 44, 0.6);
-}
-
-.how-progress-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    position: absolute;
-    right: -25px;
-    top: 0;
-    height: 100%;
-}
-
-.progress-step {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(44, 44, 44, 0.2);
-    border: 2px solid rgba(44, 44, 44, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: rgba(44, 44, 44, 0.5);
-    transition: all 0.4s ease;
-    cursor: pointer;
-}
-
-.progress-step.active {
-    background: linear-gradient(135deg, #2c2c2c, #2c2c2c);
-    border-color: #2c2c2c;
-    color: white;
-    box-shadow: 0 0 20px rgba(44, 44, 44, 0.8);
-    transform: scale(1.3);
-}
-
 /* Header */
 .how-header {
     text-align: center;
@@ -14948,49 +14858,6 @@ body.is-scrolling {
     transform: translateY(0) scale(1);
 }
 
-.step-card-glow {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(44, 44, 44, 0.3) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    pointer-events: none;
-}
-
-/* Hover effect removed */
-/* .step-card:hover .step-card-glow {
-    opacity: 1;
-} */
-
-.step-card-border {
-    position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    padding: 2px;
-    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-}
-
-/* Hover effect removed */
-/* .step-card:hover .step-card-border {
-    opacity: 1;
-} */
-
-/* Hover effect removed */
-/* .step-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 80px rgba(44, 44, 44, 0.3);
-    border-color: rgba(44, 44, 44, 0.4);
-} */
-
 .step-card-featured {
     background: linear-gradient(135deg, rgba(44, 44, 44, 0.15), rgba(44, 44, 44, 0.15));
     border-color: rgba(44, 44, 44, 0.3);
@@ -15001,25 +14868,6 @@ body.is-scrolling {
     position: relative;
     display: inline-block;
     margin-bottom: 25px;
-}
-
-.step-number-pulse {
-    position: absolute;
-    inset: -10px;
-    border-radius: 50%;
-    background: rgba(44, 44, 44, 0.3);
-    animation: numberPulse 2s infinite;
-}
-
-@keyframes numberPulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    50% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
 }
 
 .step-number {
@@ -15039,33 +14887,12 @@ body.is-scrolling {
     transition: all 0.4s ease;
 }
 
-/* Hover effect removed */
-/* .step-card:hover .step-number {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 15px 50px rgba(44, 44, 44, 0.7);
-} */
-
 /* Step Icon */
 .step-icon-wrapper {
     position: relative;
     display: inline-block;
     margin-bottom: 25px;
 }
-
-.step-icon-bg {
-    position: absolute;
-    inset: -15px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.2), rgba(44, 44, 44, 0.2));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    filter: blur(20px);
-}
-
-/* Hover effect removed */
-/* .step-card:hover .step-icon-bg {
-    opacity: 1;
-} */
 
 .step-icon {
     width: 70px;
@@ -15080,60 +14907,6 @@ body.is-scrolling {
     z-index: 2;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Hover effect removed */
-/* .step-card:hover .step-icon {
-    transform: scale(1.15) rotate(10deg) translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-} */
-
-.step-icon-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-}
-
-/* Hover effect removed */
-/* .step-card:hover .particle:nth-child(1) {
-    animation: particleFloat 1s ease 0s;
-    top: 20%;
-    left: 20%;
-}
-
-.step-card:hover .particle:nth-child(2) {
-    animation: particleFloat 1s ease 0.2s;
-    top: 50%;
-    right: 20%;
-}
-
-.step-card:hover .particle:nth-child(3) {
-    animation: particleFloat 1s ease 0.4s;
-    bottom: 20%;
-    left: 50%;
-} */
-
-@keyframes particleFloat {
-    0% {
-        opacity: 0;
-        transform: translate(0, 0) scale(0);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--tx, 30px), var(--ty, -30px)) scale(1);
-    }
 }
 
 /* Gradient Icons */
@@ -15205,69 +14978,6 @@ body.is-scrolling {
     color: #2c2c2c;
 }
 
-.step-visual {
-    flex: 1;
-    height: 4px;
-    background: rgba(44, 44, 44, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 100px;
-}
-
-.visual-bar {
-    height: 100%;
-    width: var(--width);
-    background: linear-gradient(90deg, #2c2c2c, #2c2c2c);
-    border-radius: 10px;
-    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.6);
-}
-
-/* Hover effect removed */
-/* .step-card:hover .visual-bar {
-    animation: barGlow 2s infinite;
-} */
-
-@keyframes barGlow {
-    0%, 100% {
-        box-shadow: 0 0 10px rgba(44, 44, 44, 0.6);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(44, 44, 44, 1);
-    }
-}
-
-/* Step Arrow */
-.step-arrow {
-    position: absolute;
-    top: 50%;
-    right: -15px;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(44, 44, 44, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2c2c2c;
-    font-size: 16px;
-    opacity: 0;
-    transition: all 0.4s ease;
-    z-index: 10;
-}
-
-/* Hover effect removed */
-/* .step-card:hover .step-arrow {
-    opacity: 1;
-    right: -20px;
-    background: rgba(44, 44, 44, 0.4);
-    box-shadow: 0 5px 20px rgba(44, 44, 44, 0.5);
-} */
-
-.step-card:last-child .step-arrow {
-    display: none;
-}
 
 /* Success Badge */
 .step-success-badge {
@@ -15495,15 +15205,6 @@ body.is-scrolling {
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
         padding: 40px 30px;
-    }
-    
-    /* How It Works - Tablet */
-    .how-progress-container {
-        right: 20px;
-    }
-    
-    .how-progress-bar {
-        height: 250px;
     }
     
     .steps-grid {
@@ -15759,11 +15460,6 @@ body.is-scrolling {
         padding: 10px 20px;
     }
     
-    /* How It Works - Mobile */
-    .how-progress-container {
-        display: none;
-    }
-    
     .how-it-works-section {
         padding: 100px 0;
         min-height: auto;
@@ -15818,15 +15514,6 @@ body.is-scrolling {
         gap: 12px;
     }
     
-    .step-visual {
-        max-width: 100%;
-        width: 100%;
-    }
-    
-    .step-arrow {
-        display: none;
-    }
-    
     .how-cta .download-pill-btn {
         transform: scale(1.1);
     }
@@ -15843,19 +15530,6 @@ body.is-scrolling {
     
     .how-cta .pill-btn-circle i {
         font-size: 18px;
-    }
-    
-    .how-bg-shapes .how-shape {
-        filter: blur(80px);
-        opacity: 0.05;
-    }
-    
-    .how-shape-1,
-    .how-shape-2,
-    .how-shape-3,
-    .how-shape-4 {
-        width: 300px;
-        height: 300px;
     }
     
     .rating-number {
@@ -17231,8 +16905,7 @@ body.is-scrolling {
 
 /* Floating elements parallax movement */
 .fear-geometric-shape,
-.stats-shape,
-.how-shape {
+.stats-shape {
     transition: transform 0.3s ease-out;
 }
 
@@ -17312,15 +16985,11 @@ body.is-scrolling {
     opacity: 0;
 }
 
-/* Removed generic h2/h3 animations - using section-specific ones only */
-
 /* Subtle background parallax for depth */
 .section > .container {
     position: relative;
     z-index: 5;
 }
-
-/* Removed - causing black areas on scroll */
 
 /* Card hover micro-interactions for cohesiveness */
 .bento-card,
@@ -17332,7 +17001,6 @@ body.is-scrolling {
                 opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover effect removed for step-card */
 .bento-card:hover {
     transform: translateY(-8px) scale(1.02);
 }
@@ -19681,11 +19349,7 @@ body.is-scrolling {
         max-width: 400px;
         margin: 0 auto;
     }
-    
-    .how-progress-container {
-        display: none;
-    }
-    
+
     /* Calculator Section */
     .pain-calculator-section {
         padding: 80px 0;
@@ -20217,11 +19881,7 @@ body.is-scrolling {
     .step-description {
         font-size: 13px;
     }
-    
-    .how-progress-container {
-        display: none;
-    }
-    
+
     /* Calculator Section */
     .pain-calculator-section {
         padding: 60px 0;
@@ -20977,14 +20637,6 @@ body.is-scrolling {
         font-size: 11px;
     }
     
-    .step-arrow {
-        display: none;
-    }
-    
-    .how-progress-container {
-        display: none;
-    }
-    
     .how-cta {
         margin-top: 30px;
     }
@@ -21424,11 +21076,6 @@ body.is-scrolling {
         transform: none;
     }
     
-    /* Hover effect already removed globally */
-    /* .step-card:hover {
-        transform: none;
-    } */
-    
     .social-link:hover {
         transform: none;
     }
@@ -21473,8 +21120,7 @@ body.is-scrolling {
     .social-links,
     .scroll-indicator,
     .fear-orbital-section,
-    .testimonials-columns-section,
-    .how-progress-container {
+    .testimonials-columns-section {
         display: none;
     }
     
@@ -24580,30 +24226,38 @@ body.is-scrolling {
         cursor: grabbing;
     }
     
-    /* Carousel Cards */
+    /* Carousel Cards - PERMANENT GLASS EFFECT */
     .features-carousel-wrapper .bento-card {
         flex: 0 0 calc(100vw - 120px);
         max-width: 350px;
         min-height: 220px;
         scroll-snap-align: center;
-        transform: scale(0.92);
-        opacity: 0.65;
-        transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        transform: scale(0.98);
+        opacity: 1 !important;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
         pointer-events: auto;
-        filter: blur(1px);
+        filter: none !important;
         position: relative;
         z-index: 101;
         padding: 24px;
-    }
-    
-    .features-carousel-wrapper .bento-card.active {
-        transform: scale(1.05);
-        opacity: 1;
-        filter: blur(0);
+        /* Постоянен Glass Effect */
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
         box-shadow:
-            0 25px 70px rgba(0, 0, 0, 0.25),
+            0 15px 40px rgba(0, 0, 0, 0.15),
             inset 0 1px 0 rgba(255, 255, 255, 0.6),
-            0 0 40px rgba(255, 255, 255, 0.2);
+            0 0 30px rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .features-carousel-wrapper .bento-card.active {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.5) !important;
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            0 0 50px rgba(255, 255, 255, 0.25) !important;
     }
     
     /* Card text visibility */
@@ -25507,10 +25161,6 @@ body.is-scrolling {
     .step-time {
         font-size: 11px;
     }
-    
-    .how-progress-container {
-        display: none;
-    }
 }
 
 /* --- Tablet Portrait (768px - 991px) --- */
@@ -25554,14 +25204,6 @@ body.is-scrolling {
     
     .step-icon i {
         font-size: 18px;
-    }
-    
-    .step-arrow {
-        display: none;
-    }
-    
-    .how-progress-container {
-        display: none;
     }
     
     .how-cta {
@@ -25625,14 +25267,6 @@ body.is-scrolling {
         font-size: 11px;
     }
     
-    .step-arrow {
-        display: none;
-    }
-    
-    .how-progress-container {
-        display: none;
-    }
-    
     .how-cta {
         margin-top: 28px;
     }
@@ -25692,14 +25326,6 @@ body.is-scrolling {
     
     .step-time {
         font-size: 10px;
-    }
-    
-    .step-arrow {
-        display: none;
-    }
-    
-    .how-progress-container {
-        display: none;
     }
     
     .how-cta {
@@ -27709,7 +27335,7 @@ body.is-scrolling {
         height: 100vh !important;
         min-height: 100vh !important;
         max-height: 100vh !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         background-size: cover !important;
         background-position: center bottom !important;
         background-attachment: scroll !important;
@@ -27720,6 +27346,7 @@ body.is-scrolling {
         position: relative !important;
         display: flex !important;
         width: 100% !important;
+        touch-action: auto !important;
     }
 
     .hero + section,
@@ -27742,6 +27369,15 @@ body.is-scrolling {
         margin: 0 !important;
         overflow: visible !important;
         z-index: 1 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Force spline viewer to not block touches */
+    .hero .spline-container *,
+    .hero spline-viewer,
+    .hero spline-viewer *,
+    .hero canvas {
+        pointer-events: none !important;
     }
     
     .hero .hero-brand {
@@ -27811,6 +27447,19 @@ body.is-scrolling {
         color: #2c2c2c !important;
         font-weight: 600 !important;
     }
+    
+    /* CRITICAL: Ensure all Spline elements allow touch scrolling */
+    .spline-container,
+    .spline-hero-container,
+    .spline-container spline-viewer,
+    .spline-hero-container spline-viewer,
+    .spline-container spline-viewer canvas,
+    .spline-hero-container spline-viewer canvas,
+    .spline-container *,
+    .spline-hero-container * {
+        pointer-events: none !important;
+        touch-action: auto !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -27818,7 +27467,7 @@ body.is-scrolling {
         height: 100vh !important;
         min-height: 100vh !important;
         max-height: 100vh !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         background-size: cover !important;
         background-position: center bottom !important;
         background-attachment: scroll !important;
@@ -27829,6 +27478,20 @@ body.is-scrolling {
         position: relative !important;
         display: flex !important;
         width: 100% !important;
+        touch-action: auto !important;
+    }
+    
+    /* CRITICAL: Ensure all Spline elements allow touch scrolling */
+    .spline-container,
+    .spline-hero-container,
+    .spline-container spline-viewer,
+    .spline-hero-container spline-viewer,
+    .spline-container spline-viewer canvas,
+    .spline-hero-container spline-viewer canvas,
+    .spline-container *,
+    .spline-hero-container * {
+        pointer-events: none !important;
+        touch-action: auto !important;
     }
 
     .hero + section,
@@ -28069,13 +27732,14 @@ body.is-scrolling {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
-    pointer-events: auto;
+    pointer-events: none !important;
 }
 
 .spline-hero-container spline-viewer canvas {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    pointer-events: none !important;
 }
 
 /* Mobile */
@@ -28153,6 +27817,25 @@ body.has-scroll-smooth [data-scroll-section] {
 html.has-scroll-smooth,
 html.has-scroll-smooth body {
     overflow: hidden;
+}
+
+/* On mobile, allow normal overflow for scrolling */
+@media (max-width: 768px) {
+    html.has-scroll-smooth,
+    html.has-scroll-smooth body {
+        overflow: visible !important;
+        overflow-y: auto !important;
+    }
+    
+    /* CRITICAL: Allow scroll container to scroll normally on mobile */
+    [data-scroll-container] {
+        height: auto !important;
+        overflow: visible !important;
+        overflow-y: visible !important;
+        position: static !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
 }
 
 html.has-scroll-init [data-scroll-container] {
@@ -28909,3 +28592,83 @@ html.has-scroll-init [data-scroll-container] {
         background: rgba(255, 255, 255, 0.85);
     }
 }
+
+/* =============================================
+   MOBILE TOUCH SCROLLING FIX - FINAL OVERRIDE
+   ============================================= */
+/* Critical fix: Ensure mobile scrolling works everywhere in hero section */
+@media (max-width: 768px) {
+    /* Allow touch scrolling through all layers */
+    .hero,
+    .hero * {
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* All Spline 3D elements must not block touch events */
+    .spline-container,
+    .spline-hero-container,
+    .spline-placeholder,
+    .spline-loading-indicator,
+    spline-viewer,
+    canvas,
+    .hero spline-viewer,
+    .hero canvas,
+    .spline-container *,
+    .spline-hero-container * {
+        pointer-events: none !important;
+        touch-action: pan-y pan-x !important;
+    }
+    
+    /* Only text and interactive elements should capture touch */
+    .hero-brand,
+    .hero-brand *,
+    .download-pill-btn,
+    .nav-pill-item,
+    .logo-container,
+    a,
+    button,
+    input,
+    textarea {
+        pointer-events: auto !important;
+        touch-action: auto !important;
+    }
+}
+
+/* =============================================
+   MOBILE BENTO CARDS - PERMANENT GLASS EFFECT
+   ============================================= */
+@media (max-width: 768px) {
+    /* All bento cards have permanent glass effect on mobile */
+    .bento-card,
+    .features-carousel-wrapper .bento-card,
+    .left-cards .bento-card,
+    .right-cards .bento-card,
+    .bento-card.medium,
+    .bento-card.large,
+    .bento-card.wide,
+    .bento-card.small {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        transform: scale(1) !important;
+        animation: none !important;
+        box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    /* Active card gets slightly enhanced effect */
+    .features-carousel-wrapper .bento-card.active {
+        transform: scale(1.02) !important;
+        background: rgba(255, 255, 255, 0.5) !important;
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            0 0 50px rgba(255, 255, 255, 0.3) !important;
+    }
+}
+

@@ -95,8 +95,8 @@
         /* Critical above-the-fold styles */
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--bg-base:#E8E4E4;--bg-gradient:#E8E4E4}
-        html,body{margin:0;padding:0;overflow-x:hidden;height:100%}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#E8E4E4;color:#fff;line-height:1.6;overflow-x:hidden;min-height:100%}
+        html,body{margin:0;padding:0;overflow-x:hidden;height:auto;min-height:100%}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#E8E4E4;color:#fff;line-height:1.6;overflow-x:hidden;overflow-y:auto;min-height:100%}
         /* Page Loader Critical Styles */
         .page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#E8E4E4;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s ease,visibility .5s ease}
         .page-loader.loaded{opacity:0;visibility:hidden}
@@ -119,10 +119,11 @@
         /* Other Critical Styles */
         .logo-container{position:absolute;top:30px;left:30px;z-index:1000;opacity:0;animation:fadeInDown 1s ease-out .1s forwards}
         .logo{height:60px;width:auto;transition:all .3s ease;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
-        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background-color:#E8E4E4}
+        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:visible;background-color:#E8E4E4}
         .hero-background-fixed{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;background:linear-gradient(135deg,#E8E4E4 0%,#E8E4E4 100%)}
-        .spline-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:auto}
-        spline-viewer{width:100%;height:100%;display:block}
+        .spline-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+        spline-viewer{width:100%;height:100%;display:block;pointer-events:none}
+        @media (max-width:768px){.hero{overflow:visible!important}.spline-container,.spline-container *,spline-viewer,spline-viewer *,canvas{pointer-events:none!important}.bento-card{background:rgba(255,255,255,0.4)!important;backdrop-filter:blur(25px)!important;-webkit-backdrop-filter:blur(25px)!important;border:1px solid rgba(255,255,255,0.5)!important;opacity:1!important;filter:none!important;box-shadow:0 15px 40px rgba(0,0,0,0.15),inset 0 1px 0 rgba(255,255,255,0.6),0 0 30px rgba(255,255,255,0.15)!important}}
         .hero-brand{position:relative;z-index:2;padding:40px;max-width:600px}
         .brand-title{font-size:72px;font-weight:800;letter-spacing:8px;text-transform:uppercase;color:#2c2c2c;margin-bottom:10px;line-height:1}
         @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
@@ -134,9 +135,9 @@
         .spline-hero-container.loaded .spline-placeholder{display:none}
     </style>
     
-    <!-- Main Stylesheet - Preloaded -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Main Stylesheet - Minified for Production -->
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="stylesheet" href="styles.min.css">
     
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
@@ -190,6 +191,45 @@
     </script>
 </head>
 <body>
+    <!-- CRITICAL: Mobile scroll fix - Must run FIRST before anything else -->
+    <script>
+        (function() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                console.log('🔧 EMERGENCY MOBILE FIX: Unwrapping scroll container...');
+                
+                // Wait for DOM to be ready
+                document.addEventListener('DOMContentLoaded', function() {
+                    const scrollContainer = document.querySelector('[data-scroll-container]');
+                    if (scrollContainer) {
+                        // Move all children out of scroll container
+                        const children = Array.from(scrollContainer.children);
+                        const parent = scrollContainer.parentNode;
+                        
+                        children.forEach(child => {
+                            parent.insertBefore(child, scrollContainer);
+                        });
+                        
+                        // Remove the empty scroll container
+                        scrollContainer.remove();
+                        
+                        console.log('✅ Scroll container removed - native scrolling enabled!');
+                    }
+                    
+                    // Force enable scrolling
+                    document.documentElement.style.overflow = 'visible';
+                    document.documentElement.style.overflowY = 'auto';
+                    document.body.style.overflow = 'visible';
+                    document.body.style.overflowY = 'auto';
+                    
+                    // Remove any Locomotive classes
+                    document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
+                    document.body.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
+                });
+            }
+        })();
+    </script>
+    
     <!-- Loading Screen -->
     <div id="page-loader" class="page-loader">
         <div class="loader-content">
@@ -575,7 +615,10 @@
                 
                 <!-- Phone Mockup for Mobile (after subtitle, before button) -->
                 <div class="phone-mockup-mobile">
-                    <img src="assets/mockups/optimized/mockup-iphone-mobile.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile" loading="lazy" decoding="async" width="250" height="500">
+                    <picture>
+                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
+                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile" loading="lazy" decoding="async" width="1200" height="900">
+                    </picture>
                 </div>
                 
                 <!-- Download Button -->
@@ -588,7 +631,10 @@
                 
                 <!-- Phone Mockup in Header (Desktop only) -->
                 <div class="phone-mockup-header" data-scroll data-scroll-speed="0.08">
-                    <img src="assets/mockups/optimized/mockup-iphone-tablet.png" alt="FinTrack App Interface" class="phone-mockup-image-header" loading="lazy" decoding="async" width="300" height="600">
+                    <picture>
+                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
+                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image-header" loading="lazy" decoding="async" width="1200" height="900">
+                    </picture>
                 </div>
             </div>
 
@@ -652,7 +698,10 @@
 
                 <!-- Phone Mockup -->
                 <div class="phone-mockup-center">
-                    <img src="assets/mockups/optimized/mockup-iphone-desktop.png" alt="FinTrack App Interface" class="phone-mockup-image" loading="lazy" decoding="async" width="400" height="800">
+                    <picture>
+                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
+                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image" loading="lazy" decoding="async" width="1200" height="900">
+                    </picture>
                 </div>
 
                 <!-- Right Cards -->
@@ -1420,240 +1469,6 @@
         <div class="testimonials-columns-fade-bottom"></div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works-section section" id="how-it-works" data-scroll-section>
-        <!-- Animated Background Elements -->
-        <div class="how-bg-shapes">
-            <div class="how-shape how-shape-2 parallax-slow"></div>
-            <div class="how-shape how-shape-4 parallax-medium"></div>
-        </div>
-
-        <!-- Progress Indicator -->
-        <div class="how-progress-container">
-            <div class="how-progress-bar">
-                <div class="how-progress-fill"></div>
-            </div>
-            <div class="how-progress-steps">
-                <span class="progress-step active" data-step="1">1</span>
-                <span class="progress-step" data-step="2">2</span>
-                <span class="progress-step" data-step="3">3</span>
-                <span class="progress-step" data-step="4">4</span>
-                <span class="progress-step" data-step="5">5</span>
-            </div>
-        </div>
-
-        <div class="container">
-            <!-- Interactive Steps Grid -->
-            <div class="steps-grid">
-                <!-- Step 1 -->
-                <div class="step-card" data-step="1">
-                    <div class="step-card-glow"></div>
-                    <div class="step-card-border"></div>
-                    <div class="step-number-wrapper">
-                        <div class="step-number-pulse"></div>
-                        <div class="step-number">01</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon-bg"></div>
-                        <div class="step-icon gradient-purple">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <div class="step-icon-particles">
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Изтегли приложението</h3>
-                        <p class="step-description">
-                            Налично безплатно в App Store и Google Play. Инсталацията отнема само 30 секунди.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                30 секунди
-                            </span>
-                            <div class="step-visual">
-                                <div class="visual-bar" style="--width: 20%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step-card" data-step="2">
-                    <div class="step-card-glow"></div>
-                    <div class="step-card-border"></div>
-                    <div class="step-number-wrapper">
-                        <div class="step-number-pulse"></div>
-                        <div class="step-number">02</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon-bg"></div>
-                        <div class="step-icon gradient-green">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <div class="step-icon-particles">
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Създай профил</h3>
-                        <p class="step-description">
-                            Регистрирай се с email или социални мрежи. Бърза и сигурна регистрация.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                1 минута
-                            </span>
-                            <div class="step-visual">
-                                <div class="visual-bar" style="--width: 40%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step-card" data-step="3">
-                    <div class="step-card-glow"></div>
-                    <div class="step-card-border"></div>
-                    <div class="step-number-wrapper">
-                        <div class="step-number-pulse"></div>
-                        <div class="step-number">03</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon-bg"></div>
-                        <div class="step-icon gradient-blue">
-                            <i class="fas fa-cog"></i>
-                        </div>
-                        <div class="step-icon-particles">
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Настрой бюджета си</h3>
-                        <p class="step-description">
-                            Въведи месечния си доход и основни категории разходи. AI ще ти помогне с препоръки.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                1 минута
-                            </span>
-                            <div class="step-visual">
-                                <div class="visual-bar" style="--width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step-card" data-step="4">
-                    <div class="step-card-glow"></div>
-                    <div class="step-card-border"></div>
-                    <div class="step-number-wrapper">
-                        <div class="step-number-pulse"></div>
-                        <div class="step-number">04</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon-bg"></div>
-                        <div class="step-icon gradient-orange">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <div class="step-icon-particles">
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Получи AI анализ</h3>
-                        <p class="step-description">
-                            Нашият AI анализира финансовите ти навици и създава персонализиран план за спестяване.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-magic"></i>
-                                Автоматично
-                            </span>
-                            <div class="step-visual">
-                                <div class="visual-bar" style="--width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="step-card step-card-featured" data-step="5">
-                    <div class="step-card-glow"></div>
-                    <div class="step-card-border"></div>
-                    <div class="step-number-wrapper">
-                        <div class="step-number-pulse"></div>
-                        <div class="step-number">05</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon-bg"></div>
-                        <div class="step-icon gradient-pink">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="step-icon-particles">
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                            <span class="particle"></span>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Започни да спестяваш!</h3>
-                        <p class="step-description">
-                            Следи разходите си, получавай умни препоръки и гледай как спестяванията ти растат всеки ден.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-infinity"></i>
-                                Завинаги
-                            </span>
-                            <div class="step-visual">
-                                <div class="visual-bar" style="--width: 100%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-success-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Готово!</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="how-cta">
-                <a href="#download" class="download-pill-btn" data-track-id="how-it-works-download-pill" data-track-label="How It Works Download Pill Button">
-                    <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
-                    <div class="pill-btn-circle">
-                        <i class="fas fa-download"></i>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Pain Point Calculator Section -->
     <section class="pain-calculator-section section" id="calculator" data-scroll-section>
         <!-- Animated Gradient Background -->
@@ -1769,6 +1584,148 @@
                     <span class="stat-num">40%</span>
                     <span class="stat-desc">от доходите се губят безсмислено</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section section" id="how-it-works" data-scroll-section>
+        <div class="container">
+            <!-- Interactive Steps Grid -->
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card" data-step="1">
+                    <div class="step-number-wrapper">
+                        <div class="step-number">01</div>
+                    </div>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon gradient-purple">
+                            <i class="fas fa-download"></i>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Изтегли приложението</h3>
+                        <p class="step-description">
+                            Налично безплатно в App Store и Google Play. Инсталацията отнема само 30 секунди.
+                        </p>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                30 секунди
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card" data-step="2">
+                    <div class="step-number-wrapper">
+                        <div class="step-number">02</div>
+                    </div>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon gradient-green">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Създай профил</h3>
+                        <p class="step-description">
+                            Регистрирай се с email или социални мрежи. Бърза и сигурна регистрация.
+                        </p>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                1 минута
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card" data-step="3">
+                    <div class="step-number-wrapper">
+                        <div class="step-number">03</div>
+                    </div>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon gradient-blue">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Настрой бюджета си</h3>
+                        <p class="step-description">
+                            Въведи месечния си доход и основни категории разходи. AI ще ти помогне с препоръки.
+                        </p>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-clock"></i>
+                                1 минута
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card" data-step="4">
+                    <div class="step-number-wrapper">
+                        <div class="step-number">04</div>
+                    </div>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon gradient-orange">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Получи AI анализ</h3>
+                        <p class="step-description">
+                            Нашият AI анализира финансовите ти навици и създава персонализиран план за спестяване.
+                        </p>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-magic"></i>
+                                Автоматично
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-card step-card-featured" data-step="5">
+                    <div class="step-number-wrapper">
+                        <div class="step-number">05</div>
+                    </div>
+                    <div class="step-icon-wrapper">
+                        <div class="step-icon gradient-pink">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title">Започни да спестяваш!</h3>
+                        <p class="step-description">
+                            Следи разходите си, получавай умни препоръки и гледай как спестяванията ти растат всеки ден.
+                        </p>
+                        <div class="step-meta">
+                            <span class="step-time">
+                                <i class="fas fa-infinity"></i>
+                                Завинаги
+                            </span>
+                        </div>
+                    </div>
+                    <div class="step-success-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Готово!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="how-cta">
+                <a href="#download" class="download-pill-btn" data-track-id="how-it-works-download-pill" data-track-label="How It Works Download Pill Button">
+                    <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
+                    <div class="pill-btn-circle">
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
