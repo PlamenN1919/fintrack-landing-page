@@ -9803,13 +9803,19 @@ body.is-scrolling {
     font-size: 28px;
     font-weight: 800;
     color: #11998e;
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     letter-spacing: -1px;
     margin: 0 4px;
     position: relative;
+}
+
+/* Gradient text only on supported browsers */
+@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
+    .marketing-highlight {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }
 
 .marketing-highlight::after {
