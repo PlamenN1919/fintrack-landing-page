@@ -1540,41 +1540,22 @@ body.is-scrolling {
 }
 
 .pain-title-line-1 .highlight {
-    color: #2c2c2c;
+    color: #2c2c2c !important;
     position: relative;
     display: inline;
     font-weight: 900;
     font-size: 28px;
-}
-
-/* Gradient text only on supported browsers (not iOS) */
-@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
-    .pain-title-line-1 .highlight {
-        background: linear-gradient(90deg, #2c2c2c 0%, #6c6c6c 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+    background: none !important;
+    -webkit-text-fill-color: #2c2c2c !important;
 }
 
 .highlight-red {
-    color: #ff4757;
+    color: #ff4757 !important;
     position: relative;
     display: inline-block;
-    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6))
-            drop-shadow(0 0 20px rgba(255, 71, 87, 0.4))
-            drop-shadow(0 0 30px rgba(255, 56, 56, 0.3));
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
-/* Gradient text only on supported browsers (not iOS) */
-@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
-    .highlight-red {
-        background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 50%, #ff3838 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+    background: none !important;
+    -webkit-text-fill-color: #ff4757 !important;
+    filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.5));
 }
 
 @keyframes glowPulse {
@@ -9815,20 +9796,12 @@ body.is-scrolling {
     display: inline-block;
     font-size: 28px;
     font-weight: 800;
-    color: #11998e;
+    color: #11998e !important;
+    -webkit-text-fill-color: #11998e !important;
+    background: none !important;
     letter-spacing: -1px;
     margin: 0 4px;
     position: relative;
-}
-
-/* Gradient text only on supported browsers */
-@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
-    .marketing-highlight {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
 }
 
 .marketing-highlight::after {
