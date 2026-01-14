@@ -1543,25 +1543,38 @@ body.is-scrolling {
     color: #2c2c2c;
     position: relative;
     display: inline;
-    background: linear-gradient(90deg, #2c2c2c 0%, #6c6c6c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     font-weight: 900;
     font-size: 28px;
 }
 
+/* Gradient text only on supported browsers (not iOS) */
+@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
+    .pain-title-line-1 .highlight {
+        background: linear-gradient(90deg, #2c2c2c 0%, #6c6c6c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
 .highlight-red {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 50%, #ff3838 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ff4757;
     position: relative;
     display: inline-block;
-    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6)) 
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6))
             drop-shadow(0 0 20px rgba(255, 71, 87, 0.4))
             drop-shadow(0 0 30px rgba(255, 56, 56, 0.3));
     animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Gradient text only on supported browsers (not iOS) */
+@supports (-webkit-background-clip: text) and (not (-webkit-touch-callout: none)) {
+    .highlight-red {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 50%, #ff3838 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }
 
 @keyframes glowPulse {
