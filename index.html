@@ -86,15 +86,13 @@
     <link rel="preload" as="image" href="assets/logos/logo-optimized.png" fetchpriority="high">
     <!-- Defer non-critical image loading to improve LCP -->
     
-    <!-- Locomotive Scroll CSS - Deferred -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"></noscript>
+
     
     <!-- Critical CSS - Inline for fastest First Contentful Paint -->
     <style>
         /* Critical above-the-fold styles */
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--bg-base:#E8E4E4;--bg-gradient:#E8E4E4}
+        :root{--bg-base:#E8E4E4;--bg-gradient:#E8E4E4;--hero-accent:#B4F461}
         html,body{margin:0;padding:0;overflow-x:hidden;height:auto;min-height:100%}
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#E8E4E4;color:#fff;line-height:1.6;overflow-x:hidden;overflow-y:auto;min-height:100%}
         /* Page Loader Critical Styles */
@@ -119,25 +117,20 @@
         /* Other Critical Styles */
         .logo-container{position:absolute;top:30px;left:30px;z-index:1000;opacity:0;animation:fadeInDown 1s ease-out .1s forwards}
         .logo{height:60px;width:auto;transition:all .3s ease;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
-        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:visible;background-color:#E8E4E4}
-        .hero-background-fixed{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;background:linear-gradient(135deg,#E8E4E4 0%,#E8E4E4 100%)}
-        .spline-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
-        spline-viewer{width:100%;height:100%;display:block;pointer-events:none}
-        @media (max-width:768px){.hero{overflow:visible!important}.spline-container,.spline-container *,spline-viewer,spline-viewer *,canvas{pointer-events:none!important}.bento-card{background:rgba(255,255,255,0.4)!important;backdrop-filter:blur(25px)!important;-webkit-backdrop-filter:blur(25px)!important;border:1px solid rgba(255,255,255,0.5)!important;opacity:1!important;filter:none!important;box-shadow:0 15px 40px rgba(0,0,0,0.15),inset 0 1px 0 rgba(255,255,255,0.6),0 0 30px rgba(255,255,255,0.15)!important}}
-        .hero-brand{position:relative;z-index:2;padding:40px;max-width:600px}
-        .brand-title{font-size:72px;font-weight:800;letter-spacing:8px;text-transform:uppercase;color:#2c2c2c;margin-bottom:10px;line-height:1}
+        .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background-color:#E8E4E4}
         @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
         .hero-desktop-nav{position:absolute;top:30px;right:50px;z-index:100;opacity:0;animation:fadeInDown 1s ease-out .3s forwards}
-        .nav-pill{display:flex;align-items:center;gap:4px;background:rgba(44,44,44,.05);border:1px solid rgba(44,44,44,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:4px;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6);position:relative}
-        /* Spline placeholder for better LCP */
-        .spline-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:transparent}
-        .spline-loading-indicator{width:60px;height:60px;border:3px solid rgba(102,126,234,.2);border-top-color:#667eea;border-radius:50%;animation:spinnerRotate 1s linear infinite}
-        .spline-hero-container.loaded .spline-placeholder{display:none}
+        .nav-pill{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:4px;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative}
+        .nav-pill-item{color:rgba(26,26,26,.45)}
+        .nav-pill-item.active{color:#1a1a1a}
+        .nav-pill-item:hover{color:rgba(26,26,26,.75)}
+        .nav-pill-lamp{background:linear-gradient(135deg,rgba(180,244,97,.3) 0%,rgba(180,244,97,.15) 100%);box-shadow:0 2px 12px rgba(180,244,97,.2),inset 0 1px 0 rgba(255,255,255,.2)}
+        .nav-pill-lamp::before{background:#B4F461}
     </style>
     
-    <!-- Main Stylesheet - Minified for Production -->
-    <link rel="preload" href="styles.min.css" as="style">
-    <link rel="stylesheet" href="styles.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="preload" href="styles.css?v=1.1" as="style">
+    <link rel="stylesheet" href="styles.css?v=1.1">
     
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
@@ -191,44 +184,7 @@
     </script>
 </head>
 <body>
-    <!-- CRITICAL: Mobile scroll fix - Must run FIRST before anything else -->
-    <script>
-        (function() {
-            const isMobile = window.innerWidth <= 768;
-            if (isMobile) {
-                console.log('🔧 EMERGENCY MOBILE FIX: Unwrapping scroll container...');
-                
-                // Wait for DOM to be ready
-                document.addEventListener('DOMContentLoaded', function() {
-                    const scrollContainer = document.querySelector('[data-scroll-container]');
-                    if (scrollContainer) {
-                        // Move all children out of scroll container
-                        const children = Array.from(scrollContainer.children);
-                        const parent = scrollContainer.parentNode;
-                        
-                        children.forEach(child => {
-                            parent.insertBefore(child, scrollContainer);
-                        });
-                        
-                        // Remove the empty scroll container
-                        scrollContainer.remove();
-                        
-                        console.log('✅ Scroll container removed - native scrolling enabled!');
-                    }
-                    
-                    // Force enable scrolling
-                    document.documentElement.style.overflow = 'visible';
-                    document.documentElement.style.overflowY = 'auto';
-                    document.body.style.overflow = 'visible';
-                    document.body.style.overflowY = 'auto';
-                    
-                    // Remove any Locomotive classes
-                    document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
-                    document.body.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
-                });
-            }
-        })();
-    </script>
+
     
     <!-- Loading Screen -->
     <div id="page-loader" class="page-loader">
@@ -248,8 +204,7 @@
         </div>
     </div>
     
-    <!-- Locomotive Scroll Container -->
-    <div data-scroll-container>
+
         <!-- Logo -->
         <div class="logo-container">
             <img src="assets/logos/logo-optimized.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo" width="60" height="60" fetchpriority="high">
@@ -275,113 +230,151 @@
         </nav>
 
 
-        <!-- Fixed Background Layer -->
-        <div class="hero-background-fixed"></div>
-        
         <!-- Hero Section -->
         <section class="hero" id="hero" data-scroll-section>
-        
-        <!-- Spline 3D Container - Inside Hero (Lazy loaded for performance) -->
-        <div class="spline-hero-container" id="spline-container">
-            <!-- Spline viewer loaded dynamically via JavaScript for better LCP -->
-            <div class="spline-placeholder" aria-hidden="true">
-                <div class="spline-loading-indicator"></div>
-            </div>
+
+        <!-- Hero Background Effects -->
+        <div class="hero-bg-effects">
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-blob hero-blob-3"></div>
+            <div class="hero-grid-pattern"></div>
+            <div class="hero-radial-glow"></div>
+            <div class="hero-floating-orb hero-orb-1"></div>
+            <div class="hero-floating-orb hero-orb-2"></div>
+            <div class="hero-floating-orb hero-orb-3"></div>
+            <div class="hero-noise-overlay"></div>
         </div>
 
-        <!-- Hero Brand Text (Left Side) -->
-        <div class="hero-brand" data-scroll data-scroll-speed="0.08">
-            <h1 class="brand-title">FIN. TRACK™</h1>
-            <p class="brand-subtitle">INTELLIGENT BUDGETING — ©2025</p>
-            
-            <div class="brand-icons">
-                <span class="brand-icon"><i class="fas fa-wallet"></i></span>
-                <span class="brand-icon-separator">—</span>
-                <span class="brand-icon"><i class="fas fa-list"></i></span>
+        <!-- Hero Top Bar -->
+        <div class="hero-top-bar">
+            <div class="hero-eyebrow" data-scroll data-scroll-speed="0.05">
+                <span class="hero-eyebrow-dot"></span>
+                <span class="hero-eyebrow-text">Край на финансовия хаос</span>
             </div>
-
-            <!-- Download Button -->
-            <a href="#download" class="download-pill-btn" data-track-id="hero-download-pill" data-track-label="Hero Download Pill Button">
-                <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
-                <div class="pill-btn-circle">
-                    <i class="fas fa-download"></i>
+            <!-- Info Card Top Right -->
+            <div class="hero-info-card" data-scroll data-scroll-speed="0.08">
+                <div class="hero-info-card-icon">
+                    <img src="assets/logos/logo-optimized.png" alt="FinTrack" width="40" height="40">
                 </div>
-            </a>
-
-            <!-- Navigation Dots -->
-            <div class="brand-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
-
-        <!-- Bottom Left Design Element -->
-        <div class="bottom-left-design" data-scroll data-scroll-speed="0.06">
-            <div class="design-squares">
-                <div class="square black"></div>
-                <div class="square gray"></div>
-            </div>
-            <div class="design-text">
-                <p>ИНТЕЛИГЕНТНА СИСТЕМА ЗА</p>
-                <p>УПРАВЛЕНИЕ НА ФИНАНСИ</p>
-                <p>И БЮДЖЕТИРАНЕ</p>
-            </div>
-        </div>
-
-        <!-- Right Top Text -->
-        <div class="right-top-text" data-scroll data-scroll-speed="0.1">
-            <div class="text-indicator"></div>
-            <div class="text-content">
-                <p>AI-БАЗИРАНА</p>
-                <p>АНАЛИТИКА</p>
-            </div>
-        </div>
-
-        <!-- Right Bottom Text -->
-        <div class="right-bottom-text" data-scroll data-scroll-speed="0.12">
-            <div class="text-content">
-                <p>СПЕСТЕТЕ ПОВЕЧЕ</p>
-                <p>ЖИВЕЙТЕ ПО-ДОБРЕ</p>
-            </div>
-        </div>
-
-        <!-- Glass Morphism Card -->
-        <div class="glass-morphism-card" data-scroll data-scroll-speed="0.14">
-            <div class="card-number">01</div>
-            <div class="card-content">
-                <div class="card-icon">
-                    <i class="fas fa-globe"></i>
-                    <i class="fas fa-circle" style="font-size: 8px; margin-left: 10px;"></i>
+                <div class="hero-info-card-text">
+                    <span class="hero-info-label">Рейтинг от потребители</span>
+                    <span class="hero-info-rating">★ 4.8 <span class="hero-info-count">/ 127 отзива</span></span>
                 </div>
-                <div class="card-text">
-                    <p>АВТОМАТИЗИРАНО</p>
-                    <p>СЛЕДЕНЕ НА</p>
-                    <p>РАЗХОДИ И ФИНАНСОВА</p>
-                    <p>ВИЗУАЛИЗАЦИЯ</p>
-                    <p>НА ДАННИ В РЕАЛНО</p>
-                    <p>ВРЕМЕ</p>
+                <a href="#download" class="hero-info-cta" onclick="scrollToDownload(); return false;">Изтегли</a>
+            </div>
+        </div>
+
+        <!-- Hero Main Content -->
+        <div class="hero-main-content">
+            <!-- Top Headline Row -->
+            <div class="hero-headline-row hero-headline-top" data-scroll data-scroll-speed="0.06">
+                <h1 class="hero-giant-title">
+                    <span class="hero-title-line hero-title-line-1">ОВЛАДЕЙ</span>
+                </h1>
+                <div class="hero-subtitle-block">
+                    <p class="hero-subtitle-text">Спри да живееш от<br>заплата до заплата</p>
                 </div>
             </div>
+
+            <!-- Central Image -->
+            <div class="hero-central-image" data-scroll data-scroll-speed="0.03">
+                <div class="hero-image-wrapper">
+                    <img src="assets/mockups/FinTrack_hero_Mockup.webp" alt="FinTrack приложение — пълен контрол на твоите финанси" class="hero-mockup-img" fetchpriority="high" width="800" height="600">
+                </div>
+            </div>
+
+            <!-- Bottom Headline Row -->
+            <div class="hero-headline-row hero-headline-bottom" data-scroll data-scroll-speed="0.06">
+                <div class="hero-feature-pill">
+                    <span class="hero-pill-dot"></span>
+                    <span class="hero-pill-label">Без сложни екселски таблици</span>
+                </div>
+                <h1 class="hero-giant-title">
+                    <span class="hero-title-line hero-title-line-2">ПАРИТЕ</span>
+                </h1>
+            </div>
         </div>
 
-        <!-- Vertical Design Element -->
-        <div class="vertical-design">
-            <div class="design-number top">20</div>
-            <div class="design-line"></div>
-            <div class="design-number bottom">20</div>
+        <!-- Marquee Ticker -->
+        <div class="hero-marquee">
+            <div class="hero-marquee-track">
+                <span class="marquee-item"><i class="fas fa-times-circle"></i> КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-arrow-trend-up"></i> СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-calculator"></i> ЗАБРАВИ ЗА ЕКСЕЛА</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-shield-halved"></i> ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-bed"></i> ФИНАНСОВО СПОКОЙСТВИЕ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-credit-card"></i> СТОП НА ДЪЛГОВЕТЕ</span>
+                <span class="marquee-separator">●</span>
+                
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item"><i class="fas fa-times-circle"></i> КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-arrow-trend-up"></i> СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-calculator"></i> ЗАБРАВИ ЗА ЕКСЕЛА</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-shield-halved"></i> ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-bed"></i> ФИНАНСОВО СПОКОЙСТВИЕ</span>
+                <span class="marquee-separator">●</span>
+                <span class="marquee-item"><i class="fas fa-credit-card"></i> СТОП НА ДЪЛГОВЕТЕ</span>
+                <span class="marquee-separator">●</span>
+            </div>
         </div>
 
-        <!-- Rhythmic Rectangles -->
-        <div class="rhythmic-rectangles">
-            <div class="rect rect-1"></div>
-            <div class="rect rect-2"></div>
-            <div class="rect rect-3"></div>
-            <div class="rect rect-4"></div>
-            <div class="rect rect-5"></div>
-            <div class="rect rect-6"></div>
-            <div class="rect rect-7"></div>
+        <!-- Hero Bottom Section -->
+        <div class="hero-bottom-section">
+            <div class="hero-bottom-left" data-scroll data-scroll-speed="0.04">
+                <h2 class="hero-bottom-title">
+                    <span class="hero-bottom-line">ПАРИТЕ ТИ</span>
+                    <span class="hero-bottom-line">ИЗЧЕЗВАТ<span class="hero-bottom-underscore">_</span>НЕУСЕТНО</span>
+                    <span class="hero-bottom-line">СПРИ ТОВА ДНЕС</span>
+                </h2>
+            </div>
+            <div class="hero-bottom-right" data-scroll data-scroll-speed="0.07">
+                <p class="hero-bottom-description">Знаеш ли точно за какво похарчи парите си миналия месец? Ако отговорът е не, губиш средно 20% от доходите си заради скрити течове. Време е да спреш загубите.</p>
+                <a href="#features" class="hero-learn-more">Реши проблема сега <span class="hero-arrow">→</span></a>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="hero-stats-row" data-scroll data-scroll-speed="0.05">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">-35%</span>
+                    <span class="hero-stat-label">Импулсивни разходи</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">20%</span>
+                    <span class="hero-stat-label">Спестени първия месец</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">15K+</span>
+                    <span class="hero-stat-label">Върнали контрола си</span>
+                </div>
+            </div>
+
+            <!-- Download CTA -->
+            <div class="hero-bottom-cta" data-scroll data-scroll-speed="0.06">
+                <a href="#download" class="hero-download-btn" data-track-id="hero-download-main" data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
+                    <span class="hero-download-text">ИЗТЕГЛИ БЕЗПЛАТНО</span>
+                    <span class="hero-download-icon"><i class="fas fa-arrow-down"></i></span>
+                </a>
+                <div class="hero-cta-tags">
+                    <span class="hero-tag">iOS & Android</span>
+                    <span class="hero-tag">127+ отзива ★</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Bottom Accent Text -->
+        <div class="hero-accent-text" data-scroll data-scroll-speed="0.09">
+            <span class="hero-accent-line">ВЛАДЕЙ</span>
+            <span class="hero-accent-line">ЖИВОТА</span>
         </div>
 
         <!-- Scroll Indicator -->
@@ -392,215 +385,272 @@
         </div>
     </section>
 
-    <!-- Fear of Loss Section - Orbital -->
-    <section class="fear-orbital-section section" id="fear" data-scroll-section>
-        <div class="fear-orbital-container" data-scroll data-scroll-class="is-visible">
-            <!-- Orbital System -->
-            <div class="orbital-system">
-                <!-- Orbit Ring -->
-                <div class="orbit-ring"></div>
-                <div class="orbit-ring orbit-ring-2"></div>
-                
-                <!-- Center - Title -->
-                <div class="orbital-center">
-                    <div class="orbital-center-glow"></div>
-                    <div class="orbital-center-content">
-                        <h2 class="orbital-title">
-                            <span class="orbital-title-line">ВАШИТЕ МЕЧТИ</span>
-                            <span class="orbital-title-line orbital-title-accent">ИЗЧЕЗВАТ</span>
-                            <span class="orbital-title-line">БЕЗ КОНТРОЛ</span>
-                        </h2>
-                        <p class="orbital-subtitle">Без FinTrack</p>
+    <section class="cost-timeline-section section" id="cost-timeline" data-scroll-section>
+        <div class="cost-timeline-container">
+            <!-- Section Header -->
+            <div class="timeline-header" data-scroll data-scroll-speed="0.2">
+                <div class="timeline-badge">⏰ ЦЕНАТА НА БЕЗДЕЙСТВИЕТО</div>
+                <h2 class="timeline-main-title">
+                    <span class="highlight">АКО НЕ ЗАПОЧНЕШ ДА<br>КОНТРОЛИРАШ ФИНАНСИТЕ<br>СИ ДНЕС...</span>
+                </h2>
+                <p class="timeline-subtitle">Виж какво губиш всеки ден, месец и година</p>
+            </div>
+
+            <!-- Timeline Path -->
+            <div class="timeline-path">
+                <!-- Vertical Line -->
+                <div class="timeline-line"></div>
+
+                <!-- Timeline Item 1: TODAY -->
+                <div class="timeline-item" data-timeline="1" data-scroll data-scroll-speed="0.15">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-card today-card">
+                        <div class="timeline-card-glow"></div>
+                        <div class="timeline-badge-small">ДНЕС</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <h3 class="timeline-card-title">Изтичане на пари. Всеки. Ден.</h3>
+                        <div class="timeline-loss">
+                            <span class="loss-icon">💸</span>
+                            <span class="loss-text">15 лв на ден = 450 лв месечно</span>
+                        </div>
+                        <p class="timeline-card-description">
+                            Netflix абонамент за 20 лв - гледан 2 пъти месечно. Spotify Premium - последно слушан преди седмица. Кафе в офиса - 5 лв × 20 дни = 100 лв. Takeaway обяд защото "нямаш време" - още 150 лв. Банкова такса за превод - не забеляза. Още една такса за SMS нотификации - 2.50 лв просто така. До края на месеца... къде отидоха парите?
+                        </p>
                     </div>
                 </div>
 
-                <!-- Orbiting Fear Items -->
-                <div class="orbital-items">
-                    <!-- Fear 1: Безсънни нощи -->
-                    <div class="orbital-item" data-fear="1">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <span class="orbital-item-label">Безсънни нощи</span>
+                <!-- Timeline Item 2: 1 MONTH -->
+                <div class="timeline-item" data-timeline="2" data-scroll data-scroll-speed="0.12">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-dot"></div>
                     </div>
-
-                    <!-- Fear 2: Неочаквани разходи -->
-                    <div class="orbital-item" data-fear="2">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-bolt"></i>
+                    <div class="timeline-card month-card">
+                        <div class="timeline-card-glow"></div>
+                        <div class="timeline-badge-small danger">СЛЕД 1 МЕСЕЦ</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-calendar-week"></i>
                         </div>
-                        <span class="orbital-item-label">Неочаквани разходи</span>
+                        <h3 class="timeline-card-title">Стресът започва да те яде отвътре</h3>
+                        <div class="timeline-loss">
+                            <span class="loss-icon">❌</span>
+                            <span class="loss-text">Загубени 450 лв</span>
+                        </div>
+                        <div class="timeline-impacts">
+                            <div class="impact-item">
+                                <span class="impact-emoji">😰</span>
+                                <span>Събуждаш се в 3 сутринта и проверяваш banking приложението. Салдото е почти червено. Още 3 дни до заплата...</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">💳</span>
+                                <span>Кредитната карта вече не е "за спешни случаи". Използваш я за храна. За бензин. За всичко.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">😔</span>
+                                <span>Приятели те канят за кафе. "Извинявай, не мога днес" - вече за 4-ти път този месец. Спират да питат.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">📱</span>
+                                <span>Избягваш да отговаряш на обаждания от непознати номера. Може да е банката за забавено плащане.</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Fear 3: Пропуснати почивки -->
-                    <div class="orbital-item" data-fear="3">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-plane-slash"></i>
-                        </div>
-                        <span class="orbital-item-label">Пропуснати почивки</span>
+                <!-- Timeline Item 3: 1 YEAR -->
+                <div class="timeline-item" data-timeline="3" data-scroll data-scroll-speed="0.1">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-dot"></div>
                     </div>
-
-                    <!-- Fear 4: Стрес от дългове -->
-                    <div class="orbital-item" data-fear="4">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-heart-crack"></i>
+                    <div class="timeline-card year-card">
+                        <div class="timeline-card-glow"></div>
+                        <div class="timeline-badge-small critical">СЛЕД 1 ГОДИНА</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <span class="orbital-item-label">Стрес от дългове</span>
+                        <h3 class="timeline-card-title">Гледаш как живота ти минава покрай теб</h3>
+                        <div class="timeline-loss big-loss">
+                            <span class="loss-icon">❌</span>
+                            <span class="loss-text">Загубени 5,400 лв</span>
+                        </div>
+                        <div class="timeline-impacts">
+                            <div class="impact-item">
+                                <span class="impact-emoji">😱</span>
+                                <span>Колата се повреди. 800 лв за ремонт. Нямаш ги. Взимаш заем на 23% лихва. Сега дължиш повече от колкото печелиш.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">💔</span>
+                                <span>"Трябва да си намерим жилище" казва половинката ти. Гледаш обяви за апартаменти. Първоначалната вноска? 20,000 лв. Ти имаш 340 лв спестени.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">🏠</span>
+                                <span>Колега от работа споделя снимки от новия си апартамент. "Взехме кредит!" казва той. Ти не можеш дори да минеш проверката на банката.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">✈️</span>
+                                <span>Instagram е пълен със снимки от Гърция, Турция, Испания. Твоята лятна "ваканция"? Балкон и Netflix. Отново.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">😔</span>
+                                <span>На рожден ден получаваш SMS: "Дължите 47.80 лв такса за надвишен овърдрафт". Това е подаръкът ти тази година.</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Fear 5: Отказване на детето -->
-                    <div class="orbital-item" data-fear="5">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-child"></i>
-                        </div>
-                        <span class="orbital-item-label">Отказване на детето</span>
+                <!-- Timeline Item 4: 5 YEARS -->
+                <div class="timeline-item" data-timeline="4" data-scroll data-scroll-speed="0.08">
+                    <div class="timeline-marker">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-dot"></div>
                     </div>
-
-                    <!-- Fear 6: Липса на спестявания -->
-                    <div class="orbital-item" data-fear="6">
-                        <div class="orbital-item-icon">
-                            <i class="fas fa-piggy-bank"></i>
+                    <div class="timeline-card disaster-card">
+                        <div class="timeline-card-glow"></div>
+                        <div class="timeline-badge-small disaster">СЛЕД 5 ГОДИНИ</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-hourglass-end"></i>
                         </div>
-                        <span class="orbital-item-label">Липса на спестявания</span>
+                        <h3 class="timeline-card-title">Изгубени мечти. Изгубен живот.</h3>
+                        <div class="timeline-loss massive-loss">
+                            <span class="loss-icon">💀</span>
+                            <span class="loss-text">Загубени 27,000 лв</span>
+                        </div>
+                        <div class="timeline-impacts">
+                            <div class="impact-item">
+                                <span class="impact-emoji">😭</span>
+                                <span>35 години, все още живееш на наем или при родители - докато връстниците ти обзавеждат собствени домове</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">💔</span>
+                                <span>Гледаш Instagram stories на приятели на почивка в Малдивите... докато ти броиш стотинки за автобусен билет</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">😰</span>
+                                <span>Страхуваш се да ходиш на лекар - не защото не ти трябва, а защото не можеш да си го позволиш</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">💸</span>
+                                <span>Започна да взимаш краткосрочни заеми за да погасиш други заеми. Капанът се затваря.</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">🚫</span>
+                                <span>Детето ти иска iPad като другите деца в класа. Отново казваш "Не можем"... и виждаш разочарованието в очите му</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="impact-emoji">⚠️</span>
+                                <span>Партньорът ти спомена отново за спестявания и бъдеще. Отново се карате. Отново заспиваш с чувство за провал.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Alternative -->
+                <div class="timeline-item timeline-success" data-timeline="5" data-scroll data-scroll-speed="0.06">
+                    <div class="timeline-marker success-marker">
+                        <div class="marker-pulse success-pulse"></div>
+                        <div class="marker-dot success-dot"></div>
+                    </div>
+                    <div class="timeline-card success-card">
+                        <div class="timeline-card-glow success-glow"></div>
+                        <div class="timeline-badge-small success">💡 ИЛИ ВЗЕМИ КОНТРОЛ</div>
+                        <div class="timeline-icon success-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="timeline-card-title">Започни ДНЕС и промени всичко!</h3>
+                        <div class="timeline-gain">
+                            <span class="gain-icon">💰</span>
+                            <span class="gain-amount">18,900 лв</span>
+                            <span class="gain-text">спестени + растеж за 5 години</span>
+                        </div>
+                        <div class="success-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Спиш спокойно - знаеш точно къде са парите ти</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Първата вноска за мечтания апартамент? Готова!</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ваканции, изживявания, спомени - без вина, без стрес</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Финансова сигурност за теб и семейството ти</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Гордост - ти контролираш живота си, не парите те</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Fear Detail Cards (Hidden by default) -->
-            <div class="fear-cards-container">
-                <!-- Card 1 -->
-                <div class="fear-detail-card" data-card="1">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-moon"></i></div>
-                        <div class="fear-card-badge">КРИТИЧЕН</div>
-                    </div>
-                    <h3 class="fear-card-title">Безсънни нощи</h3>
-                    <p class="fear-card-description">Лежиш буден в 3 сутринта, питайки се дали ще можеш да платиш сметките този месец. Стресът от финансовата несигурност разрушава съня и здравето ти.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">85%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="fear-detail-card" data-card="2">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-bolt"></i></div>
-                        <div class="fear-card-badge fear-card-badge-danger">СПЕШЕН</div>
-                    </div>
-                    <h3 class="fear-card-title">Неочаквани разходи</h3>
-                    <p class="fear-card-description">Колата се развали, хладилникът спря да работи, или внезапна медицинска сметка. Без резерв, всяка неочаквана ситуация те връща назад с месеци.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">90%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 90%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="fear-detail-card" data-card="3">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-plane-slash"></i></div>
-                        <div class="fear-card-badge">ВИСОК</div>
-                    </div>
-                    <h3 class="fear-card-title">Пропуснати почивки</h3>
-                    <p class="fear-card-description">Докато другите споделят снимки от екзотични дестинации, ти отново отлагаш мечтаната почивка. "Следващата година" се превръща в безкраен цикъл.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">70%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 70%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="fear-detail-card" data-card="4">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-heart-crack"></i></div>
-                        <div class="fear-card-badge fear-card-badge-danger">КРИТИЧЕН</div>
-                    </div>
-                    <h3 class="fear-card-title">Стрес от дългове</h3>
-                    <p class="fear-card-description">Кредитните карти, заемите, ипотеката... Чувстваш се затрупан от задължения. Всяка покупка носи вина, а бъдещето изглежда мрачно.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">95%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 95%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="fear-detail-card" data-card="5">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-child"></i></div>
-                        <div class="fear-card-badge">ВИСОК</div>
-                    </div>
-                    <h3 class="fear-card-title">Отказване на детето</h3>
-                    <p class="fear-card-description">"Не можем да си го позволим" - думи, които разбиват сърцето ти всеки път. Искаш да дадеш най-доброто на децата си, но парите винаги не достигат.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">80%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="fear-detail-card" data-card="6">
-                    <button class="fear-card-close"><i class="fas fa-times"></i></button>
-                    <div class="fear-card-header">
-                        <div class="fear-card-icon"><i class="fas fa-piggy-bank"></i></div>
-                        <div class="fear-card-badge fear-card-badge-danger">СПЕШЕН</div>
-                    </div>
-                    <h3 class="fear-card-title">Липса на спестявания</h3>
-                    <p class="fear-card-description">Нулев резерв за спешни случаи. Живееш от заплата до заплата, а мисълта за пенсия или голяма покупка е просто невъзможна.</p>
-                    <div class="fear-card-impact">
-                        <div class="impact-header">
-                            <i class="fas fa-bolt"></i>
-                            <span>Ниво на въздействие</span>
-                            <span class="impact-value">88%</span>
-                        </div>
-                        <div class="impact-bar">
-                            <div class="impact-fill" style="--impact: 88%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Overlay for cards -->
-            <div class="fear-overlay"></div>
         </div>
     </section>
 
-    <!-- Features Section (Bento Grid) -->
+    <!-- Testimonials Section -->
+    <section class="stats-achievements-section section" id="stats" data-scroll-section>
+        <!-- Floating Shapes -->
+        <div class="stats-floating-shapes">
+            <div class="stats-shape stats-shape-1 parallax-slow"></div>
+            <div class="stats-shape stats-shape-2 parallax-medium"></div>
+            <div class="stats-shape stats-shape-3 parallax-fast"></div>
+        </div>
+
+        <div class="container stats-content">
+            <!-- Left Side - Brand Text -->
+            <div class="stats-left" data-scroll data-scroll-speed="0.06">
+                <h2 class="stats-main-title">
+                    <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
+                </h2>
+                <p class="stats-description">
+                    Не е магия - просто интелигентна технология и твоята мотивация. 
+                    Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
+                </p>
+                <div class="stats-decorative">
+                    <div class="stats-line"></div>
+                    <div class="stats-dot"></div>
+                </div>
+            </div>
+
+            <!-- Right Side - Statistics -->
+            <div class="stats-list" data-scroll data-scroll-speed="0.1">
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="200">0</span>
+                        <span class="stat-label-large">лева месечно</span>
+                        <p class="stat-description-small">Спестени от потребител</p>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="40">0</span>
+                        <span class="stat-label-large">намалени разходи</span>
+                        <p class="stat-description-small">За излишни покупки</p>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-content">
+                        <span class="stat-number-large" data-target="100">0</span>
+                        <span class="stat-label-large">повече спокойствие</span>
+                        <p class="stat-description-small">Знаеш къде са парите ти</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost of Inaction Timeline Section -->
     <section class="phone-section section" id="features" data-scroll-section>
         <!-- Phone Title -->
         <h2 class="phone-title" data-scroll data-scroll-speed="0.2" data-scroll-class="title-revealed">ВСИЧКО ОТ КОЕТО СЕ<br><span class="highlight-word">НУЖДАЕТЕ</span></h2>
@@ -891,272 +941,6 @@
     </section>
 
     <!-- Stats & Achievements Section -->
-    <section class="stats-achievements-section section" id="stats" data-scroll-section>
-        <!-- Floating Shapes -->
-        <div class="stats-floating-shapes">
-            <div class="stats-shape stats-shape-1 parallax-slow"></div>
-            <div class="stats-shape stats-shape-2 parallax-medium"></div>
-            <div class="stats-shape stats-shape-3 parallax-fast"></div>
-        </div>
-
-        <div class="container stats-content">
-            <!-- Left Side - Brand Text -->
-            <div class="stats-left" data-scroll data-scroll-speed="0.06">
-                <h2 class="stats-main-title">
-                    <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
-                </h2>
-                <p class="stats-description">
-                    Не е магия - просто интелигентна технология и твоята мотивация. 
-                    Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
-                </p>
-                <div class="stats-decorative">
-                    <div class="stats-line"></div>
-                    <div class="stats-dot"></div>
-                </div>
-            </div>
-
-            <!-- Right Side - Statistics -->
-            <div class="stats-list" data-scroll data-scroll-speed="0.1">
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="200">0</span>
-                        <span class="stat-label-large">лева месечно</span>
-                        <p class="stat-description-small">Спестени от потребител</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="40">0</span>
-                        <span class="stat-label-large">намалени разходи</span>
-                        <p class="stat-description-small">За излишни покупки</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="100">0</span>
-                        <span class="stat-label-large">повече спокойствие</span>
-                        <p class="stat-description-small">Знаеш къде са парите ти</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cost of Inaction Timeline Section -->
-    <section class="cost-timeline-section section" id="cost-timeline" data-scroll-section>
-        <div class="cost-timeline-container">
-            <!-- Section Header -->
-            <div class="timeline-header" data-scroll data-scroll-speed="0.2">
-                <div class="timeline-badge">⏰ ЦЕНАТА НА БЕЗДЕЙСТВИЕТО</div>
-                <h2 class="timeline-main-title">
-                    <span class="highlight">АКО НЕ ЗАПОЧНЕШ ДА<br>КОНТРОЛИРАШ ФИНАНСИТЕ<br>СИ ДНЕС...</span>
-                </h2>
-                <p class="timeline-subtitle">Виж какво губиш всеки ден, месец и година</p>
-            </div>
-
-            <!-- Timeline Path -->
-            <div class="timeline-path">
-                <!-- Vertical Line -->
-                <div class="timeline-line"></div>
-
-                <!-- Timeline Item 1: TODAY -->
-                <div class="timeline-item" data-timeline="1" data-scroll data-scroll-speed="0.15">
-                    <div class="timeline-marker">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-card today-card">
-                        <div class="timeline-card-glow"></div>
-                        <div class="timeline-badge-small">ДНЕС</div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-calendar-day"></i>
-                        </div>
-                        <h3 class="timeline-card-title">Изтичане на пари. Всеки. Ден.</h3>
-                        <div class="timeline-loss">
-                            <span class="loss-icon">💸</span>
-                            <span class="loss-text">15 лв на ден = 450 лв месечно</span>
-                        </div>
-                        <p class="timeline-card-description">
-                            Netflix абонамент за 20 лв - гледан 2 пъти месечно. Spotify Premium - последно слушан преди седмица. Кафе в офиса - 5 лв × 20 дни = 100 лв. Takeaway обяд защото "нямаш време" - още 150 лв. Банкова такса за превод - не забеляза. Още една такса за SMS нотификации - 2.50 лв просто така. До края на месеца... къде отидоха парите?
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2: 1 MONTH -->
-                <div class="timeline-item" data-timeline="2" data-scroll data-scroll-speed="0.12">
-                    <div class="timeline-marker">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-card month-card">
-                        <div class="timeline-card-glow"></div>
-                        <div class="timeline-badge-small danger">СЛЕД 1 МЕСЕЦ</div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-calendar-week"></i>
-                        </div>
-                        <h3 class="timeline-card-title">Стресът започва да те яде отвътре</h3>
-                        <div class="timeline-loss">
-                            <span class="loss-icon">❌</span>
-                            <span class="loss-text">Загубени 450 лв</span>
-                        </div>
-                        <div class="timeline-impacts">
-                            <div class="impact-item">
-                                <span class="impact-emoji">😰</span>
-                                <span>Събуждаш се в 3 сутринта и проверяваш banking приложението. Салдото е почти червено. Още 3 дни до заплата...</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">💳</span>
-                                <span>Кредитната карта вече не е "за спешни случаи". Използваш я за храна. За бензин. За всичко.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">😔</span>
-                                <span>Приятели те канят за кафе. "Извинявай, не мога днес" - вече за 4-ти път този месец. Спират да питат.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">📱</span>
-                                <span>Избягваш да отговаряш на обаждания от непознати номера. Може да е банката за забавено плащане.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 3: 1 YEAR -->
-                <div class="timeline-item" data-timeline="3" data-scroll data-scroll-speed="0.1">
-                    <div class="timeline-marker">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-card year-card">
-                        <div class="timeline-card-glow"></div>
-                        <div class="timeline-badge-small critical">СЛЕД 1 ГОДИНА</div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3 class="timeline-card-title">Гледаш как живота ти минава покрай теб</h3>
-                        <div class="timeline-loss big-loss">
-                            <span class="loss-icon">❌</span>
-                            <span class="loss-text">Загубени 5,400 лв</span>
-                        </div>
-                        <div class="timeline-impacts">
-                            <div class="impact-item">
-                                <span class="impact-emoji">😱</span>
-                                <span>Колата се повреди. 800 лв за ремонт. Нямаш ги. Взимаш заем на 23% лихва. Сега дължиш повече от колкото печелиш.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">💔</span>
-                                <span>"Трябва да си намерим жилище" казва половинката ти. Гледаш обяви за апартаменти. Първоначалната вноска? 20,000 лв. Ти имаш 340 лв спестени.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">🏠</span>
-                                <span>Колега от работа споделя снимки от новия си апартамент. "Взехме кредит!" казва той. Ти не можеш дори да минеш проверката на банката.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">✈️</span>
-                                <span>Instagram е пълен със снимки от Гърция, Турция, Испания. Твоята лятна "ваканция"? Балкон и Netflix. Отново.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">😔</span>
-                                <span>На рожден ден получаваш SMS: "Дължите 47.80 лв такса за надвишен овърдрафт". Това е подаръкът ти тази година.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 4: 5 YEARS -->
-                <div class="timeline-item" data-timeline="4" data-scroll data-scroll-speed="0.08">
-                    <div class="timeline-marker">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-dot"></div>
-                    </div>
-                    <div class="timeline-card disaster-card">
-                        <div class="timeline-card-glow"></div>
-                        <div class="timeline-badge-small disaster">СЛЕД 5 ГОДИНИ</div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-hourglass-end"></i>
-                        </div>
-                        <h3 class="timeline-card-title">Изгубени мечти. Изгубен живот.</h3>
-                        <div class="timeline-loss massive-loss">
-                            <span class="loss-icon">💀</span>
-                            <span class="loss-text">Загубени 27,000 лв</span>
-                        </div>
-                        <div class="timeline-impacts">
-                            <div class="impact-item">
-                                <span class="impact-emoji">😭</span>
-                                <span>35 години, все още живееш на наем или при родители - докато връстниците ти обзавеждат собствени домове</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">💔</span>
-                                <span>Гледаш Instagram stories на приятели на почивка в Малдивите... докато ти броиш стотинки за автобусен билет</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">😰</span>
-                                <span>Страхуваш се да ходиш на лекар - не защото не ти трябва, а защото не можеш да си го позволиш</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">💸</span>
-                                <span>Започна да взимаш краткосрочни заеми за да погасиш други заеми. Капанът се затваря.</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">🚫</span>
-                                <span>Детето ти иска iPad като другите деца в класа. Отново казваш "Не можем"... и виждаш разочарованието в очите му</span>
-                            </div>
-                            <div class="impact-item">
-                                <span class="impact-emoji">⚠️</span>
-                                <span>Партньорът ти спомена отново за спестявания и бъдеще. Отново се карате. Отново заспиваш с чувство за провал.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Success Alternative -->
-                <div class="timeline-item timeline-success" data-timeline="5" data-scroll data-scroll-speed="0.06">
-                    <div class="timeline-marker success-marker">
-                        <div class="marker-pulse success-pulse"></div>
-                        <div class="marker-dot success-dot"></div>
-                    </div>
-                    <div class="timeline-card success-card">
-                        <div class="timeline-card-glow success-glow"></div>
-                        <div class="timeline-badge-small success">💡 ИЛИ ВЗЕМИ КОНТРОЛ</div>
-                        <div class="timeline-icon success-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="timeline-card-title">Започни ДНЕС и промени всичко!</h3>
-                        <div class="timeline-gain">
-                            <span class="gain-icon">💰</span>
-                            <span class="gain-amount">18,900 лв</span>
-                            <span class="gain-text">спестени + растеж за 5 години</span>
-                        </div>
-                        <div class="success-benefits">
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Спиш спокойно - знаеш точно къде са парите ти</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Първата вноска за мечтания апартамент? Готова!</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Ваканции, изживявания, спомени - без вина, без стрес</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Финансова сигурност за теб и семейството ти</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Гордост - ти контролираш живота си, не парите те</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
     <section class="testimonials-section section" id="testimonials" data-scroll-section>
         <div class="container">
             <!-- Main Title with Special Layout -->
@@ -2393,8 +2177,8 @@
         </div>
     </div>
 
-    <!-- Locomotive Scroll JS - Async loading -->
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
+    <!-- Lenis Scroll JS -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     
     <!-- JavaScript - Deferred -->
     <!-- Marketing Overlay - Savings Message -->

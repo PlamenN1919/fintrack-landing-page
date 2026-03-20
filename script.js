@@ -297,110 +297,41 @@ function throttle(func, limit) {
 }
 
 // ===================================
-// LOCOMOTIVE SCROLL INITIALIZATION
+// ===================================
+// LENIS SCROLL INITIALIZATION
 // ===================================
 
-// Locomotive Scroll instance
-let locomotiveScroll = null;
+let lenis = null;
 
-// Function to forcefully remove section borders
-function removeSectionBorders() {
-    // Remove borders from all scroll sections
-    const sections = document.querySelectorAll('[data-scroll-section], .section, section');
-    sections.forEach(section => {
-        section.style.setProperty('border', 'none', 'important');
-        section.style.setProperty('outline', 'none', 'important');
-        section.style.setProperty('box-shadow', 'none', 'important');
-        section.style.setProperty('border-top', '0', 'important');
-        section.style.setProperty('border-bottom', '0', 'important');
-        section.style.setProperty('border-left', '0', 'important');
-        section.style.setProperty('border-right', '0', 'important');
-        section.style.setProperty('border-width', '0', 'important');
-        section.style.setProperty('border-style', 'none', 'important');
+function initLenisScroll() {
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
     });
-    
-    // Remove borders from container
-    const container = document.querySelector('[data-scroll-container]');
-    if (container) {
-        container.style.setProperty('border', 'none', 'important');
-        container.style.setProperty('outline', 'none', 'important');
-        container.style.setProperty('box-shadow', 'none', 'important');
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
+
+    return lenis;
 }
 
-// ОПТИМИЗИРАНО: Премахнато continuous RAF loop за по-добра производителност
-// Borders се премахват само веднъж при инициализация
-
-// Initialize Locomotive Scroll
-function initLocomotiveScroll() {
-    const isMobile = window.innerWidth <= 768;
-    
-    // CRITICAL: Completely disable Locomotive Scroll on mobile to fix scrolling issues
-    if (isMobile) {
-        console.log('📱 Mobile detected - Using native scroll (Locomotive disabled)');
-        // Remove has-scroll classes that might interfere
-        document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init');
-        document.body.classList.remove('has-scroll-smooth', 'has-scroll-init');
-        return; // Don't initialize Locomotive on mobile
+// Cleanup Lenis on page unload
+window.addEventListener('beforeunload', () => {
+    if (lenis) {
+        lenis.destroy();
+        console.log('🧹 Lenis cleaned up');
     }
-    
-    locomotiveScroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: !isMobile, // Smooth scroll only on desktop
-        lerp: 0.15, // ОПТИМИЗИРАНО: Увеличено от 0.08 за по-бърз отговор (по-малко lag)
-        multiplier: 1.0, // Scroll speed multiplier
-        smartphone: {
-            smooth: false // Native scroll on mobile
-        },
-        tablet: {
-            smooth: false // Native scroll on tablet
-        },
-        reloadOnContextChange: true,
-        touchMultiplier: 2.5,
-        smoothMobile: false
-    });
-    
-    // ОПТИМИЗИРАНО: Премахваме borders само веднъж, не на всеки frame
-    setTimeout(() => {
-        removeSectionBorders();
-    }, 100);
-    
-    // Update on window resize with debounce
-    let resizeTimeout;
-    let wasMobile = isMobile;
-    
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const nowMobile = window.innerWidth <= 768;
-            
-            // If switched between mobile/desktop, reload Locomotive
-            if (wasMobile !== nowMobile && locomotiveScroll) {
-                locomotiveScroll.destroy();
-                locomotiveScroll = initLocomotiveScroll();
-                console.log('🔄 Locomotive reloaded for device change');
-            } else if (locomotiveScroll) {
-                locomotiveScroll.update();
-            }
-            
-            wasMobile = nowMobile;
-        }, 250);
-    });
-    
-    // Update after images load
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        if (img.complete) {
-            if (locomotiveScroll) locomotiveScroll.update();
-        } else {
-            img.addEventListener('load', () => {
-                if (locomotiveScroll) locomotiveScroll.update();
-            });
-        }
-    });
-    
-    return locomotiveScroll;
-}
+});
 
 // DOM Elements
 const nav = document.querySelector('.main-nav');
@@ -411,200 +342,102 @@ const scrollIndicator = document.querySelector('.scroll-indicator');
 const splineContainer = document.querySelector('.spline-container');
 const splineViewer = document.querySelector('spline-viewer');
 
-// Pain Point Calculator Variables (counter removed for performance)
-
 // ===================================
 // SEAMLESS ENTRANCE ANIMATIONS SYSTEM
 // ===================================
 
-// Initialize Seamless Scroll Reveal System - Integrated with Locomotive
 function initSeamlessReveal() {
-    // Check if we're using Locomotive Scroll or native
-    const useLocomotiveCallbacks = locomotiveScroll && window.innerWidth > 768;
-    
-    if (useLocomotiveCallbacks) {
-        // Use Locomotive Scroll's native event system for better performance
-        locomotiveScroll.on('call', (func, way, obj) => {
-            // Locomotive scroll triggered events
-            if (func === 'revealSection') {
-                obj.el.classList.add('section-visible');
-            }
-        });
-        
-        // Update Locomotive to recognize elements
-        setTimeout(() => {
-            if (locomotiveScroll) locomotiveScroll.update();
-        }, 500);
-    }
-    
-    // Keep Intersection Observers as fallback for mobile and compatibility
+    const isMobile = window.innerWidth <= 768;
+
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('section-visible');
-                // Update Locomotive if active
-                if (locomotiveScroll && window.innerWidth > 768) {
-                    locomotiveScroll.update();
-                }
             }
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    // Observer for generic reveal elements
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                if (locomotiveScroll && window.innerWidth > 768) {
-                    locomotiveScroll.update();
-                }
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -80px 0px'
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-    // Observer for stagger children
     const staggerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                if (locomotiveScroll && window.innerWidth > 768) {
-                    locomotiveScroll.update();
+            }
+        });
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+    const scrollClassObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const customClass = entry.target.dataset.scrollClass;
+                if (customClass) {
+                    entry.target.classList.add(customClass);
+                    const delay = entry.target.dataset.scrollDelay;
+                    if (delay && !isMobile) {
+                        entry.target.style.transitionDelay = `${delay}s`;
+                    }
                 }
             }
         });
-    }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    // Observe all sections
-    document.querySelectorAll('.section').forEach(section => {
-        sectionObserver.observe(section);
-    });
-
-    // Observe footer
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        sectionObserver.observe(footer);
-    }
-
-    // Observe all reveal elements
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-fade').forEach(el => {
-        revealObserver.observe(el);
-    });
-
-    // Observe stagger children containers
-    document.querySelectorAll('.stagger-children').forEach(el => {
-        staggerObserver.observe(el);
-    });
+    document.querySelectorAll('.section, .footer').forEach(el => sectionObserver.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate, .reveal-fade').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.stagger-children').forEach(el => staggerObserver.observe(el));
+    document.querySelectorAll('[data-scroll-class]').forEach(el => scrollClassObserver.observe(el));
 }
 
-// Parallax effect for floating elements - Integrated with Locomotive
+// ===================================
+// CUSTOM NATIVE PARALLAX (Replaces Locomotive data-scroll-speed)
+// ===================================
+
 function initParallaxEffects() {
-    const isMobile = window.innerWidth <= 768;
+    if (!lenis) return;
     
-    // On desktop, Locomotive handles main parallax via data attributes
-    // Keep native parallax for elements without data attributes
-    if (isMobile || !locomotiveScroll) {
-        // Mobile/fallback - lightweight native parallax with throttle
-        const throttledParallax = throttle(() => {
-            window.requestAnimationFrame(() => {
-                updateParallax(window.pageYOffset);
-            });
-        }, 16); // ~60fps
-        
-        window.addEventListener('scroll', throttledParallax, passiveEvent);
-    } else {
-        // Desktop with Locomotive - use its scroll event
-        locomotiveScroll.on('scroll', (args) => {
-            updateParallax(args.scroll.y);
+    // Pre-cache elements
+    const parallaxElements = Array.from(document.querySelectorAll('[data-scroll-speed]')).map(el => {
+        return {
+            el: el,
+            speed: parseFloat(el.dataset.scrollSpeed) || 0
+        };
+    });
+
+    const isMobile = window.innerWidth <= 768;
+    const speedMultiplier = isMobile ? 0.3 : 0.6; 
+
+    lenis.on('scroll', (e) => {
+        const scrolled = e.scroll;
+        const windowHeight = window.innerHeight;
+
+        document.querySelectorAll('.fear-geometric-shape').forEach((shape, index) => {
+            const speed = (index + 1) * 0.015 * speedMultiplier;
+            const yPos = scrolled * speed;
+            shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
         });
-    }
-}
-
-function updateParallax(scrolled) {
-    const isMobile = window.innerWidth <= 768;
-    const speedMultiplier = isMobile ? 0.5 : 0.7; // ОПТИМИЗИРАНО: Намалена сила на паралакс
-    
-    // ОПТИМИЗИРАНО: По-леки паралакс ефекти за по-добра производителност
-    document.querySelectorAll('.fear-geometric-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.015 * speedMultiplier; // Намалено от 0.03
-        const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`; // GPU ускорение
-    });
-    
-    document.querySelectorAll('.stats-shape').forEach((shape, index) => {
-        const speed = (index + 1) * 0.01 * speedMultiplier; // Намалено от 0.02
-        const yPos = scrolled * speed;
-        shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
-    });
-    
-    // ОПТИМИЗИРАНО: По-леки custom parallax layers
-    document.querySelectorAll('.parallax-slow').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const elementTop = rect.top + scrolled;
-        const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.025 * speedMultiplier; // Намалено от 0.05
-        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
-    });
-    
-    document.querySelectorAll('.parallax-medium').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const elementTop = rect.top + scrolled;
-        const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.1 * speedMultiplier;
-        el.style.transform = `translateY(${yPos}px)`;
-    });
-    
-    document.querySelectorAll('.parallax-fast').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const elementTop = rect.top + scrolled;
-        const distanceFromTop = scrolled - elementTop + window.innerHeight;
-        const yPos = distanceFromTop * 0.15 * speedMultiplier;
-        el.style.transform = `translateY(${yPos}px)`;
-    });
-}
-
-// Smooth momentum scrolling enhancement
-function initSmoothMomentum() {
-    // Add subtle easing to scroll
-    let isScrolling = false;
-    let scrollTimeout;
-    
-    const handleScrollState = () => {
-        if (!isScrolling) {
-            document.body.classList.add('is-scrolling');
-            isScrolling = true;
-        }
         
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            document.body.classList.remove('is-scrolling');
-            isScrolling = false;
-        }, 150);
-    };
-    
-    window.addEventListener('scroll', handleScrollState, passiveEvent);
-    
-    // Also listen to Locomotive scroll events
-    if (locomotiveScroll) {
-        locomotiveScroll.on('scroll', handleScrollState);
-    }
-}
+        document.querySelectorAll('.stats-shape').forEach((shape, index) => {
+            const speed = (index + 1) * 0.01 * speedMultiplier;
+            const yPos = scrolled * speed;
+            shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
 
-// Cleanup Locomotive on page unload
-window.addEventListener('beforeunload', () => {
-    if (locomotiveScroll) {
-        locomotiveScroll.destroy();
-        console.log('🧹 Locomotive cleaned up');
-    }
-});
+        parallaxElements.forEach(item => {
+            if(item.speed === 0) return;
+            const rect = item.el.getBoundingClientRect();
+            // Calculate distance from center to perfectly map Locomotive behavior without jumps
+            const distFromCenter = (rect.top + rect.height/2) - (windowHeight/2);
+            const yPos = distFromCenter * item.speed * speedMultiplier;
+            item.el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+    });
+}
 
 // ===================================
 // FEATURES SECTION ANIMATIONS
@@ -614,37 +447,32 @@ function initFeaturesAnimations() {
     const featureCards = document.querySelectorAll('.feature-card-animated');
     const isMobile = window.innerWidth <= 768;
     
-    // Skip 3D effects on mobile for performance
     if (isMobile) {
         console.log('✨ Features animations initialized (mobile mode)!');
         return;
     }
     
-    // Add magnetic effect on mouse move
     featureCards.forEach(card => {
         let isHovering = false;
         
         card.addEventListener('mouseenter', () => {
             isHovering = true;
             card.style.transition = 'none';
+            createSparkles(card);
         });
         
         card.addEventListener('mousemove', (e) => {
             if (!isHovering) return;
-            
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
             const rotateX = (y - centerY) / 20;
             const rotateY = (centerX - x) / 20;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
             
-            // Move glow effect
             const glow = card.querySelector('.card-glow');
             if (glow) {
                 const glowX = (x / rect.width) * 100;
@@ -657,18 +485,13 @@ function initFeaturesAnimations() {
             isHovering = false;
             card.style.transition = '';
             card.style.transform = '';
-            
             const glow = card.querySelector('.card-glow');
-            if (glow) {
-                glow.style.background = '';
-            }
+            if (glow) glow.style.background = '';
         });
         
-        // Add click ripple effect
         card.addEventListener('click', (e) => {
             const ripple = document.createElement('div');
             ripple.className = 'card-ripple';
-            
             const rect = card.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height) * 2;
             const x = e.clientX - rect.left - size / 2;
@@ -677,23 +500,15 @@ function initFeaturesAnimations() {
             ripple.style.width = ripple.style.height = size + 'px';
             ripple.style.left = x + 'px';
             ripple.style.top = y + 'px';
-            
             card.appendChild(ripple);
-            
             setTimeout(() => ripple.remove(), 600);
-        });
-        
-        // Sparkle effect on hover
-        card.addEventListener('mouseenter', () => {
-            createSparkles(card);
         });
     });
     
-    // Animate icons subtly on scroll
-    if (locomotiveScroll) {
-        locomotiveScroll.on('scroll', (args) => {
+    if (lenis) {
+        lenis.on('scroll', () => {
             featureCards.forEach(card => {
-                if (card.classList.contains('card-revealed')) {
+                if (card.classList.contains('card-revealed') || card.classList.contains('active')) {
                     const icon = card.querySelector('.card-icon i');
                     if (icon) {
                         const rect = card.getBoundingClientRect();
@@ -706,169 +521,63 @@ function initFeaturesAnimations() {
             });
         });
     }
-    
     console.log('✨ Features animations initialized!');
 }
 
-// Create sparkle particles
 function createSparkles(card) {
-    const sparkleCount = 3;
-    
-    for (let i = 0; i < sparkleCount; i++) {
+    for (let i = 0; i < 3; i++) {
         setTimeout(() => {
             const sparkle = document.createElement('div');
             sparkle.className = 'sparkle';
             sparkle.innerHTML = '✨';
-            
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            
             sparkle.style.position = 'absolute';
-            sparkle.style.left = x + '%';
-            sparkle.style.top = y + '%';
+            sparkle.style.left = (Math.random() * 100) + '%';
+            sparkle.style.top = (Math.random() * 100) + '%';
             sparkle.style.pointerEvents = 'none';
             sparkle.style.fontSize = '12px';
             sparkle.style.opacity = '0';
             sparkle.style.animation = 'sparkleFloat 1.5s ease-out forwards';
             sparkle.style.zIndex = '20';
-            
             card.appendChild(sparkle);
-            
             setTimeout(() => sparkle.remove(), 1500);
         }, i * 100);
     }
 }
 
-// Animate numbers on reveal
 function animateCardNumbers() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('numbers-animated')) {
                 entry.target.classList.add('numbers-animated');
-                
-                // Animate any numbers in the card
-                const numbers = entry.target.querySelectorAll('[data-number]');
-                numbers.forEach(num => {
-                    const target = parseInt(num.getAttribute('data-number'));
-                    animateNumber(num, 0, target, 1500);
+                entry.target.querySelectorAll('[data-number]').forEach(num => {
+                    animateNumber(num, 0, parseInt(num.getAttribute('data-number')), 1500);
                 });
             }
         });
     }, { threshold: 0.3 });
-    
-    document.querySelectorAll('.feature-card-animated').forEach(card => {
-        observer.observe(card);
-    });
+    document.querySelectorAll('.feature-card-animated').forEach(card => observer.observe(card));
 }
 
 function animateNumber(element, start, end, duration) {
     const startTime = performance.now();
-    
     function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(start + (end - start) * easeOutQuart);
-        
-        element.textContent = current;
-        
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        } else {
-            element.textContent = end;
-        }
+        element.textContent = Math.floor(start + (end - start) * easeOutQuart);
+        if (progress < 1) requestAnimationFrame(update);
+        else element.textContent = end;
     }
-    
     requestAnimationFrame(update);
 }
 
-// Initialize number animations
-setTimeout(() => {
-    animateCardNumbers();
-}, 500);
+setTimeout(() => { animateCardNumbers(); }, 500);
 
-// Initialize seamless animations on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    const isMobile = window.innerWidth <= 768;
-    
-    // CRITICAL: Fix mobile scrolling issues
-    if (isMobile) {
-        console.log('📱 Mobile Mode - Fixing scroll issues...');
-        
-        // Remove any scroll-blocking classes
-        document.documentElement.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
-        document.body.classList.remove('has-scroll-smooth', 'has-scroll-init', 'has-scroll-scrolling');
-        
-        // Force enable scrolling
-        document.documentElement.style.overflow = 'visible';
-        document.body.style.overflow = 'visible';
-        document.body.style.overflowY = 'auto';
-        
-        // Ensure hero allows scrolling
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.overflow = 'visible';
-            hero.style.touchAction = 'auto';
-        }
-        
-        // Disable pointer events on all Spline elements
-        const splineElements = document.querySelectorAll('spline-viewer, canvas, .spline-container, .spline-hero-container');
-        splineElements.forEach(el => {
-            el.style.pointerEvents = 'none';
-            el.style.touchAction = 'auto';
-        });
-        
-        // Fix scroll container
-        const scrollContainer = document.querySelector('[data-scroll-container]');
-        if (scrollContainer) {
-            scrollContainer.style.transform = 'none';
-            scrollContainer.style.height = 'auto';
-            scrollContainer.style.overflow = 'visible';
-            scrollContainer.style.position = 'static';
-        }
-        
-        // Glass effect is now handled by CSS in <head> for better performance
-        console.log('✅ Mobile scroll fixes applied!');
-    }
-    
-    // Initialize Locomotive Scroll first (will skip on mobile)
-    locomotiveScroll = initLocomotiveScroll();
-    if (!isMobile) {
-        console.log('🚂 Locomotive Scroll initialized!');
-    }
-    
-    // Wait a bit for Locomotive to set up, then initialize other features
-    setTimeout(() => {
-        initSeamlessReveal();
-        initParallaxEffects();
-        initSmoothMomentum();
-        initFeaturesAnimations();
-        console.log('Seamless entrance animations initialized! ✨');
-        
-        // Force Locomotive to recalculate heights (fixes footer visibility)
-        if (locomotiveScroll) {
-            locomotiveScroll.update();
-            console.log('📏 Locomotive heights updated');
-        }
-    }, 100);
-    
-    // Additional update after everything has loaded
-    setTimeout(() => {
-        if (locomotiveScroll) {
-            locomotiveScroll.update();
-            console.log('📏 Final Locomotive update');
-        }
-    }, 500);
-    
-    // Update on window load (after all images/content)
-    window.addEventListener('load', () => {
-        if (locomotiveScroll) {
-            locomotiveScroll.update();
-            console.log('📏 Locomotive updated on window load');
-        }
-    });
+    initLenisScroll();
+    initSeamlessReveal();
+    initParallaxEffects();
+    initFeaturesAnimations();
 });
 
 // Navigation scroll effect - works with both Locomotive and native scroll
@@ -891,9 +600,9 @@ function handleScrollEffects(scrollTop) {
 }
 
 // Listen to both Locomotive scroll and native scroll
-if (locomotiveScroll) {
-    locomotiveScroll.on('scroll', (args) => {
-        handleScrollEffects(args.scroll.y);
+if (lenis) {
+    lenis.on('scroll', (e) => {
+        handleScrollEffects(e.scroll);
     });
 }
 // Throttled scroll handler for better performance
@@ -911,13 +620,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(targetId);
         
         if (target) {
-            if (locomotiveScroll && window.innerWidth > 768) {
-                // Use Locomotive scrollTo on desktop
-                locomotiveScroll.scrollTo(target, {
-                    offset: 0,
-                    duration: 1000,
-                    easing: [0.25, 0.0, 0.35, 1.0]
-                });
+            if (lenis) {
+                const scrollTarget = (targetId === '#download') ? document.body.scrollHeight : target;
+                lenis.scrollTo(scrollTarget, { offset: 0, duration: 1.0 });
             } else {
                 // Fallback to native smooth scroll on mobile
                 target.scrollIntoView({
@@ -1856,14 +1561,43 @@ function initEnhancedFearFeatures() {
 
 
 // Scroll to download function
-function scrollToDownload() {
+function scrollToDownload(event) {
+    if (event) event.preventDefault();
     const downloadSection = document.getElementById('download');
     if (downloadSection) {
-        downloadSection.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
+        if (typeof lenis !== 'undefined' && lenis) {
+            lenis.scrollTo(downloadSection, {
+                offset: -50,
+                duration: 1.0
+            });
+        } else {
+            downloadSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     }
+}
+
+// Auto-attach scrollToDownload to ALL links that point to #download
+function initAllDownloadLinks() {
+    const downloadLinks = document.querySelectorAll('a[href="#download"], a[href$="#download"]');
+    downloadLinks.forEach(link => {
+        // Remove any existing onclick to avoid conflicts
+        link.removeAttribute('onclick');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            scrollToDownload(e);
+        });
+    });
+    console.log(`✅ Attached scrollToDownload to ${downloadLinks.length} download links`);
+}
+
+// Initialize on DOM ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllDownloadLinks);
+} else {
+    initAllDownloadLinks();
 }
 
 // Add new keyframe animations via CSS (loss animations removed for performance)
@@ -3279,14 +3013,12 @@ let tubelightNav = {
         // Set active immediately for better UX
         this.setActiveTab(index);
         
-        // Use Locomotive Scroll if available
-        if (window.locomotiveScroll) {
+        // Use Lenis
+        if (typeof lenis !== 'undefined' && lenis) {
             this.isScrolling = true;
-            window.locomotiveScroll.scrollTo(targetSection, {
-                duration: 1200,
-                easing: [0.25, 0.0, 0.35, 1.0],
-                disableLerp: false,
-                callback: () => {
+            lenis.scrollTo(targetSection, {
+                duration: 1.2,
+                onComplete: () => {
                     this.isScrolling = false;
                 }
             });
@@ -3439,20 +3171,8 @@ let tubelightNav = {
     }
 };
 
-// Initialize Tubelight Navigation after DOM is ready
-function initTubelightNavigation() {
-    // Wait a bit for Locomotive Scroll to initialize
-    setTimeout(() => {
-        tubelightNav.init();
-    }, 500);
-}
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTubelightNavigation);
-} else {
-    initTubelightNavigation();
-}
+// Tubelight Navigation is disabled
+// The user requested to not have mobile navigation, and the elements were removed from HTML
 
 // ===================================
 // HERO DESKTOP NAVIGATION - STATIC IN HERO
@@ -3479,10 +3199,9 @@ function initHeroDesktopNav() {
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
-            if (targetSection && locomotiveScroll) {
-                locomotiveScroll.scrollTo(targetSection, {
-                    duration: 1000,
-                    easing: [0.16, 1, 0.3, 1],
+            if (targetSection && typeof lenis !== 'undefined' && lenis) {
+                lenis.scrollTo(targetSection, {
+                    duration: 1.0,
                     offset: 0
                 });
             } else if (targetSection) {
@@ -3573,11 +3292,10 @@ function handleMarketingCTA() {
     setTimeout(() => {
         const downloadSection = document.getElementById('download');
         if (downloadSection) {
-            // Use Locomotive Scroll if available
-            if (locomotiveScroll) {
-                locomotiveScroll.scrollTo(downloadSection, {
-                    duration: 1200,
-                    easing: [0.25, 0.0, 0.35, 1.0],
+            // Use Lenis Scroll if available
+            if (typeof lenis !== 'undefined' && lenis) {
+                lenis.scrollTo(downloadSection, {
+                    duration: 1.2,
                     offset: -50
                 });
             } else {
