@@ -573,11 +573,78 @@ function animateNumber(element, start, end, duration) {
 
 setTimeout(() => { animateCardNumbers(); }, 500);
 
+// ===================================
+// BENTO GRID REVEAL ON SCROLL
+// ===================================
+function initBentoReveal() {
+    const bentoCards = document.querySelectorAll('[data-bento-reveal]');
+    if (!bentoCards.length) return;
+
+    const bentoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('bento-visible');
+                bentoObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
+    });
+
+    bentoCards.forEach(card => bentoObserver.observe(card));
+}
+
+// ===================================
+// COMPARISON SECTION REVEAL + COUNTER
+// ===================================
+function initComparisonReveal() {
+    const compElements = document.querySelectorAll('[data-comp-reveal]');
+    if (!compElements.length) return;
+
+    const compObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+
+                // Animate counter if present
+                const counter = entry.target.querySelector('[data-comp-counter]');
+                if (counter && !counter.classList.contains('counted')) {
+                    counter.classList.add('counted');
+                    const target = parseInt(counter.getAttribute('data-comp-counter'));
+                    let current = 0;
+                    const duration = 1200;
+                    const startTime = performance.now();
+                    function updateCounter(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const ease = 1 - Math.pow(1 - progress, 4);
+                        current = Math.floor(target * ease);
+                        counter.textContent = current;
+                        if (progress < 1) requestAnimationFrame(updateCounter);
+                        else counter.textContent = target;
+                    }
+                    requestAnimationFrame(updateCounter);
+                }
+
+                compObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
+    });
+
+    compElements.forEach(el => compObserver.observe(el));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initLenisScroll();
     initSeamlessReveal();
     initParallaxEffects();
     initFeaturesAnimations();
+    initBentoReveal();
+    initComparisonReveal();
 });
 
 // Navigation scroll effect - works with both Locomotive and native scroll
@@ -3342,5 +3409,40 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMarketingOverlay);
 } else {
     initMarketingOverlay();
+}
+
+
+// ============================================
+// FAQ ACCORDION FUNCTIONALITY
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', function() {
+            // Close other open items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+});
+
+// ============================================
+// SCROLL TO DOWNLOAD FUNCTION
+// ============================================
+function scrollToDownload() {
+    const downloadSection = document.getElementById('download');
+    if (downloadSection) {
+        downloadSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    return false;
 }
 

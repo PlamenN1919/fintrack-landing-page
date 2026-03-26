@@ -1,0 +1,770 @@
+/* ============================================ */
+/* COMPARISON SECTION — FinTrack vs Alternatives */
+/* Light Theme — Matching Site Brand Colors      */
+/* ============================================ */
+
+.comparison-section {
+    position: relative;
+    padding: 120px 0 100px;
+    background: #E8E4E4;
+    overflow: hidden;
+    color: #1a1a1a;
+}
+
+/* --- Background Effects (Hero-inspired) --- */
+.comparison-bg-effects {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.comparison-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+}
+
+.comparison-orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(180, 244, 97, 0.18) 0%, transparent 70%);
+    top: -10%;
+    right: -5%;
+    animation: compOrbFloat1 12s ease-in-out infinite;
+}
+
+.comparison-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.12) 0%, transparent 70%);
+    bottom: -5%;
+    left: -8%;
+    animation: compOrbFloat2 15s ease-in-out infinite;
+}
+
+.comparison-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(186, 104, 200, 0.1) 0%, transparent 70%);
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: compOrbFloat3 10s ease-in-out infinite;
+}
+
+.comparison-grid-pattern {
+    display: none;
+}
+
+.comparison-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes compOrbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-30px, 20px) scale(1.05); }
+    66% { transform: translate(20px, -15px) scale(0.95); }
+}
+
+@keyframes compOrbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(25px, -20px) scale(1.08); }
+}
+
+@keyframes compOrbFloat3 {
+    0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(-20px) scale(1.1); }
+}
+
+/* --- Container --- */
+.comparison-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* --- Header --- */
+.comparison-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.comparison-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(26, 26, 26, 0.06);
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #2c2c2c;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.comparison-badge.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comparison-badge i {
+    font-size: 12px;
+    color: #d4a017;
+}
+
+.comparison-title {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.comparison-title.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comparison-title-accent {
+    background: linear-gradient(135deg, #667eea, #764ba2, #B4F461);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: compTitleGradientShift 8s ease-in-out infinite;
+}
+
+@keyframes compTitleGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.comparison-subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(26, 26, 26, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+
+.comparison-subtitle.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Comparison Table --- */
+.comparison-table-wrapper {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+
+.comparison-table-wrapper.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comparison-table {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(4, 1fr);
+    gap: 1px;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Table Header Row --- */
+.comp-header-cell {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fafafa;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+.comp-header-cell:first-child {
+    align-items: flex-start;
+    padding-left: 30px;
+}
+
+.comp-header-cell.fintrack-header {
+    background: rgba(180, 244, 97, 0.1);
+    position: relative;
+}
+
+.comp-header-cell.fintrack-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #B4F461, transparent);
+    border-radius: 0 0 4px 4px;
+}
+
+.comp-header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.comp-header-icon.fintrack-icon {
+    background: linear-gradient(135deg, #1A1A1A, #333);
+    color: #B4F461;
+    box-shadow: 0 4px 16px rgba(26, 26, 26, 0.2);
+}
+
+.comp-header-icon.excel-icon {
+    background: rgba(33, 115, 70, 0.1);
+    color: #217346;
+    border: 1px solid rgba(33, 115, 70, 0.15);
+}
+
+.comp-header-icon.bank-icon {
+    background: rgba(55, 71, 133, 0.08);
+    color: #374785;
+    border: 1px solid rgba(55, 71, 133, 0.12);
+}
+
+.comp-header-icon.other-icon {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(26, 26, 26, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.comp-header-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #2c2c2c;
+}
+
+.comp-header-name.fintrack-name {
+    color: #3d8b0a;
+}
+
+.comp-header-sub {
+    font-size: 11px;
+    color: rgba(26, 26, 26, 0.5);
+    font-weight: 500;
+}
+
+.comp-features-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(26, 26, 26, 0.4);
+}
+
+/* --- Table Body Rows --- */
+.comp-row {
+    display: contents;
+}
+
+.comp-feature-cell {
+    padding: 20px 20px 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+}
+
+.comp-row:hover .comp-feature-cell,
+.comp-row:hover .comp-value-cell {
+    background: #f5f5f5;
+}
+
+.comp-row:hover .comp-value-cell.fintrack-col {
+    background: rgba(180, 244, 97, 0.1) !important;
+}
+
+.comp-feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: #1A1A1A;
+    color: #B4F461;
+    border: none;
+}
+
+.comp-feature-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+.comp-value-cell {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+}
+
+.comp-value-cell.fintrack-col {
+    background: rgba(180, 244, 97, 0.06);
+}
+
+/* --- Value Indicators --- */
+.comp-check {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.comp-check.yes {
+    background: #B4F461;
+    color: #1A1A1A;
+    border: none;
+    box-shadow: 0 2px 10px rgba(180, 244, 97, 0.35);
+}
+
+.comp-check.no {
+    background: #ffebee;
+    color: #c62828;
+    border: 1.5px solid #ef9a9a;
+}
+
+.comp-check.partial {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1.5px solid #ffb74d;
+}
+
+.comp-text-value {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.comp-text-value.manual {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1.5px solid #ffb74d;
+}
+
+.comp-text-value.rare {
+    background: #f5f5f5;
+    color: #757575;
+    border: 1.5px solid #e0e0e0;
+}
+
+.comp-text-value.basic {
+    background: #e8eaf6;
+    color: #283593;
+    border: 1.5px solid #9fa8da;
+}
+
+.comp-text-value.average {
+    background: #fff8e1;
+    color: #e65100;
+    border: 1.5px solid #ffe082;
+}
+
+/* --- Winner Banner --- */
+.comparison-winner {
+    margin-top: 60px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+
+.comparison-winner.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.winner-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    padding: 40px 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(180, 244, 97, 0.1);
+}
+
+.winner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(180, 244, 97, 0.06), transparent);
+    animation: winnerShimmer 4s ease-in-out infinite;
+}
+
+@keyframes winnerShimmer {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(50%); }
+}
+
+.winner-score-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.winner-score {
+    font-size: 56px;
+    font-weight: 800;
+    color: #3d8b0a;
+    line-height: 1;
+}
+
+.winner-score-label {
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.winner-score-label strong {
+    display: block;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.winner-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+.winner-text .accent {
+    color: #3d8b0a;
+}
+
+.winner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #B4F461, #8ED839);
+    color: #1A1A1A;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 25px rgba(180, 244, 97, 0.35);
+}
+
+.winner-cta:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 35px rgba(180, 244, 97, 0.5);
+    background: linear-gradient(135deg, #c4ff77, #B4F461);
+}
+
+.winner-cta i {
+    transition: transform 0.3s ease;
+}
+
+.winner-cta:hover i {
+    transform: translateX(3px);
+}
+
+/* --- Bottom Trust Row --- */
+.comparison-trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+}
+
+.comparison-trust-row.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.comp-trust-item i {
+    color: #3d8b0a;
+    font-size: 16px;
+}
+
+.comp-trust-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================ */
+/* RESPONSIVE                                   */
+/* ============================================ */
+
+@media (max-width: 1024px) {
+    .comparison-section {
+        padding: 100px 0 80px;
+    }
+
+    .comparison-title {
+        font-size: clamp(36px, 5.5vw, 60px);
+    }
+
+    .comparison-table {
+        grid-template-columns: 1.2fr repeat(4, 1fr);
+    }
+
+    .comp-feature-cell {
+        padding: 16px 16px 16px 20px;
+    }
+
+    .comp-value-cell {
+        padding: 16px 12px;
+    }
+
+    .winner-card {
+        padding: 32px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-section {
+        padding: 80px 0 60px;
+    }
+
+    .comparison-container {
+        padding: 0 16px;
+    }
+
+    .comparison-header {
+        margin-bottom: 40px;
+    }
+
+    .comparison-title {
+        font-size: clamp(32px, 8vw, 48px);
+        letter-spacing: -1px;
+    }
+
+    .comparison-subtitle {
+        font-size: 16px;
+    }
+
+    /* Switch to card-based layout on mobile */
+    .comparison-table {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-radius: 20px;
+    }
+
+    /* Hide default header row, show mobile headers */
+    .comp-header-cell {
+        display: none;
+    }
+
+    .comp-header-cell.fintrack-header {
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px 20px 0 0;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .comp-header-cell.fintrack-header::before {
+        width: 40%;
+    }
+
+    .comp-row {
+        display: grid;
+        grid-template-columns: 1fr repeat(4, 1fr);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .comp-feature-cell {
+        grid-column: 1 / -1;
+        padding: 14px 16px 6px;
+        border-bottom: none;
+    }
+
+    .comp-value-cell {
+        padding: 8px 8px 14px;
+        border-bottom: none;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .comp-value-cell::before {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #999;
+    }
+
+    .comp-value-cell:nth-child(2)::before { content: 'FT'; color: #3d8b0a; }
+    .comp-value-cell:nth-child(3)::before { content: 'Excel'; }
+    .comp-value-cell:nth-child(4)::before { content: 'Банка'; }
+    .comp-value-cell:nth-child(5)::before { content: 'Други'; }
+
+    .comp-check {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+
+    .comp-text-value {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .comp-feature-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .comp-feature-name {
+        font-size: 14px;
+    }
+
+    .winner-card {
+        padding: 28px 24px;
+        width: 100%;
+    }
+
+    .winner-score {
+        font-size: 42px;
+    }
+
+    .winner-text {
+        font-size: 18px;
+    }
+
+    .comparison-trust-row {
+        flex-wrap: wrap;
+        gap: 16px 30px;
+    }
+
+    .comp-trust-divider {
+        display: none;
+    }
+
+    .comparison-orb-1 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .comparison-orb-2 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .comparison-orb-3 {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .comparison-section {
+        padding: 60px 0 50px;
+    }
+
+    .comparison-title {
+        font-size: clamp(28px, 9vw, 40px);
+    }
+
+    .comparison-badge {
+        font-size: 11px;
+        padding: 6px 14px;
+    }
+
+    .comp-row {
+        grid-template-columns: 1fr repeat(4, 1fr);
+    }
+
+    .comp-feature-cell {
+        padding: 12px 12px 4px;
+    }
+
+    .comp-value-cell {
+        padding: 6px 6px 12px;
+    }
+
+    .winner-score {
+        font-size: 36px;
+    }
+
+    .winner-score-label {
+        font-size: 12px;
+    }
+
+    .winner-score-label strong {
+        font-size: 14px;
+    }
+
+    .winner-cta {
+        font-size: 14px;
+        padding: 12px 28px;
+    }
+}

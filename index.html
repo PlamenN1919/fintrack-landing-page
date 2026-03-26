@@ -131,9 +131,15 @@
     <!-- Main Stylesheet -->
     <link rel="preload" href="styles.css?v=1.1" as="style">
     <link rel="stylesheet" href="styles.css?v=1.1">
-    
+
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
+
+    <!-- Section 3: Solution Introduction -->
+    <link rel="stylesheet" href="section-3-solution.css">
+
+    <!-- Comparison Section -->
+    <link rel="stylesheet" href="comparison-section.css">
     
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
@@ -361,7 +367,7 @@
             <!-- Download CTA -->
             <div class="hero-bottom-cta" data-scroll data-scroll-speed="0.06">
                 <a href="#download" class="hero-download-btn" data-track-id="hero-download-main" data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
-                    <span class="hero-download-text">ИЗТЕГЛИ БЕЗПЛАТНО</span>
+                    <span class="hero-download-text">ИЗТЕГЛИ СЕГА</span>
                     <span class="hero-download-icon"><i class="fas fa-arrow-down"></i></span>
                 </a>
                 <div class="hero-cta-tags">
@@ -596,6 +602,140 @@
         </div>
     </section>
 
+<!-- ============================================ -->
+<!-- SECTION 3: SOLUTION INTRODUCTION -->
+<!-- Premium Bento Box Grid - Redesigned -->
+<!-- ============================================ -->
+<section class="solution-section section" id="solution" data-scroll-section>
+    <div class="solution-container">
+
+        <!-- Bento Grid -->
+        <div class="bento-grid">
+
+            <!-- Large Image Card - Top Left -->
+            <div class="bento-card large-image-card" data-bento-reveal>
+                <div class="card-image-wrapper">
+                    <img src="assets/mockups/iPhone_17_Mockup_1.webp" alt="FinTrack — интерфейс за проследяване на разходи и спестявания" class="bento-card-image" loading="lazy">
+                </div>
+                <div class="image-card-overlay">
+                    <span class="image-card-tag"><i class="fas fa-mobile-alt"></i> Реален интерфейс</span>
+                </div>
+            </div>
+
+            <!-- Icon Badge Card - Top Middle: AI Speed -->
+            <div class="bento-card icon-badge-card" data-bento-reveal>
+                <div class="badge-icon-wrapper">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="badge-text">
+                    <div class="badge-label">AI АНАЛИЗ</div>
+                    <div class="badge-sublabel">ЗА < 3 СЕКУНДИ</div>
+                </div>
+                <div class="badge-glow"></div>
+            </div>
+
+            <!-- Main Headline Card - Top Right -->
+            <div class="bento-card headline-card" data-bento-reveal>
+                <div class="headline-accent-line"></div>
+                <h2 class="solution-headline">
+                    ПРЕДСТАВЯМЕ<br>
+                    <span class="headline-gradient">FINTRACK</span>
+                </h2>
+                <p class="solution-description">
+                    Виж точно къде отиват парите ти. Получи персонални AI съвети, които спестяват средно <strong>200 лв</strong> месечно. Без ексел, без стрес — само резултати.
+                </p>
+                <a href="#download" class="solution-cta-button" onclick="scrollToDownload(); return false;">
+                    <span class="cta-text">ЗАПОЧНИ СЕГА</span>
+                    <span class="cta-arrow"><i class="fas fa-arrow-right"></i></span>
+                    <div class="cta-shimmer"></div>
+                </a>
+                <div class="solution-trust-badges">
+                    <div class="trust-badge">
+                        <i class="fab fa-apple"></i>
+                        <span>4.8 ★</span>
+                    </div>
+                    <div class="trust-badge-separator"></div>
+                    <div class="trust-badge">
+                        <i class="fab fa-google-play"></i>
+                        <span>4.7 ★</span>
+                    </div>
+                    <div class="trust-badge-separator"></div>
+                    <div class="trust-badge">
+                        <i class="fas fa-users"></i>
+                        <span>15K+</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Circular Badge Card - Middle Left -->
+            <div class="bento-card circular-badge-card" data-bento-reveal>
+                <div class="circular-badge">
+                    <svg viewBox="0 0 200 200" class="circular-text">
+                        <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
+                        <text>
+                            <textPath href="#circlePath" startOffset="0%">
+                                ФИНАНСОВА СВОБОДА • ПЪЛЕН КОНТРОЛ • ФИНАНСОВА СВОБОДА •
+                            </textPath>
+                        </text>
+                    </svg>
+                    <div class="circular-badge-center">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Potential Card - Middle -->
+            <div class="bento-card savings-card" data-bento-reveal>
+                <div class="savings-label">Колко спестяваш за</div>
+                <div class="savings-period">1 година?</div>
+                <div class="savings-amount-wrapper">
+                    <span class="savings-amount">2,400</span>
+                    <span class="savings-currency">лв</span>
+                </div>
+                <div class="savings-bar-wrapper">
+                    <div class="savings-bar">
+                        <div class="savings-bar-fill"></div>
+                    </div>
+                </div>
+                <div class="savings-hint">средно за потребител</div>
+            </div>
+
+            <!-- Feature Highlight Card - Middle Right -->
+            <div class="bento-card feature-highlight-card" data-bento-reveal>
+                <div class="feature-tag"><i class="fas fa-fire"></i> ДОКАЗАН РЕЗУЛТАТ</div>
+                <h3 class="feature-headline">
+                    Спестявай средно<br>
+                    <span class="feature-amount">200 лв</span><br>
+                    всеки месец
+                </h3>
+                <p class="feature-subtext">само като знаеш къде отиват парите ти</p>
+            </div>
+
+            <!-- App Visual Card - Right -->
+            <div class="bento-card app-visual-card" data-bento-reveal>
+                <div class="app-visual-ring"></div>
+                <div class="app-visual-circle">
+                    <img src="assets/logos/optimized/logo-256.png" alt="FinTrack Logo" class="app-logo-visual" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Timeline Card - Bottom -->
+            <div class="bento-card timeline-card-bento" data-bento-reveal>
+                <div class="timeline-bento-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="timeline-bento-content">
+                    <p class="timeline-bento-text">Достъпно за <strong>iOS</strong> и <strong>Android</strong> • Настройка за <strong>30 секунди</strong></p>
+                </div>
+                <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(); return false;">
+                    Изтегли <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
     <!-- Testimonials Section -->
     <section class="stats-achievements-section section" id="stats" data-scroll-section>
         <!-- Floating Shapes -->
@@ -649,6 +789,250 @@
             </div>
         </div>
     </section>
+
+<!-- ============================================ -->
+<!-- COMPARISON SECTION: FinTrack vs Alternatives -->
+<!-- ============================================ -->
+<section class="comparison-section section" id="comparison" data-scroll-section>
+    <!-- Background Effects -->
+    <div class="comparison-bg-effects">
+        <div class="comparison-orb comparison-orb-1"></div>
+        <div class="comparison-orb comparison-orb-2"></div>
+        <div class="comparison-orb comparison-orb-3"></div>
+        <div class="comparison-grid-pattern"></div>
+        <div class="comparison-noise"></div>
+    </div>
+
+    <div class="comparison-container">
+        <!-- Header -->
+        <div class="comparison-header">
+            <div class="comparison-badge" data-comp-reveal>
+                <i class="fas fa-trophy"></i>
+                СРАВНЕНИЕ
+            </div>
+            <h2 class="comparison-title" data-comp-reveal>
+                ЗАЩО <span class="comparison-title-accent">FINTRACK</span><br>
+                Е НОМЕР 1?
+            </h2>
+            <p class="comparison-subtitle" data-comp-reveal>
+                Не всички финансови инструменти са еднакви. Виж защо хиляди българи избират FinTrack пред всичко останало.
+            </p>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-table-wrapper" data-comp-reveal>
+            <div class="comparison-table">
+                <!-- Header Row -->
+                <div class="comp-header-cell">
+                    <span class="comp-features-label">КАКВО ПОЛУЧАВАШ</span>
+                </div>
+                <div class="comp-header-cell fintrack-header">
+                    <div class="comp-header-icon fintrack-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span class="comp-header-name fintrack-name">FinTrack</span>
+                    <span class="comp-header-sub">Всичко в едно</span>
+                </div>
+                <div class="comp-header-cell">
+                    <div class="comp-header-icon excel-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <span class="comp-header-name">Excel</span>
+                    <span class="comp-header-sub">Ръчна работа</span>
+                </div>
+                <div class="comp-header-cell">
+                    <div class="comp-header-icon bank-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <span class="comp-header-name">Банково прил.</span>
+                    <span class="comp-header-sub">Ограничено</span>
+                </div>
+                <div class="comp-header-cell">
+                    <div class="comp-header-icon other-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <span class="comp-header-name">Други прил.</span>
+                    <span class="comp-header-sub">Чуждестранни</span>
+                </div>
+
+                <!-- Row 1: Know where your money goes -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-eye"></i></div>
+                        <span class="comp-feature-name">Знаеш къде отиват парите ти</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value manual">Ръчно</span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value basic">Частично</span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value rare">Рядко</span>
+                    </div>
+                </div>
+
+                <!-- Row 2: Save without effort -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <span class="comp-feature-name">Спестяваш без усилие</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                </div>
+
+                <!-- Row 3: Stop impulse purchases -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="comp-feature-name">Спираш импулсивните покупки</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                </div>
+
+                <!-- Row 4: Predict your future -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <span class="comp-feature-name">Предвиждаш финансовото си бъдеще</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value manual">Ръчно</span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                </div>
+
+                <!-- Row 5: Feel in control -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-trophy"></i></div>
+                        <span class="comp-feature-name">Имаш пълен финансов контрол</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value basic">Базов</span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                </div>
+
+                <!-- Row 6: Made for Bulgaria -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-flag"></i></div>
+                        <span class="comp-feature-name">Създадено за българите</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value rare">Рядко</span>
+                    </div>
+                </div>
+
+                <!-- Row 7: Ready in seconds -->
+                <div class="comp-row">
+                    <div class="comp-feature-cell">
+                        <div class="comp-feature-icon"><i class="fas fa-rocket"></i></div>
+                        <span class="comp-feature-name">Готов за 30 секунди</span>
+                    </div>
+                    <div class="comp-value-cell fintrack-col">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check no"><i class="fas fa-times"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    </div>
+                    <div class="comp-value-cell">
+                        <span class="comp-text-value average">Средно</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winner Banner -->
+        <div class="comparison-winner" data-comp-reveal>
+            <div class="winner-card">
+                <div class="winner-score-row">
+                    <span class="winner-score" data-comp-counter="7">0</span>
+                    <div class="winner-score-label">
+                        <strong>от 7 категории</strong>
+                        FinTrack печели във всяка
+                    </div>
+                </div>
+                <p class="winner-text">Изборът е <span class="accent">очевиден</span>.</p>
+                <a href="#download" class="winner-cta" onclick="scrollToDownload(); return false;">
+                    ЗАПОЧНИ СЕГА <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Trust Row -->
+        <div class="comparison-trust-row" data-comp-reveal>
+            <div class="comp-trust-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Защитени данни</span>
+            </div>
+            <div class="comp-trust-divider"></div>
+            <div class="comp-trust-item">
+                <i class="fab fa-apple"></i>
+                <span>iOS & Android</span>
+            </div>
+            <div class="comp-trust-divider"></div>
+            <div class="comp-trust-item">
+                <i class="fas fa-star"></i>
+                <span>4.8 рейтинг</span>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Cost of Inaction Timeline Section -->
     <section class="phone-section section" id="features" data-scroll-section>
@@ -1390,7 +1774,7 @@
                     <div class="step-content">
                         <h3 class="step-title">Изтегли приложението</h3>
                         <p class="step-description">
-                            Налично безплатно в App Store и Google Play. Инсталацията отнема само 30 секунди.
+                            Налично в App Store и Google Play. Инсталацията отнема само 30 секунди.
                         </p>
                         <div class="step-meta">
                             <span class="step-time">
@@ -1523,7 +1907,7 @@
                     <span class="highlight">контрол?</span>
                 </h2>
                 <p class="download-subtitle">
-                    Изтеглете FinTrack безплатно и започнете да спестявате още днес
+                    Изтеглете FinTrack и започнете да спестявате още днес
                 </p>
 
                 <div class="download-buttons">
