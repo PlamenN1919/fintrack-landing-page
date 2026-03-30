@@ -131,25 +131,16 @@
     <!-- Main Stylesheet -->
     <link rel="preload" href="styles.css?v=1.1" as="style">
     <link rel="stylesheet" href="styles.css?v=1.1">
-
+    
     <!-- Performance Optimizations -->
     <link rel="stylesheet" href="performance-optimizations.css">
 
-    <!-- Section 3: Solution Introduction -->
-    <link rel="stylesheet" href="section-3-solution.css">
+    <!-- New Sections Styles -->
+    <link rel="stylesheet" href="new-sections.css">
 
-    <!-- Comparison Section -->
-    <link rel="stylesheet" href="comparison-section.css">
+    <!-- Ultra-Minimal Design System -->
+    <link rel="stylesheet" href="new-sections-minimal.css">
 
-    <!-- Dream/Transformation Section -->
-    <link rel="stylesheet" href="dream-section.css">
-
-    <!-- Psychological Features Section -->
-    <link rel="stylesheet" href="features-results.css">
-    
-    <!-- Pricing Section -->
-    <link rel="stylesheet" href="pricing-section.css">
-    
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
     {
@@ -234,8 +225,8 @@
                 <a href="#features" class="nav-pill-item" data-section="features">
                     <span class="nav-pill-text">Функции</span>
                 </a>
-                <a href="#testimonials" class="nav-pill-item" data-section="testimonials">
-                    <span class="nav-pill-text">Отзиви</span>
+                <a href="#trust" class="nav-pill-item" data-section="trust">
+                    <span class="nav-pill-text">Доказателства</span>
                 </a>
                 <a href="#download" class="nav-pill-item" data-section="download">
                     <span class="nav-pill-text">Изтегли</span>
@@ -314,31 +305,31 @@
         <!-- Marquee Ticker -->
         <div class="hero-marquee">
             <div class="hero-marquee-track">
-                <span class="marquee-item"><i class="fas fa-times-circle"></i> КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
+                <span class="marquee-item">КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-arrow-trend-up"></i> СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
+                <span class="marquee-item">СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-calculator"></i> ЗАБРАВИ ЗА ЕКСЕЛА</span>
+                <span class="marquee-item">ЗАБРАВИ ЗА ЕКСЕЛА</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-shield-halved"></i> ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
+                <span class="marquee-item">ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-bed"></i> ФИНАНСОВО СПОКОЙСТВИЕ</span>
+                <span class="marquee-item">ФИНАНСОВО СПОКОЙСТВИЕ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-credit-card"></i> СТОП НА ДЪЛГОВЕТЕ</span>
+                <span class="marquee-item">СТОП НА ДЪЛГОВЕТЕ</span>
                 <span class="marquee-separator">●</span>
                 
                 <!-- Duplicate for seamless loop -->
-                <span class="marquee-item"><i class="fas fa-times-circle"></i> КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
+                <span class="marquee-item">КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-arrow-trend-up"></i> СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
+                <span class="marquee-item">СПЕСТЯВАЙ БЕЗ ЛИШЕНИЯ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-calculator"></i> ЗАБРАВИ ЗА ЕКСЕЛА</span>
+                <span class="marquee-item">ЗАБРАВИ ЗА ЕКСЕЛА</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-shield-halved"></i> ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
+                <span class="marquee-item">ЗАЩИТА ОТ ИНФЛАЦИЯТА</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-bed"></i> ФИНАНСОВО СПОКОЙСТВИЕ</span>
+                <span class="marquee-item">ФИНАНСОВО СПОКОЙСТВИЕ</span>
                 <span class="marquee-separator">●</span>
-                <span class="marquee-item"><i class="fas fa-credit-card"></i> СТОП НА ДЪЛГОВЕТЕ</span>
+                <span class="marquee-item">СТОП НА ДЪЛГОВЕТЕ</span>
                 <span class="marquee-separator">●</span>
             </div>
         </div>
@@ -376,7 +367,7 @@
             <!-- Download CTA -->
             <div class="hero-bottom-cta" data-scroll data-scroll-speed="0.06">
                 <a href="#download" class="hero-download-btn" data-track-id="hero-download-main" data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
-                    <span class="hero-download-text">ИЗТЕГЛИ СЕГА</span>
+                    <span class="hero-download-text">ИЗТЕГЛИ БЕЗПЛАТНО</span>
                     <span class="hero-download-icon"><i class="fas fa-arrow-down"></i></span>
                 </a>
                 <div class="hero-cta-tags">
@@ -396,6 +387,128 @@
         <div class="scroll-indicator">
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PREMIUM APP SHOWCASE SECTION -->
+    <!-- Inspiration: Urban Chic - Bold Typography + Premium Visuals -->
+    <!-- ============================================ -->
+    <section class="premium-showcase-section section" id="showcase" data-scroll-section>
+        <div class="showcase-container">
+            <!-- Top Badge -->
+            <div class="showcase-badge" data-scroll data-scroll-speed="0.08">
+                <span class="badge-dot"></span>
+                ПРЕДСТАВЯМЕ ВИ
+            </div>
+
+            <!-- Bold Typography Headline -->
+            <div class="showcase-headline-wrapper">
+                <h2 class="showcase-massive-title" data-scroll data-scroll-speed="0.06">
+                    <span class="showcase-title-line">ПЪЛЕН</span>
+                    <span class="showcase-title-line showcase-title-highlight">КОНТРОЛ</span>
+                </h2>
+                <p class="showcase-subtitle" data-scroll data-scroll-speed="0.1">
+                    Финансов контрол, който<br>познава твоя стил
+                </p>
+            </div>
+
+            <!-- App Visualization Container -->
+            <div class="showcase-visual-grid" data-scroll data-scroll-speed="0.04">
+                <!-- Left Feature -->
+                <div class="showcase-feature-card left-feature">
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon gradient-purple">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                    <h3 class="feature-card-title">AI Анализ</h3>
+                    <p class="feature-card-desc">Интелигентно разпознаване на паттерни в харченето</p>
+                    <div class="feature-stat">
+                        <span class="stat-big">93%</span>
+                        <span class="stat-label">Точност</span>
+                    </div>
+                </div>
+
+                <!-- Center - Main App Visual -->
+                <div class="showcase-main-visual">
+                    <div class="visual-glow-effect"></div>
+                    <img src="assets/mockups/FinTrack_hero_Mockup.webp"
+                         alt="FinTrack App Interface"
+                         class="showcase-app-image"
+                         loading="lazy">
+                    <div class="visual-floating-badge badge-1">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Банково ниво сигурност</span>
+                    </div>
+                    <div class="visual-floating-badge badge-2">
+                        <i class="fas fa-bolt"></i>
+                        <span>Синхронизация в реално време</span>
+                    </div>
+                </div>
+
+                <!-- Right Feature -->
+                <div class="showcase-feature-card right-feature">
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon gradient-green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <h3 class="feature-card-title">Умен бюджет</h3>
+                    <p class="feature-card-desc">Автоматично адаптиращ се бюджет към навиците ти</p>
+                    <div class="feature-stat">
+                        <span class="stat-big">2.5x</span>
+                        <span class="stat-label">Повече спестявания</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Feature Pills -->
+            <div class="showcase-feature-pills" data-scroll data-scroll-speed="0.12">
+                <div class="feature-pill">
+                    <i class="fas fa-mobile-screen"></i>
+                    <span>iOS & Android</span>
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-globe"></i>
+                    <span>Работи офлайн</span>
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-sync"></i>
+                    <span>Авто синхронизация</span>
+                </div>
+                <div class="feature-pill">
+                    <i class="fas fa-bell"></i>
+                    <span>Умни известия</span>
+                </div>
+            </div>
+
+            <!-- Trust Bar -->
+            <div class="showcase-trust-bar" data-scroll data-scroll-speed="0.15">
+                <div class="trust-item">
+                    <i class="fas fa-download"></i>
+                    <span class="trust-number">15,000+</span>
+                    <span class="trust-label">Изтегляния</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <i class="fas fa-star"></i>
+                    <span class="trust-number">4.8</span>
+                    <span class="trust-label">Рейтинг</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <i class="fas fa-users"></i>
+                    <span class="trust-number">12,000+</span>
+                    <span class="trust-label">Активни потребители</span>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="showcase-scroll-prompt" data-scroll data-scroll-speed="0.2">
+                <span>Продължи надолу</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </section>
@@ -430,7 +543,7 @@
                         </div>
                         <h3 class="timeline-card-title">Изтичане на пари. Всеки. Ден.</h3>
                         <div class="timeline-loss">
-                            <span class="loss-icon">💸</span>
+                            <span class="loss-icon"></span>
                             <span class="loss-text">15 лв на ден = 450 лв месечно</span>
                         </div>
                         <p class="timeline-card-description">
@@ -453,24 +566,24 @@
                         </div>
                         <h3 class="timeline-card-title">Стресът започва да те яде отвътре</h3>
                         <div class="timeline-loss">
-                            <span class="loss-icon">❌</span>
+                            <span class="loss-icon"></span>
                             <span class="loss-text">Загубени 450 лв</span>
                         </div>
                         <div class="timeline-impacts">
                             <div class="impact-item">
-                                <span class="impact-emoji">😰</span>
+                                <span class="impact-emoji"></span>
                                 <span>Събуждаш се в 3 сутринта и проверяваш banking приложението. Салдото е почти червено. Още 3 дни до заплата...</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">💳</span>
+                                <span class="impact-emoji"></span>
                                 <span>Кредитната карта вече не е "за спешни случаи". Използваш я за храна. За бензин. За всичко.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">😔</span>
+                                <span class="impact-emoji"></span>
                                 <span>Приятели те канят за кафе. "Извинявай, не мога днес" - вече за 4-ти път този месец. Спират да питат.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">📱</span>
+                                <span class="impact-emoji"></span>
                                 <span>Избягваш да отговаряш на обаждания от непознати номера. Може да е банката за забавено плащане.</span>
                             </div>
                         </div>
@@ -491,28 +604,28 @@
                         </div>
                         <h3 class="timeline-card-title">Гледаш как живота ти минава покрай теб</h3>
                         <div class="timeline-loss big-loss">
-                            <span class="loss-icon">❌</span>
+                            <span class="loss-icon"></span>
                             <span class="loss-text">Загубени 5,400 лв</span>
                         </div>
                         <div class="timeline-impacts">
                             <div class="impact-item">
-                                <span class="impact-emoji">😱</span>
+                                <span class="impact-emoji"></span>
                                 <span>Колата се повреди. 800 лв за ремонт. Нямаш ги. Взимаш заем на 23% лихва. Сега дължиш повече от колкото печелиш.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">💔</span>
+                                <span class="impact-emoji"></span>
                                 <span>"Трябва да си намерим жилище" казва половинката ти. Гледаш обяви за апартаменти. Първоначалната вноска? 20,000 лв. Ти имаш 340 лв спестени.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">🏠</span>
+                                <span class="impact-emoji"></span>
                                 <span>Колега от работа споделя снимки от новия си апартамент. "Взехме кредит!" казва той. Ти не можеш дори да минеш проверката на банката.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">✈️</span>
+                                <span class="impact-emoji"></span>
                                 <span>Instagram е пълен със снимки от Гърция, Турция, Испания. Твоята лятна "ваканция"? Балкон и Netflix. Отново.</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">😔</span>
+                                <span class="impact-emoji"></span>
                                 <span>На рожден ден получаваш SMS: "Дължите 47.80 лв такса за надвишен овърдрафт". Това е подаръкът ти тази година.</span>
                             </div>
                         </div>
@@ -533,24 +646,24 @@
                         </div>
                         <h3 class="timeline-card-title">Изгубени мечти. Изгубен живот.</h3>
                         <div class="timeline-loss massive-loss">
-                            <span class="loss-icon">💀</span>
+                            <span class="loss-icon"></span>
                             <span class="loss-text">Загубени 27,000 лв</span>
                         </div>
                         <div class="timeline-impacts">
                             <div class="impact-item">
-                                <span class="impact-emoji">😭</span>
+                                <span class="impact-emoji"></span>
                                 <span>35 години, все още живееш на наем или при родители - докато връстниците ти обзавеждат собствени домове</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">💔</span>
+                                <span class="impact-emoji"></span>
                                 <span>Гледаш Instagram stories на приятели на почивка в Малдивите... докато ти броиш стотинки за автобусен билет</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">😰</span>
+                                <span class="impact-emoji"></span>
                                 <span>Страхуваш се да ходиш на лекар - не защото не ти трябва, а защото не можеш да си го позволиш</span>
                             </div>
                             <div class="impact-item">
-                                <span class="impact-emoji">💸</span>
+                                <span class="impact-emoji"></span>
                                 <span>Започна да взимаш краткосрочни заеми за да погасиш други заеми. Капанът се затваря.</span>
                             </div>
                             <div class="impact-item">
@@ -611,1191 +724,577 @@
         </div>
     </section>
 
-<!-- ============================================ -->
-<!-- DREAM SECTION: Show the Dream — Life After   -->
-<!-- Transformation Stories + Dream Visualizer     -->
-<!-- ============================================ -->
-<section class="dream-section section" id="dream" data-scroll-section>
-    <!-- Background Shapes -->
-    <div class="dream-bg-shapes">
-        <div class="dream-shape dream-shape-1"></div>
-        <div class="dream-shape dream-shape-2"></div>
-        <div class="dream-shape dream-shape-3"></div>
-    </div>
-
-    <div class="dream-container">
-
-        <!-- Section Header -->
-        <div class="dream-header" data-dream-reveal>
-            <div class="dream-badge">
-                <i class="fas fa-sparkles"></i>
-                ИСТОРИИ НА ПРОМЯНАТА
-            </div>
-            <h2 class="dream-main-title">
-                ПРЕДСТАВИ СИ ЖИВОТ, В КОЙТО<br>
-                <span class="highlight-green">ПАРИТЕ РАБОТЯТ ЗА ТЕБ</span>
-            </h2>
-            <p class="dream-subtitle">
-                Реални хора. Реални резултати. Виж как FinTrack промени живота на хиляди българи — и как може да промени твоя.
-            </p>
-        </div>
-
-        <!-- Stories Label -->
-        <div class="dream-stories-label" data-dream-reveal>
-            <span class="stories-label-text">
-                <span class="stories-label-line"></span>
-                ПРЕДИ & СЛЕД FINTRACK
-                <span class="stories-label-line"></span>
-            </span>
-        </div>
-
-        <!-- Transformation Stories Grid -->
-        <div class="dream-stories-grid">
-
-            <!-- Story 1: Maria -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/maria-story.png" alt="Мария — учителка, 31 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Мария, 31</div>
-                        <div class="story-person-role">Учителка, Пловдив</div>
-                    </div>
+    <!-- ============================================ -->
+    <!-- TRANSFORMATION PROOF SECTION -->
+    <!-- Real Before/After User Transformations -->
+    <!-- ============================================ -->
+    <section class="transformation-section section" id="transformations" data-scroll-section>
+        <div class="transformation-container">
+            <!-- Section Header -->
+            <div class="transformation-header" data-scroll data-scroll-speed="0.1">
+                <div class="section-badge-pill">
+                    <i class="fas fa-chart-line-up"></i>
+                    РЕАЛНИ РЕЗУЛТАТИ
                 </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
-                        </div>
-                        <div class="story-state-text">
-                            80 лв в края на месеца. Нула спестявания. Всяка неочаквана сметка беше паника.
-                        </div>
-                    </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 90 ДНИ
-                        </div>
-                        <div class="story-state-text">
-                            Спести 2,100 лв. Откри 340 лв/месечно скрити разходи, които не подозираше.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">✈️</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">2,100 лв спестени</span>
-                        <span class="story-result-text">Взе билети за Барселона за себе си и дъщеря си</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 90 дни</span>
-                </div>
+                <h2 class="transformation-title">
+                    <span class="title-regular">От финансов</span>
+                    <span class="title-bold">ХАО</span>
+                    <span class="title-regular">към пълен</span>
+                    <span class="title-bold highlight">КОНТРОЛ</span>
+                </h2>
+                <p class="transformation-subtitle">
+                    Реални хора. Реални трансформации. За по-малко от 90 дни.
+                </p>
             </div>
 
-            <!-- Story 2: Georgi -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/georgi-story.png" alt="Георги — програмист, 27 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Георги, 27</div>
-                        <div class="story-person-role">Програмист, София</div>
-                    </div>
-                </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
+            <!-- Transformation Cards Grid -->
+            <div class="transformation-grid">
+                <!-- Transformation 1 -->
+                <div class="transformation-card" data-scroll data-scroll-speed="0.05">
+                    <div class="transformation-card-header">
+                        <div class="user-avatar">
+                            <img src="assets/testimonials/testimonial-1.webp" alt="Мария" loading="lazy">
                         </div>
-                        <div class="story-state-text">
-                            Печелеше 3,200 лв, но никога не знаеше къде отиват. Края на месеца — винаги на нулата.
+                        <div class="user-info">
+                            <h4 class="user-name">Мария, 28</h4>
+                            <p class="user-role">Маркетинг мениджър</p>
                         </div>
+                        <div class="timeline-badge">60 дни</div>
                     </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 6 МЕСЕЦА
-                        </div>
-                        <div class="story-state-text">
-                            Спести 4,800 лв. Намали импулсивните покупки с 60%. Вече има авариен фонд.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">🏠</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">4,800 лв спестени</span>
-                        <span class="story-result-text">Направи първата вноска за собствен апартамент</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 6 мес.</span>
-                </div>
-            </div>
 
-            <!-- Story 3: Elena -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/elena-story.png" alt="Елена — мениджър, 45 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Елена, 45</div>
-                        <div class="story-person-role">Мениджър, Варна</div>
-                    </div>
-                </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
-                        </div>
-                        <div class="story-state-text">
-                            Двама тийнейджъри, ипотека и нула контрол. Всеки месец стрес и караници за пари.
-                        </div>
-                    </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 1 ГОДИНА
-                        </div>
-                        <div class="story-state-text">
-                            Спести 8,400 лв. Изплати предсрочно 2 кредита. Семейството планира заедно.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">👨‍👩‍👧‍👦</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">8,400 лв спестени</span>
-                        <span class="story-result-text">Семейна ваканция в Гърция + нов лаптоп за сина</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 1 година</span>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ========================= -->
-        <!-- Dream Visualizer Tool     -->
-        <!-- ========================= -->
-        <div class="dream-visualizer" data-dream-reveal>
-            <div class="dream-viz-header">
-                <div class="dream-viz-badge">
-                    <i class="fas fa-wand-magic-sparkles"></i>
-                    ИНТЕРАКТИВЕН КАЛКУЛАТОР
-                </div>
-                <h3 class="dream-viz-title">Спести за своята мечта</h3>
-                <p class="dream-viz-subtitle">Избери цел, задай колко можеш да спестяваш месечно и виж кога ще я постигнеш.</p>
-            </div>
-
-            <div class="dream-viz-card" data-dream-reveal>
-                <!-- Goal Selection -->
-                <span class="dream-goals-label">Избери твоята цел</span>
-                <div class="dream-goals-grid" id="dream-goals">
-                    <button class="dream-goal-btn active" data-goal="vacation" data-amount="2800" data-name="Ваканция в Гърция" data-emoji="🏖️">
-                        <span class="dream-goal-icon">🏖️</span>
-                        <span class="dream-goal-name">Ваканция</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="car" data-amount="15000" data-name="Нова кола" data-emoji="🚗">
-                        <span class="dream-goal-icon">🚗</span>
-                        <span class="dream-goal-name">Кола</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="apartment" data-amount="25000" data-name="Първа вноска за жилище" data-emoji="🏠">
-                        <span class="dream-goal-icon">🏠</span>
-                        <span class="dream-goal-name">Жилище</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="pension" data-amount="50000" data-name="Пенсионен фонд" data-emoji="🏝️">
-                        <span class="dream-goal-icon">🏝️</span>
-                        <span class="dream-goal-name">Пенсия</span>
-                    </button>
-                </div>
-
-                <!-- Savings Slider -->
-                <div class="dream-slider-section">
-                    <div class="dream-slider-header">
-                        <span class="dream-slider-label">Месечно спестяване</span>
-                        <span class="dream-slider-value" id="dream-slider-display"><span>200</span> лв/месец</span>
-                    </div>
-                    <div class="dream-slider-wrapper">
-                        <input type="range" class="dream-slider" id="dream-savings-slider" min="50" max="1000" value="200" step="25">
-                    </div>
-                    <div class="dream-slider-marks">
-                        <span>50 лв</span>
-                        <span>250 лв</span>
-                        <span>500 лв</span>
-                        <span>750 лв</span>
-                        <span>1000 лв</span>
-                    </div>
-                </div>
-
-                <!-- Result Display -->
-                <div class="dream-result-display" id="dream-result">
-                    <div class="dream-result-top">
-                        <div class="dream-result-goal-display">
-                            <span class="dream-result-goal-icon" id="dream-result-emoji">🏖️</span>
-                            <div class="dream-result-goal-info">
-                                <span class="dream-result-goal-label">Твоята цел</span>
-                                <span class="dream-result-goal-name" id="dream-result-goal-name">Ваканция в Гърция</span>
+                    <div class="transformation-comparison">
+                        <div class="before-state">
+                            <div class="state-label danger">ПРЕДИ</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">-480 лв/месец изчезват</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">0 лв спестявания</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Овърдрафт всеки месец</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="dream-result-check">
-                            <i class="fas fa-bullseye"></i>
+
+                        <div class="transformation-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="after-state">
+                            <div class="state-label success">СЛЕД</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">+620 лв/месец спестени</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">2,400 лв emergency fund</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Нулев стрес за пари</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="dream-result-main">
-                        <div class="dream-result-months" id="dream-result-months">14</div>
-                        <div class="dream-result-months-label">месеца до мечтата ти</div>
-                        <div class="dream-result-phrase" id="dream-result-phrase">
-                            След <span class="phrase-highlight">14 месеца</span> ще бъдеш на плажа в Гърция 🇬🇷
+                    <blockquote class="transformation-quote">
+                        "За първи път от години знам точно къде отиват парите ми. Спаси ме от финансово депресия."
+                    </blockquote>
+                </div>
+
+                <!-- Transformation 2 -->
+                <div class="transformation-card" data-scroll data-scroll-speed="0.08">
+                    <div class="transformation-card-header">
+                        <div class="user-avatar">
+                            <img src="assets/testimonials/testimonial-2.webp" alt="Георги" loading="lazy">
+                        </div>
+                        <div class="user-info">
+                            <h4 class="user-name">Георги, 35</h4>
+                            <p class="user-role">Software Developer</p>
+                        </div>
+                        <div class="timeline-badge">45 дни</div>
+                    </div>
+
+                    <div class="transformation-comparison">
+                        <div class="before-state">
+                            <div class="state-label danger">ПРЕДИ</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">-850 лв импулсивни покупки</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">3,200 лв кредитна задлъжнялост</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Заплата до заплата</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transformation-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="after-state">
+                            <div class="state-label success">СЛЕД</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">-78% импулсивни харчове</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Погаси 1,800 лв дълг</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">+940 лв месечен излишък</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="dream-result-stats">
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-total">2,800 лв</span>
-                            <span class="dream-stat-label">Обща сума</span>
+                    <blockquote class="transformation-quote">
+                        "AI анализаторът ми показа колко глупости купувам. Променило живота ми буквално."
+                    </blockquote>
+                </div>
+
+                <!-- Transformation 3 -->
+                <div class="transformation-card" data-scroll data-scroll-speed="0.11">
+                    <div class="transformation-card-header">
+                        <div class="user-avatar">
+                            <img src="assets/testimonials/testimonial-3.webp" alt="Елена" loading="lazy">
                         </div>
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-monthly">200 лв</span>
-                            <span class="dream-stat-label">На месец</span>
+                        <div class="user-info">
+                            <h4 class="user-name">Елена & Иван</h4>
+                            <p class="user-role">Млад семейство</p>
                         </div>
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-daily">~7 лв</span>
-                            <span class="dream-stat-label">На ден</span>
+                        <div class="timeline-badge">90 дни</div>
+                    </div>
+
+                    <div class="transformation-comparison">
+                        <div class="before-state">
+                            <div class="state-label danger">ПРЕДИ</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Мечтата за апартамент - нереална</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">400 лв "изчезват" месечно</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Свади заради пари</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transformation-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+
+                        <div class="after-state">
+                            <div class="state-label success">СЛЕД</div>
+                            <div class="state-stats">
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">7,200 лв вече спестени</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">На път към първоначална вноска</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-icon"></span>
+                                    <span class="stat-text">Нулев финансов стрес</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="dream-progress-bar">
-                        <div class="dream-progress-fill" id="dream-progress" style="width: 30%;"></div>
-                    </div>
+                    <blockquote class="transformation-quote">
+                        "Спря свадите в семейството. Сега работим към обща цел и виждаме прогреса всеки ден."
+                    </blockquote>
                 </div>
             </div>
 
-            <!-- CTA -->
-            <div class="dream-cta-wrapper" data-dream-reveal>
-                <a href="#download" class="dream-cta-button" onclick="scrollToDownload(); return false;">
-                    <span>ЗАПОЧНИ ДА СПЕСТЯВАШ ДНЕС</span>
-                    <span class="dream-cta-icon"><i class="fas fa-arrow-right"></i></span>
+            <!-- Bottom CTA -->
+            <div class="transformation-cta" data-scroll data-scroll-speed="0.15">
+                <h3 class="cta-headline">Готов за твоята трансформация?</h3>
+                <p class="cta-subtext">Присъедини се към 15,000+ българи, които вече си върнаха контрола</p>
+                <a href="#download" class="cta-button-large neon-green" onclick="scrollToDownload(); return false;">
+                    <span class="button-text">ЗАПОЧНИ БЕЗПЛАТНО</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
-                <span class="dream-cta-sub">Настрой се за 30 секунди • iOS & Android</span>
+                <div class="cta-trust-tags">
+                    <span class="trust-tag"><i class="fas fa-shield-check"></i> Без кредитна карта</span>
+                    <span class="trust-tag"><i class="fas fa-download"></i> Инсталация 30 сек</span>
+                    <span class="trust-tag"><i class="fas fa-star"></i> 4.8 рейтинг</span>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
-</section>
-
-<!-- ============================================ -->
-<!-- SECTION 3: SOLUTION INTRODUCTION -->
-<!-- Premium Bento Box Grid - Redesigned -->
-<!-- ============================================ -->
-<section class="solution-section section" id="solution" data-scroll-section>
-    <div class="solution-container">
-
-        <!-- Bento Grid -->
-        <div class="bento-grid">
-
-            <!-- Large Image Card - Top Left -->
-            <div class="bento-card large-image-card" data-bento-reveal>
-                <div class="card-image-wrapper">
-                    <img src="assets/mockups/iPhone_17_Mockup_1.webp" alt="FinTrack — интерфейс за проследяване на разходи и спестявания" class="bento-card-image" loading="lazy">
+    <!-- ============================================ -->
+    <!-- FEATURE DEEP-DIVE GRID SECTION -->
+    <!-- Inspiration: Product showcase with detailed technical specs -->
+    <!-- Jacket-style premium feature visualization -->
+    <!-- ============================================ -->
+    <section class="features-deep-dive-section section" id="features" data-scroll-section>
+        <div class="features-deep-container">
+            <!-- Section Header -->
+            <div class="features-deep-header" data-scroll data-scroll-speed="0.08">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-icon">⚡</span>
+                    ТЕХНОЛОГИЯ НА НИВО
                 </div>
-                <div class="image-card-overlay">
-                    <span class="image-card-tag"><i class="fas fa-mobile-alt"></i> Реален интерфейс</span>
-                </div>
-            </div>
-
-            <!-- Icon Badge Card - Top Middle: AI Speed -->
-            <div class="bento-card icon-badge-card" data-bento-reveal>
-                <div class="badge-icon-wrapper">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <div class="badge-text">
-                    <div class="badge-label">AI АНАЛИЗ</div>
-                    <div class="badge-sublabel">ЗА < 3 СЕКУНДИ</div>
-                </div>
-                <div class="badge-glow"></div>
-            </div>
-
-            <!-- Main Headline Card - Top Right -->
-            <div class="bento-card headline-card" data-bento-reveal>
-                <div class="headline-accent-line"></div>
-                <h2 class="solution-headline">
-                    ПРЕДСТАВЯМЕ<br>
-                    <span class="headline-gradient">FINTRACK</span>
+                <h2 class="features-deep-title">
+                    <span class="title-line-1">WE PROVIDE</span>
+                    <span class="title-line-2">FRESH INNOVATIVE</span>
+                    <span class="title-line-3 highlight-neon">ОПЦИИ ЗА ВАС</span>
                 </h2>
-                <p class="solution-description">
-                    Виж точно къде отиват парите ти. Получи персонални AI съвети, които спестяват средно <strong>200 лв</strong> месечно. Без ексел, без стрес — само резултати.
-                </p>
-                <a href="#download" class="solution-cta-button" onclick="scrollToDownload(); return false;">
-                    <span class="cta-text">ЗАПОЧНИ СЕГА</span>
-                    <span class="cta-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="cta-shimmer"></div>
-                </a>
-                <div class="solution-trust-badges">
-                    <div class="trust-badge">
-                        <i class="fab fa-apple"></i>
-                        <span>4.8 ★</span>
-                    </div>
-                    <div class="trust-badge-separator"></div>
-                    <div class="trust-badge">
-                        <i class="fab fa-google-play"></i>
-                        <span>4.7 ★</span>
-                    </div>
-                    <div class="trust-badge-separator"></div>
-                    <div class="trust-badge">
-                        <i class="fas fa-users"></i>
-                        <span>15K+</span>
+            </div>
+
+            <!-- Main Feature Showcase -->
+            <div class="feature-showcase-main" data-scroll data-scroll-speed="0.05">
+                <div class="showcase-visual">
+                    <img src="assets/mockups/FinTrack_hero_Mockup.webp"
+                         alt="FinTrack AI Engine"
+                         class="showcase-image"
+                         loading="lazy">
+                    <div class="visual-overlay-text">AI ENGINE</div>
+                </div>
+                <div class="showcase-details">
+                    <h3 class="detail-title">Интелигентно разпознаване на паттерни</h3>
+                    <p class="detail-desc">Усъвършенствани алгоритми за машинно обучение анализират моделите на харчене в реално време, идентифицирайки възможности за спестявания, които никога не бихте забелязали ръчно.</p>
+
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">ACCURACY</div>
+                            <div class="spec-value">97.3%</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">PROCESSING</div>
+                            <div class="spec-value">В реално време</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">LEARNING</div>
+                            <div class="spec-value">Adaptive</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Circular Badge Card - Middle Left -->
-            <div class="bento-card circular-badge-card" data-bento-reveal>
-                <div class="circular-badge">
-                    <svg viewBox="0 0 200 200" class="circular-text">
-                        <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
-                        <text>
-                            <textPath href="#circlePath" startOffset="0%">
-                                ФИНАНСОВА СВОБОДА • ПЪЛЕН КОНТРОЛ • ФИНАНСОВА СВОБОДА •
-                            </textPath>
-                        </text>
-                    </svg>
-                    <div class="circular-badge-center">
+            <!-- Feature Grid - 3 Areas Style -->
+            <div class="features-grid-3areas">
+                <!-- Feature 1: Smart Categorization -->
+                <div class="feature-area area-1" data-scroll data-scroll-speed="0.06">
+                    <div class="feature-area-visual">
+                        <div class="visual-icon gradient-purple">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="visual-pattern"></div>
+                    </div>
+                    <div class="feature-area-content">
+                        <h4 class="feature-area-title">УМНА КАТЕГОРИЗАЦИЯ</h4>
+                        <p class="feature-area-desc">
+                            Forget manual tagging. Our AI instantly categorizes every transaction with industry-leading 97%+ accuracy.
+                        </p>
+                        <ul class="feature-benefits-list">
+                            <li><i class="fas fa-check"></i> Автоматично научава твоите навици</li>
+                            <li><i class="fas fa-check"></i> Създаване на персонални категории</li>
+                            <li><i class="fas fa-check"></i> Разпознаване на търговци</li>
+                        </ul>
+                    </div>
+                    <div class="feature-area-image">
+                        <img src="assets/mockups/FinTrack_hero_Mockup.webp" alt="Categorization" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Feature 2: Predictive Insights -->
+                <div class="feature-area area-2" data-scroll data-scroll-speed="0.09">
+                    <div class="feature-area-visual">
+                        <div class="visual-icon gradient-blue">
+                            <i class="fas fa-crystal-ball"></i>
+                        </div>
+                        <div class="visual-pattern"></div>
+                    </div>
+                    <div class="feature-area-content">
+                        <h4 class="feature-area-title">ПРЕДВИЖДАЩИ АНАЛИЗИ</h4>
+                        <p class="feature-area-desc">
+                            See the future before it happens. Get warned about upcoming bills, predict end-of-month balance, spot dangerous spending trends.
+                        </p>
+                        <ul class="feature-benefits-list">
+                            <li><i class="fas fa-check"></i> 30-дневна прогноза на паричния поток</li>
+                            <li><i class="fas fa-check"></i> Напомняния за сметки</li>
+                            <li><i class="fas fa-check"></i> Известия за прекомерни разходи</li>
+                        </ul>
+                    </div>
+                    <div class="feature-area-image">
+                        <img src="assets/mockups/FinTrack_hero_Mockup.webp" alt="Predictions" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Feature 3: Gamified Savings -->
+                <div class="feature-area area-3" data-scroll data-scroll-speed="0.12">
+                    <div class="feature-area-visual">
+                        <div class="visual-icon gradient-green">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="visual-pattern"></div>
+                    </div>
+                    <div class="feature-area-content">
+                        <h4 class="feature-area-title">ГЕЙМ ПРЕЖИВЯВАНЕ</h4>
+                        <p class="feature-area-desc">
+                            Превърни скучния бюджет в завладяваща игра. Unlock achievements, compete with friends, level up your financial health.
+                        </p>
+                        <ul class="feature-benefits-list">
+                            <li><i class="fas fa-check"></i> 50+ постижения за отключване</li>
+                            <li><i class="fas fa-check"></i> Система за проследяване на серии</li>
+                            <li><i class="fas fa-check"></i> Класация между приятели</li>
+                        </ul>
+                    </div>
+                    <div class="feature-area-image">
+                        <img src="assets/mockups/FinTrack_hero_Mockup.webp" alt="Gamification" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Specs Grid -->
+            <div class="tech-specs-grid" data-scroll data-scroll-speed="0.15">
+                <div class="spec-card">
+                    <div class="spec-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h5>БАНКОВО НИВО СИГУРНОСТ</h5>
+                    <p>256-битово криптиране<br>SOC 2 сертифициран</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon"><i class="fas fa-bolt"></i></div>
+                    <h5>МЪЛНИЕНОСНА СКОРОСТ</h5>
+                    <p>< 100ms отговор<br>Синхронизация в реално време</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon"><i class="fas fa-globe"></i></div>
+                    <h5>РАБОТИ ОФЛАЙН</h5>
+                    <p>Локален дизайн<br>Авто-синхронизация след това</p>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon"><i class="fas fa-mobile"></i></div>
+                    <h5>МУЛТИ-ПЛАТФОРМА</h5>
+                    <p>iOS, Android, Web<br>Безпроблемна синхронизация</p>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="features-deep-cta" data-scroll data-scroll-speed="0.18">
+                <a href="#calculator" class="features-cta-button dark-elegant">
+                    <span class="button-label">НАУЧИ ПОВЕЧЕ</span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ДОКАЗАНИ В МАЩАБ SECTION -->
+    <!-- Trust, Social Proof, Authority Building -->
+    <!-- Inspiration: "Proven at scale across Fortune 500" -->
+    <!-- ============================================ -->
+    <section class="proven-at-scale-section section" id="trust" data-scroll-section>
+        <div class="proven-container">
+            <!-- Section Header -->
+            <div class="proven-header" data-scroll data-scroll-speed="0.08">
+                <div class="proven-badge">
+                    <i class="fas fa-certificate"></i>
+                    ДОКАЗАНИ В МАЩАБ
+                </div>
+                <h2 class="proven-title">
+                    ДОВЕРЕНИ ОТ <span class="highlight-neon">ХИЛЯДИ</span><br>
+                    БЪЛГАРИ
+                </h2>
+                <p class="proven-subtitle">
+                    Не вярвай на думите. Вярвай на данните.
+                </p>
+            </div>
+
+            <!-- Stats Grid - 4 Major Metrics -->
+            <div class="proven-stats-grid" data-scroll data-scroll-speed="0.06">
+                <div class="proven-stat-card card-1">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="stat-number">15,000+</div>
+                    <div class="stat-label">Общо изтегляния</div>
+                    <div class="stat-sublabel">И растат всеки ден</div>
+                </div>
+
+                <div class="proven-stat-card card-2">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="stat-number">$3.2M</div>
+                    <div class="stat-label">Общо спестени</div>
+                    <div class="stat-sublabel">От нашите потребители</div>
+                </div>
+
+                <div class="proven-stat-card card-3">
+                    <div class="stat-icon-wrapper">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">Среден рейтинг</div>
+                    <div class="stat-sublabel">От 127+ отзива</div>
+                </div>
+
+                <div class="proven-stat-card card-4">
+                    <div class="stat-icon-wrapper">
                         <i class="fas fa-chart-line"></i>
                     </div>
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Намаление на стреса</div>
+                    <div class="stat-sublabel">Докладвано от потребители</div>
                 </div>
             </div>
 
-            <!-- Savings Potential Card - Middle -->
-            <div class="bento-card savings-card" data-bento-reveal>
-                <div class="savings-label">Колко спестяваш за</div>
-                <div class="savings-period">1 година?</div>
-                <div class="savings-amount-wrapper">
-                    <span class="savings-amount">2,400</span>
-                    <span class="savings-currency">лв</span>
-                </div>
-                <div class="savings-bar-wrapper">
-                    <div class="savings-bar">
-                        <div class="savings-bar-fill"></div>
-                    </div>
-                </div>
-                <div class="savings-hint">средно за потребител</div>
-            </div>
-
-            <!-- Feature Highlight Card - Middle Right -->
-            <div class="bento-card feature-highlight-card" data-bento-reveal>
-                <div class="feature-tag"><i class="fas fa-fire"></i> ДОКАЗАН РЕЗУЛТАТ</div>
-                <h3 class="feature-headline">
-                    Спестявай средно<br>
-                    <span class="feature-amount">200 лв</span><br>
-                    всеки месец
-                </h3>
-                <p class="feature-subtext">само като знаеш къде отиват парите ти</p>
-            </div>
-
-            <!-- App Visual Card - Right -->
-            <div class="bento-card app-visual-card" data-bento-reveal>
-                <div class="app-visual-ring"></div>
-                <div class="app-visual-circle">
-                    <img src="assets/logos/optimized/logo-256.png" alt="FinTrack Logo" class="app-logo-visual" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Timeline Card - Bottom -->
-            <div class="bento-card timeline-card-bento" data-bento-reveal>
-                <div class="timeline-bento-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="timeline-bento-content">
-                    <p class="timeline-bento-text">Достъпно за <strong>iOS</strong> и <strong>Android</strong> • Настройка за <strong>30 секунди</strong></p>
-                </div>
-                <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(); return false;">
-                    Изтегли <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-    <!-- Testimonials Section -->
-    <section class="stats-achievements-section section" id="stats" data-scroll-section>
-        <!-- Floating Shapes -->
-        <div class="stats-floating-shapes">
-            <div class="stats-shape stats-shape-1 parallax-slow"></div>
-            <div class="stats-shape stats-shape-2 parallax-medium"></div>
-            <div class="stats-shape stats-shape-3 parallax-fast"></div>
-        </div>
-
-        <div class="container stats-content">
-            <!-- Left Side - Brand Text -->
-            <div class="stats-left" data-scroll data-scroll-speed="0.06">
-                <h2 class="stats-main-title">
-                    <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
-                </h2>
-                <p class="stats-description">
-                    Не е магия - просто интелигентна технология и твоята мотивация. 
-                    Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
-                </p>
-                <div class="stats-decorative">
-                    <div class="stats-line"></div>
-                    <div class="stats-dot"></div>
-                </div>
-            </div>
-
-            <!-- Right Side - Statistics -->
-            <div class="stats-list" data-scroll data-scroll-speed="0.1">
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="200">0</span>
-                        <span class="stat-label-large">лева месечно</span>
-                        <p class="stat-description-small">Спестени от потребител</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="40">0</span>
-                        <span class="stat-label-large">намалени разходи</span>
-                        <p class="stat-description-small">За излишни покупки</p>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-content">
-                        <span class="stat-number-large" data-target="100">0</span>
-                        <span class="stat-label-large">повече спокойствие</span>
-                        <p class="stat-description-small">Знаеш къде са парите ти</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- ============================================ -->
-<!-- COMPARISON SECTION: FinTrack vs Alternatives -->
-<!-- ============================================ -->
-<section class="comparison-section section" id="comparison" data-scroll-section>
-    <!-- Background Effects -->
-    <div class="comparison-bg-effects">
-        <div class="comparison-orb comparison-orb-1"></div>
-        <div class="comparison-orb comparison-orb-2"></div>
-        <div class="comparison-orb comparison-orb-3"></div>
-        <div class="comparison-grid-pattern"></div>
-        <div class="comparison-noise"></div>
-    </div>
-
-    <div class="comparison-container">
-        <!-- Header -->
-        <div class="comparison-header">
-            <div class="comparison-badge" data-comp-reveal>
-                <i class="fas fa-trophy"></i>
-                СРАВНЕНИЕ
-            </div>
-            <h2 class="comparison-title" data-comp-reveal>
-                ЗАЩО <span class="comparison-title-accent">FINTRACK</span><br>
-                Е НОМЕР 1?
-            </h2>
-            <p class="comparison-subtitle" data-comp-reveal>
-                Не всички финансови инструменти са еднакви. Виж защо хиляди българи избират FinTrack пред всичко останало.
-            </p>
-        </div>
-
-        <!-- Comparison Table -->
-        <div class="comparison-table-wrapper" data-comp-reveal>
-            <div class="comparison-table">
-                <!-- Header Row -->
-                <div class="comp-header-cell">
-                    <span class="comp-features-label">КАКВО ПОЛУЧАВАШ</span>
-                </div>
-                <div class="comp-header-cell fintrack-header">
-                    <div class="comp-header-icon fintrack-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <span class="comp-header-name fintrack-name">FinTrack</span>
-                    <span class="comp-header-sub">Всичко в едно</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon excel-icon">
-                        <i class="fas fa-table"></i>
-                    </div>
-                    <span class="comp-header-name">Excel</span>
-                    <span class="comp-header-sub">Ръчна работа</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon bank-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <span class="comp-header-name">Банково прил.</span>
-                    <span class="comp-header-sub">Ограничено</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon other-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <span class="comp-header-name">Други прил.</span>
-                    <span class="comp-header-sub">Чуждестранни</span>
-                </div>
-
-                <!-- Row 1: Know where your money goes -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-eye"></i></div>
-                        <span class="comp-feature-name">Знаеш къде отиват парите ти</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value manual">Ръчно</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value basic">Частично</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value rare">Рядко</span>
-                    </div>
-                </div>
-
-                <!-- Row 2: Save without effort -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-piggy-bank"></i></div>
-                        <span class="comp-feature-name">Спестяваш без усилие</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                </div>
-
-                <!-- Row 3: Stop impulse purchases -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-shield-alt"></i></div>
-                        <span class="comp-feature-name">Спираш импулсивните покупки</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                </div>
-
-                <!-- Row 4: Predict your future -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-chart-line"></i></div>
-                        <span class="comp-feature-name">Предвиждаш финансовото си бъдеще</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value manual">Ръчно</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                </div>
-
-                <!-- Row 5: Feel in control -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-trophy"></i></div>
-                        <span class="comp-feature-name">Имаш пълен финансов контрол</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value basic">Базов</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                </div>
-
-                <!-- Row 6: Made for Bulgaria -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-flag"></i></div>
-                        <span class="comp-feature-name">Създадено за българите</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value rare">Рядко</span>
-                    </div>
-                </div>
-
-                <!-- Row 7: Ready in seconds -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-rocket"></i></div>
-                        <span class="comp-feature-name">Готов за 30 секунди</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value average">Средно</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Winner Banner -->
-        <div class="comparison-winner" data-comp-reveal>
-            <div class="winner-card">
-                <div class="winner-score-row">
-                    <span class="winner-score" data-comp-counter="7">0</span>
-                    <div class="winner-score-label">
-                        <strong>от 7 категории</strong>
-                        FinTrack печели във всяка
-                    </div>
-                </div>
-                <p class="winner-text">Изборът е <span class="accent">очевиден</span>.</p>
-                <a href="#download" class="winner-cta" onclick="scrollToDownload(); return false;">
-                    ЗАПОЧНИ СЕГА <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Trust Row -->
-        <div class="comparison-trust-row" data-comp-reveal>
-            <div class="comp-trust-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>Защитени данни</span>
-            </div>
-            <div class="comp-trust-divider"></div>
-            <div class="comp-trust-item">
-                <i class="fab fa-apple"></i>
-                <span>iOS & Android</span>
-            </div>
-            <div class="comp-trust-divider"></div>
-            <div class="comp-trust-item">
-                <i class="fas fa-star"></i>
-                <span>4.8 рейтинг</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Results/Features Section -->
-    <section class="features-results-section section" id="features" data-scroll-section>
-        <div class="fr-container">
-            <!-- Header -->
-            <div class="fr-header" data-bento-reveal>
-                <div class="fr-badge">
-                    <i class="fas fa-bullseye"></i> Не просто функции. Резултати.
-                </div>
-                <h2 class="fr-main-title">
-                    Върни си парите, времето и<br>
-                    <span>спокойствието.</span>
-                </h2>
-                <p class="fr-subtitle">
-                    Всяка функция на FinTrack е проектирана с една цел: да ви върне контрола, който губите всеки месец без дори да подозирате.
-                </p>
-            </div>
-
-            <!-- Bento Grid -->
-            <div class="fr-bento-grid">
-                
-                <!-- AI Card (Spans large space) -->
-                <div class="fr-card fr-card-ai" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div>
-                            <div class="fr-icon-wrapper">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <span class="fr-highlight-text">Основна функция · AI Анализ</span>
-                            <h3 class="fr-title">Виждаш за какво харчиш — за под 3 секунди</h3>
-                            <p class="fr-desc">
-                                AI-ът не само записва разходите ти. Разпознава моделите, открива "течовете" и ти казва точно какво да промениш — автоматично, без ти да правиш нищо.
-                            </p>
-                            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Средно открива 3.4 "невидими" разхода</div>
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Препоръките спестяват ~200 лв/месец</div>
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Персонализира се за 7 дни</div>
-                            </div>
+            <!-- Detailed Metrics Grid -->
+            <div class="detailed-metrics-grid" data-scroll data-scroll-speed="0.1">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon purple">
+                            <i class="fas fa-chart-bar"></i>
                         </div>
+                        <h4>Намаление на загубеното време</h4>
+                    </div>
+                    <div class="metric-value">90%</div>
+                    <p class="metric-desc">По-малко време притеснение за пари</p>
+                </div>
 
-                        <!-- UI mockup inside AI card -->
-                        <div class="fr-ai-ui">
-                            <div class="fr-ai-ui-header">Твоят AI анализ · Октомври</div>
-                            <div class="fr-ai-ui-item" style="color: #ff6b6b; font-weight: 600;">
-                                <span><i class="fas fa-utensils"></i> Ресторанти</span> <span>+23% (390 лв)</span>
-                            </div>
-                            <div class="fr-ai-ui-item">
-                                <span class="fr-ai-ui-cat"><i class="fas fa-car"></i> Транспорт</span> <span class="fr-ai-ui-val">220 лв</span>
-                            </div>
-                            <div class="fr-ai-ui-item">
-                                <span class="fr-ai-ui-cat"><i class="fas fa-shopping-bag"></i> Пазаруване</span> <span class="fr-ai-ui-val">180 лв</span>
-                            </div>
-                            
-                            <div class="fr-ai-ui-alert">
-                                <div class="fr-ai-ui-alert-title"><i class="fas fa-sparkles"></i> FinTrack Insight</div>
-                                <div class="fr-ai-ui-alert-text">Харчиш с 23% повече за ресторанти от миналия месец. Намали храненията навън с 4, за да си в бюджет.</div>
-                                <div class="fr-ai-ui-alert-save">+180 лв могат да бъдат спестени</div>
-                            </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon green">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>По-бързо обработване</h4>
+                    </div>
+                    <div class="metric-value">70%</div>
+                    <p class="metric-desc">Моментална категоризация на разходи</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon blue">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <h4>Качествена резолюция</h4>
+                    </div>
+                    <div class="metric-value">95%+</div>
+                    <p class="metric-desc">AI точност в разпознаването на паттерни</p>
+                </div>
+            </div>
+
+            <!-- Trust Badges Section -->
+            <div class="trust-badges-section" data-scroll data-scroll-speed="0.12">
+                <h3 class="trust-badges-title">Доверени и сертифицирани</h3>
+                <div class="trust-badges-grid">
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="badge-text">
+                            <div class="badge-title">Bank-Level Security</div>
+                            <div class="badge-subtitle">256-битово криптиране</div>
+                        </div>
+                    </div>
+
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="badge-text">
+                            <div class="badge-title">GDPR съвместим</div>
+                            <div class="badge-subtitle">Пълна защита на данните</div>
+                        </div>
+                    </div>
+
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="badge-text">
+                            <div class="badge-title">SOC 2 Certified</div>
+                            <div class="badge-subtitle">Индустриален стандарт</div>
+                        </div>
+                    </div>
+
+                    <div class="trust-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="badge-text">
+                            <div class="badge-title">Представен в App Store</div>
+                            <div class="badge-subtitle">Топ финансово приложение</div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Scanner Card -->
-                <div class="fr-card fr-card-qr" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-camera"></i>
+            <!-- Real User Quotes Carousel -->
+            <div class="user-quotes-section" data-scroll data-scroll-speed="0.15">
+                <h3 class="quotes-title">Какво казват потребителите</h3>
+                <div class="quotes-carousel">
+                    <div class="quote-card">
+                        <div class="quote-stars">★★★★★</div>
+                        <p class="quote-text">"Changed my relationship with money completely. I actually sleep at night now."</p>
+                        <div class="quote-author">
+                            <strong>Мария П.</strong>
+                            <span>Marketing Manager, София</span>
                         </div>
-                        <h3 class="fr-title">Снимаш бележката → готово</h3>
-                        <p class="fr-desc">
-                            QR скенерът чете касови бележки за 2 секунди. Без ръчно въвеждане, без забравени разходи, без досадни таблици.
-                        </p>
-                        <div class="fr-qr-visual">
-                            <i class="fas fa-qrcode"></i>
-                            <span>Спестява 15 мин/седмично</span>
+                    </div>
+
+                    <div class="quote-card">
+                        <div class="quote-stars">★★★★★</div>
+                        <p class="quote-text">"Saved enough for a vacation in just 4 months. Never thought it was possible."</p>
+                        <div class="quote-author">
+                            <strong>Георги Д.</strong>
+                            <span>Software Engineer, Пловдив</span>
+                        </div>
+                    </div>
+
+                    <div class="quote-card">
+                        <div class="quote-stars">★★★★★</div>
+                        <p class="quote-text">"The AI insights are scary accurate. It's like having a financial advisor in my pocket."</p>
+                        <div class="quote-author">
+                            <strong>Елена И.</strong>
+                            <span>Teacher, Варна</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- What IF Card -->
-                <div class="fr-card fr-card-whatif" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <h3 class="fr-title">Виж дали ще можеш да си го позволиш</h3>
-                        <p class="fr-desc">
-                            What-If симулатор: въведи голямо решение (кредит, нова кола) и виж финансовите последствия — преди да е станало.
-                        </p>
-                        <div class="fr-whatif-visual">
-                            <span class="fr-whatif-scenario">"Ако взема кредит от 500лв?"</span>
-                            <span class="fr-whatif-arrow"><i class="fas fa-arrow-right"></i></span>
-                            <span class="fr-whatif-result">-30% свободен кеш</span>
-                        </div>
-                    </div>
+            <!-- Press Mentions -->
+            <div class="press-mentions-section" data-scroll data-scroll-speed="0.18">
+                <p class="press-label">Споменати в</p>
+                <div class="press-logos">
+                    <div class="press-logo">Forbes BG</div>
+                    <div class="press-logo">Capital</div>
+                    <div class="press-logo">Investor.bg</div>
+                    <div class="press-logo">Dnevnik</div>
                 </div>
-
-                <!-- Health Index Card -->
-                <div class="fr-card fr-card-health" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3 class="fr-title">Твоят финансов "кръвен тест"</h3>
-                        <p class="fr-desc">
-                            Индекс на финансово здраве — веднъж седмично. Показва точно какво е добре и какво куца. Пълна яснота за 1 минута.
-                        </p>
-                        <div class="fr-health-visual">
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 60%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 80%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 40%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 90%; background: linear-gradient(to top, #B4F461, #6aaf1a);"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Budget Card -->
-                <div class="fr-card fr-card-budget" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3 class="fr-title">Спестяването спира да е мъчение</h3>
-                        <p class="fr-desc">
-                            Постави цел и следи прогреса. Знаеш колко остава. <br><br>Средно целта се постига 2× по-бързо.
-                        </p>
-                        <div class="fr-budget-visual">
-                            <div class="fr-budget-texts">
-                                <span>Нова кола</span>
-                                <span>65%</span>
-                            </div>
-                            <div class="fr-budget-bar">
-                                <div class="fr-budget-fill" style="--w: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gamification Card -->
-                <div class="fr-card fr-card-gamification" data-bento-reveal>
-                    <div class="fr-glow"></div>
-                    <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3 class="fr-title">Привикваш към успеха</h3>
-                        <p class="fr-desc">
-                            Мозъкът ти получава reward за всяко спестяване. Изграждаш навик.
-                        </p>
-                        <div class="fr-gami-visual">
-                            <div class="fr-badge-item">🔥</div>
-                            <div class="fr-badge-item">💰</div>
-                            <div class="fr-badge-item">🏆</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Stats & Achievements Section -->
-    <section class="testimonials-section section" id="testimonials" data-scroll-section>
-        <div class="container">
-            <!-- Main Title with Special Layout -->
-            <div class="testimonials-main-title testimonial-reveal">
-                <!-- User Avatars - Left Side -->
-                <div class="testimonials-avatars stagger-children">
-                    <div class="testimonial-avatar avatar-1"></div>
-                    <div class="testimonial-avatar avatar-2 avatar-bordered"></div>
-                    <div class="testimonial-avatar avatar-3"></div>
-                </div>
-                
-                <div class="title-line-1 testimonial-title-line">
-                    <span class="title-indented">КАКВО</span>
-                    <span class="title-accent">+100% <span class="title-accent-small">спокойствие</span></span>
-                    <div class="title-icon-orange"></div>
-                </div>
-                <div class="title-line-2 testimonial-title-line">КАЗВАТ НАШИТЕ -</div>
-                <div class="title-line-3 testimonial-title-line">КЛИЕНТИ | НОВИЯ FT</div>
-                <div class="title-line-4 testimonial-title-line">Е ТУК +</div>
-            </div>
-            
-            <!-- Grouped Cards Container -->
-            <div class="testimonials-cards-group testimonial-cards-reveal" data-scroll data-scroll-speed="0.07">
-                <!-- Long Card with Rounded Corners -->
-                <div class="testimonial-long-card">
-                    <!-- Internal Testimonial - Inside Card (Иван Димитров) -->
-                    <div class="card-internal-testimonial">
-                        <div class="testimonial-avatar-small">
-                            <span>ИД</span>
-                        </div>
-                        <div class="testimonial-rating-small">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text-small">
-                            "За първи път виждам къде отиват парите ми. Перфектно приложение!"
-                        </p>
-                        <div class="testimonial-author-small">
-                            <strong>Иван Димитров</strong>
-                            <span>Софтуерен инженер</span>
-                        </div>
-                    </div>
-                    </div>
-                    
-                <!-- Top Left Card - Outside long card -->
-                    <div class="top-left-card">
-                        <div class="top-left-testimonial">
-                            <div class="testimonial-avatar-small">
-                                <span>МП</span>
-                            </div>
-                            <div class="testimonial-rating-small">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="testimonial-text-small">
-                                "FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"
-                            </p>
-                            <div class="testimonial-author-small">
-                                <strong>Мария Петрова</strong>
-                                <span>Маркетинг мениджър</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Motivational Text Block - Bottom Right -->
-            <div class="motivational-text-block testimonial-reveal">
-                <a href="#download" class="motivational-link" data-track-id="stats-motivational-link" data-track-label="Stats Section Motivational Link">
-                    ИЗТЕГЛИ FINTRACK СЕГА →
-                </a>
-                <p class="motivational-text">
-                    ВСЕКИ ДЕН БЕЗ FINTRACK СТРУВА ПАРИ. ВИЕ ГУБИТЕ <strong>17 ЛВ НА ДЕН</strong> ОТ НЕСЛЕДЕНИ РАЗХОДИ. НЕ ПОЗВОЛЯВАЙТЕ ПАРИТЕ ДА ИЗТИЧАТ ПРЕЗ ПРЪСТИТЕ ВИ. ИЗТЕГЛИ ПРИЛОЖЕНИЕТО СЕГА И ЗАПОЧНИ ДА СПЕСТЯВАШ ОЩЕ ДНЕС.
-                </p>
-            </div>
-        </div>
-        <!-- Overlay Card - Positioned absolutely -->
-        <div class="overlay-card testimonial-overlay-reveal">
-            <div class="overlay-card-icon">
-                <div class="icon-circle-filled"></div>
-                <div class="icon-circle-outline"></div>
-            </div>
-            <h3 class="overlay-card-title">
-                ДОВОЛНИ КЛИЕНТИ /<br>
-                ПРОВЕРЕНИ ОТЗИВИ
-            </h3>
-            <p class="overlay-card-description">
-                Средно 250 лв спестени<br>
-                на месец от всеки<br>
-                потребител ±
-            </p>
-        </div>
-    </section>
-
-    <!-- Testimonials Columns Section -->
-    <section class="testimonials-columns-section section" id="testimonials-columns" data-scroll-section>
-        <div class="testimonials-columns-container">
-            <!-- Column 1 - Fast -->
-            <div class="testimonials-column column-1 testimonial-column-reveal">
-                <div class="testimonials-column-inner">
-                    <!-- First set of cards -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-1.webp" alt="Мария Петрова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Мария Петрова</span>
-                                <span class="testimonial-column-role">Маркетинг мениджър</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-2.webp" alt="Георги Стоянов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Георги Стоянов</span>
-                                <span class="testimonial-column-role">Предприемач</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-3.webp" alt="Елена Костова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Елена Костова</span>
-                                <span class="testimonial-column-role">Учител</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"FinTrack ми помогна да спестя 450 лв само за първия месец. AI анализът е невероятен!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-1.webp" alt="Мария Петрова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Мария Петрова</span>
-                                <span class="testimonial-column-role">Маркетинг мениджър</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Най-после знам къде отиват парите ми. Препоръчвам на всеки!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-2.webp" alt="Георги Стоянов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Георги Стоянов</span>
-                                <span class="testimonial-column-role">Предприемач</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Гамификацията прави спестяването забавно. Децата ми също се включиха!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-3.webp" alt="Елена Костова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Елена Костова</span>
-                                <span class="testimonial-column-role">Учител</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Column 2 - Medium -->
-            <div class="testimonials-column column-2 testimonial-column-reveal">
-                <div class="testimonials-column-inner">
-                    <!-- First set of cards -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-4.webp" alt="Иван Димитров" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Иван Димитров</span>
-                                <span class="testimonial-column-role">Софтуерен инженер</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-5.webp" alt="Анна Николова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Анна Николова</span>
-                                <span class="testimonial-column-role">Счетоводител</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-6.webp" alt="Петър Василев" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Петър Василев</span>
-                                <span class="testimonial-column-role">Финансов анализатор</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"За първи път виждам къде отиват парите ми. Перфектно приложение!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-4.webp" alt="Иван Димитров" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Иван Димитров</span>
-                                <span class="testimonial-column-role">Софтуерен инженер</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"QR скенерът за касови бележки е гениален. Спестява ми толкова време!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-5.webp" alt="Анна Николова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Анна Николова</span>
-                                <span class="testimonial-column-role">Счетоводител</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"What-If сценариите ми помогнаха да взема правилното решение за кредита."</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-6.webp" alt="Петър Василев" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Петър Василев</span>
-                                <span class="testimonial-column-role">Финансов анализатор</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Column 3 - Slow -->
-            <div class="testimonials-column column-3 testimonial-column-reveal">
-                <div class="testimonials-column-inner">
-                    <!-- First set of cards -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-7.webp" alt="Стефан Михайлов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Стефан Михайлов</span>
-                                <span class="testimonial-column-role">Архитект</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-8.webp" alt="Десислава Тодорова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Десислава Тодорова</span>
-                                <span class="testimonial-column-role">Лекар</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-9.webp" alt="Николай Иванов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Николай Иванов</span>
-                                <span class="testimonial-column-role">Фотограф</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Индексът за финансово здраве ми отвори очите. Сега спестявам 30% повече!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-7.webp" alt="Стефан Михайлов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Стефан Михайлов</span>
-                                <span class="testimonial-column-role">Архитект</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"AI асистентът е като личен финансов съветник. Невероятно полезен!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-8.webp" alt="Десислава Тодорова" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Десислава Тодорова</span>
-                                <span class="testimonial-column-role">Лекар</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-column-card">
-                        <p class="testimonial-column-text">"Най-добрата инвестиция, която направих тази година. Спестих за почивката си!"</p>
-                        <div class="testimonial-column-author">
-                            <img src="assets/testimonials/avatar-9.webp" alt="Николай Иванов" class="testimonial-column-avatar" loading="lazy" decoding="async" width="60" height="60">
-                            <div class="testimonial-column-info">
-                                <span class="testimonial-column-name">Николай Иванов</span>
-                                <span class="testimonial-column-role">Фотограф</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gradient overlays for fade effect -->
-        <div class="testimonials-columns-fade-top"></div>
-        <div class="testimonials-columns-fade-bottom"></div>
-    </section>
 
     <!-- Pain Point Calculator Section -->
     <section class="pain-calculator-section section" id="calculator" data-scroll-section>
@@ -1886,7 +1385,7 @@
                         </div>
                     </div>
                     <div class="results-cta">
-                        <p class="shock-text">😱 Това е цената на бездействието!</p>
+                        <p class="shock-text"> Това е цената на бездействието!</p>
                         <a href="#download" class="cta-btn urgent" data-track-id="stop-losses-cta" data-track-label="Stop Losses CTA">
                             Спри загубите сега
                             <i class="fas fa-arrow-right"></i>
@@ -1917,351 +1416,446 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works-section section" id="how-it-works" data-scroll-section>
-        <div class="container">
-            <!-- Interactive Steps Grid -->
-            <div class="steps-grid">
-                <!-- Step 1 -->
-                <div class="step-card" data-step="1">
-                    <div class="step-number-wrapper">
-                        <div class="step-number">01</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon gradient-purple">
-                            <i class="fas fa-download"></i>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Изтегли приложението</h3>
-                        <p class="step-description">
-                            Налично в App Store и Google Play. Инсталацията отнема само 30 секунди.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                30 секунди
-                            </span>
-                        </div>
+    <!-- ============================================ -->
+    <!-- FAQ OBJECTION KILLER SECTION -->
+    <!-- Pre-handle all objections -->
+    <!-- ============================================ -->
+    <section class="faq-section section" id="faq" data-scroll-section>
+        <div class="faq-container">
+            <!-- Section Header -->
+            <div class="faq-header" data-scroll data-scroll-speed="0.08">
+                <div class="faq-badge">
+                    <i class="fas fa-question-circle"></i>
+                    ИМАШ ВЪПРОСИ?
+                </div>
+                <h2 class="faq-title">
+                    Често задавани<br>
+                    <span class="highlight-neon">въпроси</span>
+                </h2>
+                <p class="faq-subtitle">
+                    Всички отговори на едно място. Без скрити условия.
+                </p>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="faq-accordion" data-scroll data-scroll-speed="0.06">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Наистина ли е напълно безплатно?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, 100% безплатно. Без скрити такси, без кредитна карта, без внезапни надценки. Всички основни функции - AI анализ, бюджети, прогнози, gamification - напълно безплатни завинаги. Защото вярваме, че финансовата свобода не трябва да струва пари.</p>
                     </div>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="step-card" data-step="2">
-                    <div class="step-number-wrapper">
-                        <div class="step-number">02</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon gradient-green">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Създай профил</h3>
-                        <p class="step-description">
-                            Регистрирай се с email или социални мрежи. Бърза и сигурна регистрация.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                1 минута
-                            </span>
-                        </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Сигурни ли са данните ми?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Абсолютно. Използваме същото ниво на криптиране като банките (256-bit SSL). Данните ти се съхраняват в SOC 2 сертифицирани дата центрове. Сме GDPR compliant. Никога не продаваме данни на трети страни. Твоите пари, твоите данни, твоят контрол.</p>
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="step-card" data-step="3">
-                    <div class="step-number-wrapper">
-                        <div class="step-number">03</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon gradient-blue">
-                            <i class="fas fa-cog"></i>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Настрой бюджета си</h3>
-                        <p class="step-description">
-                            Въведи месечния си доход и основни категории разходи. AI ще ти помогне с препоръки.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-clock"></i>
-                                1 минута
-                            </span>
-                        </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Колко време отнема настройката?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>По-малко от 30 секунди. Изтегли → Регистрация → Готово. AI-ът автоматично започва да анализира твоите навици веднага след като въведеш първия разход. Без сложни Excel таблици, без часове настройване. Just works.</p>
                     </div>
                 </div>
 
-                <!-- Step 4 -->
-                <div class="step-card" data-step="4">
-                    <div class="step-number-wrapper">
-                        <div class="step-number">04</div>
-                    </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon gradient-orange">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                    </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Получи AI анализ</h3>
-                        <p class="step-description">
-                            Нашият AI анализира финансовите ти навици и създава персонализиран план за спестяване.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-magic"></i>
-                                Автоматично
-                            </span>
-                        </div>
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Трябва ли да свързвам банковата си сметка?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Не, напълно опционално. Можеш да въвеждаш разходи ръчно или чрез сканиране на касова бележка. Ако искаш автоматичен импорт - поддържаме това също, но решението е изцяло твое. Твоят comfort zone = наш приоритет.</p>
                     </div>
                 </div>
 
-                <!-- Step 5 -->
-                <div class="step-card step-card-featured" data-step="5">
-                    <div class="step-number-wrapper">
-                        <div class="step-number">05</div>
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Работи ли офлайн?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да! FinTrack използва "local-first" архитектура. Добавяй разходи, проверявай бюджети, виж статистики - всичко работи без интернет. Данните се синхронизират автоматично когато се свържеш отново. Perfect for travel.</p>
                     </div>
-                    <div class="step-icon-wrapper">
-                        <div class="step-icon gradient-pink">
-                            <i class="fas fa-rocket"></i>
-                        </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Какво ако не ми харесва?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Изтрий приложението с 1 клик. Нулев риск. Ние сме толкова уверени, че ще обичаш FinTrack, че не искаме credit card за регистрация. Try it. Ако не промени финансовия ти живот за 30 дни - ще бъдем шокирани.</p>
                     </div>
-                    <div class="step-content">
-                        <h3 class="step-title">Започни да спестяваш!</h3>
-                        <p class="step-description">
-                            Следи разходите си, получавай умни препоръки и гледай как спестяванията ти растат всеки ден.
-                        </p>
-                        <div class="step-meta">
-                            <span class="step-time">
-                                <i class="fas fa-infinity"></i>
-                                Завинаги
-                            </span>
-                        </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">На колко устройства мога да го използвам?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Неограничено. iPhone, Android, iPad,Web - всички платформи, всички устройства. Синхронизация в реално време означава че промяна на телефона се вижда веднага на tablet-а. Един акаунт, неограничено устройства.</p>
                     </div>
-                    <div class="step-success-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Готово!</span>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="question-text">Мога ли да споделя бюджет със семейството?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да! Shared budgets са вградени. Покани партньора, децата, родителите - всички виждат общия бюджет в real-time. Край на свадите "къде отидоха парите". Прозрачност = harmony.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- CTA -->
-            <div class="how-cta">
-                <a href="#download" class="download-pill-btn" data-track-id="how-it-works-download-pill" data-track-label="How It Works Download Pill Button">
-                    <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
-                    <div class="pill-btn-circle">
-                        <i class="fas fa-download"></i>
-                    </div>
+            <!-- Still Have Questions CTA -->
+            <div class="faq-cta" data-scroll data-scroll-speed="0.12">
+                <p>Все още имаш въпроси?</p>
+                <a href="#" onclick="openContactModal(); return false;" class="faq-contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    Свържи се с нас
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section section" id="pricing" data-scroll-section>
-        <div class="pricing-bg-effects">
-            <div class="pricing-orb pricing-orb-1"></div>
-            <div class="pricing-orb pricing-orb-2"></div>
-        </div>
+    <!-- ============================================ -->
+    <!-- FINAL CONVERSION BLAST SECTION -->
+    <!-- Last push to download -->
+    <!-- Inspiration: Dark section with neon green CTA -->
+    <!-- ============================================ -->
+    <section class="final-cta-section section" id="download" data-scroll-section>
+        <div class="final-cta-container">
+            <!-- Background Effects -->
+            <div class="final-cta-bg-effects">
+                <div class="gradient-orb orb-1"></div>
+                <div class="gradient-orb orb-2"></div>
+                <div class="gradient-orb orb-3"></div>
+            </div>
 
-        <div class="pricing-container">
-            <div class="pricing-header" data-scroll data-scroll-speed="0.1">
-                <div class="pricing-badge">
-                    <i class="fas fa-tag"></i> ИНВЕСТИЦИЯ В ТЕБ
+            <!-- Main Content -->
+            <div class="final-cta-content" data-scroll data-scroll-speed="0.05">
+                <!-- Urgency Badge -->
+                <div class="urgency-badge pulse-animation">
+                    <i class="fas fa-bolt"></i>
+                    <span>15,000+ downloads and counting</span>
                 </div>
-                <h2 class="pricing-title">
-                    Избери своя <span class="highlight">план</span>
+
+                <!-- Main Headline -->
+                <h2 class="final-cta-headline">
+                    <span class="line-1">СПРИ ДА ГУБИШ</span>
+                    <span class="line-2 highlight-neon">ПАРИ</span>
+                    <span class="line-3">ЗАПОЧНИ ДА СПЕСТЯВАШ</span>
                 </h2>
-                <p class="pricing-subtitle">По-малко от едно кафе на ден. Спестяваш стотици.</p>
-            </div>
 
-            <div class="pricing-toggle-wrapper" data-scroll data-scroll-speed="0.05">
-                <span class="toggle-label">Месечно</span>
-                <div class="toggle-switch active">
-                    <div class="toggle-knob"></div>
-                </div>
-                <span class="toggle-label active">Годишно <span class="toggle-badge">Спести 51%</span></span>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Monthly Plan -->
-                <div class="pricing-card" data-scroll data-scroll-speed="0.05">
-                    <div class="pricing-card-header">
-                        <h3 class="plan-name">Месечен</h3>
-                        <div class="plan-daily-price">
-                            <div class="plan-daily-amount">
-                                <span class="currency">€</span>0.43<span class="period">/ден</span>
-                            </div>
-                            <div class="plan-converted-price">≈ 0.84 лв</div>
-                            <span class="plan-daily-label">Без обвързване</span>
-                        </div>
-                        <div class="plan-total-price">или <strong>€12.99</strong> <span class="converted-sub">(≈25.40 лв)</span> на месец</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Неограничени транзакции</li>
-                        <li><i class="fas fa-check"></i> Планиране на бюджети</li>
-                        <li><i class="fas fa-check"></i> Разширени отчети и анализи</li>
-                        <li><i class="fas fa-check"></i> Персонални финансови съвети</li>
-                    </ul>
-                    <a href="#download" class="plan-btn plan-btn-outline" onclick="scrollToDownload(); return false;">Избери Месечен</a>
-                    
-                    <div class="social-proof-cta">
-                        <div class="users-avatars">
-                            <img src="assets/testimonials/avatar-1.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-2.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-3.webp" alt="user" width="24" height="24">
-                        </div>
-                        <span><strong>15 284+</strong> вече спестяват</span>
-                    </div>
-                </div>
-
-                <!-- Quarterly Plan (Decoy) -->
-                <div class="pricing-card" data-scroll data-scroll-speed="0.08">
-                    <div class="pricing-card-header">
-                        <h3 class="plan-name">Тримесечен</h3>
-                        <div class="plan-daily-price">
-                            <div class="plan-daily-amount">
-                                <span class="currency">€</span>0.33<span class="period">/ден</span>
-                            </div>
-                            <div class="plan-converted-price">≈ 0.65 лв</div>
-                            <span class="plan-daily-label">Спести 23%</span>
-                        </div>
-                        <div class="plan-total-price">или <strong>€29.99</strong> <span class="converted-sub">(≈58.65 лв)</span> за 3 месеца</div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Неограничени транзакции</li>
-                        <li><i class="fas fa-check"></i> Планиране на бюджети</li>
-                        <li><i class="fas fa-check"></i> Разширени отчети и анализи</li>
-                        <li><i class="fas fa-check"></i> Персонални финансови съвети</li>
-                    </ul>
-                    <a href="#download" class="plan-btn plan-btn-outline" onclick="scrollToDownload(); return false;">Избери Тримесечен</a>
-                    
-                    <div class="social-proof-cta">
-                        <div class="users-avatars">
-                            <img src="assets/testimonials/avatar-4.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-5.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-6.webp" alt="user" width="24" height="24">
-                        </div>
-                        <span><strong>15 284+</strong> вече спестяват</span>
-                    </div>
-                </div>
-
-                <!-- Annual Plan (Premium/Hero) -->
-                <div class="pricing-card premium" data-scroll data-scroll-speed="0.1">
-                    <div class="premium-badge">🔥 НАЙ-ДОБРА СТОЙНОСТ (-51%)</div>
-                    <div class="urgency-bar">
-                        <span class="pulse-dot"></span>
-                        12 души разглеждат този план в момента
-                    </div>
-                    <div class="pricing-card-header">
-                        <h3 class="plan-name">Годишен</h3>
-                        <div class="plan-daily-price">
-                            <div class="plan-daily-amount">
-                                <span class="currency">€</span>0.21<span class="period">/ден</span>
-                            </div>
-                            <div class="plan-converted-price">≈ 0.41 лв</div>
-                            <span class="plan-daily-label">По-малко от едно кафе</span>
-                        </div>
-                        <div class="plan-total-price">
-                            <del class="strikethrough-price">€155.88</del><br>
-                            или <strong>€75.99</strong> <span class="converted-sub">(≈149 лв)</span> на година
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-star"></i> Неограничени транзакции</li>
-                        <li><i class="fas fa-star"></i> Планиране на бюджети</li>
-                        <li><i class="fas fa-star"></i> Разширени отчети и анализи</li>
-                        <li><i class="fas fa-star"></i> Персонални финансови съвети</li>
-                    </ul>
-                    <a href="#download" class="plan-btn plan-btn-primary" onclick="scrollToDownload(); return false;">Избери Годишен</a>
-                    
-                    <div class="social-proof-cta">
-                        <div class="users-avatars">
-                            <img src="assets/testimonials/avatar-7.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-8.webp" alt="user" width="24" height="24">
-                            <img src="assets/testimonials/avatar-9.webp" alt="user" width="24" height="24">
-                        </div>
-                        <span><strong>15 284+</strong> вече спестяват</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ROI Block -->
-            <div class="roi-section" data-scroll data-scroll-speed="0.05">
-                <div class="roi-left">
-                    <div class="roi-badge">
-                        <i class="fas fa-chart-line"></i> ИНВЕСТИЦИЯ, КОЯТО СЕ ИЗПЛАЩА САМА
-                    </div>
-                    <h3 class="roi-title">ROI: 31 към 1</h3>
-                    <p class="roi-desc">Средно нашите потребители спестяват <strong>200 лв/месец</strong>. <br>Годишният план се изплаща за <strong>18 часа употреба!</strong> При ≈149 лв инвестиция, всичко след първия ден на употреба е чиста печалба към твоя бюджет.</p>
-                </div>
-                <div class="roi-right">
-                    <div class="roi-stat-box">
-                        <span class="roi-stat-label">ЦЕНА ЗА 1 ГОД.</span>
-                        <div class="roi-stat-value">≈149 <span style="font-size:20px;">лв</span></div>
-                    </div>
-                    <div class="roi-stat-box highlight">
-                        <span class="roi-stat-label">СПЕСТЕНИ ЗА 1 ГОД.</span>
-                        <div class="roi-stat-value">2,400 <span style="font-size:20px;">лв</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section class="download-section section" id="download" data-scroll-section>
-        <div class="container">
-            <div class="download-content" data-scroll data-scroll-speed="0.09">
-                <h2 class="download-title">
-                    Готови да вземете<br>
-                    <span class="highlight">контрол?</span>
-                </h2>
-                <p class="download-subtitle">
-                    Изтеглете FinTrack и започнете да спестявате още днес
+                <!-- Subheadline -->
+                <p class="final-cta-subheadline">
+                    Всеки ден без FinTrack струва <strong class="highlight-red">17 лв</strong> изгубени пари.<br>
+                    Не чакай. Изтегли сега. Безплатно. 30 секунди setup.
                 </p>
 
-                <div class="download-buttons">
-                    <a href="#" class="download-btn ios" data-track-id="download-ios" data-track-label="Download iOS App">
-                        <div class="download-btn-icon">
-                            <i class="fab fa-apple"></i>
-                        </div>
+                <!-- Download Buttons -->
+                <div class="download-buttons-group">
+                    <a href="https://apps.apple.com/app/fintrack" class="download-btn btn-appstore" target="_blank" rel="noopener" data-track-id="final-cta-appstore" data-track-label="Final CTA App Store Button">
+                        <i class="fab fa-apple"></i>
                         <div class="btn-text">
-                            <span class="btn-small">Изтегли от</span>
-                            <span class="btn-large">App Store</span>
+                            <span class="small">Изтегли от</span>
+                            <span class="large">App Store</span>
                         </div>
                     </a>
-                    <a href="#" class="download-btn android" data-track-id="download-android" data-track-label="Download Android App">
-                        <div class="download-btn-icon">
-                            <i class="fab fa-google-play"></i>
-                        </div>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.fintrack" class="download-btn btn-playstore" target="_blank" rel="noopener" data-track-id="final-cta-playstore" data-track-label="Final CTA Play Store Button">
+                        <i class="fab fa-google-play"></i>
                         <div class="btn-text">
-                            <span class="btn-small">Вземи го от</span>
-                            <span class="btn-large">Google Play</span>
+                            <span class="small">ВЗЕМИ ОТ</span>
+                            <span class="large">Google Play</span>
                         </div>
                     </a>
                 </div>
 
-                <div class="download-features stagger-children">
-                    <div class="feature-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>AI Анализ</span>
+                <!-- Trust Indicators -->
+                <div class="final-trust-indicators">
+                    <div class="trust-indicator">
+                        <i class="fas fa-shield-check"></i>
+                        <span>100% Безплатно</span>
                     </div>
-                    <div class="feature-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Реално време</span>
+                    <div class="trust-indicator">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Без кредитна карта</span>
                     </div>
-                    <div class="feature-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Защитени данни</span>
+                    <div class="trust-indicator">
+                        <i class="fas fa-clock"></i>
+                        <span>Setup за 30 сек</span>
                     </div>
+                    <div class="trust-indicator">
+                        <i class="fas fa-star"></i>
+                        <span>4.8★ Rating</span>
+                    </div>
+                </div>
+
+                <!-- Social Proof Counter -->
+                <div class="social-proof-live">
+                    <div class="proof-avatars">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar plus">+</div>
+                    </div>
+                    <p class="proof-text">
+                        <strong>247 души</strong> изтеглиха FinTrack в последните 48 часа
+                    </p>
+                </div>
+
+                <!-- Final Urgency Message -->
+                <div class="final-urgency-message">
+                    <i class="fas fa-hourglass-half"></i>
+                    <p>Колкото по-бързо започнеш, толкова повече пари ще спестиш. Математиката е проста.</p>
+                </div>
+            </div>
+
+            <!-- Success Visualization -->
+            <div class="success-visualization" data-scroll data-scroll-speed="0.08">
+                <div class="viz-card">
+                    <div class="viz-icon success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <p class="viz-text">След 30 дни ще гледаш назад и ще си благодариш че изтегли FinTrack днес.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ============================================ -->
+    <!-- COMPARISON DESTROYER SECTION -->
+    <!-- Show superiority over alternatives -->
+    <!-- ============================================ -->
+    <section class="comparison-section section" id="comparison" data-scroll-section>
+        <div class="comparison-container">
+            <!-- Section Header -->
+            <div class="comparison-header" data-scroll data-scroll-speed="0.08">
+                <div class="comparison-badge">
+                    <i class="fas fa-trophy"></i>
+                    ПОБЕДИТЕЛЯТ Е ЯСЕН
+                </div>
+                <h2 class="comparison-title">
+                    <span class="title-regular">Защо хората избират</span><br>
+                    <span class="title-bold highlight-neon">FINTRACK</span>
+                    <span class="title-regular">пред останалите?</span>
+                </h2>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table" data-scroll data-scroll-speed="0.06">
+                <div class="comparison-table-header">
+                    <div class="header-cell empty"></div>
+                    <div class="header-cell fintrack">
+                        <img src="assets/logos/optimized/logo-128.png" alt="FinTrack" class="comparison-logo">
+                        <span>FinTrack</span>
+                    </div>
+                    <div class="header-cell competitor">Excel/Notion</div>
+                    <div class="header-cell competitor">Mint/YNAB</div>
+                    <div class="header-cell competitor">Нищо</div>
+                </div>
+
+                <!-- Row 1: AI Analysis -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-brain"></i>
+                        <span>AI Анализ на паттерни</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Row 2: Синхронизация в реално време -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-sync"></i>
+                        <span>Мулти-устройство синхронизация в реално време</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-minus-circle"></i>
+                        <span class="small-text">Ограничено</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Row 3: Bulgarian Language -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-language"></i>
+                        <span>Пълна българска поддръжка</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Row 4: Време за настройка -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-clock"></i>
+                        <span>Време за настройка</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <span class="highlight-text">30 сек</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">2+ часа</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">1+ час</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">N/A</span>
+                    </div>
+                </div>
+
+                <!-- Row 5: Price -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-tag"></i>
+                        <span>Цена</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <span class="highlight-text">БЕЗПЛАТНО</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">Безплатно</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">$15/мес</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="dim-text">$0</span>
+                    </div>
+                </div>
+
+                <!-- Row 6: Gamification -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Гейм и мотивация</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-minus-circle"></i>
+                        <span class="small-text">Базова</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Row 7: Predictive Insights -->
+                <div class="comparison-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-crystal-ball"></i>
+                        <span>Предвиждане на паричен поток</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="value-cell competitor">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Row 8: Stress Level -->
+                <div class="comparison-row highlight-row">
+                    <div class="feature-cell">
+                        <i class="fas fa-heart-pulse"></i>
+                        <span>Ниво на финансов стрес</span>
+                    </div>
+                    <div class="value-cell fintrack">
+                        <span class="success-text"> Нулев</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="danger-text"> Висок</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="warning-text">📊 Среден</span>
+                    </div>
+                    <div class="value-cell competitor">
+                        <span class="danger-text"> Критичен</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Winner Banner -->
+            <div class="winner-banner" data-scroll data-scroll-speed="0.12">
+                <div class="banner-content">
+                    <i class="fas fa-crown"></i>
+                    <h3>Ясният победител</h3>
+                    <p>FinTrack бие всяка алтернатива в функции, цена и лекота на използване.</p>
+                    <a href="#download" class="banner-cta" onclick="scrollToDownload(); return false;">
+                        Присъедини се към победителите
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer" data-scroll-section>
         <div class="container">
             <div class="footer-content">
