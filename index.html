@@ -143,6 +143,9 @@
 
     <!-- Dream/Transformation Section -->
     <link rel="stylesheet" href="dream-section.css">
+
+    <!-- Psychological Features Section -->
+    <link rel="stylesheet" href="features-results.css">
     
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
@@ -1313,292 +1316,167 @@
     </div>
 </section>
 
-    <!-- Cost of Inaction Timeline Section -->
-    <section class="phone-section section" id="features" data-scroll-section>
-        <!-- Phone Title -->
-        <h2 class="phone-title" data-scroll data-scroll-speed="0.2" data-scroll-class="title-revealed">ВСИЧКО ОТ КОЕТО СЕ<br><span class="highlight-word">НУЖДАЕТЕ</span></h2>
-        
-        <div class="container">
-            <!-- Section Header -->
-            <div class="phone-header" data-scroll data-scroll-class="header-revealed">
-                <div class="phone-badge" data-scroll data-scroll-speed="0.12">✨ ФУНКЦИИ</div>
-                <p class="phone-subtitle" data-scroll data-scroll-speed="0.16">
-                    Мощни инструменти за пълен контрол върху вашите финанси
+    <!-- Results/Features Section -->
+    <section class="features-results-section section" id="features" data-scroll-section>
+        <div class="fr-container">
+            <!-- Header -->
+            <div class="fr-header" data-bento-reveal>
+                <div class="fr-badge">
+                    <i class="fas fa-bullseye"></i> Не просто функции. Резултати.
+                </div>
+                <h2 class="fr-main-title">
+                    Върни си парите, времето и<br>
+                    <span>спокойствието.</span>
+                </h2>
+                <p class="fr-subtitle">
+                    Всяка функция на FinTrack е проектирана с една цел: да ви върне контрола, който губите всеки месец без дори да подозирате.
                 </p>
-                
-                <!-- Phone Mockup for Mobile (after subtitle, before button) -->
-                <div class="phone-mockup-mobile">
-                    <picture>
-                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
-                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image-mobile" loading="lazy" decoding="async" width="1200" height="900">
-                    </picture>
-                </div>
-                
-                <!-- Download Button -->
-                <a href="#download" class="download-pill-btn" data-track-id="phone-section-download-pill" data-track-label="Phone Section Download Pill Button">
-                    <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
-                    <div class="pill-btn-circle">
-                        <i class="fas fa-download"></i>
-                    </div>
-                </a>
-                
-                <!-- Phone Mockup in Header (Desktop only) -->
-                <div class="phone-mockup-header" data-scroll data-scroll-speed="0.08">
-                    <picture>
-                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
-                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image-header" loading="lazy" decoding="async" width="1200" height="900">
-                    </picture>
-                </div>
             </div>
 
-            <!-- Features Layout with Phone -->
-            <div class="features-layout">
-                <!-- Left Cards -->
-                <div class="features-column left-cards">
-                    <!-- Medium Card: Gamification -->
-                    <div class="bento-card medium feature-card-animated" data-feature="gamification" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.1">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-purple">
-                                <i class="fas fa-gamepad"></i>
-                            </div>
-                            <h3 class="card-title">Гамификация</h3>
-                        </div>
-                        <p class="card-description">
-                            Спестяването става игра! Печелете значки, отключвайте постижения и състезавайте се с приятели.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Medium Card: Health Index -->
-                <div class="bento-card medium feature-card-animated" data-feature="health" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.2">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-green">
-                                <i class="fas fa-heartbeat"></i>
-                            </div>
-                            <h3 class="card-title">Финансово здраве</h3>
-                        </div>
-                        <p class="card-description">
-                            Індекс на финансовото ви здраве с персонализирани препоръки.
-                        </p>
-                        <div class="health-bars">
-                            <div class="health-bar" style="--bar-height: 85%;"></div>
-                            <div class="health-bar" style="--bar-height: 92%;"></div>
-                            <div class="health-bar" style="--bar-height: 78%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Medium Card: QR Scanner -->
-                <div class="bento-card medium feature-card-animated" data-feature="qr" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.3">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-blue">
-                                <i class="fas fa-qrcode"></i>
-                            </div>
-                            <h3 class="card-title">QR Scanner</h3>
-                        </div>
-                        <p class="card-description">
-                            Сканирайте разписки и автоматично добавяйте разходи.
-                        </p>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Phone Mockup -->
-                <div class="phone-mockup-center">
-                    <picture>
-                        <source srcset="assets/mockups/optimized/mockup-iphone-final.webp" type="image/webp">
-                        <img src="assets/mockups/optimized/mockup-iphone-final.png" alt="FinTrack App Interface" class="phone-mockup-image" loading="lazy" decoding="async" width="1200" height="900">
-                    </picture>
-                </div>
-
-                <!-- Right Cards -->
-                <div class="features-column right-cards">
-                    <!-- Medium Card: What-If -->
-                    <div class="bento-card medium feature-card-animated" data-feature="whatif" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.15">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-pink">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <h3 class="card-title">What-If сценарии</h3>
-                        </div>
-                        <p class="card-description">
-                            Симулирайте различни финансови решения преди да ги вземете.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Medium Card: AI Assistant -->
-                <div class="bento-card medium feature-card-animated" data-feature="ai" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.25">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-indigo">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3 class="card-title">AI Асистент</h3>
-                        </div>
-                        <p class="card-description">
-                            Вашият личен финансов съветник, винаги на разположение.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Medium Card: Budget Goals -->
-                <div class="bento-card medium feature-card-animated" data-feature="budget" data-scroll data-scroll-class="card-revealed" data-scroll-delay="0.35">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon gradient-teal">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <h3 class="card-title">Бюджети и цели</h3>
-                        </div>
-                        <p class="card-description">
-                            Поставяйте цели и следете прогреса си в реално време.
-                        </p>
-                        <div class="goal-rings">
-                            <div class="goal-ring"></div>
-                            <div class="goal-ring"></div>
-                            <div class="goal-ring"></div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+            <!-- Bento Grid -->
+            <div class="fr-bento-grid">
                 
-                <!-- Mobile Carousel (hidden on desktop) -->
-                <div class="features-carousel-container">
-                    <div class="features-carousel-wrapper">
-                        <!-- Card 1: Gamification -->
-                        <div class="bento-card medium active" data-feature="gamification">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-purple">
-                                        <i class="fas fa-gamepad"></i>
-                                    </div>
-                                    <h3 class="card-title">Гамификация</h3>
-                                </div>
-                                <p class="card-description">
-                                    Спестяването става игра! Печелете значки, отключвайте постижения и състезавайте се с приятели.
-                                </p>
+                <!-- AI Card (Spans large space) -->
+                <div class="fr-card fr-card-ai" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div>
+                            <div class="fr-icon-wrapper">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <span class="fr-highlight-text">Основна функция · AI Анализ</span>
+                            <h3 class="fr-title">Виждаш за какво харчиш — за под 3 секунди</h3>
+                            <p class="fr-desc">
+                                AI-ът не само записва разходите ти. Разпознава моделите, открива "течовете" и ти казва точно какво да промениш — автоматично, без ти да правиш нищо.
+                            </p>
+                            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Средно открива 3.4 "невидими" разхода</div>
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Препоръките спестяват ~200 лв/месец</div>
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Персонализира се за 7 дни</div>
                             </div>
                         </div>
-                        
-                        <!-- Card 2: Health Index -->
-                        <div class="bento-card medium" data-feature="health">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-green">
-                                        <i class="fas fa-heartbeat"></i>
-                                    </div>
-                                    <h3 class="card-title">Финансово здраве</h3>
-                                </div>
-                                <p class="card-description">
-                                    Індекс на финансовото ви здраве с персонализирани препоръки.
-                                </p>
-                                <div class="health-bars">
-                                    <div class="health-bar" style="--bar-height: 85%;"></div>
-                                    <div class="health-bar" style="--bar-height: 92%;"></div>
-                                    <div class="health-bar" style="--bar-height: 78%;"></div>
-                                </div>
+
+                        <!-- UI mockup inside AI card -->
+                        <div class="fr-ai-ui">
+                            <div class="fr-ai-ui-header">Твоят AI анализ · Октомври</div>
+                            <div class="fr-ai-ui-item" style="color: #ff6b6b; font-weight: 600;">
+                                <span><i class="fas fa-utensils"></i> Ресторанти</span> <span>+23% (390 лв)</span>
+                            </div>
+                            <div class="fr-ai-ui-item">
+                                <span class="fr-ai-ui-cat"><i class="fas fa-car"></i> Транспорт</span> <span class="fr-ai-ui-val">220 лв</span>
+                            </div>
+                            <div class="fr-ai-ui-item">
+                                <span class="fr-ai-ui-cat"><i class="fas fa-shopping-bag"></i> Пазаруване</span> <span class="fr-ai-ui-val">180 лв</span>
+                            </div>
+                            
+                            <div class="fr-ai-ui-alert">
+                                <div class="fr-ai-ui-alert-title"><i class="fas fa-sparkles"></i> FinTrack Insight</div>
+                                <div class="fr-ai-ui-alert-text">Харчиш с 23% повече за ресторанти от миналия месец. Намали храненията навън с 4, за да си в бюджет.</div>
+                                <div class="fr-ai-ui-alert-save">+180 лв могат да бъдат спестени</div>
                             </div>
                         </div>
-                        
-                        <!-- Card 3: QR Scanner -->
-                        <div class="bento-card medium" data-feature="qr">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-blue">
-                                        <i class="fas fa-qrcode"></i>
-                                    </div>
-                                    <h3 class="card-title">QR Scanner</h3>
-                                </div>
-                                <p class="card-description">
-                                    Сканирайте разписки и автоматично добавяйте разходи.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Card 4: What-If -->
-                        <div class="bento-card medium" data-feature="whatif">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-pink">
-                                        <i class="fas fa-lightbulb"></i>
-                                    </div>
-                                    <h3 class="card-title">What-If сценарии</h3>
-                                </div>
-                                <p class="card-description">
-                                    Симулирайте различни финансови решения преди да ги вземете.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Card 5: AI Assistant -->
-                        <div class="bento-card medium" data-feature="ai">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-indigo">
-                                        <i class="fas fa-robot"></i>
-                                    </div>
-                                    <h3 class="card-title">AI Асистент</h3>
-                                </div>
-                                <p class="card-description">
-                                    Вашият личен финансов съветник, винаги на разположение.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Card 6: Budget Goals -->
-                        <div class="bento-card medium" data-feature="budget">
-                            <div class="card-glow"></div>
-                            <div class="card-content">
-                                <div class="card-header">
-                                    <div class="card-icon gradient-teal">
-                                        <i class="fas fa-bullseye"></i>
-                                    </div>
-                                    <h3 class="card-title">Бюджети и цели</h3>
-                                </div>
-                                <p class="card-description">
-                                    Поставяйте цели и следете прогреса си в реално време.
-                                </p>
-                                <div class="goal-rings">
-                                    <div class="goal-ring"></div>
-                                    <div class="goal-ring"></div>
-                                    <div class="goal-ring"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Carousel Indicators -->
-                    <div class="carousel-indicators">
-                        <button class="carousel-indicator active" data-index="0"></button>
-                        <button class="carousel-indicator" data-index="1"></button>
-                        <button class="carousel-indicator" data-index="2"></button>
-                        <button class="carousel-indicator" data-index="3"></button>
-                        <button class="carousel-indicator" data-index="4"></button>
-                        <button class="carousel-indicator" data-index="5"></button>
-                    </div>
-                    
-                    <!-- Swipe Hint -->
-                    <div class="swipe-hint">
-                        <span>Плъзнете за повече</span>
-                        <i class="fas fa-hand-point-right"></i>
                     </div>
                 </div>
+
+                <!-- Scanner Card -->
+                <div class="fr-card fr-card-qr" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div class="fr-icon-wrapper">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="fr-title">Снимаш бележката → готово</h3>
+                        <p class="fr-desc">
+                            QR скенерът чете касови бележки за 2 секунди. Без ръчно въвеждане, без забравени разходи, без досадни таблици.
+                        </p>
+                        <div class="fr-qr-visual">
+                            <i class="fas fa-qrcode"></i>
+                            <span>Спестява 15 мин/седмично</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What IF Card -->
+                <div class="fr-card fr-card-whatif" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div class="fr-icon-wrapper">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="fr-title">Виж дали ще можеш да си го позволиш</h3>
+                        <p class="fr-desc">
+                            What-If симулатор: въведи голямо решение (кредит, нова кола) и виж финансовите последствия — преди да е станало.
+                        </p>
+                        <div class="fr-whatif-visual">
+                            <span class="fr-whatif-scenario">"Ако взема кредит от 500лв?"</span>
+                            <span class="fr-whatif-arrow"><i class="fas fa-arrow-right"></i></span>
+                            <span class="fr-whatif-result">-30% свободен кеш</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Index Card -->
+                <div class="fr-card fr-card-health" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div class="fr-icon-wrapper">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="fr-title">Твоят финансов "кръвен тест"</h3>
+                        <p class="fr-desc">
+                            Индекс на финансово здраве — веднъж седмично. Показва точно какво е добре и какво куца. Пълна яснота за 1 минута.
+                        </p>
+                        <div class="fr-health-visual">
+                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 60%"></div></div>
+                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 80%"></div></div>
+                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 40%"></div></div>
+                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 90%; background: linear-gradient(to top, #B4F461, #6aaf1a);"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Card -->
+                <div class="fr-card fr-card-budget" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div class="fr-icon-wrapper">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="fr-title">Спестяването спира да е мъчение</h3>
+                        <p class="fr-desc">
+                            Постави цел и следи прогреса. Знаеш колко остава. <br><br>Средно целта се постига 2× по-бързо.
+                        </p>
+                        <div class="fr-budget-visual">
+                            <div class="fr-budget-texts">
+                                <span>Нова кола</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="fr-budget-bar">
+                                <div class="fr-budget-fill" style="--w: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gamification Card -->
+                <div class="fr-card fr-card-gamification" data-bento-reveal>
+                    <div class="fr-glow"></div>
+                    <div class="fr-card-content">
+                        <div class="fr-icon-wrapper">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="fr-title">Привикваш към успеха</h3>
+                        <p class="fr-desc">
+                            Мозъкът ти получава reward за всяко спестяване. Изграждаш навик.
+                        </p>
+                        <div class="fr-gami-visual">
+                            <div class="fr-badge-item">🔥</div>
+                            <div class="fr-badge-item">💰</div>
+                            <div class="fr-badge-item">🏆</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
