@@ -17825,6 +17825,10 @@ body.is-scrolling {
 
 /* Header Styles */
 .timeline-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     margin-bottom: 100px;
     opacity: 0;
@@ -17832,7 +17836,10 @@ body.is-scrolling {
 }
 
 .timeline-badge {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
     padding: 12px 28px;
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
     color: white;
@@ -17840,7 +17847,7 @@ body.is-scrolling {
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 30px;
+    margin: 0 auto 30px auto;
     box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
     animation: badgePulse 2s ease-in-out infinite;
 }
@@ -29202,4 +29209,20 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* FORCE CENTER TIMELINE BADGE */
+#cost-timeline .timeline-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+#cost-timeline .timeline-badge {
+    margin: 0 auto 30px auto !important;
+    align-self: center !important;
+    display: inline-flex !important;
 }
