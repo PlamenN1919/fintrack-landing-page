@@ -140,6 +140,9 @@
 
     <!-- Comparison Section -->
     <link rel="stylesheet" href="comparison-section.css">
+
+    <!-- Dream/Transformation Section -->
+    <link rel="stylesheet" href="dream-section.css">
     
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
@@ -601,6 +604,282 @@
             </div>
         </div>
     </section>
+
+<!-- ============================================ -->
+<!-- DREAM SECTION: Show the Dream — Life After   -->
+<!-- Transformation Stories + Dream Visualizer     -->
+<!-- ============================================ -->
+<section class="dream-section section" id="dream" data-scroll-section>
+    <!-- Background Shapes -->
+    <div class="dream-bg-shapes">
+        <div class="dream-shape dream-shape-1"></div>
+        <div class="dream-shape dream-shape-2"></div>
+        <div class="dream-shape dream-shape-3"></div>
+    </div>
+
+    <div class="dream-container">
+
+        <!-- Section Header -->
+        <div class="dream-header" data-dream-reveal>
+            <div class="dream-badge">
+                <i class="fas fa-sparkles"></i>
+                ИСТОРИИ НА ПРОМЯНАТА
+            </div>
+            <h2 class="dream-main-title">
+                ПРЕДСТАВИ СИ ЖИВОТ, В КОЙТО<br>
+                <span class="highlight-green">ПАРИТЕ РАБОТЯТ ЗА ТЕБ</span>
+            </h2>
+            <p class="dream-subtitle">
+                Реални хора. Реални резултати. Виж как FinTrack промени живота на хиляди българи — и как може да промени твоя.
+            </p>
+        </div>
+
+        <!-- Stories Label -->
+        <div class="dream-stories-label" data-dream-reveal>
+            <span class="stories-label-text">
+                <span class="stories-label-line"></span>
+                ПРЕДИ & СЛЕД FINTRACK
+                <span class="stories-label-line"></span>
+            </span>
+        </div>
+
+        <!-- Transformation Stories Grid -->
+        <div class="dream-stories-grid">
+
+            <!-- Story 1: Maria -->
+            <div class="story-card" data-dream-reveal>
+                <div class="story-card-glow"></div>
+                <div class="story-person">
+                    <div class="story-avatar">
+                        <img src="assets/testimonials/maria-story.png" alt="Мария — учителка, 31 години" loading="lazy" width="64" height="64">
+                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="story-person-info">
+                        <div class="story-person-name">Мария, 31</div>
+                        <div class="story-person-role">Учителка, Пловдив</div>
+                    </div>
+                </div>
+                <div class="story-states">
+                    <div class="story-state story-state-before">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                        </div>
+                        <div class="story-state-text">
+                            80 лв в края на месеца. Нула спестявания. Всяка неочаквана сметка беше паника.
+                        </div>
+                    </div>
+                    <div class="story-state story-state-after">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-check"></i> СЛЕД 90 ДНИ
+                        </div>
+                        <div class="story-state-text">
+                            Спести 2,100 лв. Откри 340 лв/месечно скрити разходи, които не подозираше.
+                        </div>
+                    </div>
+                </div>
+                <div class="story-result">
+                    <span class="story-result-emoji">✈️</span>
+                    <div class="story-result-content">
+                        <span class="story-result-number">2,100 лв спестени</span>
+                        <span class="story-result-text">Взе билети за Барселона за себе си и дъщеря си</span>
+                    </div>
+                    <span class="story-result-time"><i class="fas fa-clock"></i> 90 дни</span>
+                </div>
+            </div>
+
+            <!-- Story 2: Georgi -->
+            <div class="story-card" data-dream-reveal>
+                <div class="story-card-glow"></div>
+                <div class="story-person">
+                    <div class="story-avatar">
+                        <img src="assets/testimonials/georgi-story.png" alt="Георги — програмист, 27 години" loading="lazy" width="64" height="64">
+                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="story-person-info">
+                        <div class="story-person-name">Георги, 27</div>
+                        <div class="story-person-role">Програмист, София</div>
+                    </div>
+                </div>
+                <div class="story-states">
+                    <div class="story-state story-state-before">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                        </div>
+                        <div class="story-state-text">
+                            Печелеше 3,200 лв, но никога не знаеше къде отиват. Края на месеца — винаги на нулата.
+                        </div>
+                    </div>
+                    <div class="story-state story-state-after">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-check"></i> СЛЕД 6 МЕСЕЦА
+                        </div>
+                        <div class="story-state-text">
+                            Спести 4,800 лв. Намали импулсивните покупки с 60%. Вече има авариен фонд.
+                        </div>
+                    </div>
+                </div>
+                <div class="story-result">
+                    <span class="story-result-emoji">🏠</span>
+                    <div class="story-result-content">
+                        <span class="story-result-number">4,800 лв спестени</span>
+                        <span class="story-result-text">Направи първата вноска за собствен апартамент</span>
+                    </div>
+                    <span class="story-result-time"><i class="fas fa-clock"></i> 6 мес.</span>
+                </div>
+            </div>
+
+            <!-- Story 3: Elena -->
+            <div class="story-card" data-dream-reveal>
+                <div class="story-card-glow"></div>
+                <div class="story-person">
+                    <div class="story-avatar">
+                        <img src="assets/testimonials/elena-story.png" alt="Елена — мениджър, 45 години" loading="lazy" width="64" height="64">
+                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="story-person-info">
+                        <div class="story-person-name">Елена, 45</div>
+                        <div class="story-person-role">Мениджър, Варна</div>
+                    </div>
+                </div>
+                <div class="story-states">
+                    <div class="story-state story-state-before">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                        </div>
+                        <div class="story-state-text">
+                            Двама тийнейджъри, ипотека и нула контрол. Всеки месец стрес и караници за пари.
+                        </div>
+                    </div>
+                    <div class="story-state story-state-after">
+                        <div class="story-state-label">
+                            <i class="fas fa-circle-check"></i> СЛЕД 1 ГОДИНА
+                        </div>
+                        <div class="story-state-text">
+                            Спести 8,400 лв. Изплати предсрочно 2 кредита. Семейството планира заедно.
+                        </div>
+                    </div>
+                </div>
+                <div class="story-result">
+                    <span class="story-result-emoji">👨‍👩‍👧‍👦</span>
+                    <div class="story-result-content">
+                        <span class="story-result-number">8,400 лв спестени</span>
+                        <span class="story-result-text">Семейна ваканция в Гърция + нов лаптоп за сина</span>
+                    </div>
+                    <span class="story-result-time"><i class="fas fa-clock"></i> 1 година</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Dream Visualizer Tool     -->
+        <!-- ========================= -->
+        <div class="dream-visualizer" data-dream-reveal>
+            <div class="dream-viz-header">
+                <div class="dream-viz-badge">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    ИНТЕРАКТИВЕН КАЛКУЛАТОР
+                </div>
+                <h3 class="dream-viz-title">Спести за своята мечта</h3>
+                <p class="dream-viz-subtitle">Избери цел, задай колко можеш да спестяваш месечно и виж кога ще я постигнеш.</p>
+            </div>
+
+            <div class="dream-viz-card" data-dream-reveal>
+                <!-- Goal Selection -->
+                <span class="dream-goals-label">Избери твоята цел</span>
+                <div class="dream-goals-grid" id="dream-goals">
+                    <button class="dream-goal-btn active" data-goal="vacation" data-amount="2800" data-name="Ваканция в Гърция" data-emoji="🏖️">
+                        <span class="dream-goal-icon">🏖️</span>
+                        <span class="dream-goal-name">Ваканция</span>
+                    </button>
+                    <button class="dream-goal-btn" data-goal="car" data-amount="15000" data-name="Нова кола" data-emoji="🚗">
+                        <span class="dream-goal-icon">🚗</span>
+                        <span class="dream-goal-name">Кола</span>
+                    </button>
+                    <button class="dream-goal-btn" data-goal="apartment" data-amount="25000" data-name="Първа вноска за жилище" data-emoji="🏠">
+                        <span class="dream-goal-icon">🏠</span>
+                        <span class="dream-goal-name">Жилище</span>
+                    </button>
+                    <button class="dream-goal-btn" data-goal="pension" data-amount="50000" data-name="Пенсионен фонд" data-emoji="🏝️">
+                        <span class="dream-goal-icon">🏝️</span>
+                        <span class="dream-goal-name">Пенсия</span>
+                    </button>
+                </div>
+
+                <!-- Savings Slider -->
+                <div class="dream-slider-section">
+                    <div class="dream-slider-header">
+                        <span class="dream-slider-label">Месечно спестяване</span>
+                        <span class="dream-slider-value" id="dream-slider-display"><span>200</span> лв/месец</span>
+                    </div>
+                    <div class="dream-slider-wrapper">
+                        <input type="range" class="dream-slider" id="dream-savings-slider" min="50" max="1000" value="200" step="25">
+                    </div>
+                    <div class="dream-slider-marks">
+                        <span>50 лв</span>
+                        <span>250 лв</span>
+                        <span>500 лв</span>
+                        <span>750 лв</span>
+                        <span>1000 лв</span>
+                    </div>
+                </div>
+
+                <!-- Result Display -->
+                <div class="dream-result-display" id="dream-result">
+                    <div class="dream-result-top">
+                        <div class="dream-result-goal-display">
+                            <span class="dream-result-goal-icon" id="dream-result-emoji">🏖️</span>
+                            <div class="dream-result-goal-info">
+                                <span class="dream-result-goal-label">Твоята цел</span>
+                                <span class="dream-result-goal-name" id="dream-result-goal-name">Ваканция в Гърция</span>
+                            </div>
+                        </div>
+                        <div class="dream-result-check">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                    </div>
+
+                    <div class="dream-result-main">
+                        <div class="dream-result-months" id="dream-result-months">14</div>
+                        <div class="dream-result-months-label">месеца до мечтата ти</div>
+                        <div class="dream-result-phrase" id="dream-result-phrase">
+                            След <span class="phrase-highlight">14 месеца</span> ще бъдеш на плажа в Гърция 🇬🇷
+                        </div>
+                    </div>
+
+                    <div class="dream-result-stats">
+                        <div class="dream-stat-item">
+                            <span class="dream-stat-number" id="dream-stat-total">2,800 лв</span>
+                            <span class="dream-stat-label">Обща сума</span>
+                        </div>
+                        <div class="dream-stat-item">
+                            <span class="dream-stat-number" id="dream-stat-monthly">200 лв</span>
+                            <span class="dream-stat-label">На месец</span>
+                        </div>
+                        <div class="dream-stat-item">
+                            <span class="dream-stat-number" id="dream-stat-daily">~7 лв</span>
+                            <span class="dream-stat-label">На ден</span>
+                        </div>
+                    </div>
+
+                    <div class="dream-progress-bar">
+                        <div class="dream-progress-fill" id="dream-progress" style="width: 30%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="dream-cta-wrapper" data-dream-reveal>
+                <a href="#download" class="dream-cta-button" onclick="scrollToDownload(); return false;">
+                    <span>ЗАПОЧНИ ДА СПЕСТЯВАШ ДНЕС</span>
+                    <span class="dream-cta-icon"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                <span class="dream-cta-sub">Настрой се за 30 секунди • iOS & Android</span>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 <!-- ============================================ -->
 <!-- SECTION 3: SOLUTION INTRODUCTION -->

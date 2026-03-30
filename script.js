@@ -645,7 +645,115 @@ document.addEventListener('DOMContentLoaded', () => {
     initFeaturesAnimations();
     initBentoReveal();
     initComparisonReveal();
+    initDreamVisualizer();
 });
+
+// ===================================
+// DREAM VISUALIZER & ANIMATIONS
+// ===================================
+
+function initDreamVisualizer() {
+    // 1. Reveal Animations for Dream Section
+    const dreamElements = document.querySelectorAll('[data-dream-reveal]');
+    if (dreamElements.length) {
+        const dreamObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('dream-visible');
+                    dreamObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        dreamElements.forEach(el => dreamObserver.observe(el));
+    }
+
+    // 2. Interactive Calculator Logic
+    const slider = document.getElementById('dream-savings-slider');
+    const displayValue = document.getElementById('dream-slider-display');
+    const goalBtns = document.querySelectorAll('.dream-goal-btn');
+    
+    const resultMonths = document.getElementById('dream-result-months');
+    const resultPhrase = document.getElementById('dream-result-phrase');
+    const resultEmoji = document.getElementById('dream-result-emoji');
+    const resultGoalName = document.getElementById('dream-result-goal-name');
+    
+    const statTotal = document.getElementById('dream-stat-total');
+    const statMonthly = document.getElementById('dream-stat-monthly');
+    const statDaily = document.getElementById('dream-stat-daily');
+    const progressBar = document.getElementById('dream-progress');
+
+    if (!slider) return;
+
+    let currentGoalAmount = 2800;
+    let currentGoalName = "Ваканция в Гърция";
+    let currentEmoji = "🏖️";
+
+    function updateCalculator() {
+        const monthlySavings = parseInt(slider.value);
+        
+        // Update slider visually
+        const percent = ((monthlySavings - slider.min) / (slider.max - slider.min)) * 100;
+        slider.style.background = `linear-gradient(90deg, #B4F461 ${percent}%, #e0e0e0 ${percent}%)`;
+        
+        // Update labels
+        displayValue.innerHTML = `<span>${monthlySavings}</span> лв/месец`;
+        statMonthly.textContent = `${monthlySavings} лв`;
+        statTotal.textContent = `${currentGoalAmount.toLocaleString()} лв`;
+        statDaily.textContent = `~${Math.round(monthlySavings / 30)} лв`;
+
+        // Calculate months
+        const monthsNeeded = Math.ceil(currentGoalAmount / monthlySavings);
+        
+        // Animate numbers
+        animateNumber(resultMonths, parseInt(resultMonths.innerText) || 0, monthsNeeded, 800);
+        
+        // Update phrase based on goal
+        let destinationText = "";
+        if (currentGoalName.includes("Ваканция")) destinationText = "ще бъдеш на плажа в Гърция 🇬🇷";
+        else if (currentGoalName.includes("Кола")) destinationText = "ще караш новата си кола 🚗";
+        else if (currentGoalName.includes("Жилище")) destinationText = "ще вземеш ключовете за новия си дом 🔑";
+        else destinationText = "ще имаш сигурен пенсионен фонд 🌅";
+
+        resultPhrase.innerHTML = `След <span class="phrase-highlight">${monthsNeeded} месеца</span> ${destinationText}`;
+
+        // Update progress bar width visually based on perceived effort
+        // Just a visual representation, shorter times = fuller bar
+        let progressVal = Math.max(10, 100 - (monthsNeeded * 1.5));
+        progressVal = Math.min(100, progressVal); // Cap at 100
+        progressBar.style.width = `${progressVal}%`;
+    }
+
+    // Event Listeners
+    slider.addEventListener('input', updateCalculator);
+
+    goalBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all
+            goalBtns.forEach(b => b.classList.remove('active'));
+            // Add to clicked
+            btn.classList.add('active');
+            
+            // Get new values
+            currentGoalAmount = parseInt(btn.getAttribute('data-amount'));
+            currentGoalName = btn.getAttribute('data-name');
+            currentEmoji = btn.getAttribute('data-emoji');
+            
+            // Update UI elements
+            resultGoalName.textContent = currentGoalName;
+            resultEmoji.textContent = currentEmoji;
+            
+            // Recalculate
+            updateCalculator();
+        });
+    });
+
+    // Initial calculation
+    updateCalculator();
+}
 
 // Navigation scroll effect - works with both Locomotive and native scroll
 function handleScrollEffects(scrollTop) {
