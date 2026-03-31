@@ -16760,6 +16760,8 @@ body.is-scrolling {
     border-radius: 0;
     transition: none;
     position: relative;
+    opacity: 0;
+    transform: translateX(-30px);
 }
 
 .stats-list .stat-item .stat-icon {
@@ -16844,7 +16846,6 @@ body.is-scrolling {
 /* Animation on scroll */
 .stats-achievements-section.animate-in .stat-item {
     animation: statItemFadeIn 0.8s ease forwards;
-    opacity: 0;
 }
 
 .stats-achievements-section.animate-in .stat-item:nth-child(1) {

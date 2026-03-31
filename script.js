@@ -848,44 +848,49 @@ if (phoneMockup) {
     phoneObserver.observe(phoneMockup);
 }
 
-// Stats counter animation
-const stats = document.querySelectorAll('.stat-number');
+// Optimized Statistics Counter System
+function animateValue(element, start, end, duration, suffix = '') {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        // Easing function: easeOutExpo
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        
+        const currentValue = Math.floor(easeProgress * (end - start) + start);
+        element.textContent = currentValue.toLocaleString() + suffix;
+        
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            element.textContent = end.toLocaleString() + suffix;
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const stat = entry.target;
-            const finalValue = stat.textContent;
-            animateCounter(stat, finalValue);
+            const targetStr = stat.getAttribute('data-target') || stat.textContent;
+            const numericValue = parseInt(targetStr.replace(/\D/g, ''));
+            const suffix = targetStr.replace(/[\d,.]/g, '');
+            
+            if (!isNaN(numericValue)) {
+                animateValue(stat, 0, numericValue, 2000, suffix);
+            }
+            statsObserver.unobserve(stat);
         }
     });
 }, { threshold: 0.5 });
 
-stats.forEach(stat => {
+document.querySelectorAll('.stat-number, .hero-stat-number').forEach(stat => {
     statsObserver.observe(stat);
 });
 
-function animateCounter(element, finalValue) {
-    const isNumberOnly = /^\d+/.test(finalValue);
-    if (!isNumberOnly) return;
-    
-    const numericValue = parseInt(finalValue.replace(/\D/g, ''));
-    const suffix = finalValue.replace(/[\d,]/g, '');
-    const duration = 1500; // ОПТИМИЗИРАНО: Намалено от 2000ms
-    const steps = 40; // ОПТИМИЗИРАНО: Намалено от 60 за по-малко updates
-    const increment = numericValue / steps;
-    
-    let current = 0;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= numericValue) {
-            element.textContent = finalValue;
-            clearInterval(timer);
-        } else {
-            const displayValue = Math.floor(current);
-            element.textContent = displayValue.toLocaleString() + suffix;
-        }
-    }, duration / steps);
-}
+
 
 // Notification system
 function showNotification(message, type = 'info') {
@@ -2406,57 +2411,39 @@ document.addEventListener('DOMContentLoaded', function() {
 // STATS/ACHIEVEMENTS COUNTER ANIMATION
 // ============================================
 
-function animateStatsCounter(element, target, suffix = '', duration = 2000) {
-    const start = 0;
-    const increment = target / (duration / 16); // 60fps
-    let current = start;
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + suffix;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current) + suffix;
-        }
-    }, 16);
-}
 
-// Observe stats section for counter animation
+
+
+// Intersection Observer for Statistics Section (Main Stats)
 const statsSection = document.querySelector('.stats-achievements-section');
 if (statsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
+    const statsSectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add animate-in class to trigger all animations
                 entry.target.classList.add('animate-in');
                 
-                // Trigger counter animations
-                const statItems = entry.target.querySelectorAll('.stat-item');
-                
-                statItems.forEach((item, index) => {
-                    const statNumber = item.querySelector('.stat-number-large');
-                    const target = parseInt(statNumber.getAttribute('data-target'));
+                // Trigger counter animation for each child with attribute data-target
+                const counterElements = entry.target.querySelectorAll('.stat-number-large');
+                counterElements.forEach(el => {
+                    const targetValue = parseInt(el.getAttribute('data-target'));
+                    const currentText = el.textContent; // Original value might be statically in HTML or set to 0
                     
-                    // Determine suffix based on stat position
+                    // Determine suffix (e.g. "+", "%")
                     let suffix = '';
-                    if (index === 0) suffix = '+'; // 200+
-                    if (index === 1) suffix = '%'; // 40%
-                    if (index === 2) suffix = '%'; // 100%
+                    if (targetValue === 200) suffix = '+';
+                    if (targetValue === 40) suffix = '%';
+                    if (targetValue === 100) suffix = '%';
                     
-                    // Delay counter animation to match the fade-in
-                    setTimeout(() => {
-                        animateStatsCounter(statNumber, target, suffix);
-                    }, 200 + (index * 200));
+                    if (!isNaN(targetValue)) {
+                        animateValue(el, 0, targetValue, 2000, suffix);
+                    }
                 });
                 
-                // Unobserve after animation
-                statsObserver.unobserve(entry.target);
+                statsSectionObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
-    
-    statsObserver.observe(statsSection);
+    }, { threshold: 0.25 });
+    statsSectionObserver.observe(statsSection);
 }
 
 // Initialize Footer Animations
@@ -3362,6 +3349,11 @@ function initHeroDesktopNav() {
     // Click handler for navigation items
     navItems.forEach((item, index) => {
         item.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            
+            // If it's a real URL (like story.html), allow normal navigation
+            if (targetId && !targetId.startsWith('#')) return;
+            
             e.preventDefault();
             
             // Remove active from all items
@@ -3371,7 +3363,6 @@ function initHeroDesktopNav() {
             this.classList.add('active');
             
             // Smooth scroll to section
-            const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
             if (targetSection && typeof lenis !== 'undefined' && lenis) {
@@ -3552,5 +3543,62 @@ function scrollToDownload() {
         downloadSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     return false;
+}
+
+// ============================================
+// FOOTER MODAL LISTENERS
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const helpCenterLink = document.getElementById('footer-help-center');
+    if (helpCenterLink) {
+        helpCenterLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openHelpCenter();
+        });
+    }
+    
+    const contactUsLink = document.getElementById('footer-contact-us');
+    if (contactUsLink) {
+        contactUsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openContactModal();
+        });
+    }
+    
+    const feedbackLink = document.getElementById('footer-feedback');
+    if (feedbackLink) {
+        feedbackLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openFeedbackModal();
+        });
+    }
+});
+
+// ============================================
+// OBJECTIONS ACCORDION FUNCTIONALITY
+// ============================================
+function toggleObjection(button) {
+    const item = button.parentElement;
+    const isActive = item.classList.contains('active');
+    
+    // Close all other items in this section
+    const section = item.closest('.objections-section');
+    if (section) {
+        section.querySelectorAll('.objection-item').forEach(el => {
+            el.classList.remove('active');
+        });
+    }
+    
+    // Toggle current item
+    if (!isActive) {
+        item.classList.add('active');
+    }
+    
+    // Refresh Lenis if active
+    if (typeof lenis !== 'undefined' && lenis) {
+        setTimeout(() => {
+            lenis.resize();
+        }, 400);
+    }
 }
 

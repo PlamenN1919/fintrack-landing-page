@@ -1,0 +1,201 @@
+/* Objections Section - Conversion Optimized */
+.objections-section {
+    padding: 100px 0;
+    background-color: #E8E4E4;
+    position: relative;
+    overflow: hidden;
+}
+
+.objections-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.objections-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.objections-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.objections-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.objections-subtitle {
+    font-size: 18px;
+    color: rgba(26, 26, 26, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Accordion Styles */
+.objections-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.objection-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.objection-item:hover {
+    border-color: rgba(180, 244, 97, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.objection-item.active {
+    border-color: #B4F461;
+    box-shadow: 0 20px 40px rgba(180, 244, 97, 0.1);
+}
+
+.objection-trigger {
+    width: 100%;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+}
+
+.objection-question {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.objection-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(180, 244, 97, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.objection-item.active .objection-icon {
+    background: #B4F461;
+    transform: rotate(10deg);
+}
+
+.objection-chevron {
+    font-size: 14px;
+    color: rgba(26, 26, 26, 0.3);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.objection-item.active .objection-chevron {
+    transform: rotate(180deg);
+}
+
+.objection-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(180deg, rgba(180, 244, 97, 0.02) 0%, transparent 100%);
+}
+
+.objection-item.active .objection-content {
+    max-height: 500px; /* Large enough to fit content */
+}
+
+.objection-answer {
+    padding: 0 32px 32px 92px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(26, 26, 26, 0.7);
+}
+
+.answer-highlight {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(180, 244, 97, 0.1);
+    border-left: 4px solid #B4F461;
+    border-radius: 4px 12px 12px 4px;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Background elements */
+.objection-shape {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.4;
+    filter: blur(60px);
+}
+
+.objection-shape-1 {
+    width: 300px;
+    height: 300px;
+    background: #B4F461;
+    top: 10%;
+    right: -150px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .objections-section {
+        padding: 60px 0;
+    }
+    
+    .objection-trigger {
+        padding: 20px;
+    }
+    
+    .objection-question {
+        font-size: 16px;
+        gap: 15px;
+    }
+    
+    .objection-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .objection-answer {
+        padding: 0 20px 20px 67px;
+        font-size: 15px;
+    }
+}
