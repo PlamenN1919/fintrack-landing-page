@@ -1715,22 +1715,38 @@
                     </div>
                 </div>
 
-                <!-- What IF Card -->
+                <!-- What IF Card (Now Budgets) -->
                 <div class="fr-card fr-card-whatif" data-bento-reveal>
                     <div class="fr-glow"></div>
                     <div class="fr-card-content">
-                        <div class="fr-icon-wrapper">
-                            <i class="fas fa-code-branch"></i>
+                        <div class="fr-icon-wrapper" style="color: #6a5acd; background: linear-gradient(135deg, rgba(106, 90, 205, 0.15), transparent); border-color: rgba(106, 90, 205, 0.3);">
+                            <i class="fas fa-chart-pie"></i>
                         </div>
-                        <h3 class="fr-title">Виж дали ще можеш да си го позволиш</h3>
-                        <p class="fr-desc">
-                            What-If симулатор: въведи голямо решение (кредит, нова кола) и виж финансовите последствия —
-                            преди да е станало.
+                        <h3 class="fr-title">Бюджети по категории</h3>
+                        <p class="fr-desc" style="margin-bottom: 24px;">
+                            Разпредели парите си интелигентно. Създай отделни лимити за храна, забавления или транспорт и следи кога ги наближаваш.
                         </p>
-                        <div class="fr-whatif-visual">
-                            <span class="fr-whatif-scenario">"Ако взема кредит от 500лв?"</span>
-                            <span class="fr-whatif-arrow"><i class="fas fa-arrow-right"></i></span>
-                            <span class="fr-whatif-result">-30% свободен кеш</span>
+                        <div class="category-budgets-visual" style="display: flex; flex-direction: column; gap: 12px; margin-top: auto;">
+                            <!-- Храна -->
+                            <div class="cat-budget-item">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 500;">
+                                    <span style="color: #1a1a1a;">Храна</span>
+                                    <span style="color: #ff6b6b; font-weight: 600;">350 / 400 лв</span>
+                                </div>
+                                <div style="height: 8px; background: rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="height: 100%; width: 87.5%; background: #ff6b6b; border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <!-- Забавления -->
+                            <div class="cat-budget-item">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 500;">
+                                    <span style="color: #1a1a1a;">Забавления</span>
+                                    <span style="color: #19cbc0; font-weight: 600;">45 / 150 лв</span>
+                                </div>
+                                <div style="height: 8px; background: rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="height: 100%; width: 30%; background: #19cbc0; border-radius: 4px;"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
