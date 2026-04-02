@@ -3346,6 +3346,8 @@ function initHeroDesktopNav() {
     
     if (!navItems.length || !lamp) return;
     
+    let isScrollingFromClick = false;
+    
     // Click handler for navigation items
     navItems.forEach((item, index) => {
         item.addEventListener('click', function(e) {
@@ -3355,6 +3357,7 @@ function initHeroDesktopNav() {
             if (targetId && !targetId.startsWith('#')) return;
             
             e.preventDefault();
+            isScrollingFromClick = true;
             
             // Remove active from all items
             navItems.forEach(navItem => navItem.classList.remove('active'));
@@ -3366,9 +3369,12 @@ function initHeroDesktopNav() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection && typeof lenis !== 'undefined' && lenis) {
+                let offset = 0;
+                if (targetId === '#download') offset = -50;
+                
                 lenis.scrollTo(targetSection, {
                     duration: 1.0,
-                    offset: 0
+                    offset: offset
                 });
             } else if (targetSection) {
                 targetSection.scrollIntoView({
@@ -3376,10 +3382,68 @@ function initHeroDesktopNav() {
                     block: 'start'
                 });
             }
+            
+            setTimeout(() => {
+                isScrollingFromClick = false;
+            }, 1200); // Wait for scroll animation to finish
         });
     });
     
-    console.log('🧭 Hero Desktop Navigation initialized (Static)!');
+    // Scroll Spy functionality
+    const sections = [];
+    navItems.forEach(item => {
+        const targetId = item.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+            const section = document.querySelector(targetId);
+            if (section) {
+                sections.push({
+                    navItem: item,
+                    section: section
+                });
+            }
+        }
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        if (isScrollingFromClick) return;
+        
+        // Find visible entries
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const matchingPair = sections.find(pair => pair.section === entry.target);
+                if (matchingPair) {
+                    navItems.forEach(navItem => navItem.classList.remove('active'));
+                    matchingPair.navItem.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(pair => {
+        observer.observe(pair.section);
+    });
+    
+    // Special handling for bottom of page to highlight download section
+    window.addEventListener('scroll', () => {
+        if (isScrollingFromClick) return;
+        
+        // Check if user has scrolled to the very bottom
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+            const downloadItem = Array.from(navItems).find(item => item.getAttribute('href') === '#download');
+            if (downloadItem) {
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                downloadItem.classList.add('active');
+            }
+        }
+    }, { passive: true });
+    
+    console.log('🧭 Hero Desktop Navigation initialized with Scroll Spy!');
 }
 
 // Initialize hero desktop nav

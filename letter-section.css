@@ -9,14 +9,14 @@
 .letter-layout {
     display: flex;
     align-items: flex-start;
-    gap: 60px;
-    max-width: 1100px;
+    gap: 80px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 /* Image Column */
 .letter-image-container {
-    flex: 0 0 350px;
+    flex: 0 0 450px;
     position: sticky;
     top: 100px;
 }

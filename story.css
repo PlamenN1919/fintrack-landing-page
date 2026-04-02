@@ -164,6 +164,31 @@ body {
     color: #333;
 }
 
+/* Image Block */
+.story-image-block {
+    margin: 80px 0 100px;
+    width: 100%;
+}
+@media (min-width: 1200px) {
+    .story-image-block {
+        width: 120%;
+        margin-left: -10%;
+    }
+}
+.image-frame.main-image {
+    border-radius: 40px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.12);
+}
+.image-caption {
+    padding: 20px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
 /* Quote Block */
 .quote-block {
     margin: 80px 0;

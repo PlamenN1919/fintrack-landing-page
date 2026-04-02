@@ -5,7 +5,7 @@
 
 .pricing-section {
     position: relative;
-    padding: 120px 0 100px;
+    padding: 60px 0 100px;
     background: #E8E4E4;
     overflow: hidden;
     color: #1a1a1a;
@@ -116,7 +116,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: 60px;
 }
 
@@ -208,6 +208,18 @@
     font-weight: 700;
 }
 
+.plan-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin: 20px 0 0 0;
+    font-weight: 500;
+}
+
+.pricing-card.premium .plan-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+
 /* Features List */
 .plan-features {
     list-style: none;
@@ -252,6 +264,7 @@
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
+    margin-top: auto;
 }
 
 .plan-btn-outline {

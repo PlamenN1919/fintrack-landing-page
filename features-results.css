@@ -461,72 +461,80 @@
 .fr-health-bar:nth-child(4) .fr-health-bar-fill { transition-delay: 0.3s; }
 
 /* =================================== */
-/* WHAT IF CARD                        */
+/* CATEGORY BUDGET CARD                */
 /* =================================== */
-.fr-card-whatif {
-    grid-column: span 5;
+.fr-card-category {
+    grid-column: span 6;
     grid-row: span 1;
 }
 
-.fr-card-whatif .fr-glow {
-    background: radial-gradient(circle at 100% 50%, rgba(255, 107, 107, 0.08) 0%, transparent 70%);
+.fr-card-category .fr-glow {
+    background: radial-gradient(circle at 100% 50%, rgba(255, 179, 71, 0.08) 0%, transparent 70%);
 }
 
-.fr-card-whatif .fr-icon-wrapper {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), transparent);
-    color: #ff6b6b;
-    border-color: rgba(255, 107, 107, 0.3);
+.fr-card-category .fr-icon-wrapper {
+    background: linear-gradient(135deg, rgba(255, 179, 71, 0.15), transparent);
+    color: #ffb347;
+    border-color: rgba(255, 179, 71, 0.3);
 }
 
-.fr-whatif-visual {
+.fr-category-visual {
     margin-top: auto;
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: 16px;
-    padding: 16px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fr-cat-item {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.fr-card-category:hover .fr-cat-item {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transform: translateY(-2px);
+}
+
+.fr-cat-info {
+    display: flex;
     justify-content: space-between;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.fr-whatif-scenario {
     font-size: 13px;
-    color: #1a1a1a;
-    font-weight: 500;
+    margin-bottom: 8px;
+    align-items: center;
 }
 
-.fr-whatif-arrow {
-    color: rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease, color 0.4s ease;
+.fr-cat-name { color: #1a1a1a; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.fr-cat-name i { color: #888; font-size: 14px; width: 16px; text-align: center; }
+.fr-cat-amount { color: #555; font-weight: 500; font-size: 12px; }
+
+.fr-cat-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.fr-card-whatif:hover .fr-whatif-arrow {
-    transform: translateX(8px);
-    color: rgba(0, 0, 0, 0.7);
+.fr-cat-fill {
+    height: 100%;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.fr-whatif-result {
-    font-size: 13px;
-    color: #e04b4b;
-    font-weight: 600;
-    background: rgba(255, 107, 107, 0.1);
-    padding: 6px 12px;
-    border-radius: 50px;
-    transform: scale(0.95);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.fr-card-whatif:hover .fr-whatif-result {
-    transform: scale(1.1);
-    background: rgba(255, 107, 107, 0.2);
-    box-shadow: 0 4px 12px rgba(224, 75, 75, 0.2);
+.fr-card-category:hover .fr-cat-fill {
+    width: var(--w);
 }
 
 /* =================================== */
 /* BUDGET CARD                         */
 /* =================================== */
 .fr-card-budget {
-    grid-column: span 4;
+    grid-column: span 3;
     grid-row: span 1;
 }
 
@@ -641,7 +649,7 @@
     
     .fr-card-qr { grid-column: span 6; }
     .fr-card-health { grid-column: span 6; }
-    .fr-card-whatif { grid-column: span 7; }
+    .fr-card-category { grid-column: span 7; }
     .fr-card-budget { grid-column: span 5; }
     .fr-card-gamification { grid-column: span 12; }
 }
