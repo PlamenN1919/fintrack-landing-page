@@ -59,7 +59,7 @@
 
 .pricing-badge {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
     gap: 8px;
     background: rgba(26, 26, 26, 0.06);
     border: 1px solid rgba(26, 26, 26, 0.12);
@@ -116,7 +116,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: 60px;
 }
 
@@ -158,7 +158,7 @@
 .plan-daily-price {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: 15px;
 }
 
@@ -356,7 +356,7 @@
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     gap: 40px;
 }
 
@@ -367,7 +367,7 @@
 
 .roi-badge {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
     gap: 6px;
     background: rgba(180, 244, 97, 0.15);
     color: #3d8b0a;
@@ -465,7 +465,7 @@
 /* --- Pricing Toggle (Visual Focus) --- */
 .pricing-toggle-wrapper {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 16px;
     margin-bottom: 50px;
@@ -551,7 +551,7 @@
     font-weight: 600;
     padding: 8px 16px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 8px;
     margin-top: -10px;
@@ -578,7 +578,7 @@
 /* --- Social Proof (Bandwagon) --- */
 .social-proof-cta {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 12px;
     margin-top: 16px;
@@ -702,3 +702,43 @@
         font-size: 32px;
     }
 }
+
+.plan-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary, #666);
+  margin-top: 15px;
+  line-height: 1.5;
+  text-align: center;
+}
+.plan-description strong {
+  color: var(--text-primary, #333);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pricing-card-header {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.pricing-card-header {
+    display: flex;
+    flex-direction: column;
+}
+.plan-description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.pricing-card.premium .plan-description {
+    color: rgba(255, 255, 255, 0.85);
+}
+.pricing-card.premium .plan-description strong {
+    color: #ffffff;
+}
+
