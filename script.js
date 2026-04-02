@@ -304,6 +304,14 @@ function throttle(func, limit) {
 let lenis = null;
 
 function initLenisScroll() {
+    // Disable Lenis entirely on mobile or touch devices to fix iOS scroll block
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768;
+    if (isTouchDevice) {
+        document.documentElement.style.scrollBehavior = 'smooth';
+        console.log("📱 Lenis disabled for touch devices (using native scroll)");
+        return null;
+    }
+
     lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
