@@ -117,22 +117,22 @@
             --hero-accent: #B4F461
         }
 
-        html,
-        body {
+        html {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            height: auto;
-            min-height: 100%
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #E8E4E4;
             color: #fff;
             line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100%
+            width: 100%;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Page Loader Critical Styles */
@@ -2918,7 +2918,7 @@
     </div>
 
     <!-- Lenis Scroll JS -->
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js?v=1.3"></script>
+    
 
     <!-- JavaScript - Deferred -->
     <!-- Marketing Overlay - Savings Message -->
