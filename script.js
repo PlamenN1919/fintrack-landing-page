@@ -311,7 +311,7 @@ function initLenisScroll() {
         gestureOrientation: 'vertical',
         smoothWheel: true,
         wheelMultiplier: 1,
-        smoothTouch: true,
+        smoothTouch: false,
         touchMultiplier: 2,
         infinite: false,
     });
@@ -2809,11 +2809,21 @@ function initFeaturesCarousel() {
     }
     
     // Touch/Mouse start
+    let startY = 0;
+    let currentY = 0;
+    let isHorizontalDrag = null;
+    
     function handleStart(e) {
+        if (e.target.closest('.download-btn')) return; // Dont intercept clicks on buttons
+        
         isDragging = true;
         startTime = Date.now();
         startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        startY = e.type.includes('mouse') ? e.pageY : e.touches[0].pageY;
         currentX = startX;
+        currentY = startY;
+        isHorizontalDrag = null;
+        
         wrapper.classList.add('dragging');
         wrapper.style.transition = 'none';
     }
@@ -2822,8 +2832,22 @@ function initFeaturesCarousel() {
     function handleMove(e) {
         if (!isDragging) return;
         
-        e.preventDefault();
         currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        currentY = e.type.includes('mouse') ? e.pageY : e.touches[0].pageY;
+        
+        if (isHorizontalDrag === null) {
+            isHorizontalDrag = Math.abs(currentX - startX) > Math.abs(currentY - startY);
+        }
+        
+        if (!isHorizontalDrag) {
+            isDragging = false;
+            wrapper.classList.remove('dragging');
+            updateCarousel(true);
+            return;
+        }
+        
+        if (e.cancelable) e.preventDefault();
+        
         const diff = currentX - startX;
         const cardWidth = getCardWidth();
         const offset = -currentIndex * cardWidth + diff;
