@@ -495,7 +495,7 @@
             <a href="story.html" class="nav-pill-item">
                 <span class="nav-pill-text">За нас</span>
             </a>
-            <a href="#download" class="nav-pill-item" data-section="download">
+            <a href="#download" class="nav-pill-item" data-section="download" onclick="scrollToDownload(event); return false;">
                 <span class="nav-pill-text">Изтегли</span>
             </a>
             <div class="nav-pill-lamp"></div>
@@ -534,7 +534,7 @@
                     <span class="hero-info-label">Рейтинг от потребители</span>
                     <span class="hero-info-rating">★ 4.8 <span class="hero-info-count">/ 127 отзива</span></span>
                 </div>
-                <a href="#download" class="hero-info-cta" onclick="scrollToDownload(); return false;">Изтегли</a>
+                <a href="#download" class="hero-info-cta" onclick="scrollToDownload(event); return false;">Изтегли</a>
             </div>
         </div>
 
@@ -637,7 +637,7 @@
             <!-- Download CTA -->
             <div class="hero-bottom-cta" data-scroll data-scroll-speed="0.06">
                 <a href="#download" class="hero-download-btn" data-track-id="hero-download-main"
-                    data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
+                    data-track-label="Hero Main Download Button" onclick="scrollToDownload(event); return false;">
                     <span class="hero-download-text">ИЗТЕГЛИ СЕГА</span>
                     <span class="hero-download-icon"><i class="fas fa-arrow-down"></i></span>
                 </a>
@@ -1176,7 +1176,7 @@
 
                 <!-- CTA -->
                 <div class="dream-cta-wrapper" data-dream-reveal>
-                    <a href="#download" class="dream-cta-button" onclick="scrollToDownload(); return false;">
+                    <a href="#download" class="dream-cta-button" onclick="scrollToDownload(event); return false;">
                         <span>ЗАПОЧНИ ДА СПЕСТЯВАШ ДНЕС</span>
                         <span class="dream-cta-icon"><i class="fas fa-arrow-right"></i></span>
                     </a>
@@ -1232,7 +1232,7 @@
                             Виж точно къде отиват парите ти. Получи персонални AI съвети, които спестяват средно
                             <strong>200 лв</strong> месечно. Без ексел, без стрес — само резултати.
                         </p>
-                        <a href="#download" class="solution-cta-button" onclick="scrollToDownload(); return false;">
+                        <a href="#download" class="solution-cta-button" onclick="scrollToDownload(event); return false;">
                             <span class="cta-text">ЗАПОЧНИ СЕГА</span>
                             <span class="cta-arrow"><i class="fas fa-arrow-right"></i></span>
                             <div class="cta-shimmer"></div>
@@ -1318,7 +1318,7 @@
                             <p class="timeline-bento-text">Достъпно за <strong>iOS</strong> и <strong>Android</strong> •
                                 Настройка за <strong>30 секунди</strong></p>
                         </div>
-                        <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(); return false;">
+                        <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(event); return false;">
                             Изтегли <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1600,7 +1600,7 @@
                         </div>
                     </div>
                     <p class="winner-text">Изборът е <span class="accent">очевиден</span>.</p>
-                    <a href="#download" class="winner-cta" onclick="scrollToDownload(); return false;">
+                    <a href="#download" class="winner-cta" onclick="scrollToDownload(event); return false;">
                         ЗАПОЧНИ СЕГА <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1870,7 +1870,7 @@
                                 <span class="founder-name">Екипът на FinTrack</span>
                                 <span class="founder-role">Направено в България 🇧🇬</span>
                             </div>
-                            <a href="#download" class="letter-cta">Започни своята трансформация →</a>
+                            <a href="#download" class="letter-cta" onclick="scrollToDownload(event); return false;">Започни своята трансформация →</a>
                         </div>
                     </div>
                 </div>
@@ -2008,7 +2008,7 @@
                         </p>
                     </div>
                     <a href="#download" class="plan-btn plan-btn-outline"
-                        onclick="scrollToDownload(); return false;">Избери Месечен</a>
+                        onclick="scrollToDownload(event); return false;">Избери Месечен</a>
 
                     <div class="social-proof-cta">
                         <div class="users-avatars">
@@ -2039,7 +2039,7 @@
                         </p>
                     </div>
                     <a href="#download" class="plan-btn plan-btn-outline"
-                        onclick="scrollToDownload(); return false;">Избери Тримесечен</a>
+                        onclick="scrollToDownload(event); return false;">Избери Тримесечен</a>
 
                     <div class="social-proof-cta">
                         <div class="users-avatars">
@@ -2077,7 +2077,7 @@
                         </p>
                     </div>
                     <a href="#download" class="plan-btn plan-btn-primary"
-                        onclick="scrollToDownload(); return false;">Избери Годишен</a>
+                        onclick="scrollToDownload(event); return false;">Избери Годишен</a>
 
                     <div class="social-proof-cta">
                         <div class="users-avatars">
@@ -2211,8 +2211,8 @@
                 </p>
 
                 <div class="download-buttons">
-                    <a href="#" class="download-btn ios" data-track-id="download-ios"
-                        data-track-label="Download iOS App">
+                    <a href="#download" class="download-btn ios" data-track-id="download-ios"
+                        data-track-label="Download iOS App" onclick="scrollToDownload(event); return false;">
                         <div class="download-btn-icon">
                             <i class="fab fa-apple"></i>
                         </div>
@@ -2221,8 +2221,8 @@
                             <span class="btn-large">App Store</span>
                         </div>
                     </a>
-                    <a href="#" class="download-btn android" data-track-id="download-android"
-                        data-track-label="Download Android App">
+                    <a href="#download" class="download-btn android" data-track-id="download-android"
+                        data-track-label="Download Android App" onclick="scrollToDownload(event); return false;">
                         <div class="download-btn-icon">
                             <i class="fab fa-google-play"></i>
                         </div>
@@ -2279,7 +2279,7 @@
                         <li><a href="#how-it-works">Как работи</a></li>
                         <li><a href="#testimonials">Отзиви</a></li>
                         <li><a href="#download" data-track-id="footer-download-link"
-                                data-track-label="Footer Download Link">Изтегли</a></li>
+                                data-track-label="Footer Download Link" onclick="scrollToDownload(event); return false;">Изтегли</a></li>
                     </ul>
                 </div>
 

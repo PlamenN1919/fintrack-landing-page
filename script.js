@@ -3345,15 +3345,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 // SCROLL TO DOWNLOAD FUNCTION
 // ============================================
-function scrollToDownload() {
-    const downloadSection = document.getElementById('download');
-    if (downloadSection) {
-        downloadSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    return false;
-}
 
-// ============================================
 // FOOTER MODAL LISTENERS
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
