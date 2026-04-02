@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="bg">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="FinTrack - Интелигентна система за управление на финанси и бюджетиране">
     <meta name="theme-color" content="#E8E4E4">
-    
+
     <!-- Performance & SEO -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
+
     <title>FinTrack - Интелигентно финансово управление</title>
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="финанси, бюджет, управление на финанси, финансово приложение, бюджетиране, FinTrack, финансов контрол, лични финанси, спестявания">
+    <meta name="keywords"
+        content="финанси, бюджет, управление на финанси, финансово приложение, бюджетиране, FinTrack, финансов контрол, лични финанси, спестявания">
     <meta name="author" content="FinTrack">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://fintrackwallet.com/">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fintrackwallet.com/">
     <meta property="og:title" content="FinTrack - Интелигентно финансово управление">
-    <meta property="og:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол. Следете разходи, планирайте бюджет и постигайте финансови цели.">
+    <meta property="og:description"
+        content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол. Следете разходи, планирайте бюджет и постигайте финансови цели.">
     <meta property="og:image" content="https://fintrackwallet.com/assets/logos/optimized/logo-512.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta property="og:image:type" content="image/png">
     <meta property="og:locale" content="bg_BG">
     <meta property="og:site_name" content="FinTrack">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://fintrackwallet.com/">
     <meta property="twitter:title" content="FinTrack - Интелигентно финансово управление">
-    <meta property="twitter:description" content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол.">
+    <meta property="twitter:description"
+        content="Управлявайте финансите си интелигентно с FinTrack - модерно приложение за бюджетиране и финансов контрол.">
     <meta property="twitter:image" content="https://fintrackwallet.com/assets/logos/optimized/logo-512.png">
-    
+
     <!-- DNS Prefetch for faster external resource loading -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -48,28 +52,38 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://prod.spline.design">
     <link rel="dns-prefetch" href="https://api.fintrackwallet.com">
-    
+
     <!-- Preconnect to critical domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    
+
     <!-- Google Fonts - Optimized with display=swap, subset and only critical weights -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic" as="style" fetchpriority="high">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic"
+        as="style" fetchpriority="high">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=latin,cyrillic"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet">
+    </noscript>
+
     <!-- Font Awesome - Deferred loading with lower priority -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        fetchpriority="low" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
     <!-- Spline 3D - Lazy loaded via Intersection Observer (see script.js) -->
     <!-- Removed synchronous loading for better LCP -->
-    
+
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
-    
+
     <!-- Favicon - Multiple sizes for better compatibility -->
     <link rel="icon" type="image/png" sizes="512x512" href="assets/logos/optimized/logo-512.png">
     <link rel="icon" type="image/png" sizes="256x256" href="assets/logos/optimized/logo-256.png">
@@ -81,53 +95,288 @@
     <link rel="apple-touch-icon" sizes="120x120" href="assets/logos/optimized/logo-128.png">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/logos/optimized/logo-128.png">
     <link rel="shortcut icon" href="assets/logos/optimized/logo-128.png">
-    
+
     <!-- Preload critical images with fetchpriority -->
     <link rel="preload" as="image" href="assets/logos/logo-optimized.png" fetchpriority="high">
     <!-- Defer non-critical image loading to improve LCP -->
-    
 
-    
+
+
     <!-- Critical CSS - Inline for fastest First Contentful Paint -->
     <style>
         /* Critical above-the-fold styles */
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{--bg-base:#E8E4E4;--bg-gradient:#E8E4E4;--hero-accent:#B4F461}
-        html,body{margin:0;padding:0;overflow-x:hidden;height:auto;min-height:100%}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#E8E4E4;color:#fff;line-height:1.6;overflow-x:hidden;min-height:100%}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg-base: #E8E4E4;
+            --bg-gradient: #E8E4E4;
+            --hero-accent: #B4F461
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: auto;
+            min-height: 100%
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #E8E4E4;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100%
+        }
+
         /* Page Loader Critical Styles */
-        .page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:#E8E4E4;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s ease,visibility .5s ease}
-        .page-loader.loaded{opacity:0;visibility:hidden}
-        .loader-content{text-align:center;display:flex;flex-direction:column;align-items:center;gap:30px}
-        .loader-logo{animation:logoFloat 2s ease-in-out infinite}
-        .loader-logo-img{width:120px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.1))}
-        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        .loader-spinner{position:relative;width:80px;height:80px}
-        .spinner-ring{position:absolute;width:100%;height:100%;border:3px solid transparent;border-top-color:#667eea;border-radius:50%;animation:spinnerRotate 1.5s cubic-bezier(.68,-.55,.27,1.55) infinite}
-        .spinner-ring:nth-child(2){width:70%;height:70%;top:15%;left:15%;border-top-color:#764ba2;animation-delay:.2s}
-        .spinner-ring:nth-child(3){width:40%;height:40%;top:30%;left:30%;border-top-color:#f093fb;animation-delay:.4s}
-        @keyframes spinnerRotate{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-        .loader-text{color:#2c2c2c;font-size:16px;font-weight:500;letter-spacing:1px;animation:textPulse 2s ease-in-out infinite}
-        @keyframes textPulse{0%,100%{opacity:.6}50%{opacity:1}}
-        .loader-progress{width:200px;height:4px;background:rgba(44,44,44,.1);border-radius:10px;overflow:hidden;position:relative}
-        .loader-progress-bar{height:100%;background:linear-gradient(90deg,#667eea 0%,#764ba2 50%,#f093fb 100%);background-size:200% 100%;border-radius:10px;animation:progressAnimation 2s ease-in-out infinite;width:100%}
-        @keyframes progressAnimation{0%{transform:translateX(-100%);background-position:0% 50%}50%{background-position:100% 50%}100%{transform:translateX(100%);background-position:0% 50%}}
-        body:not(.loaded) [data-scroll-container]{opacity:0;transform:scale(.98)}
-        body.loaded [data-scroll-container]{opacity:1;transform:scale(1);transition:opacity .6s ease,transform .6s ease}
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #E8E4E4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity .5s ease, visibility .5s ease
+        }
+
+        .page-loader.loaded {
+            opacity: 0;
+            visibility: hidden
+        }
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px
+        }
+
+        .loader-logo {
+            animation: logoFloat 2s ease-in-out infinite
+        }
+
+        .loader-logo-img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .1))
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .loader-spinner {
+            position: relative;
+            width: 80px;
+            height: 80px
+        }
+
+        .spinner-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spinnerRotate 1.5s cubic-bezier(.68, -.55, .27, 1.55) infinite
+        }
+
+        .spinner-ring:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-top-color: #764ba2;
+            animation-delay: .2s
+        }
+
+        .spinner-ring:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-top-color: #f093fb;
+            animation-delay: .4s
+        }
+
+        @keyframes spinnerRotate {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        .loader-text {
+            color: #2c2c2c;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            animation: textPulse 2s ease-in-out infinite
+        }
+
+        @keyframes textPulse {
+
+            0%,
+            100% {
+                opacity: .6
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(44, 44, 44, .1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative
+        }
+
+        .loader-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: progressAnimation 2s ease-in-out infinite;
+            width: 100%
+        }
+
+        @keyframes progressAnimation {
+            0% {
+                transform: translateX(-100%);
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                transform: translateX(100%);
+                background-position: 0% 50%
+            }
+        }
+
+        body:not(.loaded) [data-scroll-container] {
+            opacity: 0;
+            transform: scale(.98)
+        }
+
+        body.loaded [data-scroll-container] {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity .6s ease, transform .6s ease
+        }
+
         /* Other Critical Styles */
-        .logo-container{position:absolute;top:30px;left:30px;z-index:1000;opacity:0;animation:fadeInDown 1s ease-out .1s forwards}
-        .logo{height:60px;width:auto;transition:all .3s ease;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
-        .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background-color:#E8E4E4}
-        @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
-        .hero-desktop-nav{position:absolute;top:30px;right:50px;z-index:100;opacity:0;animation:fadeInDown 1s ease-out .3s forwards}
-        .nav-pill{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:4px;border-radius:50px;box-shadow:0 4px 20px rgba(0,0,0,.08);position:relative}
-        .nav-pill-item{color:rgba(26,26,26,.45)}
-        .nav-pill-item.active{color:#1a1a1a}
-        .nav-pill-item:hover{color:rgba(26,26,26,.75)}
-        .nav-pill-lamp{background:linear-gradient(135deg,rgba(180,244,97,.3) 0%,rgba(180,244,97,.15) 100%);box-shadow:0 2px 12px rgba(180,244,97,.2),inset 0 1px 0 rgba(255,255,255,.2)}
-        .nav-pill-lamp::before{background:#B4F461}
+        .logo-container {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeInDown 1s ease-out .1s forwards
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            transition: all .3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .15))
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #E8E4E4
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .hero-desktop-nav {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            z-index: 100;
+            opacity: 0;
+            animation: fadeInDown 1s ease-out .3s forwards
+        }
+
+        .nav-pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, .06);
+            border: 1px solid rgba(0, 0, 0, .08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 4px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+            position: relative
+        }
+
+        .nav-pill-item {
+            color: rgba(26, 26, 26, .45)
+        }
+
+        .nav-pill-item.active {
+            color: #1a1a1a
+        }
+
+        .nav-pill-item:hover {
+            color: rgba(26, 26, 26, .75)
+        }
+
+        .nav-pill-lamp {
+            background: linear-gradient(135deg, rgba(180, 244, 97, .3) 0%, rgba(180, 244, 97, .15) 100%);
+            box-shadow: 0 2px 12px rgba(180, 244, 97, .2), inset 0 1px 0 rgba(255, 255, 255, .2)
+        }
+
+        .nav-pill-lamp::before {
+            background: #B4F461
+        }
     </style>
-    
+
     <!-- Main Stylesheet -->
     <link rel="preload" href="styles.css?v=1.2" as="style">
     <link rel="stylesheet" href="styles.css?v=1.2">
@@ -146,16 +395,16 @@
 
     <!-- Psychological Features Section -->
     <link rel="stylesheet" href="features-results.css">
-    
+
     <!-- Pricing Section -->
     <link rel="stylesheet" href="pricing-section.css">
 
     <!-- Objections Section -->
     <link rel="stylesheet" href="objections-section.css">
-    
+
     <!-- Founder's Letter Section -->
     <link rel="stylesheet" href="letter-section.css">
-    
+
     <!-- Structured Data - JSON-LD for SEO -->
     <script type="application/ld+json">
     {
@@ -182,7 +431,7 @@
       }
     }
     </script>
-    
+
     <!-- Organization Schema -->
     <script type="application/ld+json">
     {
@@ -204,9 +453,10 @@
     }
     </script>
 </head>
+
 <body>
 
-    
+
     <!-- Loading Screen -->
     <div id="page-loader" class="page-loader">
         <div class="loader-content">
@@ -224,35 +474,37 @@
             </div>
         </div>
     </div>
-    
 
-        <!-- Logo -->
-        <div class="logo-container">
-            <img src="assets/logos/logo-optimized.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo" width="60" height="60" fetchpriority="high">
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="assets/logos/logo-optimized.png"
+            alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="logo" width="60" height="60"
+            fetchpriority="high">
+    </div>
+
+    <!-- Desktop Navigation - Hero Top Right -->
+    <nav class="hero-desktop-nav">
+        <div class="nav-pill">
+            <a href="#hero" class="nav-pill-item active" data-section="hero">
+                <span class="nav-pill-text">Начало</span>
+            </a>
+            <a href="#features" class="nav-pill-item" data-section="features">
+                <span class="nav-pill-text">Функции</span>
+            </a>
+            <a href="story.html" class="nav-pill-item">
+                <span class="nav-pill-text">За нас</span>
+            </a>
+            <a href="#download" class="nav-pill-item" data-section="download">
+                <span class="nav-pill-text">Изтегли</span>
+            </a>
+            <div class="nav-pill-lamp"></div>
         </div>
-
-        <!-- Desktop Navigation - Hero Top Right -->
-        <nav class="hero-desktop-nav">
-            <div class="nav-pill">
-                <a href="#hero" class="nav-pill-item active" data-section="hero">
-                    <span class="nav-pill-text">Начало</span>
-                </a>
-                <a href="#features" class="nav-pill-item" data-section="features">
-                    <span class="nav-pill-text">Функции</span>
-                </a>
-                <a href="story.html" class="nav-pill-item">
-                    <span class="nav-pill-text">За нас</span>
-                </a>
-                <a href="#download" class="nav-pill-item" data-section="download">
-                    <span class="nav-pill-text">Изтегли</span>
-                </a>
-                <div class="nav-pill-lamp"></div>
-            </div>
-        </nav>
+    </nav>
 
 
-        <!-- Hero Section -->
-        <section class="hero" id="hero" data-scroll-section>
+    <!-- Hero Section -->
+    <section class="hero" id="hero" data-scroll-section>
 
         <!-- Hero Background Effects -->
         <div class="hero-bg-effects">
@@ -301,7 +553,9 @@
             <!-- Central Image -->
             <div class="hero-central-image" data-scroll data-scroll-speed="0.03">
                 <div class="hero-image-wrapper">
-                    <img src="assets/mockups/FinTrack_hero_Mockup.webp" alt="FinTrack приложение — пълен контрол на твоите финанси" class="hero-mockup-img" fetchpriority="high" width="800" height="600">
+                    <img src="assets/mockups/FinTrack_hero_Mockup.webp"
+                        alt="FinTrack приложение — пълен контрол на твоите финанси" class="hero-mockup-img"
+                        fetchpriority="high" width="800" height="600">
                 </div>
             </div>
 
@@ -332,7 +586,7 @@
                 <span class="marquee-separator">●</span>
                 <span class="marquee-item"><i class="fas fa-credit-card"></i> СТОП НА ДЪЛГОВЕТЕ</span>
                 <span class="marquee-separator">●</span>
-                
+
                 <!-- Duplicate for seamless loop -->
                 <span class="marquee-item"><i class="fas fa-times-circle"></i> КРАЙ НА ИМПУЛСИВНИТЕ ХАРЧОВЕ</span>
                 <span class="marquee-separator">●</span>
@@ -359,7 +613,8 @@
                 </h2>
             </div>
             <div class="hero-bottom-right" data-scroll data-scroll-speed="0.07">
-                <p class="hero-bottom-description">Знаеш ли точно за какво похарчи парите си миналия месец? Ако отговорът е не, губиш средно 20% от доходите си заради скрити течове. Време е да спреш загубите.</p>
+                <p class="hero-bottom-description">Знаеш ли точно за какво похарчи парите си миналия месец? Ако
+                    отговорът е не, губиш средно 20% от доходите си заради скрити течове. Време е да спреш загубите.</p>
                 <a href="#features" class="hero-learn-more">Реши проблема сега <span class="hero-arrow">→</span></a>
             </div>
 
@@ -381,7 +636,8 @@
 
             <!-- Download CTA -->
             <div class="hero-bottom-cta" data-scroll data-scroll-speed="0.06">
-                <a href="#download" class="hero-download-btn" data-track-id="hero-download-main" data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
+                <a href="#download" class="hero-download-btn" data-track-id="hero-download-main"
+                    data-track-label="Hero Main Download Button" onclick="scrollToDownload(); return false;">
                     <span class="hero-download-text">ИЗТЕГЛИ СЕГА</span>
                     <span class="hero-download-icon"><i class="fas fa-arrow-down"></i></span>
                 </a>
@@ -410,10 +666,12 @@
         <div class="cost-timeline-container">
             <!-- Section Header -->
             <div class="timeline-header" data-scroll data-scroll-speed="0.2" style="text-align: center; width: 100%;">
-                
+
                 <!-- NEW CENTERED BADGE -->
-                <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-                    <div style="padding: 12px 28px; background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%); color: white; border-radius: 50px; font-size: 14px; font-weight: 700; letter-spacing: 1px; box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);">
+                <div
+                    style="width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
+                    <div
+                        style="padding: 12px 28px; background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%); color: white; border-radius: 50px; font-size: 14px; font-weight: 700; letter-spacing: 1px; box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);">
                         ⏰ ЦЕНАТА НА БЕЗДЕЙСТВИЕТО
                     </div>
                 </div>
@@ -447,7 +705,10 @@
                             <span class="loss-text">15 лв на ден = 450 лв месечно</span>
                         </div>
                         <p class="timeline-card-description">
-                            Netflix абонамент за 20 лв - гледан 2 пъти месечно. Spotify Premium - последно слушан преди седмица. Кафе в офиса - 5 лв × 20 дни = 100 лв. Takeaway обяд защото "нямаш време" - още 150 лв. Банкова такса за превод - не забеляза. Още една такса за SMS нотификации - 2.50 лв просто така. До края на месеца... къде отидоха парите?
+                            Netflix абонамент за 20 лв - гледан 2 пъти месечно. Spotify Premium - последно слушан преди
+                            седмица. Кафе в офиса - 5 лв × 20 дни = 100 лв. Takeaway обяд защото "нямаш време" - още 150
+                            лв. Банкова такса за превод - не забеляза. Още една такса за SMS нотификации - 2.50 лв
+                            просто така. До края на месеца... къде отидоха парите?
                         </p>
                     </div>
                 </div>
@@ -472,19 +733,23 @@
                         <div class="timeline-impacts">
                             <div class="impact-item">
                                 <span class="impact-emoji">😰</span>
-                                <span>Събуждаш се в 3 сутринта и проверяваш banking приложението. Салдото е почти червено. Още 3 дни до заплата...</span>
+                                <span>Събуждаш се в 3 сутринта и проверяваш banking приложението. Салдото е почти
+                                    червено. Още 3 дни до заплата...</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">💳</span>
-                                <span>Кредитната карта вече не е "за спешни случаи". Използваш я за храна. За бензин. За всичко.</span>
+                                <span>Кредитната карта вече не е "за спешни случаи". Използваш я за храна. За бензин. За
+                                    всичко.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">😔</span>
-                                <span>Приятели те канят за кафе. "Извинявай, не мога днес" - вече за 4-ти път този месец. Спират да питат.</span>
+                                <span>Приятели те канят за кафе. "Извинявай, не мога днес" - вече за 4-ти път този
+                                    месец. Спират да питат.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">📱</span>
-                                <span>Избягваш да отговаряш на обаждания от непознати номера. Може да е банката за забавено плащане.</span>
+                                <span>Избягваш да отговаряш на обаждания от непознати номера. Може да е банката за
+                                    забавено плащане.</span>
                             </div>
                         </div>
                     </div>
@@ -510,23 +775,28 @@
                         <div class="timeline-impacts">
                             <div class="impact-item">
                                 <span class="impact-emoji">😱</span>
-                                <span>Колата се повреди. 800 лв за ремонт. Нямаш ги. Взимаш заем на 23% лихва. Сега дължиш повече от колкото печелиш.</span>
+                                <span>Колата се повреди. 800 лв за ремонт. Нямаш ги. Взимаш заем на 23% лихва. Сега
+                                    дължиш повече от колкото печелиш.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">💔</span>
-                                <span>"Трябва да си намерим жилище" казва половинката ти. Гледаш обяви за апартаменти. Първоначалната вноска? 20,000 лв. Ти имаш 340 лв спестени.</span>
+                                <span>"Трябва да си намерим жилище" казва половинката ти. Гледаш обяви за апартаменти.
+                                    Първоначалната вноска? 20,000 лв. Ти имаш 340 лв спестени.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">🏠</span>
-                                <span>Колега от работа споделя снимки от новия си апартамент. "Взехме кредит!" казва той. Ти не можеш дори да минеш проверката на банката.</span>
+                                <span>Колега от работа споделя снимки от новия си апартамент. "Взехме кредит!" казва
+                                    той. Ти не можеш дори да минеш проверката на банката.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">✈️</span>
-                                <span>Instagram е пълен със снимки от Гърция, Турция, Испания. Твоята лятна "ваканция"? Балкон и Netflix. Отново.</span>
+                                <span>Instagram е пълен със снимки от Гърция, Турция, Испания. Твоята лятна "ваканция"?
+                                    Балкон и Netflix. Отново.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">😔</span>
-                                <span>На рожден ден получаваш SMS: "Дължите 47.80 лв такса за надвишен овърдрафт". Това е подаръкът ти тази година.</span>
+                                <span>На рожден ден получаваш SMS: "Дължите 47.80 лв такса за надвишен овърдрафт". Това
+                                    е подаръкът ти тази година.</span>
                             </div>
                         </div>
                     </div>
@@ -552,27 +822,33 @@
                         <div class="timeline-impacts">
                             <div class="impact-item">
                                 <span class="impact-emoji">😭</span>
-                                <span>35 години, все още живееш на наем или при родители - докато връстниците ти обзавеждат собствени домове</span>
+                                <span>35 години, все още живееш на наем или при родители - докато връстниците ти
+                                    обзавеждат собствени домове</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">💔</span>
-                                <span>Гледаш Instagram stories на приятели на почивка в Малдивите... докато ти броиш стотинки за автобусен билет</span>
+                                <span>Гледаш Instagram stories на приятели на почивка в Малдивите... докато ти броиш
+                                    стотинки за автобусен билет</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">😰</span>
-                                <span>Страхуваш се да ходиш на лекар - не защото не ти трябва, а защото не можеш да си го позволиш</span>
+                                <span>Страхуваш се да ходиш на лекар - не защото не ти трябва, а защото не можеш да си
+                                    го позволиш</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">💸</span>
-                                <span>Започна да взимаш краткосрочни заеми за да погасиш други заеми. Капанът се затваря.</span>
+                                <span>Започна да взимаш краткосрочни заеми за да погасиш други заеми. Капанът се
+                                    затваря.</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">🚫</span>
-                                <span>Детето ти иска iPad като другите деца в класа. Отново казваш "Не можем"... и виждаш разочарованието в очите му</span>
+                                <span>Детето ти иска iPad като другите деца в класа. Отново казваш "Не можем"... и
+                                    виждаш разочарованието в очите му</span>
                             </div>
                             <div class="impact-item">
                                 <span class="impact-emoji">⚠️</span>
-                                <span>Партньорът ти спомена отново за спестявания и бъдеще. Отново се карате. Отново заспиваш с чувство за провал.</span>
+                                <span>Партньорът ти спомена отново за спестявания и бъдеще. Отново се карате. Отново
+                                    заспиваш с чувство за провал.</span>
                             </div>
                         </div>
                     </div>
@@ -624,416 +900,433 @@
         </div>
     </section>
 
-<!-- ============================================ -->
-<!-- DREAM SECTION: Show the Dream — Life After   -->
-<!-- Transformation Stories + Dream Visualizer     -->
-<!-- ============================================ -->
-<section class="dream-section section" id="dream" data-scroll-section>
-    <!-- Background Shapes -->
-    <div class="dream-bg-shapes">
-        <div class="dream-shape dream-shape-1"></div>
-        <div class="dream-shape dream-shape-2"></div>
-        <div class="dream-shape dream-shape-3"></div>
-    </div>
-
-    <div class="dream-container">
-
-        <!-- Section Header -->
-        <div class="dream-header" data-dream-reveal>
-            <div class="dream-badge">
-                <i class="fas fa-sparkles"></i>
-                ИСТОРИИ НА ПРОМЯНАТА
-            </div>
-            <h2 class="dream-main-title">
-                ПРЕДСТАВИ СИ ЖИВОТ, В КОЙТО<br>
-                <span class="highlight-green">ПАРИТЕ РАБОТЯТ ЗА ТЕБ</span>
-            </h2>
-            <p class="dream-subtitle">
-                Реални хора. Реални резултати. Виж как FinTrack промени живота на хиляди българи — и как може да промени твоя.
-            </p>
+    <!-- ============================================ -->
+    <!-- DREAM SECTION: Show the Dream — Life After   -->
+    <!-- Transformation Stories + Dream Visualizer     -->
+    <!-- ============================================ -->
+    <section class="dream-section section" id="dream" data-scroll-section>
+        <!-- Background Shapes -->
+        <div class="dream-bg-shapes">
+            <div class="dream-shape dream-shape-1"></div>
+            <div class="dream-shape dream-shape-2"></div>
+            <div class="dream-shape dream-shape-3"></div>
         </div>
 
-        <!-- Stories Label -->
-        <div class="dream-stories-label" data-dream-reveal>
-            <span class="stories-label-text">
-                <span class="stories-label-line"></span>
-                ПРЕДИ & СЛЕД FINTRACK
-                <span class="stories-label-line"></span>
-            </span>
-        </div>
+        <div class="dream-container">
 
-        <!-- Transformation Stories Grid -->
-        <div class="dream-stories-grid">
-
-            <!-- Story 1: Maria -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/maria-story.png" alt="Мария — учителка, 31 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Мария, 31</div>
-                        <div class="story-person-role">Учителка, Пловдив</div>
-                    </div>
+            <!-- Section Header -->
+            <div class="dream-header" data-dream-reveal>
+                <div class="dream-badge">
+                    <i class="fas fa-sparkles"></i>
+                    ИСТОРИИ НА ПРОМЯНАТА
                 </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
-                        </div>
-                        <div class="story-state-text">
-                            80 лв в края на месеца. Нула спестявания. Всяка неочаквана сметка беше паника.
-                        </div>
-                    </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 90 ДНИ
-                        </div>
-                        <div class="story-state-text">
-                            Спести 2,100 лв. Откри 340 лв/месечно скрити разходи, които не подозираше.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">✈️</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">2,100 лв спестени</span>
-                        <span class="story-result-text">Взе билети за Барселона за себе си и дъщеря си</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 90 дни</span>
-                </div>
+                <h2 class="dream-main-title">
+                    ПРЕДСТАВИ СИ ЖИВОТ, В КОЙТО<br>
+                    <span class="highlight-green">ПАРИТЕ РАБОТЯТ ЗА ТЕБ</span>
+                </h2>
+                <p class="dream-subtitle">
+                    Реални хора. Реални резултати. Виж как FinTrack промени живота на хиляди българи — и как може да
+                    промени твоя.
+                </p>
             </div>
 
-            <!-- Story 2: Georgi -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/georgi-story.png" alt="Георги — програмист, 27 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Георги, 27</div>
-                        <div class="story-person-role">Програмист, София</div>
-                    </div>
-                </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
-                        </div>
-                        <div class="story-state-text">
-                            Печелеше 3,200 лв, но никога не знаеше къде отиват. Края на месеца — винаги на нулата.
-                        </div>
-                    </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 6 МЕСЕЦА
-                        </div>
-                        <div class="story-state-text">
-                            Спести 4,800 лв. Намали импулсивните покупки с 60%. Вече има авариен фонд.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">🏠</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">4,800 лв спестени</span>
-                        <span class="story-result-text">Направи първата вноска за собствен апартамент</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 6 мес.</span>
-                </div>
+            <!-- Stories Label -->
+            <div class="dream-stories-label" data-dream-reveal>
+                <span class="stories-label-text">
+                    <span class="stories-label-line"></span>
+                    ПРЕДИ & СЛЕД FINTRACK
+                    <span class="stories-label-line"></span>
+                </span>
             </div>
 
-            <!-- Story 3: Elena -->
-            <div class="story-card" data-dream-reveal>
-                <div class="story-card-glow"></div>
-                <div class="story-person">
-                    <div class="story-avatar">
-                        <img src="assets/testimonials/elena-story.png" alt="Елена — мениджър, 45 години" loading="lazy" width="64" height="64">
-                        <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
-                    </div>
-                    <div class="story-person-info">
-                        <div class="story-person-name">Елена, 45</div>
-                        <div class="story-person-role">Мениджър, Варна</div>
-                    </div>
-                </div>
-                <div class="story-states">
-                    <div class="story-state story-state-before">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-xmark"></i> ПРЕДИ
+            <!-- Transformation Stories Grid -->
+            <div class="dream-stories-grid">
+
+                <!-- Story 1: Maria -->
+                <div class="story-card" data-dream-reveal>
+                    <div class="story-card-glow"></div>
+                    <div class="story-person">
+                        <div class="story-avatar">
+                            <img src="assets/testimonials/maria-story.png" alt="Мария — учителка, 31 години"
+                                loading="lazy" width="64" height="64">
+                            <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
                         </div>
-                        <div class="story-state-text">
-                            Двама тийнейджъри, ипотека и нула контрол. Всеки месец стрес и караници за пари.
+                        <div class="story-person-info">
+                            <div class="story-person-name">Мария, 31</div>
+                            <div class="story-person-role">Учителка, Пловдив</div>
                         </div>
                     </div>
-                    <div class="story-state story-state-after">
-                        <div class="story-state-label">
-                            <i class="fas fa-circle-check"></i> СЛЕД 1 ГОДИНА
-                        </div>
-                        <div class="story-state-text">
-                            Спести 8,400 лв. Изплати предсрочно 2 кредита. Семейството планира заедно.
-                        </div>
-                    </div>
-                </div>
-                <div class="story-result">
-                    <span class="story-result-emoji">👨‍👩‍👧‍👦</span>
-                    <div class="story-result-content">
-                        <span class="story-result-number">8,400 лв спестени</span>
-                        <span class="story-result-text">Семейна ваканция в Гърция + нов лаптоп за сина</span>
-                    </div>
-                    <span class="story-result-time"><i class="fas fa-clock"></i> 1 година</span>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ========================= -->
-        <!-- Dream Visualizer Tool     -->
-        <!-- ========================= -->
-        <div class="dream-visualizer" data-dream-reveal>
-            <div class="dream-viz-header">
-                <div class="dream-viz-badge">
-                    <i class="fas fa-wand-magic-sparkles"></i>
-                    ИНТЕРАКТИВЕН КАЛКУЛАТОР
-                </div>
-                <h3 class="dream-viz-title">Спести за своята мечта</h3>
-                <p class="dream-viz-subtitle">Избери цел, задай колко можеш да спестяваш месечно и виж кога ще я постигнеш.</p>
-            </div>
-
-            <div class="dream-viz-card" data-dream-reveal>
-                <!-- Goal Selection -->
-                <span class="dream-goals-label">Избери твоята цел</span>
-                <div class="dream-goals-grid" id="dream-goals">
-                    <button class="dream-goal-btn active" data-goal="vacation" data-amount="2800" data-name="Ваканция в Гърция" data-emoji="🏖️">
-                        <span class="dream-goal-icon">🏖️</span>
-                        <span class="dream-goal-name">Ваканция</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="car" data-amount="15000" data-name="Нова кола" data-emoji="🚗">
-                        <span class="dream-goal-icon">🚗</span>
-                        <span class="dream-goal-name">Кола</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="apartment" data-amount="25000" data-name="Първа вноска за жилище" data-emoji="🏠">
-                        <span class="dream-goal-icon">🏠</span>
-                        <span class="dream-goal-name">Жилище</span>
-                    </button>
-                    <button class="dream-goal-btn" data-goal="pension" data-amount="50000" data-name="Пенсионен фонд" data-emoji="🏝️">
-                        <span class="dream-goal-icon">🏝️</span>
-                        <span class="dream-goal-name">Пенсия</span>
-                    </button>
-                </div>
-
-                <!-- Savings Slider -->
-                <div class="dream-slider-section">
-                    <div class="dream-slider-header">
-                        <span class="dream-slider-label">Месечно спестяване</span>
-                        <span class="dream-slider-value" id="dream-slider-display"><span>200</span> лв/месец</span>
-                    </div>
-                    <div class="dream-slider-wrapper">
-                        <input type="range" class="dream-slider" id="dream-savings-slider" min="50" max="1000" value="200" step="25">
-                    </div>
-                    <div class="dream-slider-marks">
-                        <span>50 лв</span>
-                        <span>250 лв</span>
-                        <span>500 лв</span>
-                        <span>750 лв</span>
-                        <span>1000 лв</span>
-                    </div>
-                </div>
-
-                <!-- Result Display -->
-                <div class="dream-result-display" id="dream-result">
-                    <div class="dream-result-top">
-                        <div class="dream-result-goal-display">
-                            <span class="dream-result-goal-icon" id="dream-result-emoji">🏖️</span>
-                            <div class="dream-result-goal-info">
-                                <span class="dream-result-goal-label">Твоята цел</span>
-                                <span class="dream-result-goal-name" id="dream-result-goal-name">Ваканция в Гърция</span>
+                    <div class="story-states">
+                        <div class="story-state story-state-before">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                            </div>
+                            <div class="story-state-text">
+                                80 лв в края на месеца. Нула спестявания. Всяка неочаквана сметка беше паника.
                             </div>
                         </div>
-                        <div class="dream-result-check">
-                            <i class="fas fa-bullseye"></i>
+                        <div class="story-state story-state-after">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-check"></i> СЛЕД 90 ДНИ
+                            </div>
+                            <div class="story-state-text">
+                                Спести 2,100 лв. Откри 340 лв/месечно скрити разходи, които не подозираше.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-result">
+                        <span class="story-result-emoji">✈️</span>
+                        <div class="story-result-content">
+                            <span class="story-result-number">2,100 лв спестени</span>
+                            <span class="story-result-text">Взе билети за Барселона за себе си и дъщеря си</span>
+                        </div>
+                        <span class="story-result-time"><i class="fas fa-clock"></i> 90 дни</span>
+                    </div>
+                </div>
+
+                <!-- Story 2: Georgi -->
+                <div class="story-card" data-dream-reveal>
+                    <div class="story-card-glow"></div>
+                    <div class="story-person">
+                        <div class="story-avatar">
+                            <img src="assets/testimonials/georgi-story.png" alt="Георги — програмист, 27 години"
+                                loading="lazy" width="64" height="64">
+                            <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
+                        </div>
+                        <div class="story-person-info">
+                            <div class="story-person-name">Георги, 27</div>
+                            <div class="story-person-role">Програмист, София</div>
+                        </div>
+                    </div>
+                    <div class="story-states">
+                        <div class="story-state story-state-before">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                            </div>
+                            <div class="story-state-text">
+                                Печелеше 3,200 лв, но никога не знаеше къде отиват. Края на месеца — винаги на нулата.
+                            </div>
+                        </div>
+                        <div class="story-state story-state-after">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-check"></i> СЛЕД 6 МЕСЕЦА
+                            </div>
+                            <div class="story-state-text">
+                                Спести 4,800 лв. Намали импулсивните покупки с 60%. Вече има авариен фонд.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-result">
+                        <span class="story-result-emoji">🏠</span>
+                        <div class="story-result-content">
+                            <span class="story-result-number">4,800 лв спестени</span>
+                            <span class="story-result-text">Направи първата вноска за собствен апартамент</span>
+                        </div>
+                        <span class="story-result-time"><i class="fas fa-clock"></i> 6 мес.</span>
+                    </div>
+                </div>
+
+                <!-- Story 3: Elena -->
+                <div class="story-card" data-dream-reveal>
+                    <div class="story-card-glow"></div>
+                    <div class="story-person">
+                        <div class="story-avatar">
+                            <img src="assets/testimonials/elena-story.png" alt="Елена — мениджър, 45 години"
+                                loading="lazy" width="64" height="64">
+                            <div class="story-avatar-badge"><i class="fas fa-check"></i></div>
+                        </div>
+                        <div class="story-person-info">
+                            <div class="story-person-name">Елена, 45</div>
+                            <div class="story-person-role">Мениджър, Варна</div>
+                        </div>
+                    </div>
+                    <div class="story-states">
+                        <div class="story-state story-state-before">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-xmark"></i> ПРЕДИ
+                            </div>
+                            <div class="story-state-text">
+                                Двама тийнейджъри, ипотека и нула контрол. Всеки месец стрес и караници за пари.
+                            </div>
+                        </div>
+                        <div class="story-state story-state-after">
+                            <div class="story-state-label">
+                                <i class="fas fa-circle-check"></i> СЛЕД 1 ГОДИНА
+                            </div>
+                            <div class="story-state-text">
+                                Спести 8,400 лв. Изплати предсрочно 2 кредита. Семейството планира заедно.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-result">
+                        <span class="story-result-emoji">👨‍👩‍👧‍👦</span>
+                        <div class="story-result-content">
+                            <span class="story-result-number">8,400 лв спестени</span>
+                            <span class="story-result-text">Семейна ваканция в Гърция + нов лаптоп за сина</span>
+                        </div>
+                        <span class="story-result-time"><i class="fas fa-clock"></i> 1 година</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================= -->
+            <!-- Dream Visualizer Tool     -->
+            <!-- ========================= -->
+            <div class="dream-visualizer" data-dream-reveal>
+                <div class="dream-viz-header">
+                    <div class="dream-viz-badge">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        ИНТЕРАКТИВЕН КАЛКУЛАТОР
+                    </div>
+                    <h3 class="dream-viz-title">Спести за своята мечта</h3>
+                    <p class="dream-viz-subtitle">Избери цел, задай колко можеш да спестяваш месечно и виж кога ще я
+                        постигнеш.</p>
+                </div>
+
+                <div class="dream-viz-card" data-dream-reveal>
+                    <!-- Goal Selection -->
+                    <span class="dream-goals-label">Избери твоята цел</span>
+                    <div class="dream-goals-grid" id="dream-goals">
+                        <button class="dream-goal-btn active" data-goal="vacation" data-amount="2800"
+                            data-name="Ваканция в Гърция" data-emoji="🏖️">
+                            <span class="dream-goal-icon">🏖️</span>
+                            <span class="dream-goal-name">Ваканция</span>
+                        </button>
+                        <button class="dream-goal-btn" data-goal="car" data-amount="15000" data-name="Нова кола"
+                            data-emoji="🚗">
+                            <span class="dream-goal-icon">🚗</span>
+                            <span class="dream-goal-name">Кола</span>
+                        </button>
+                        <button class="dream-goal-btn" data-goal="apartment" data-amount="25000"
+                            data-name="Първа вноска за жилище" data-emoji="🏠">
+                            <span class="dream-goal-icon">🏠</span>
+                            <span class="dream-goal-name">Жилище</span>
+                        </button>
+                        <button class="dream-goal-btn" data-goal="pension" data-amount="50000"
+                            data-name="Пенсионен фонд" data-emoji="🏝️">
+                            <span class="dream-goal-icon">🏝️</span>
+                            <span class="dream-goal-name">Пенсия</span>
+                        </button>
+                    </div>
+
+                    <!-- Savings Slider -->
+                    <div class="dream-slider-section">
+                        <div class="dream-slider-header">
+                            <span class="dream-slider-label">Месечно спестяване</span>
+                            <span class="dream-slider-value" id="dream-slider-display"><span>200</span> лв/месец</span>
+                        </div>
+                        <div class="dream-slider-wrapper">
+                            <input type="range" class="dream-slider" id="dream-savings-slider" min="50" max="1000"
+                                value="200" step="25">
+                        </div>
+                        <div class="dream-slider-marks">
+                            <span>50 лв</span>
+                            <span>250 лв</span>
+                            <span>500 лв</span>
+                            <span>750 лв</span>
+                            <span>1000 лв</span>
                         </div>
                     </div>
 
-                    <div class="dream-result-main">
-                        <div class="dream-result-months" id="dream-result-months">14</div>
-                        <div class="dream-result-months-label">месеца до мечтата ти</div>
-                        <div class="dream-result-phrase" id="dream-result-phrase">
-                            След <span class="phrase-highlight">14 месеца</span> ще бъдеш на плажа в Гърция 🇬🇷
+                    <!-- Result Display -->
+                    <div class="dream-result-display" id="dream-result">
+                        <div class="dream-result-top">
+                            <div class="dream-result-goal-display">
+                                <span class="dream-result-goal-icon" id="dream-result-emoji">🏖️</span>
+                                <div class="dream-result-goal-info">
+                                    <span class="dream-result-goal-label">Твоята цел</span>
+                                    <span class="dream-result-goal-name" id="dream-result-goal-name">Ваканция в
+                                        Гърция</span>
+                                </div>
+                            </div>
+                            <div class="dream-result-check">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="dream-result-stats">
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-total">2,800 лв</span>
-                            <span class="dream-stat-label">Обща сума</span>
+                        <div class="dream-result-main">
+                            <div class="dream-result-months" id="dream-result-months">14</div>
+                            <div class="dream-result-months-label">месеца до мечтата ти</div>
+                            <div class="dream-result-phrase" id="dream-result-phrase">
+                                След <span class="phrase-highlight">14 месеца</span> ще бъдеш на плажа в Гърция 🇬🇷
+                            </div>
                         </div>
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-monthly">200 лв</span>
-                            <span class="dream-stat-label">На месец</span>
-                        </div>
-                        <div class="dream-stat-item">
-                            <span class="dream-stat-number" id="dream-stat-daily">~7 лв</span>
-                            <span class="dream-stat-label">На ден</span>
-                        </div>
-                    </div>
 
-                    <div class="dream-progress-bar">
-                        <div class="dream-progress-fill" id="dream-progress" style="width: 30%;"></div>
+                        <div class="dream-result-stats">
+                            <div class="dream-stat-item">
+                                <span class="dream-stat-number" id="dream-stat-total">2,800 лв</span>
+                                <span class="dream-stat-label">Обща сума</span>
+                            </div>
+                            <div class="dream-stat-item">
+                                <span class="dream-stat-number" id="dream-stat-monthly">200 лв</span>
+                                <span class="dream-stat-label">На месец</span>
+                            </div>
+                            <div class="dream-stat-item">
+                                <span class="dream-stat-number" id="dream-stat-daily">~7 лв</span>
+                                <span class="dream-stat-label">На ден</span>
+                            </div>
+                        </div>
+
+                        <div class="dream-progress-bar">
+                            <div class="dream-progress-fill" id="dream-progress" style="width: 30%;"></div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="dream-cta-wrapper" data-dream-reveal>
+                    <a href="#download" class="dream-cta-button" onclick="scrollToDownload(); return false;">
+                        <span>ЗАПОЧНИ ДА СПЕСТЯВАШ ДНЕС</span>
+                        <span class="dream-cta-icon"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <span class="dream-cta-sub">Настрой се за 30 секунди • iOS & Android</span>
                 </div>
             </div>
 
-            <!-- CTA -->
-            <div class="dream-cta-wrapper" data-dream-reveal>
-                <a href="#download" class="dream-cta-button" onclick="scrollToDownload(); return false;">
-                    <span>ЗАПОЧНИ ДА СПЕСТЯВАШ ДНЕС</span>
-                    <span class="dream-cta-icon"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <span class="dream-cta-sub">Настрой се за 30 секунди • iOS & Android</span>
-            </div>
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- ============================================ -->
+    <!-- SECTION 3: SOLUTION INTRODUCTION -->
+    <!-- Premium Bento Box Grid - Redesigned -->
+    <!-- ============================================ -->
+    <section class="solution-section section" id="solution" data-scroll-section>
+        <div class="solution-container">
 
-<!-- ============================================ -->
-<!-- SECTION 3: SOLUTION INTRODUCTION -->
-<!-- Premium Bento Box Grid - Redesigned -->
-<!-- ============================================ -->
-<section class="solution-section section" id="solution" data-scroll-section>
-    <div class="solution-container">
+            <!-- Bento Grid -->
+            <div class="bento-grid">
 
-        <!-- Bento Grid -->
-        <div class="bento-grid">
-
-            <!-- Large Image Card - Top Left -->
-            <div class="bento-card large-image-card" data-bento-reveal>
-                <div class="card-image-wrapper">
-                    <img src="assets/mockups/iPhone_17_Mockup_1.webp" alt="FinTrack — интерфейс за проследяване на разходи и спестявания" class="bento-card-image" loading="lazy">
-                </div>
-                <div class="image-card-overlay">
-                    <span class="image-card-tag"><i class="fas fa-mobile-alt"></i> Реален интерфейс</span>
-                </div>
-            </div>
-
-            <!-- Icon Badge Card - Top Middle: AI Speed -->
-            <div class="bento-card icon-badge-card" data-bento-reveal>
-                <div class="badge-icon-wrapper">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <div class="badge-text">
-                    <div class="badge-label">AI АНАЛИЗ</div>
-                    <div class="badge-sublabel">ЗА < 3 СЕКУНДИ</div>
-                </div>
-                <div class="badge-glow"></div>
-            </div>
-
-            <!-- Main Headline Card - Top Right -->
-            <div class="bento-card headline-card" data-bento-reveal>
-                <div class="headline-accent-line"></div>
-                <h2 class="solution-headline">
-                    ПРЕДСТАВЯМЕ<br>
-                    <span class="headline-gradient">FINTRACK</span>
-                </h2>
-                <p class="solution-description">
-                    Виж точно къде отиват парите ти. Получи персонални AI съвети, които спестяват средно <strong>200 лв</strong> месечно. Без ексел, без стрес — само резултати.
-                </p>
-                <a href="#download" class="solution-cta-button" onclick="scrollToDownload(); return false;">
-                    <span class="cta-text">ЗАПОЧНИ СЕГА</span>
-                    <span class="cta-arrow"><i class="fas fa-arrow-right"></i></span>
-                    <div class="cta-shimmer"></div>
-                </a>
-                <div class="solution-trust-badges">
-                    <div class="trust-badge">
-                        <i class="fab fa-apple"></i>
-                        <span>4.8 ★</span>
+                <!-- Large Image Card - Top Left -->
+                <div class="bento-card large-image-card" data-bento-reveal>
+                    <div class="card-image-wrapper">
+                        <img src="assets/mockups/iPhone_17_Mockup_1.webp"
+                            alt="FinTrack — интерфейс за проследяване на разходи и спестявания" class="bento-card-image"
+                            loading="lazy">
                     </div>
-                    <div class="trust-badge-separator"></div>
-                    <div class="trust-badge">
-                        <i class="fab fa-google-play"></i>
-                        <span>4.7 ★</span>
-                    </div>
-                    <div class="trust-badge-separator"></div>
-                    <div class="trust-badge">
-                        <i class="fas fa-users"></i>
-                        <span>15K+</span>
+                    <div class="image-card-overlay">
+                        <span class="image-card-tag"><i class="fas fa-mobile-alt"></i> Реален интерфейс</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Circular Badge Card - Middle Left -->
-            <div class="bento-card circular-badge-card" data-bento-reveal>
-                <div class="circular-badge">
-                    <svg viewBox="0 0 200 200" class="circular-text">
-                        <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
-                        <text>
-                            <textPath href="#circlePath" startOffset="0%">
-                                ФИНАНСОВА СВОБОДА • ПЪЛЕН КОНТРОЛ • ФИНАНСОВА СВОБОДА •
-                            </textPath>
-                        </text>
-                    </svg>
-                    <div class="circular-badge-center">
-                        <i class="fas fa-chart-line"></i>
+                <!-- Icon Badge Card - Top Middle: AI Speed -->
+                <div class="bento-card icon-badge-card" data-bento-reveal>
+                    <div class="badge-icon-wrapper">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                </div>
-            </div>
-
-            <!-- Savings Potential Card - Middle -->
-            <div class="bento-card savings-card" data-bento-reveal>
-                <div class="savings-label">Колко спестяваш за</div>
-                <div class="savings-period">1 година?</div>
-                <div class="savings-amount-wrapper">
-                    <span class="savings-amount">2,400</span>
-                    <span class="savings-currency">лв</span>
-                </div>
-                <div class="savings-bar-wrapper">
-                    <div class="savings-bar">
-                        <div class="savings-bar-fill"></div>
+                    <div class="badge-text">
+                        <div class="badge-label">AI АНАЛИЗ</div>
+                        <div class="badge-sublabel">ЗА < 3 СЕКУНДИ</div>
+                        </div>
+                        <div class="badge-glow"></div>
                     </div>
+
+                    <!-- Main Headline Card - Top Right -->
+                    <div class="bento-card headline-card" data-bento-reveal>
+                        <div class="headline-accent-line"></div>
+                        <h2 class="solution-headline">
+                            ПРЕДСТАВЯМЕ<br>
+                            <span class="headline-gradient">FINTRACK</span>
+                        </h2>
+                        <p class="solution-description">
+                            Виж точно къде отиват парите ти. Получи персонални AI съвети, които спестяват средно
+                            <strong>200 лв</strong> месечно. Без ексел, без стрес — само резултати.
+                        </p>
+                        <a href="#download" class="solution-cta-button" onclick="scrollToDownload(); return false;">
+                            <span class="cta-text">ЗАПОЧНИ СЕГА</span>
+                            <span class="cta-arrow"><i class="fas fa-arrow-right"></i></span>
+                            <div class="cta-shimmer"></div>
+                        </a>
+                        <div class="solution-trust-badges">
+                            <div class="trust-badge">
+                                <i class="fab fa-apple"></i>
+                                <span>4.8 ★</span>
+                            </div>
+                            <div class="trust-badge-separator"></div>
+                            <div class="trust-badge">
+                                <i class="fab fa-google-play"></i>
+                                <span>4.7 ★</span>
+                            </div>
+                            <div class="trust-badge-separator"></div>
+                            <div class="trust-badge">
+                                <i class="fas fa-users"></i>
+                                <span>15K+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circular Badge Card - Middle Left -->
+                    <div class="bento-card circular-badge-card" data-bento-reveal>
+                        <div class="circular-badge">
+                            <svg viewBox="0 0 200 200" class="circular-text">
+                                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+                                    fill="none" />
+                                <text>
+                                    <textPath href="#circlePath" startOffset="0%">
+                                        ФИНАНСОВА СВОБОДА • ПЪЛЕН КОНТРОЛ • ФИНАНСОВА СВОБОДА •
+                                    </textPath>
+                                </text>
+                            </svg>
+                            <div class="circular-badge-center">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Savings Potential Card - Middle -->
+                    <div class="bento-card savings-card" data-bento-reveal>
+                        <div class="savings-label">Колко спестяваш за</div>
+                        <div class="savings-period">1 година?</div>
+                        <div class="savings-amount-wrapper">
+                            <span class="savings-amount">2,400</span>
+                            <span class="savings-currency">лв</span>
+                        </div>
+                        <div class="savings-bar-wrapper">
+                            <div class="savings-bar">
+                                <div class="savings-bar-fill"></div>
+                            </div>
+                        </div>
+                        <div class="savings-hint">средно за потребител</div>
+                    </div>
+
+                    <!-- Feature Highlight Card - Middle Right -->
+                    <div class="bento-card feature-highlight-card" data-bento-reveal>
+                        <div class="feature-tag"><i class="fas fa-fire"></i> ДОКАЗАН РЕЗУЛТАТ</div>
+                        <h3 class="feature-headline">
+                            Спестявай средно<br>
+                            <span class="feature-amount">200 лв</span><br>
+                            всеки месец
+                        </h3>
+                        <p class="feature-subtext">само като знаеш къде отиват парите ти</p>
+                    </div>
+
+                    <!-- App Visual Card - Right -->
+                    <div class="bento-card app-visual-card" data-bento-reveal>
+                        <div class="app-visual-ring"></div>
+                        <div class="app-visual-circle">
+                            <img src="assets/logos/optimized/logo-256.png" alt="FinTrack Logo" class="app-logo-visual"
+                                loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Timeline Card - Bottom -->
+                    <div class="bento-card timeline-card-bento" data-bento-reveal>
+                        <div class="timeline-bento-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="timeline-bento-content">
+                            <p class="timeline-bento-text">Достъпно за <strong>iOS</strong> и <strong>Android</strong> •
+                                Настройка за <strong>30 секунди</strong></p>
+                        </div>
+                        <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(); return false;">
+                            Изтегли <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
                 </div>
-                <div class="savings-hint">средно за потребител</div>
+
             </div>
-
-            <!-- Feature Highlight Card - Middle Right -->
-            <div class="bento-card feature-highlight-card" data-bento-reveal>
-                <div class="feature-tag"><i class="fas fa-fire"></i> ДОКАЗАН РЕЗУЛТАТ</div>
-                <h3 class="feature-headline">
-                    Спестявай средно<br>
-                    <span class="feature-amount">200 лв</span><br>
-                    всеки месец
-                </h3>
-                <p class="feature-subtext">само като знаеш къде отиват парите ти</p>
-            </div>
-
-            <!-- App Visual Card - Right -->
-            <div class="bento-card app-visual-card" data-bento-reveal>
-                <div class="app-visual-ring"></div>
-                <div class="app-visual-circle">
-                    <img src="assets/logos/optimized/logo-256.png" alt="FinTrack Logo" class="app-logo-visual" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Timeline Card - Bottom -->
-            <div class="bento-card timeline-card-bento" data-bento-reveal>
-                <div class="timeline-bento-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="timeline-bento-content">
-                    <p class="timeline-bento-text">Достъпно за <strong>iOS</strong> и <strong>Android</strong> • Настройка за <strong>30 секунди</strong></p>
-                </div>
-                <a href="#download" class="timeline-bento-cta" onclick="scrollToDownload(); return false;">
-                    Изтегли <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</section>
+    </section>
     <!-- Testimonials Section -->
     <section class="stats-achievements-section section" id="stats" data-scroll-section>
         <!-- Floating Shapes -->
@@ -1050,7 +1343,7 @@
                     <span class="highlight">КОГАТО ВЗЕМЕШ<br>КОНТРОЛ НАД<br>ФИНАНСИТЕ СИ</span>
                 </h2>
                 <p class="stats-description">
-                    Не е магия - просто интелигентна технология и твоята мотивация. 
+                    Не е магия - просто интелигентна технология и твоята мотивация.
                     Виж какво постигат хиляди българи само седмици след като вземат контрол с FinTrack.
                 </p>
                 <div class="stats-decorative">
@@ -1088,249 +1381,250 @@
         </div>
     </section>
 
-<!-- ============================================ -->
-<!-- COMPARISON SECTION: FinTrack vs Alternatives -->
-<!-- ============================================ -->
-<section class="comparison-section section" id="comparison" data-scroll-section>
-    <!-- Background Effects -->
-    <div class="comparison-bg-effects">
-        <div class="comparison-orb comparison-orb-1"></div>
-        <div class="comparison-orb comparison-orb-2"></div>
-        <div class="comparison-orb comparison-orb-3"></div>
-        <div class="comparison-grid-pattern"></div>
-        <div class="comparison-noise"></div>
-    </div>
-
-    <div class="comparison-container">
-        <!-- Header -->
-        <div class="comparison-header">
-            <div class="comparison-badge" data-comp-reveal>
-                <i class="fas fa-trophy"></i>
-                СРАВНЕНИЕ
-            </div>
-            <h2 class="comparison-title" data-comp-reveal>
-                ЗАЩО <span class="comparison-title-accent">FINTRACK</span><br>
-                Е НОМЕР 1?
-            </h2>
-            <p class="comparison-subtitle" data-comp-reveal>
-                Не всички финансови инструменти са еднакви. Виж защо хиляди българи избират FinTrack пред всичко останало.
-            </p>
+    <!-- ============================================ -->
+    <!-- COMPARISON SECTION: FinTrack vs Alternatives -->
+    <!-- ============================================ -->
+    <section class="comparison-section section" id="comparison" data-scroll-section>
+        <!-- Background Effects -->
+        <div class="comparison-bg-effects">
+            <div class="comparison-orb comparison-orb-1"></div>
+            <div class="comparison-orb comparison-orb-2"></div>
+            <div class="comparison-orb comparison-orb-3"></div>
+            <div class="comparison-grid-pattern"></div>
+            <div class="comparison-noise"></div>
         </div>
 
-        <!-- Comparison Table -->
-        <div class="comparison-table-wrapper" data-comp-reveal>
-            <div class="comparison-table">
-                <!-- Header Row -->
-                <div class="comp-header-cell">
-                    <span class="comp-features-label">КАКВО ПОЛУЧАВАШ</span>
+        <div class="comparison-container">
+            <!-- Header -->
+            <div class="comparison-header">
+                <div class="comparison-badge" data-comp-reveal>
+                    <i class="fas fa-trophy"></i>
+                    СРАВНЕНИЕ
                 </div>
-                <div class="comp-header-cell fintrack-header">
-                    <div class="comp-header-icon fintrack-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <span class="comp-header-name fintrack-name">FinTrack</span>
-                    <span class="comp-header-sub">Всичко в едно</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon excel-icon">
-                        <i class="fas fa-table"></i>
-                    </div>
-                    <span class="comp-header-name">Excel</span>
-                    <span class="comp-header-sub">Ръчна работа</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon bank-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <span class="comp-header-name">Банково прил.</span>
-                    <span class="comp-header-sub">Ограничено</span>
-                </div>
-                <div class="comp-header-cell">
-                    <div class="comp-header-icon other-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <span class="comp-header-name">Други прил.</span>
-                    <span class="comp-header-sub">Чуждестранни</span>
-                </div>
+                <h2 class="comparison-title" data-comp-reveal>
+                    ЗАЩО <span class="comparison-title-accent">FINTRACK</span><br>
+                    Е НОМЕР 1?
+                </h2>
+                <p class="comparison-subtitle" data-comp-reveal>
+                    Не всички финансови инструменти са еднакви. Виж защо хиляди българи избират FinTrack пред всичко
+                    останало.
+                </p>
+            </div>
 
-                <!-- Row 1: Know where your money goes -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-eye"></i></div>
-                        <span class="comp-feature-name">Знаеш къде отиват парите ти</span>
+            <!-- Comparison Table -->
+            <div class="comparison-table-wrapper" data-comp-reveal>
+                <div class="comparison-table">
+                    <!-- Header Row -->
+                    <div class="comp-header-cell">
+                        <span class="comp-features-label">КАКВО ПОЛУЧАВАШ</span>
                     </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                    <div class="comp-header-cell fintrack-header">
+                        <div class="comp-header-icon fintrack-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span class="comp-header-name fintrack-name">FinTrack</span>
+                        <span class="comp-header-sub">Всичко в едно</span>
                     </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value manual">Ръчно</span>
+                    <div class="comp-header-cell">
+                        <div class="comp-header-icon excel-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <span class="comp-header-name">Excel</span>
+                        <span class="comp-header-sub">Ръчна работа</span>
                     </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value basic">Частично</span>
+                    <div class="comp-header-cell">
+                        <div class="comp-header-icon bank-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <span class="comp-header-name">Банково прил.</span>
+                        <span class="comp-header-sub">Ограничено</span>
                     </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value rare">Рядко</span>
+                    <div class="comp-header-cell">
+                        <div class="comp-header-icon other-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <span class="comp-header-name">Други прил.</span>
+                        <span class="comp-header-sub">Чуждестранни</span>
+                    </div>
+
+                    <!-- Row 1: Know where your money goes -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-eye"></i></div>
+                            <span class="comp-feature-name">Знаеш къде отиват парите ти</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value manual">Ръчно</span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value basic">Частично</span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value rare">Рядко</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Save without effort -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-piggy-bank"></i></div>
+                            <span class="comp-feature-name">Спестяваш без усилие</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Stop impulse purchases -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                            <span class="comp-feature-name">Спираш импулсивните покупки</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Predict your future -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <span class="comp-feature-name">Предвиждаш финансовото си бъдеще</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value manual">Ръчно</span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Feel in control -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-trophy"></i></div>
+                            <span class="comp-feature-name">Имаш пълен финансов контрол</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value basic">Базов</span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Made for Bulgaria -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-flag"></i></div>
+                            <span class="comp-feature-name">Създадено за българите</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value rare">Рядко</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 7: Ready in seconds -->
+                    <div class="comp-row">
+                        <div class="comp-feature-cell">
+                            <div class="comp-feature-icon"><i class="fas fa-rocket"></i></div>
+                            <span class="comp-feature-name">Готов за 30 секунди</span>
+                        </div>
+                        <div class="comp-value-cell fintrack-col">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check no"><i class="fas fa-times"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-check yes"><i class="fas fa-check"></i></span>
+                        </div>
+                        <div class="comp-value-cell">
+                            <span class="comp-text-value average">Средно</span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Row 2: Save without effort -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-piggy-bank"></i></div>
-                        <span class="comp-feature-name">Спестяваш без усилие</span>
+            <!-- Winner Banner -->
+            <div class="comparison-winner" data-comp-reveal>
+                <div class="winner-card">
+                    <div class="winner-score-row">
+                        <span class="winner-score" data-comp-counter="7">0</span>
+                        <div class="winner-score-label">
+                            <strong>от 7 категории</strong>
+                            FinTrack печели във всяка
+                        </div>
                     </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
+                    <p class="winner-text">Изборът е <span class="accent">очевиден</span>.</p>
+                    <a href="#download" class="winner-cta" onclick="scrollToDownload(); return false;">
+                        ЗАПОЧНИ СЕГА <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Row 3: Stop impulse purchases -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-shield-alt"></i></div>
-                        <span class="comp-feature-name">Спираш импулсивните покупки</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
+            <!-- Trust Row -->
+            <div class="comparison-trust-row" data-comp-reveal>
+                <div class="comp-trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Защитени данни</span>
                 </div>
-
-                <!-- Row 4: Predict your future -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-chart-line"></i></div>
-                        <span class="comp-feature-name">Предвиждаш финансовото си бъдеще</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value manual">Ръчно</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
+                <div class="comp-trust-divider"></div>
+                <div class="comp-trust-item">
+                    <i class="fab fa-apple"></i>
+                    <span>iOS & Android</span>
                 </div>
-
-                <!-- Row 5: Feel in control -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-trophy"></i></div>
-                        <span class="comp-feature-name">Имаш пълен финансов контрол</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value basic">Базов</span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                </div>
-
-                <!-- Row 6: Made for Bulgaria -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-flag"></i></div>
-                        <span class="comp-feature-name">Създадено за българите</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value rare">Рядко</span>
-                    </div>
-                </div>
-
-                <!-- Row 7: Ready in seconds -->
-                <div class="comp-row">
-                    <div class="comp-feature-cell">
-                        <div class="comp-feature-icon"><i class="fas fa-rocket"></i></div>
-                        <span class="comp-feature-name">Готов за 30 секунди</span>
-                    </div>
-                    <div class="comp-value-cell fintrack-col">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check no"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-check yes"><i class="fas fa-check"></i></span>
-                    </div>
-                    <div class="comp-value-cell">
-                        <span class="comp-text-value average">Средно</span>
-                    </div>
+                <div class="comp-trust-divider"></div>
+                <div class="comp-trust-item">
+                    <i class="fas fa-star"></i>
+                    <span>4.8 рейтинг</span>
                 </div>
             </div>
         </div>
-
-        <!-- Winner Banner -->
-        <div class="comparison-winner" data-comp-reveal>
-            <div class="winner-card">
-                <div class="winner-score-row">
-                    <span class="winner-score" data-comp-counter="7">0</span>
-                    <div class="winner-score-label">
-                        <strong>от 7 категории</strong>
-                        FinTrack печели във всяка
-                    </div>
-                </div>
-                <p class="winner-text">Изборът е <span class="accent">очевиден</span>.</p>
-                <a href="#download" class="winner-cta" onclick="scrollToDownload(); return false;">
-                    ЗАПОЧНИ СЕГА <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Trust Row -->
-        <div class="comparison-trust-row" data-comp-reveal>
-            <div class="comp-trust-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>Защитени данни</span>
-            </div>
-            <div class="comp-trust-divider"></div>
-            <div class="comp-trust-item">
-                <i class="fab fa-apple"></i>
-                <span>iOS & Android</span>
-            </div>
-            <div class="comp-trust-divider"></div>
-            <div class="comp-trust-item">
-                <i class="fas fa-star"></i>
-                <span>4.8 рейтинг</span>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Results/Features Section -->
     <section class="features-results-section section" id="features" data-scroll-section>
@@ -1345,13 +1639,14 @@
                     <span>спокойствието.</span>
                 </h2>
                 <p class="fr-subtitle">
-                    Всяка функция на FinTrack е проектирана с една цел: да ви върне контрола, който губите всеки месец без дори да подозирате.
+                    Всяка функция на FinTrack е проектирана с една цел: да ви върне контрола, който губите всеки месец
+                    без дори да подозирате.
                 </p>
             </div>
 
             <!-- Bento Grid -->
             <div class="fr-bento-grid">
-                
+
                 <!-- AI Card (Spans large space) -->
                 <div class="fr-card fr-card-ai" data-bento-reveal>
                     <div class="fr-glow"></div>
@@ -1363,12 +1658,16 @@
                             <span class="fr-highlight-text">Основна функция · AI Анализ</span>
                             <h3 class="fr-title">Виждаш за какво харчиш — за под 3 секунди</h3>
                             <p class="fr-desc">
-                                AI-ът не само записва разходите ти. Разпознава моделите, открива "течовете" и ти казва точно какво да промениш — автоматично, без ти да правиш нищо.
+                                AI-ът не само записва разходите ти. Разпознава моделите, открива "течовете" и ти казва
+                                точно какво да промениш — автоматично, без ти да правиш нищо.
                             </p>
                             <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Средно открива 3.4 "невидими" разхода</div>
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Препоръките спестяват ~200 лв/месец</div>
-                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Персонализира се за 7 дни</div>
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Средно
+                                    открива 3.4 "невидими" разхода</div>
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i> Препоръките
+                                    спестяват ~200 лв/месец</div>
+                                <div><i class="fas fa-check" style="color: #6aaf1a; margin-right: 6px;"></i>
+                                    Персонализира се за 7 дни</div>
                             </div>
                         </div>
 
@@ -1379,15 +1678,18 @@
                                 <span><i class="fas fa-utensils"></i> Ресторанти</span> <span>+23% (390 лв)</span>
                             </div>
                             <div class="fr-ai-ui-item">
-                                <span class="fr-ai-ui-cat"><i class="fas fa-car"></i> Транспорт</span> <span class="fr-ai-ui-val">220 лв</span>
+                                <span class="fr-ai-ui-cat"><i class="fas fa-car"></i> Транспорт</span> <span
+                                    class="fr-ai-ui-val">220 лв</span>
                             </div>
                             <div class="fr-ai-ui-item">
-                                <span class="fr-ai-ui-cat"><i class="fas fa-shopping-bag"></i> Пазаруване</span> <span class="fr-ai-ui-val">180 лв</span>
+                                <span class="fr-ai-ui-cat"><i class="fas fa-shopping-bag"></i> Пазаруване</span> <span
+                                    class="fr-ai-ui-val">180 лв</span>
                             </div>
-                            
+
                             <div class="fr-ai-ui-alert">
                                 <div class="fr-ai-ui-alert-title"><i class="fas fa-sparkles"></i> FinTrack Insight</div>
-                                <div class="fr-ai-ui-alert-text">Харчиш с 23% повече за ресторанти от миналия месец. Намали храненията навън с 4, за да си в бюджет.</div>
+                                <div class="fr-ai-ui-alert-text">Харчиш с 23% повече за ресторанти от миналия месец.
+                                    Намали храненията навън с 4, за да си в бюджет.</div>
                                 <div class="fr-ai-ui-alert-save">+180 лв могат да бъдат спестени</div>
                             </div>
                         </div>
@@ -1403,7 +1705,8 @@
                         </div>
                         <h3 class="fr-title">Снимаш бележката → готово</h3>
                         <p class="fr-desc">
-                            QR скенерът чете касови бележки за 2 секунди. Без ръчно въвеждане, без забравени разходи, без досадни таблици.
+                            QR скенерът чете касови бележки за 2 секунди. Без ръчно въвеждане, без забравени разходи,
+                            без досадни таблици.
                         </p>
                         <div class="fr-qr-visual">
                             <i class="fas fa-qrcode"></i>
@@ -1421,7 +1724,8 @@
                         </div>
                         <h3 class="fr-title">Виж дали ще можеш да си го позволиш</h3>
                         <p class="fr-desc">
-                            What-If симулатор: въведи голямо решение (кредит, нова кола) и виж финансовите последствия — преди да е станало.
+                            What-If симулатор: въведи голямо решение (кредит, нова кола) и виж финансовите последствия —
+                            преди да е станало.
                         </p>
                         <div class="fr-whatif-visual">
                             <span class="fr-whatif-scenario">"Ако взема кредит от 500лв?"</span>
@@ -1440,13 +1744,23 @@
                         </div>
                         <h3 class="fr-title">Твоят финансов "кръвен тест"</h3>
                         <p class="fr-desc">
-                            Индекс на финансово здраве — веднъж седмично. Показва точно какво е добре и какво куца. Пълна яснота за 1 минута.
+                            Индекс на финансово здраве — веднъж седмично. Показва точно какво е добре и какво куца.
+                            Пълна яснота за 1 минута.
                         </p>
                         <div class="fr-health-visual">
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 60%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 80%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 40%"></div></div>
-                            <div class="fr-health-bar"><div class="fr-health-bar-fill" style="--h: 90%; background: linear-gradient(to top, #B4F461, #6aaf1a);"></div></div>
+                            <div class="fr-health-bar">
+                                <div class="fr-health-bar-fill" style="--h: 60%"></div>
+                            </div>
+                            <div class="fr-health-bar">
+                                <div class="fr-health-bar-fill" style="--h: 80%"></div>
+                            </div>
+                            <div class="fr-health-bar">
+                                <div class="fr-health-bar-fill" style="--h: 40%"></div>
+                            </div>
+                            <div class="fr-health-bar">
+                                <div class="fr-health-bar-fill"
+                                    style="--h: 90%; background: linear-gradient(to top, #B4F461, #6aaf1a);"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1460,7 +1774,8 @@
                         </div>
                         <h3 class="fr-title">Спестяването спира да е мъчение</h3>
                         <p class="fr-desc">
-                            Постави цел и следи прогреса. Знаеш колко остава. <br><br>Средно целта се постига 2× по-бързо.
+                            Постави цел и следи прогреса. Знаеш колко остава. <br><br>Средно целта се постига 2×
+                            по-бързо.
                         </p>
                         <div class="fr-budget-visual">
                             <div class="fr-budget-texts">
@@ -1504,8 +1819,8 @@
                 <!-- Founder Photo Container -->
                 <div class="letter-image-container reveal-on-scroll">
                     <div class="letter-image-wrapper">
-                        <img src="assets/testimonials/team.jpg" alt="Екипът на FinTrack" class="founder-photo">
-                        <div class="letter-badge">Историята на FinTrack</div>
+                        <img src="assets/testimonials/ivan-dimitrov.png" alt="Иван Димитров" class="founder-photo">
+                        <div class="letter-badge">Верифициран клиент</div>
                     </div>
                 </div>
 
@@ -1516,21 +1831,34 @@
                             <span class="letter-date">31 март 2026</span>
                             <h2 class="letter-title">"Бях там. Знам как се чувстваш."</h2>
                         </div>
-                        
+
                         <div class="letter-body">
-                            <p class="letter-intro"><strong>Едно съобщение, което получихме от доволен клиент:</strong></p>
-                            
+                            <p class="letter-intro"><strong>Едно съобщение, което получихме от доволен клиент:</strong>
+                            </p>
+
                             <h3 class="letter-subtitle">Клопката на "добрите пари"</h3>
-                            <p>Преди да открия FinTrack бях на позиция, за която мнозина мечтаят. Софтуерен инженер в голяма ИТ компания, отлична заплата, бонуси. Отстрани изглеждаше, че съм постигнал всичко.</p>
-                            
-                            <p><strong>Но истината беше друга.</strong> Всеки месец, няколко дни преди заплата, аз проверявах банковото си извлечение с леко свиване в стомаха. Въпреки високия доход, салдото ми винаги беше близо до нулата. Не знаех къде отиват парите ми. Изчезваха неусетно в десетки малки течове – абонаменти, бързи обяди, импулсивни покупки, за които дори не си спомнях седмица по-късно.</p>
-                            
+                            <p>Преди да открия FinTrack бях на позиция, за която мнозина мечтаят. Софтуерен инженер в
+                                голяма ИТ компания, отлична заплата, бонуси. Отстрани изглеждаше, че съм постигнал
+                                всичко.</p>
+
+                            <p><strong>Но истината беше друга.</strong> Всеки месец, няколко дни преди заплата, аз
+                                проверявах банковото си извлечение с леко свиване в стомаха. Въпреки високия доход,
+                                салдото ми винаги беше близо до нулата. Не знаех къде отиват парите ми. Изчезваха
+                                неусетно в десетки малки течове – абонаменти, бързи обяди, импулсивни покупки, за които
+                                дори не си спомнях седмица по-късно.</p>
+
                             <h3 class="letter-subtitle">Моментът на просветление</h3>
-                            <p>Една вечер, след поредния спор за пари с жена ми, реших да направя нещо, което мразех – да седна и да анализирам последните 3 месеца. Използвах тетрадка, после Ексел, после различни чуждестранни приложения. Нищо не работеше дългосрочно.</p>
-                            
-                            <p>Тогава инсталирах <strong>FinTrack</strong>. За първи път видях приложение, което наистина те разбира. AI анализът веднага ми показа къде изтичат средствата ми.</p>
-                            
-                            <p>Разбрах нещо критично: <strong>Проблемът не е бил в доходите ми, а в липсата на яснота.</strong> FinTrack ми върна контрола. Днес спестявам по 450 лв. на месец, без да се лишавам от важните неща. Успяхме дори да заделим пари за семейната почивка, за която си мечтаехме от години. Благодаря ви за това приложение!</p>
+                            <p>Една вечер, след поредния спор за пари с жена ми, реших да направя нещо, което мразех –
+                                да седна и да анализирам последните 3 месеца. Използвах тетрадка, после Ексел, после
+                                различни чуждестранни приложения. Нищо не работеше дългосрочно.</p>
+
+                            <p>Тогава инсталирах <strong>FinTrack</strong>. За първи път видях приложение, което
+                                наистина те разбира. AI анализът веднага ми показа къде изтичат средствата ми.</p>
+
+                            <p>Разбрах нещо критично: <strong>Проблемът не е бил в доходите ми, а в липсата на
+                                    яснота.</strong> FinTrack ми върна контрола. Днес спестявам по 450 лв. на месец, без
+                                да се лишавам от важните неща. Успяхме дори да заделим пари за семейната почивка, за
+                                която си мечтаехме от години. Благодаря ви за това приложение!</p>
                         </div>
 
                         <div class="letter-footer">
@@ -1612,7 +1940,8 @@
                         <input type="range" id="savingsRate" min="0" max="30" value="5" step="1">
                     </div>
 
-                    <button onclick="calculateLoss()" class="calculate-btn" data-track-id="pain-calculator" data-track-label="Pain Calculator Button">
+                    <button onclick="calculateLoss()" class="calculate-btn" data-track-id="pain-calculator"
+                        data-track-label="Pain Calculator Button">
                         <i class="fas fa-calculator"></i>
                         Изчисли загубата ми
                     </button>
@@ -1637,7 +1966,8 @@
                     </div>
                     <div class="results-cta">
                         <p class="shock-text">😱 Това е цената на бездействието!</p>
-                        <a href="#download" class="cta-btn urgent" data-track-id="stop-losses-cta" data-track-label="Stop Losses CTA">
+                        <a href="#download" class="cta-btn urgent" data-track-id="stop-losses-cta"
+                            data-track-label="Stop Losses CTA">
                             Спри загубите сега
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1668,13 +1998,6 @@
 
     <!-- How It Works Section -->
     <section class="how-it-works-section section" id="how-it-works" data-scroll-section>
-        <!-- Background Effects -->
-        <div class="how-bg-effects">
-            <div class="how-orb how-orb-1"></div>
-            <div class="how-orb how-orb-2"></div>
-            <div class="how-orb how-orb-3"></div>
-            <div class="how-noise"></div>
-        </div>
         <div class="container">
             <!-- Interactive Steps Grid -->
             <div class="steps-grid">
@@ -1805,7 +2128,8 @@
 
             <!-- CTA -->
             <div class="how-cta">
-                <a href="#download" class="download-pill-btn" data-track-id="how-it-works-download-pill" data-track-label="How It Works Download Pill Button">
+                <a href="#download" class="download-pill-btn" data-track-id="how-it-works-download-pill"
+                    data-track-label="How It Works Download Pill Button">
                     <span class="pill-btn-text">ИЗТЕГЛИ СЕГА</span>
                     <div class="pill-btn-circle">
                         <i class="fas fa-download"></i>
@@ -1853,7 +2177,8 @@
                             <div class="plan-converted-price">≈ 0.84 лв</div>
                             <span class="plan-daily-label">Без обвързване</span>
                         </div>
-                        <div class="plan-total-price">или <strong>€12.99</strong> <span class="converted-sub">(≈25.40 лв)</span> на месец</div>
+                        <div class="plan-total-price">или <strong>€12.99</strong> <span class="converted-sub">(≈25.40
+                                лв)</span> на месец</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Неограничени транзакции</li>
@@ -1861,8 +2186,9 @@
                         <li><i class="fas fa-check"></i> Разширени отчети и анализи</li>
                         <li><i class="fas fa-check"></i> Персонални финансови съвети</li>
                     </ul>
-                    <a href="#download" class="plan-btn plan-btn-outline" onclick="scrollToDownload(); return false;">Избери Месечен</a>
-                    
+                    <a href="#download" class="plan-btn plan-btn-outline"
+                        onclick="scrollToDownload(); return false;">Избери Месечен</a>
+
                     <div class="social-proof-cta">
                         <div class="users-avatars">
                             <img src="assets/testimonials/avatar-1.webp" alt="user" width="24" height="24">
@@ -1884,7 +2210,8 @@
                             <div class="plan-converted-price">≈ 0.65 лв</div>
                             <span class="plan-daily-label">Спести 23%</span>
                         </div>
-                        <div class="plan-total-price">или <strong>€29.99</strong> <span class="converted-sub">(≈58.65 лв)</span> за 3 месеца</div>
+                        <div class="plan-total-price">или <strong>€29.99</strong> <span class="converted-sub">(≈58.65
+                                лв)</span> за 3 месеца</div>
                     </div>
                     <ul class="plan-features">
                         <li><i class="fas fa-check"></i> Неограничени транзакции</li>
@@ -1892,8 +2219,9 @@
                         <li><i class="fas fa-check"></i> Разширени отчети и анализи</li>
                         <li><i class="fas fa-check"></i> Персонални финансови съвети</li>
                     </ul>
-                    <a href="#download" class="plan-btn plan-btn-outline" onclick="scrollToDownload(); return false;">Избери Тримесечен</a>
-                    
+                    <a href="#download" class="plan-btn plan-btn-outline"
+                        onclick="scrollToDownload(); return false;">Избери Тримесечен</a>
+
                     <div class="social-proof-cta">
                         <div class="users-avatars">
                             <img src="assets/testimonials/avatar-4.webp" alt="user" width="24" height="24">
@@ -1931,8 +2259,9 @@
                         <li><i class="fas fa-star"></i> Разширени отчети и анализи</li>
                         <li><i class="fas fa-star"></i> Персонални финансови съвети</li>
                     </ul>
-                    <a href="#download" class="plan-btn plan-btn-primary" onclick="scrollToDownload(); return false;">Избери Годишен</a>
-                    
+                    <a href="#download" class="plan-btn plan-btn-primary"
+                        onclick="scrollToDownload(); return false;">Избери Годишен</a>
+
                     <div class="social-proof-cta">
                         <div class="users-avatars">
                             <img src="assets/testimonials/avatar-7.webp" alt="user" width="24" height="24">
@@ -1951,7 +2280,9 @@
                         <i class="fas fa-chart-line"></i> ИНВЕСТИЦИЯ, КОЯТО СЕ ИЗПЛАЩА САМА
                     </div>
                     <h3 class="roi-title">ROI: 31 към 1</h3>
-                    <p class="roi-desc">Средно нашите потребители спестяват <strong>200 лв/месец</strong>. <br>Годишният план се изплаща за <strong>18 часа употреба!</strong> При ≈149 лв инвестиция, всичко след първия ден на употреба е чиста печалба към твоя бюджет.</p>
+                    <p class="roi-desc">Средно нашите потребители спестяват <strong>200 лв/месец</strong>. <br>Годишният
+                        план се изплаща за <strong>18 часа употреба!</strong> При ≈149 лв инвестиция, всичко след първия
+                        ден на употреба е чиста печалба към твоя бюджет.</p>
                 </div>
                 <div class="roi-right">
                     <div class="roi-stat-box">
@@ -1970,14 +2301,15 @@
     <!-- Objections Section -->
     <section class="objections-section section" id="objections" data-scroll-section>
         <div class="objection-shape objection-shape-1"></div>
-        
+
         <div class="objections-container" data-scroll data-scroll-speed="0.05">
             <div class="objections-header">
                 <div class="objections-badge">
                     <i class="fas fa-shield-check"></i> БЕЗ РИСК, САМО РЕЗУЛТАТИ
                 </div>
                 <h2 class="objections-title">Все още се <span class="highlight">колебаеш?</span></h2>
-                <p class="objections-subtitle">Ето отговорите на най-честите притеснения, които спират хората да поемат контрол над парите си.</p>
+                <p class="objections-subtitle">Ето отговорите на най-честите притеснения, които спират хората да поемат
+                    контрол над парите си.</p>
             </div>
 
             <div class="objections-accordion">
@@ -1992,9 +2324,11 @@
                     </button>
                     <div class="objection-content">
                         <div class="objection-answer">
-                            FinTrack използва AI, който автоматично разпознава и категоризира разходите ти. Сканирането на касова бележка отнема 2 секунди, а останалото се случва в движение.
+                            FinTrack използва AI, който автоматично разпознава и категоризира разходите ти. Сканирането
+                            на касова бележка отнема 2 секунди, а останалото се случва в движение.
                             <div class="answer-highlight">
-                                <i class="fas fa-bolt"></i> Средният ни потребител прекарва 47 секунди на ден в приложението. Останалото прави AI-ът автоматично.
+                                <i class="fas fa-bolt"></i> Средният ни потребител прекарва 47 секунди на ден в
+                                приложението. Останалото прави AI-ът автоматично.
                             </div>
                         </div>
                     </div>
@@ -2013,9 +2347,11 @@
                         <div class="objection-answer">
                             Страхът е логичен — и ето защо той не важи за FinTrack.
                             <br><br>
-                            FinTrack не знае номера на банковата ти сметка. Не се свързваме с банката ти. Ти сам въвеждаш разходите — или ги сканираш от бележки. Ние само анализираме числата.
+                            FinTrack не знае номера на банковата ти сметка. Не се свързваме с банката ти. Ти сам
+                            въвеждаш разходите — или ги сканираш от бележки. Ние само анализираме числата.
                             <div class="answer-highlight">
-                                <i class="fas fa-lock"></i> Технически е невъзможно да бъдат откраднати банкови данни от нас — защото просто не ги имаме.
+                                <i class="fas fa-lock"></i> Технически е невъзможно да бъдат откраднати банкови данни от
+                                нас — защото просто не ги имаме.
                             </div>
                         </div>
                     </div>
@@ -2032,9 +2368,11 @@
                     </button>
                     <div class="objection-content">
                         <div class="objection-answer">
-                            Средният ни потребител спестява над 200 лв. още през първия месец. Това означава, че инвестицията от ≈0.41 лв. на ден се изплаща многократно.
+                            Средният ни потребител спестява над 200 лв. още през първия месец. Това означава, че
+                            инвестицията от ≈0.41 лв. на ден се изплаща многократно.
                             <div class="answer-highlight">
-                                <i class="fas fa-chart-line"></i> Не гледай на това като на разход, а като на инструмент, който спира „течовете“ на стотици левове от твоя бюджет всеки месец.
+                                <i class="fas fa-chart-line"></i> Не гледай на това като на разход, а като на
+                                инструмент, който спира „течовете“ на стотици левове от твоя бюджет всеки месец.
                             </div>
                         </div>
                     </div>
@@ -2056,7 +2394,8 @@
                 </p>
 
                 <div class="download-buttons">
-                    <a href="#" class="download-btn ios" data-track-id="download-ios" data-track-label="Download iOS App">
+                    <a href="#" class="download-btn ios" data-track-id="download-ios"
+                        data-track-label="Download iOS App">
                         <div class="download-btn-icon">
                             <i class="fab fa-apple"></i>
                         </div>
@@ -2065,7 +2404,8 @@
                             <span class="btn-large">App Store</span>
                         </div>
                     </a>
-                    <a href="#" class="download-btn android" data-track-id="download-android" data-track-label="Download Android App">
+                    <a href="#" class="download-btn android" data-track-id="download-android"
+                        data-track-label="Download Android App">
                         <div class="download-btn-icon">
                             <i class="fab fa-google-play"></i>
                         </div>
@@ -2100,13 +2440,17 @@
             <div class="footer-content">
                 <!-- Column 1: About -->
                 <div class="footer-column">
-                    <img src="assets/logos/optimized/logo-128.png" alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="footer-logo" loading="lazy" decoding="async" width="60" height="60">
+                    <img src="assets/logos/optimized/logo-128.png"
+                        alt="FinTrack лого - приложение за управление на финанси и бюджетиране" class="footer-logo"
+                        loading="lazy" decoding="async" width="60" height="60">
                     <p class="footer-description">
                         Интелигентна система за управление на финанси и бюджетиране. Спестете повече, живейте по-добре.
                     </p>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/profile.php?id=61573000449589&locale=bg_BG" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/f1ntrack/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61573000449589&locale=bg_BG" target="_blank"
+                            class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/f1ntrack/" target="_blank" class="social-icon"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
@@ -2117,7 +2461,8 @@
                         <li><a href="#features">Функции</a></li>
                         <li><a href="#how-it-works">Как работи</a></li>
                         <li><a href="#testimonials">Отзиви</a></li>
-                        <li><a href="#download" data-track-id="footer-download-link" data-track-label="Footer Download Link">Изтегли</a></li>
+                        <li><a href="#download" data-track-id="footer-download-link"
+                                data-track-label="Footer Download Link">Изтегли</a></li>
                     </ul>
                 </div>
 
@@ -2156,7 +2501,7 @@
             <button class="help-center-close" onclick="closeHelpCenter()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="help-center-header">
                 <h2 class="help-center-title">
                     <i class="fas fa-life-ring"></i>
@@ -2181,15 +2526,19 @@
                         <div class="help-category-content">
                             <div class="help-item">
                                 <h4>Как да започна да използвам FinTrack?</h4>
-                                <p>След като изтеглите приложението, създайте профил с email или социални мрежи. След това въведете месечния си доход и основни категории разходи. AI ще ви помогне с препоръки за оптимизация.</p>
+                                <p>След като изтеглите приложението, създайте профил с email или социални мрежи. След
+                                    това въведете месечния си доход и основни категории разходи. AI ще ви помогне с
+                                    препоръки за оптимизация.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Колко време отнема настройката?</h4>
-                                <p>Настройката отнема по-малко от 5 минути. Първоначалната конфигурация е бърза и интуитивна, а AI анализаторът работи автоматично в фонов режим.</p>
+                                <p>Настройката отнема по-малко от 5 минути. Първоначалната конфигурация е бърза и
+                                    интуитивна, а AI анализаторът работи автоматично в фонов режим.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Има ли безплатен пробен период?</h4>
-                                <p>Да! Предлагаме 7 дни безплатен пробен период без нужда от кредитна карта. Можете да тествате всички функции без ограничения.</p>
+                                <p>Да! Предлагаме 7 дни безплатен пробен период без нужда от кредитна карта. Можете да
+                                    тествате всички функции без ограничения.</p>
                             </div>
                         </div>
                     </div>
@@ -2203,15 +2552,19 @@
                         <div class="help-category-content">
                             <div class="help-item">
                                 <h4>Как да добавя разходи?</h4>
-                                <p>Можете да добавяте разходи ръчно или да сканирате разписки с QR Scanner за автоматично въвеждане. Всички данни са сигурни и криптирани.</p>
+                                <p>Можете да добавяте разходи ръчно или да сканирате разписки с QR Scanner за
+                                    автоматично въвеждане. Всички данни са сигурни и криптирани.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Как работи AI анализаторът?</h4>
-                                <p>AI анализаторът анализира вашите финансови навици и разпознава модели в разходите. Предлага персонализирани препоръки за спестяване и оптимизация на бюджета.</p>
+                                <p>AI анализаторът анализира вашите финансови навици и разпознава модели в разходите.
+                                    Предлага персонализирани препоръки за спестяване и оптимизация на бюджета.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Какво е финансовото здраве?</h4>
-                                <p>Финансовото здраве е индекс, който оценява общото състояние на вашите финанси. Включва спестявания, дългове, разходи и доходи. Получавате персонализирани препоръки за подобряване.</p>
+                                <p>Финансовото здраве е индекс, който оценява общото състояние на вашите финанси.
+                                    Включва спестявания, дългове, разходи и доходи. Получавате персонализирани препоръки
+                                    за подобряване.</p>
                             </div>
                         </div>
                     </div>
@@ -2225,11 +2578,14 @@
                         <div class="help-category-content">
                             <div class="help-item">
                                 <h4>Данните ми са ли сигурни?</h4>
-                                <p>Абсолютно! Използваме професионално ниво на криптиране (256-bit SSL) и не споделяме вашите данни с трети страни. Всички данни се съхраняват локално на вашето устройство и в криптирани сървъри.</p>
+                                <p>Абсолютно! Използваме професионално ниво на криптиране (256-bit SSL) и не споделяме
+                                    вашите данни с трети страни. Всички данни се съхраняват локално на вашето устройство
+                                    и в криптирани сървъри.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Какво се случва с данните ми при изтриване на акаунта?</h4>
-                                <p>При изтриване на акаунта всички ваши данни се изтриват перманентно в рамките на 30 дни. Не запазваме резервни копия след този период.</p>
+                                <p>При изтриване на акаунта всички ваши данни се изтриват перманентно в рамките на 30
+                                    дни. Не запазваме резервни копия след този период.</p>
                             </div>
                         </div>
                     </div>
@@ -2243,15 +2599,18 @@
                         <div class="help-category-content">
                             <div class="help-item">
                                 <h4>На кои устройства работи FinTrack?</h4>
-                                <p>FinTrack работи на iOS (iPhone, iPad) и Android устройства. Синхронизацията между устройства е автоматична и в реално време.</p>
+                                <p>FinTrack работи на iOS (iPhone, iPad) и Android устройства. Синхронизацията между
+                                    устройства е автоматична и в реално време.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Изисква ли се интернет връзка?</h4>
-                                <p>За първоначална синхронизация и AI анализ е необходима интернет връзка. Можете да добавяте разходи офлайн, които ще се синхронизират автоматично при връзка.</p>
+                                <p>За първоначална синхронизация и AI анализ е необходима интернет връзка. Можете да
+                                    добавяте разходи офлайн, които ще се синхронизират автоматично при връзка.</p>
                             </div>
                             <div class="help-item">
                                 <h4>Как да докладвам проблем?</h4>
-                                <p>Можете да ни пишете на fintrackk@gmail.com или да използвате формата за обратна връзка в приложението. Отговаряме в рамките на 24 часа.</p>
+                                <p>Можете да ни пишете на fintrackk@gmail.com или да използвате формата за обратна
+                                    връзка в приложението. Отговаряме в рамките на 24 часа.</p>
                             </div>
                         </div>
                     </div>
@@ -2262,7 +2621,8 @@
                         <i class="fas fa-envelope"></i>
                         <h3>Не намерихте отговора?</h3>
                         <p>Свържете се с нашия екип за поддръжка</p>
-                        <a href="#" onclick="closeHelpCenter(); openContactModal(); return false;" class="help-contact-btn">
+                        <a href="#" onclick="closeHelpCenter(); openContactModal(); return false;"
+                            class="help-contact-btn">
                             Свържете се с нас
                         </a>
                     </div>
@@ -2278,7 +2638,7 @@
             <button class="contact-close" onclick="closeContactModal()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="contact-header">
                 <h2 class="contact-title">
                     <i class="fas fa-envelope"></i>
@@ -2296,13 +2656,14 @@
                         </label>
                         <input type="text" id="contactName" name="name" required placeholder="Вашето име">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="contactEmail">
                             <i class="fas fa-envelope"></i>
                             Email <span class="required">*</span>
                         </label>
-                        <input type="email" id="contactEmail" name="email" required placeholder="your.email@example.com">
+                        <input type="email" id="contactEmail" name="email" required
+                            placeholder="your.email@example.com">
                     </div>
                 </div>
 
@@ -2326,13 +2687,15 @@
                         <i class="fas fa-comment-alt"></i>
                         Съобщение <span class="required">*</span>
                     </label>
-                    <textarea id="contactMessage" name="message" rows="6" required placeholder="Напишете вашето съобщение тук..."></textarea>
+                    <textarea id="contactMessage" name="message" rows="6" required
+                        placeholder="Напишете вашето съобщение тук..."></textarea>
                 </div>
 
                 <div class="form-group checkbox-group">
                     <label class="checkbox-label">
                         <input type="checkbox" name="privacy" required>
-                        <span>Съгласен съм с <a href="#" onclick="openPrivacyModal(); return false;">Политиката за поверителност</a> <span class="required">*</span></span>
+                        <span>Съгласен съм с <a href="#" onclick="openPrivacyModal(); return false;">Политиката за
+                                поверителност</a> <span class="required">*</span></span>
                     </label>
                 </div>
 
@@ -2368,7 +2731,7 @@
             <button class="terms-close" onclick="closeTermsModal()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="terms-header">
                 <h2 class="terms-title">
                     <i class="fas fa-file-contract"></i>
@@ -2380,13 +2743,17 @@
             <div class="terms-content">
                 <div class="terms-section">
                     <h3>1. Общи положения</h3>
-                    <p>Добре дошли в FinTrack! Тези Условия за ползване ("Условия") уреждат достъпа ви до и използването на мобилното приложение FinTrack и свързаните с него услуги (колективно "Услугата").</p>
-                    <p>С изтеглянето, инсталирането или използването на FinTrack, вие приемате и се съгласявате да бъдете обвързани с тези Условия. Ако не сте съгласни с някоя част от Условията, моля не използвайте Услугата.</p>
+                    <p>Добре дошли в FinTrack! Тези Условия за ползване ("Условия") уреждат достъпа ви до и използването
+                        на мобилното приложение FinTrack и свързаните с него услуги (колективно "Услугата").</p>
+                    <p>С изтеглянето, инсталирането или използването на FinTrack, вие приемате и се съгласявате да
+                        бъдете обвързани с тези Условия. Ако не сте съгласни с някоя част от Условията, моля не
+                        използвайте Услугата.</p>
                 </div>
 
                 <div class="terms-section">
                     <h3>2. Описание на услугата</h3>
-                    <p>FinTrack е интелигентна система за управление на лични финанси и бюджетиране, която предоставя:</p>
+                    <p>FinTrack е интелигентна система за управление на лични финанси и бюджетиране, която предоставя:
+                    </p>
                     <ul>
                         <li>Автоматизирано следене на разходи и приходи</li>
                         <li>AI-базирана финансова аналитика и препоръки</li>
@@ -2399,31 +2766,38 @@
 
                 <div class="terms-section">
                     <h3>3. Регистрация и акаунт</h3>
-                    <p>За да използвате пълната функционалност на FinTrack, трябва да създадете акаунт. При регистрация се задължавате да:</p>
+                    <p>За да използвате пълната функционалност на FinTrack, трябва да създадете акаунт. При регистрация
+                        се задължавате да:</p>
                     <ul>
                         <li>Предоставите точна и актуална информация</li>
                         <li>Пазите поверителността на вашата парола</li>
                         <li>Уведомите ни незабавно при неоторизиран достъп до акаунта ви</li>
                         <li>Носите отговорност за всички дейности, извършени чрез вашия акаунт</li>
                     </ul>
-                    <p>Запазваме си правото да прекратим или ограничим достъпа до акаунти, които нарушават тези Условия.</p>
+                    <p>Запазваме си правото да прекратим или ограничим достъпа до акаунти, които нарушават тези Условия.
+                    </p>
                 </div>
 
                 <div class="terms-section">
                     <h3>4. Поверителност на данните</h3>
-                    <p>Вашата поверителност е изключително важна за нас. Обработката на лични данни се извършва в съответствие с нашата Политика за поверителност и приложимото законодателство за защита на данните, включително GDPR.</p>
+                    <p>Вашата поверителност е изключително важна за нас. Обработката на лични данни се извършва в
+                        съответствие с нашата Политика за поверителност и приложимото законодателство за защита на
+                        данните, включително GDPR.</p>
                     <p>Ключови принципи:</p>
                     <ul>
                         <li>Използваме 256-битово SSL криптиране за всички данни</li>
                         <li>Финансовите ви данни се съхраняват локално на устройството и в криптирани сървъри</li>
-                        <li>Никога не продаваме или споделяме вашите лични данни с трети страни за маркетингови цели</li>
+                        <li>Никога не продаваме или споделяме вашите лични данни с трети страни за маркетингови цели
+                        </li>
                         <li>Имате право да поискате изтриване на всички ваши данни по всяко време</li>
                     </ul>
                 </div>
 
                 <div class="terms-section">
                     <h3>5. Интелектуална собственост</h3>
-                    <p>Всички права върху интелектуалната собственост, свързани с FinTrack, включително, но не само, софтуер, дизайн, лога, търговски марки и съдържание, принадлежат изключително на FinTrack или нашите лицензодатели.</p>
+                    <p>Всички права върху интелектуалната собственост, свързани с FinTrack, включително, но не само,
+                        софтуер, дизайн, лога, търговски марки и съдържание, принадлежат изключително на FinTrack или
+                        нашите лицензодатели.</p>
                     <p>Нямате право да:</p>
                     <ul>
                         <li>Копирате, модифицирате или разпространявате приложението</li>
@@ -2447,7 +2821,8 @@
 
                 <div class="terms-section">
                     <h3>7. Ограничение на отговорността</h3>
-                    <p>FinTrack се предоставя "както е" и "както е наличен". Не гарантираме, че Услугата ще бъде непрекъсната, сигурна или без грешки.</p>
+                    <p>FinTrack се предоставя "както е" и "както е наличен". Не гарантираме, че Услугата ще бъде
+                        непрекъсната, сигурна или без грешки.</p>
                     <p>FinTrack не носи отговорност за:</p>
                     <ul>
                         <li>Косвени, случайни или последващи щети</li>
@@ -2455,23 +2830,30 @@
                         <li>Финансови решения, взети въз основа на информация от приложението</li>
                         <li>Действия на трети страни</li>
                     </ul>
-                    <p><strong>Важно:</strong> FinTrack не предоставя финансови съвети. Информацията в приложението е само за информационни цели и не трябва да се счита за професионален финансов съвет.</p>
+                    <p><strong>Важно:</strong> FinTrack не предоставя финансови съвети. Информацията в приложението е
+                        само за информационни цели и не трябва да се счита за професионален финансов съвет.</p>
                 </div>
 
                 <div class="terms-section">
                     <h3>8. Промени в условията</h3>
-                    <p>Запазваме си правото да актуализираме тези Условия по всяко време. При съществени промени ще ви уведомим чрез приложението или email. Продължаването на използването на FinTrack след такива промени означава съгласие с новите Условия.</p>
+                    <p>Запазваме си правото да актуализираме тези Условия по всяко време. При съществени промени ще ви
+                        уведомим чрез приложението или email. Продължаването на използването на FinTrack след такива
+                        промени означава съгласие с новите Условия.</p>
                 </div>
 
                 <div class="terms-section">
                     <h3>9. Прекратяване</h3>
-                    <p>Можете да прекратите използването на FinTrack по всяко време, като изтриете акаунта си. Ние също можем да прекратим или ограничим достъпа ви при нарушение на тези Условия или по други причини по наше усмотрение.</p>
-                    <p>При прекратяване всички ваши данни ще бъдат изтрити в съответствие с нашата Политика за поверителност.</p>
+                    <p>Можете да прекратите използването на FinTrack по всяко време, като изтриете акаунта си. Ние също
+                        можем да прекратим или ограничим достъпа ви при нарушение на тези Условия или по други причини
+                        по наше усмотрение.</p>
+                    <p>При прекратяване всички ваши данни ще бъдат изтрити в съответствие с нашата Политика за
+                        поверителност.</p>
                 </div>
 
                 <div class="terms-section">
                     <h3>10. Приложимо право</h3>
-                    <p>Тези Условия се регулират от законодателството на Република България. Всички спорове ще бъдат разрешавани от компетентните български съдилища.</p>
+                    <p>Тези Условия се регулират от законодателството на Република България. Всички спорове ще бъдат
+                        разрешавани от компетентните български съдилища.</p>
                 </div>
 
                 <div class="terms-section">
@@ -2484,7 +2866,8 @@
                 </div>
 
                 <div class="terms-footer-note">
-                    <p><i class="fas fa-info-circle"></i> С използването на FinTrack потвърждавате, че сте прочели, разбрали и приемате тези Условия за ползване.</p>
+                    <p><i class="fas fa-info-circle"></i> С използването на FinTrack потвърждавате, че сте прочели,
+                        разбрали и приемате тези Условия за ползване.</p>
                 </div>
             </div>
         </div>
@@ -2497,7 +2880,7 @@
             <button class="privacy-close" onclick="closePrivacyModal()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="privacy-header">
                 <h2 class="privacy-title">
                     <i class="fas fa-shield-alt"></i>
@@ -2508,13 +2891,15 @@
 
             <div class="privacy-content">
                 <div class="privacy-intro">
-                    <p>В FinTrack се ангажираме да защитаваме вашата поверителност и лични данни. Тази Политика за поверителност описва как събираме, използваме, съхраняваме и защитаваме вашата информация при използване на нашето мобилно приложение и услуги.</p>
+                    <p>В FinTrack се ангажираме да защитаваме вашата поверителност и лични данни. Тази Политика за
+                        поверителност описва как събираме, използваме, съхраняваме и защитаваме вашата информация при
+                        използване на нашето мобилно приложение и услуги.</p>
                 </div>
 
                 <div class="privacy-section">
                     <h3><i class="fas fa-database"></i> 1. Какви данни събираме</h3>
                     <p>Събираме следните категории данни:</p>
-                    
+
                     <div class="privacy-subsection">
                         <h4>Лични данни, предоставени от вас:</h4>
                         <ul>
@@ -2549,9 +2934,12 @@
                     <h3><i class="fas fa-cogs"></i> 2. Как използваме вашите данни</h3>
                     <p>Използваме събраните данни за:</p>
                     <ul>
-                        <li><strong>Предоставяне на услугата:</strong> Управление на вашия акаунт и персонализиране на функционалността</li>
-                        <li><strong>AI анализ:</strong> Генериране на персонализирани финансови препоръки и прогнози</li>
-                        <li><strong>Подобряване на приложението:</strong> Анализ на използването за оптимизация на потребителското изживяване</li>
+                        <li><strong>Предоставяне на услугата:</strong> Управление на вашия акаунт и персонализиране на
+                            функционалността</li>
+                        <li><strong>AI анализ:</strong> Генериране на персонализирани финансови препоръки и прогнози
+                        </li>
+                        <li><strong>Подобряване на приложението:</strong> Анализ на използването за оптимизация на
+                            потребителското изживяване</li>
                         <li><strong>Комуникация:</strong> Изпращане на важни известия и актуализации</li>
                         <li><strong>Поддръжка:</strong> Отговор на вашите запитвания и решаване на проблеми</li>
                         <li><strong>Сигурност:</strong> Защита от измами и неоторизиран достъп</li>
@@ -2598,7 +2986,8 @@
                     <p><strong>Ние НЕ продаваме вашите лични данни.</strong></p>
                     <p>Споделяме данни само в следните случаи:</p>
                     <ul>
-                        <li><strong>Доставчици на услуги:</strong> Технически партньори, които ни помагат да предоставяме услугата (хостинг, анализи)</li>
+                        <li><strong>Доставчици на услуги:</strong> Технически партньори, които ни помагат да
+                            предоставяме услугата (хостинг, анализи)</li>
                         <li><strong>Законови изисквания:</strong> При искане от компетентни органи съгласно закона</li>
                         <li><strong>С вашето съгласие:</strong> При изричното ви разрешение за конкретни цели</li>
                     </ul>
@@ -2633,7 +3022,8 @@
                         </div>
                         <div class="rights-item">
                             <i class="fas fa-download"></i>
-                            <span><strong>Право на преносимост</strong> - да получите данните си в машинночетим формат</span>
+                            <span><strong>Право на преносимост</strong> - да получите данните си в машинночетим
+                                формат</span>
                         </div>
                         <div class="rights-item">
                             <i class="fas fa-hand-paper"></i>
@@ -2660,12 +3050,15 @@
 
                 <div class="privacy-section">
                     <h3><i class="fas fa-child"></i> 8. Деца</h3>
-                    <p>FinTrack не е предназначен за деца под 16 години. Не събираме съзнателно данни от деца. Ако разберем, че сме събрали данни от дете под 16 години, ще ги изтрием незабавно.</p>
+                    <p>FinTrack не е предназначен за деца под 16 години. Не събираме съзнателно данни от деца. Ако
+                        разберем, че сме събрали данни от дете под 16 години, ще ги изтрием незабавно.</p>
                 </div>
 
                 <div class="privacy-section">
                     <h3><i class="fas fa-globe"></i> 9. Международни трансфери</h3>
-                    <p>Вашите данни се съхраняват предимно в Европейския съюз. При необходимост от трансфер извън ЕС, осигуряваме адекватно ниво на защита чрез стандартни договорни клаузи или други одобрени механизми.</p>
+                    <p>Вашите данни се съхраняват предимно в Европейския съюз. При необходимост от трансфер извън ЕС,
+                        осигуряваме адекватно ниво на защита чрез стандартни договорни клаузи или други одобрени
+                        механизми.</p>
                 </div>
 
                 <div class="privacy-section">
@@ -2700,7 +3093,8 @@
                 </div>
 
                 <div class="privacy-footer-note">
-                    <p><i class="fas fa-shield-alt"></i> Вашата поверителност е наш приоритет. Ако имате въпроси или притеснения, не се колебайте да се свържете с нас.</p>
+                    <p><i class="fas fa-shield-alt"></i> Вашата поверителност е наш приоритет. Ако имате въпроси или
+                        притеснения, не се колебайте да се свържете с нас.</p>
                 </div>
             </div>
         </div>
@@ -2708,7 +3102,7 @@
 
     <!-- Lenis Scroll JS -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    
+
     <!-- JavaScript - Deferred -->
     <!-- Marketing Overlay - Savings Message -->
     <div id="marketingOverlay" class="marketing-overlay">
@@ -2721,8 +3115,8 @@
             </div>
             <h3 class="marketing-title">Знаеш ли, че...</h3>
             <p class="marketing-message">
-                средно потребителите ни спестяват 
-                <span class="marketing-highlight">15%</span> 
+                средно потребителите ни спестяват
+                <span class="marketing-highlight">15%</span>
                 още през първия месец?
             </p>
             <button class="marketing-cta" onclick="handleMarketingCTA()">
@@ -2754,7 +3148,7 @@
         });
     </script>
     <script src="script.js" defer></script>
-    
+
     <!-- FinTrack Analytics Tracking - Async -->
     <script>
         // Configure Analytics API URL - Connected to Railway Backend via Custom Domain
@@ -2824,4 +3218,5 @@
     }
     </script>
 </body>
+
 </html>
