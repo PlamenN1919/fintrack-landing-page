@@ -342,6 +342,17 @@
             // Disable form
             setLoading(true);
             hideError();
+
+            // Local preview bypass
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                if (password === 'admin123' || password === 'admin') {
+                    btnText.textContent = 'Успешен вход (Локално)!';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 500);
+                    return;
+                }
+            }
             
             try {
                 const response = await fetch(`${API_URL}/auth/login`, {

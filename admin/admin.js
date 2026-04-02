@@ -12,6 +12,7 @@ let charts = {};
 let socket = null;
 let currentFilter = 'all';
 let statsRefreshInterval = null;
+let globalDays = 30;
 
 // ===================================
 // INITIALIZATION
@@ -34,8 +35,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Connect WebSocket for real-time updates
     connectWebSocket();
     
-    // Refresh stats every 30 seconds
-    statsRefreshInterval = setInterval(loadSummaryStats, 30000);
+    // Refresh stats every 5 minutes
+    statsRefreshInterval = setInterval(loadSummaryStats, 300000);
+    
+    // Initialize Theme
+    initTheme();
+    
+    // Load available pages for heatmap
+    populateHeatmapPages();
     
     console.log('✅ Dashboard initialized');
 });
@@ -45,6 +52,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ===================================
 
 async function checkAuth() {
+    // Bypass auth check when running locally to allow UI preview
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('Local Preview Mode: Authentication bypassed');
+        return;
+    }
+
     try {
         const response = await fetch(`${API_URL}/auth/check`, {
             credentials: 'include'
@@ -110,7 +123,7 @@ async function loadSummaryStats() {
         document.getElementById('visits24h').textContent = stats.visits_24h || 0;
         document.getElementById('clicks24h').textContent = stats.clicks_24h || 0;
         document.getElementById('activeUsers').textContent = stats.active_users || 0;
-        document.getElementById('conversionRate').textContent = `${stats.conversion_rate || 0}%`;
+        document.getElementById('conversionRate').textContent = `${((stats.clicks_24h || 0) / Math.max(stats.visits_24h || 1, 1) * 100).toFixed(1)}%`;
         
         // Calculate trends (placeholder - would need historical data)
         updateTrend('visitsTrend', stats.visits_24h, stats.visits_7d);
@@ -127,7 +140,7 @@ async function loadSummaryStats() {
 
 async function loadAvgTimeOnPage() {
     try {
-        const response = await fetch(`${API_URL}/stats/time-on-page?days=30`, {
+        const response = await fetch(`${API_URL}/stats/time-on-page?days=${globalDays}`, {
             credentials: 'include'
         });
         
@@ -201,7 +214,7 @@ async function loadChartData() {
 
 async function loadDeviceCharts() {
     try {
-        const response = await fetch(`${API_URL}/stats/devices?days=30`, {
+        const response = await fetch(`${API_URL}/stats/devices?days=${globalDays}`, {
             credentials: 'include'
         });
         
@@ -578,7 +591,7 @@ function createBrowsersChart(data) {
 
 async function loadGeographicChart() {
     try {
-        const response = await fetch(`${API_URL}/stats/geographic?days=30&limit=15`, {
+        const response = await fetch(`${API_URL}/stats/geographic?days=${globalDays}&limit=15`, {
             credentials: 'include'
         });
         
@@ -671,7 +684,7 @@ function createGeoChart(data) {
 
 async function loadConversionFunnel() {
     try {
-        const response = await fetch(`${API_URL}/stats/funnel?days=30`, {
+        const response = await fetch(`${API_URL}/stats/funnel?days=${globalDays}`, {
             credentials: 'include'
         });
         
@@ -780,8 +793,8 @@ async function loadHeatmap(pageUrl = null) {
         `;
         
         const url = pageUrl 
-            ? `${API_URL}/stats/heatmap?page_url=${encodeURIComponent(pageUrl)}&days=7`
-            : `${API_URL}/stats/heatmap?days=7`;
+            ? `${API_URL}/stats/heatmap?page_url=${encodeURIComponent(pageUrl)}&days=${globalDays}`
+            : `${API_URL}/stats/heatmap?days=${globalDays}`;
         
         const response = await fetch(url, {
             credentials: 'include'
@@ -1065,9 +1078,17 @@ function connectWebSocket() {
     }
 }
 
+let statsDebounceTimer = null;
+
 function handleNewEvent(type, data) {
-    // Refresh stats
-    loadSummaryStats();
+    // Refresh stats with debounce (max once every 5 секунди)
+    // Това предотвратява спамене на API-то, ако дойдат 100 събития наведнъж!
+    if (!statsDebounceTimer) {
+        statsDebounceTimer = setTimeout(() => {
+            loadSummaryStats();
+            statsDebounceTimer = null;
+        }, 5000);
+    }
     
     // Add event to table if visible
     if (currentFilter === 'all' || currentFilter === `${type}s`) {
@@ -1096,6 +1117,16 @@ function createEventRow(type, data) {
         ? (data.referrer || 'Direct')
         : (data.button_text || data.button_id);
     
+    // Device icon
+    let deviceIcon = 'fa-question';
+    if (data.device_type === 'mobile') deviceIcon = 'fa-mobile-alt';
+    else if (data.device_type === 'tablet') deviceIcon = 'fa-tablet-alt';
+    else if (data.device_type === 'desktop') deviceIcon = 'fa-desktop';
+    
+    const deviceInfo = data.device_type 
+        ? `<i class="fas ${deviceIcon}"></i> ${data.os_name || ''}`
+        : '-';
+    
     row.innerHTML = `
         <td>
             <span class="event-type-badge ${type}">
@@ -1103,8 +1134,9 @@ function createEventRow(type, data) {
             </span>
         </td>
         <td>${escapeHtml(eventDetails)}</td>
+        <td>${deviceInfo}</td>
         <td class="event-url">${escapeHtml(data.page_url || '')}</td>
-        <td class="event-time">${formatTime(data.timestamp)}</td>
+        <td class="event-time">${formatTime(data.timestamp || new Date())}</td>
     `;
     
     return row;
@@ -1197,14 +1229,14 @@ function closeExportModal() {
     modal.classList.remove('active');
 }
 
-async function executeExport() {
+async function executeExport(event) {
     const type = document.getElementById('exportType').value;
     const days = document.getElementById('exportDays').value;
     const format = document.getElementById('exportFormat').value;
     
     try {
         // Show loading
-        const btn = event.target;
+        const btn = event ? event.currentTarget : document.getElementById('exportBtn');
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Експортиране...';
         btn.disabled = true;
@@ -1239,4 +1271,85 @@ window.addEventListener('beforeunload', () => {
     if (socket) socket.disconnect();
     if (statsRefreshInterval) clearInterval(statsRefreshInterval);
 });
+
+// ===================================
+// ADDITIONAL FEATURES
+// ===================================
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        document.body.classList.remove('light-theme');
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+}
+
+function toggleTheme() {
+    const isLight = document.body.classList.toggle('light-theme');
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    
+    if (isLight) {
+        localStorage.setItem('theme', 'light');
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        localStorage.setItem('theme', 'dark');
+        if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+}
+
+function updateGlobalDateRange() {
+    const select = document.getElementById('globalDateFilter');
+    if (!select) return;
+    
+    globalDays = parseInt(select.value, 10);
+    
+    // Reload components relying on the date range
+    initDashboard();
+}
+
+async function populateHeatmapPages() {
+    try {
+        const response = await fetch(`${API_URL}/events/recent?limit=100`, {
+            credentials: 'include'
+        });
+        
+        if (!response.ok) return;
+        const events = await response.json();
+        
+        const select = document.getElementById('heatmapPageSelect');
+        if (!select) return;
+        
+        const urls = new Set();
+        events.forEach(e => {
+            if (e.page_url) {
+                // Ensure URL is just the path to keep it clean
+                try {
+                    const parsedUrl = new URL(e.page_url);
+                    urls.add(parsedUrl.pathname);
+                } catch {
+                    urls.add(e.page_url); // Fallback if invalid URL parsing
+                }
+            }
+        });
+        
+        const currentVal = select.value;
+        select.innerHTML = '<option value="">Всички страници</option>';
+        
+        urls.forEach(url => {
+            const option = document.createElement('option');
+            option.value = url;
+            option.textContent = url;
+            select.appendChild(option);
+        });
+        
+        select.value = currentVal;
+    } catch (error) {
+        console.error('Error populating heatmap pages:', error);
+    }
+}
 

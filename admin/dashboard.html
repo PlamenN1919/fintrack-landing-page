@@ -79,6 +79,14 @@
                     </p>
                 </div>
                 <div class="header-right">
+                    <select id="globalDateFilter" class="form-control" style="width: auto; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: var(--radius-md); margin-right: 12px;" onchange="updateGlobalDateRange()">
+                        <option value="7">Последни 7 дни</option>
+                        <option value="30" selected>Последни 30 дни</option>
+                        <option value="90">Последни 90 дни</option>
+                    </select>
+                    <button id="themeToggleBtn" class="btn btn-secondary" style="padding: 8px 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); margin-right: 12px;" onclick="toggleTheme()">
+                        <i class="fas fa-sun"></i>
+                    </button>
                     <div class="realtime-indicator">
                         <span class="realtime-dot"></span>
                         <span>Real-time</span>
@@ -383,13 +391,12 @@
                     <label>Формат</label>
                     <select id="exportFormat" class="form-control">
                         <option value="csv">CSV</option>
-                        <option value="excel" disabled>Excel (скоро)</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeExportModal()">Отказ</button>
-                <button class="btn btn-primary" onclick="executeExport()">
+                <button class="btn btn-primary" id="exportBtn" onclick="executeExport(event)">
                     <i class="fas fa-download"></i> Експорт
                 </button>
             </div>
