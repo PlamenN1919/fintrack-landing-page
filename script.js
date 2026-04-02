@@ -57,7 +57,9 @@ window.addEventListener('load', function() {
         setTimeout(() => {
             if (loader) {
                 loader.classList.add('loaded');
+                loader.style.pointerEvents = 'none'; // CRITICAL: Stop blocking touches
                 body.classList.add('loaded');
+                body.style.overflow = ''; // Ensure body can scroll again
                 
                 // Remove loader from DOM after animation completes
                 setTimeout(() => {
@@ -75,7 +77,9 @@ setTimeout(() => {
     const loader = document.getElementById('page-loader');
     if (loader && !loader.classList.contains('loaded')) {
         loader.classList.add('loaded');
+        loader.style.pointerEvents = 'none'; // CRITICAL: Stop blocking touches
         document.body.classList.add('loaded');
+        document.body.style.overflow = ''; // Ensure body can scroll again
         setTimeout(() => {
             if (loader.parentNode) {
                 loader.remove();
