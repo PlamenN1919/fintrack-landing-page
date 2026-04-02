@@ -15317,10 +15317,20 @@ body.is-scrolling {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto 80px;
     position: relative;
     z-index: 1;
+}
+
+.steps-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .steps-grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
 }
 
 /* Step Card */
