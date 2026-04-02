@@ -92,61 +92,6 @@ setTimeout(() => {
 // PERFORMANCE OPTIMIZATIONS
 // ===================================
 
-// Lazy load Spline 3D viewer for better LCP
-let splineLoaded = false;
-function loadSpline3D() {
-    if (splineLoaded) return;
-    
-    const container = document.getElementById('spline-container');
-    if (!container) return;
-    
-    // Load Spline module dynamically
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js';
-    script.onload = () => {
-        // Create spline viewer after module loads
-        setTimeout(() => {
-            const viewer = document.createElement('spline-viewer');
-            viewer.setAttribute('url', 'https://prod.spline.design/Ro5YtAjgAQsnFD3S/scene.splinecode');
-            viewer.setAttribute('loading-anim', 'true');
-            container.appendChild(viewer);
-            container.classList.add('loaded');
-            splineLoaded = true;
-            console.log('🎨 Spline 3D loaded');
-        }, 100);
-    };
-    document.head.appendChild(script);
-}
-
-// Initialize Spline loading with Intersection Observer
-function initSplineLazyLoad() {
-    const container = document.getElementById('spline-container');
-    if (!container) return;
-    
-    // Use Intersection Observer for lazy loading
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    loadSpline3D();
-                    observer.disconnect();
-                }
-            });
-        }, {
-            rootMargin: '100px', // Start loading slightly before visible
-            threshold: 0
-        });
-        observer.observe(container);
-    } else {
-        // Fallback for older browsers
-        loadSpline3D();
-    }
-}
-
-// Start Spline lazy loading on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', initSplineLazyLoad);
-
 // ===================================
 // ENHANCED IMAGE LAZY LOADING
 // ===================================
@@ -351,8 +296,6 @@ const heroTitle = document.querySelector('.brand-title');
 const sections = document.querySelectorAll('.section');
 const featureCards = document.querySelectorAll('.feature-card');
 const scrollIndicator = document.querySelector('.scroll-indicator');
-const splineContainer = document.querySelector('.spline-container');
-const splineViewer = document.querySelector('spline-viewer');
 
 // ===================================
 // SEAMLESS ENTRANCE ANIMATIONS SYSTEM
