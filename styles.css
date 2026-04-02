@@ -16810,6 +16810,11 @@ body.is-scrolling {
     font-family: 'Inter', sans-serif;
     letter-spacing: -5px;
     flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    min-width: 3.2em; /* 4 digits space + letter spacing buffer to avoid jumping */
+    text-align: left;
+    white-space: nowrap;
 }
 
 .stats-list .stat-text {
@@ -16939,7 +16944,7 @@ body.is-scrolling {
 
     .stats-list .stat-item .stat-number-large {
         font-size: 72px;
-        min-width: auto;
+        /* Removed min-width: auto to keep consistent fixed width for animations */
     }
 
     .stats-description {
