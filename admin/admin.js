@@ -1,3 +1,184 @@
+
+// ==========================================
+// SUPABASE LOCAL AGGREGATION MOCK
+// Intercepts all REST API calls and processes raw rows locally from Supabase!
+// ==========================================
+const SUPABASE_URL = 'https://mwqbnufrszmioqbfmdxe.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13cWJudWZyc3ptaW9xYmZtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDI3MDcsImV4cCI6MjA5MDgxODcwN30.jkvcGWlV499Bmxo7TgGqtRoiLcmNsIkYTWP3kR4vPNc';
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+const originalFetch = window.fetch;
+window.fetch = async function(url, options) {
+    if (typeof url !== 'string' || !url.includes('/api/')) {
+        return originalFetch.apply(this, arguments);
+    }
+    
+    // Auth Check
+    if (url.includes('/auth/check')) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            window.location.href = 'index.html';
+            return new Response(JSON.stringify({ authenticated: false }), { status: 401 });
+        }
+        return new Response(JSON.stringify({ authenticated: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+    if (url.includes('/auth/logout')) {
+        await supabase.auth.signOut();
+        window.location.href = 'index.html';
+        return new Response(JSON.stringify({ success: true }), { status: 200 });
+    }
+
+    try {
+        const urlObj = new URL(url);
+        const path = urlObj.pathname;
+        const days = parseInt(urlObj.searchParams.get('days') || '30');
+        const fromDate = new Date();
+        fromDate.setDate(fromDate.getDate() - days);
+        const fromIso = fromDate.toISOString();
+
+        if (path.includes('/stats/summary')) {
+            const l24 = new Date(Date.now() - 24*3600*1000).toISOString();
+            const l7 = new Date(Date.now() - 7*24*3600*1000).toISOString();
+            
+            const [v24, v7, c24, c7, act] = await Promise.all([
+                supabase.from('page_visits').select('*', { count: 'exact', head: true }).gte('created_at', l24),
+                supabase.from('page_visits').select('*', { count: 'exact', head: true }).gte('created_at', l7).lt('created_at', l24),
+                supabase.from('click_events').select('*', { count: 'exact', head: true }).gte('created_at', l24),
+                supabase.from('click_events').select('*', { count: 'exact', head: true }).gte('created_at', l7).lt('created_at', l24),
+                supabase.from('active_sessions').select('*', { count: 'exact', head: true }).gte('last_seen', new Date(Date.now() - 5*60*1000).toISOString())
+            ]);
+            
+            return new Response(JSON.stringify({
+                visits_24h: v24.count || 0,
+                visits_7d: v7.count || 0,
+                clicks_24h: c24.count || 0,
+                clicks_7d: c7.count || 0,
+                active_users: act.count || 0
+            }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+        
+        if (path.includes('/stats/time-on-page')) {
+            const { data } = await supabase.from('page_visits').select('time_on_page').gte('created_at', fromIso).not('time_on_page', 'is', null);
+            const avg = data && data.length ? data.reduce((a, b) => a + (b.time_on_page || 0), 0) / data.length : 0;
+            return new Response(JSON.stringify({ average_seconds: avg }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+        
+        if (path.includes('/stats/chart-data')) {
+            const [visitsData, clicksData] = await Promise.all([
+                supabase.from('page_visits').select('created_at, referrer').gte('created_at', fromIso),
+                supabase.from('click_events').select('button_text, button_id').gte('created_at', fromIso)
+            ]);
+            
+            // grouping visits by day
+            const visitCounts = {};
+            const sourceCounts = {};
+            (visitsData.data || []).forEach(v => {
+                const date = v.created_at.split('T')[0];
+                visitCounts[date] = (visitCounts[date] || 0) + 1;
+                const source = v.referrer || 'Direct';
+                sourceCounts[source] = (sourceCounts[source] || 0) + 1;
+            });
+            const visits_by_day = Object.entries(visitCounts).sort((a,b)=>b[0].localeCompare(a[0])).map(([date, count]) => ({date, count}));
+            const traffic_sources = Object.entries(sourceCounts).map(([source, count]) => ({source, count})).sort((a,b)=>b.count-a.count);
+            
+            const btnCounts = {};
+            (clicksData.data || []).forEach(c => {
+                const name = c.button_text || c.button_id || 'Unknown';
+                btnCounts[name] = (btnCounts[name] || 0) + 1;
+            });
+            const top_buttons = Object.entries(btnCounts).map(([button_text, count]) => ({button_text, count})).sort((a,b)=>b.count-a.count);
+            
+            return new Response(JSON.stringify({ visits_by_day, top_buttons, traffic_sources }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        if (path.includes('/stats/devices')) {
+            const { data } = await supabase.from('page_visits').select('device_type, os_name, browser_name').gte('created_at', fromIso);
+            const dCounts = {}, osCounts = {}, bCounts = {};
+            (data || []).forEach(x => {
+                dCounts[x.device_type||'unknown'] = (dCounts[x.device_type||'unknown']||0) + 1;
+                osCounts[x.os_name||'unknown'] = (osCounts[x.os_name||'unknown']||0) + 1;
+                bCounts[x.browser_name||'unknown'] = (bCounts[x.browser_name||'unknown']||0) + 1;
+            });
+            return new Response(JSON.stringify({
+                devices: Object.entries(dCounts).map(([device, count]) => ({type: device, count})),
+                operating_systems: Object.entries(osCounts).map(([os, count]) => ({os, count})),
+                browsers: Object.entries(bCounts).map(([browser, count]) => ({browser, count}))
+            }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        if (path.includes('/stats/geographic')) {
+            const { data } = await supabase.from('page_visits').select('country_code').gte('created_at', fromIso);
+            const counts = {};
+            (data || []).forEach(x => counts[x.country_code||'unknown'] = (counts[x.country_code||'unknown']||0) + 1);
+            return new Response(JSON.stringify({
+                countries: Object.entries(counts).map(([country_code, count]) => ({country_code, count}))
+            }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        if (path.includes('/stats/funnel')) {
+            const { data } = await supabase.from('conversion_events').select('event_name, event_order').gte('created_at', fromIso);
+            const counts = {};
+            (data || []).forEach(x => {
+                const name = `${x.event_order}. ${x.event_name}`;
+                counts[name] = (counts[name]||0) + 1;
+            });
+            const steps = Object.entries(counts).map(([name, count]) => ({name, count})).sort((a,b)=>a.name.localeCompare(b.name));
+            return new Response(JSON.stringify({ funnel: steps }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        if (path.includes('/events/recent')) {
+            const { data: v } = await supabase.from('page_visits').select('*').order('created_at', { ascending: false }).limit(20);
+            const { data: c } = await supabase.from('click_events').select('*').order('created_at', { ascending: false }).limit(20);
+            let combined = [...(v||[]).map(x=>({...x, type:'page_visit'})), ...(c||[]).map(x=>({...x, type:'click'}))];
+            combined.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+            return new Response(JSON.stringify({ events: combined.slice(0, 20) }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        if (path.includes('/stats/heatmap')) {
+            const { data } = await supabase.from('click_heatmap').select('*').gte('created_at', fromIso);
+            // Reformat heatmap points
+            const points = (data || []).map(row => ({
+                x: row.x_position,
+                y: row.y_position,
+                value: 1,
+                page_url: row.page_url
+            }));
+            return new Response(JSON.stringify({ points }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
+        
+    } catch (e) {
+        console.error('Mock fetch error:', e);
+    }
+    
+    return new Response(JSON.stringify({}), { status: 200, headers: { 'Content-Type': 'application/json' } });
+};
+
+// Map io() WebSocket calls to Supabase Realtime Channels
+window.io = function() {
+    return {
+        on: (event, cb) => {
+            if (event === 'connect') {
+                setTimeout(cb, 500); // Trigger connect immediately
+            }
+        },
+        emit: () => {},
+        disconnect: () => {}
+    };
+};
+// Trigger real time connections externally via Supabase Channels
+setTimeout(() => {
+    supabase.channel('public:page_visits')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'page_visits' }, payload => {
+            if(window.socket_callbacks && window.socket_callbacks['page_visit']) window.socket_callbacks['page_visit'](payload.new);
+        }).subscribe();
+        
+    supabase.channel('public:click_events')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'click_events' }, payload => {
+            if(window.socket_callbacks && window.socket_callbacks['button_click']) window.socket_callbacks['button_click'](payload.new);
+        }).subscribe();
+}, 2000);
+
+
 /**
  * FinTrack Analytics Admin Dashboard
  * Real-time analytics dashboard with WebSocket support

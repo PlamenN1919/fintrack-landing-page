@@ -7,18 +7,25 @@
     'use strict';
     
     // Configuration
+    const SUPABASE_URL = 'https://mwqbnufrszmioqbfmdxe.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13cWJudWZyc3ptaW9xYmZtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDI3MDcsImV4cCI6MjA5MDgxODcwN30.jkvcGWlV499Bmxo7TgGqtRoiLcmNsIkYTWP3kR4vPNc';
+    
+    // Initialize Supabase client
+    const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+    
+    if (!supabase) {
+        console.warn('Supabase not loaded. Tracking offline.');
+    }
+
     const CONFIG = {
-        // Production: Use environment variable from Vercel
-        // Development: Falls back to localhost
-        apiUrl: window.ANALYTICS_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api'),
         trackVisits: true,
         trackClicks: true,
         gdprEnabled: true,
-        sessionTimeout: 30 * 60 * 1000, // 30 minutes
+        sessionTimeout: 30 * 60 * 1000,
         batchSize: 10,
-        batchTimeout: 5000, // 5 seconds
+        batchTimeout: 5000,
     };
-    
+
     // State
     let sessionId = null;
     let consentGiven = false;
@@ -113,15 +120,107 @@
     }
     
     /**
-     * Send request to API
+     * Send request directly to Supabase PostgREST
      */
     async function sendRequest(endpoint, data) {
+        if (!supabase) return false;
+        
         try {
-            const response = await fetch(`${CONFIG.apiUrl}${endpoint}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            const pseudoIpHash = data.session_id ? 'client-anon-' + data.session_id.substring(0, 16) : 'anonymous';
+            
+            if (endpoint === '/track/visit' || endpoint === '/track/page-visit') {
+                const { error } = await supabase.from('page_visits').insert([{
+                    session_id: data.session_id,
+                    ip_address_hash: pseudoIpHash,
+                    user_agent: navigator.userAgent,
+                    page_url: data.page_url,
+                    referrer: data.referrer || '',
+                    device_type: /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(navigator.userAgent) ? 'mobile' : /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent) ? 'tablet' : 'desktop',
+                    os_name: navigator.userAgent.includes("Win") ? "Windows" : navigator.userAgent.includes("Mac") ? "Mac" : navigator.userAgent.includes("Linux") ? "Linux" : "Unknown",
+                    browser_name: navigator.userAgent.includes("Chrome") ? "Chrome" : navigator.userAgent.includes("Firefox") ? "Firefox" : navigator.userAgent.includes("Safari") ? "Safari" : "Unknown",
+                    screen_width: window.screen.width,
+                    screen_height: window.screen.height,
+                    viewport_width: window.innerWidth,
+                    viewport_height: window.innerHeight,
+                    time_on_page: data.time_on_page || 0,
+                    exit_page: data.exit_page || false
+                }]);
+                if (error) console.error(error);
+                
+            } else if (endpoint === '/track/click') {
+                const { error } = await supabase.from('click_events').insert([{
+                    session_id: data.session_id,
+                    button_id: data.button_id,
+                    button_text: data.button_text,
+                    page_url: data.page_url,
+                    ip_address_hash: pseudoIpHash
+                }]);
+                if (error) console.error(error);
+                
+            } else if (endpoint === '/track/heartbeat') {
+                const { error } = await supabase.from('active_sessions').upsert([{
+                    session_id: data.session_id,
+                    page_url: data.page_url,
+                    last_seen: new Date().toISOString()
+                }], { onConflict: 'session_id' });
+                if (error) console.error(error);
+                
+            } else if (endpoint === '/track/consent') {
+                const { error } = await supabase.from('cookie_consents').insert([{
+                    session_id: data.session_id,
+                    consent_given: data.consent_given,
+                    ip_address_hash: pseudoIpHash
+                }]);
+                if (error) console.error(error);
+                
+            } else if (endpoint === '/track/conversion') {
+                const { error } = await supabase.from('conversion_events').insert([{
+                    session_id: data.session_id,
+                    event_name: data.event_name,
+                    event_order: data.event_order,
+                    page_url: data.page_url,
+                    event_data: typeof data.event_data === 'object' ? JSON.stringify(data.event_data) : data.event_data
+                }]);
+                if (error) console.error(error);
+            }
+            } else if (endpoint === '/track/heatmap') {
+                if (data.clicks && data.clicks.length > 0) {
+                    const heatmapRecords = data.clicks.map(click => ({
+                        session_id: data.session_id,
+                        page_url: click.page_url,
+                        x_position: click.x_position,
+                        y_position: click.y_position,
+                        viewport_width: click.viewport_width,
+                        viewport_height: click.viewport_height,
+                        element_selector: click.element_selector || '',
+                        element_text: click.element_text || ''
+                    }));
+                    const { error } = await supabase.from('click_heatmap').insert(heatmapRecords);
+                    if (error) console.error(error);
+                }
+            }
+            } else if (endpoint === '/track/heatmap') {
+                if (data.clicks && data.clicks.length > 0) {
+                    const heatmapRecords = data.clicks.map(click => ({
+                        session_id: data.session_id,
+                        page_url: click.page_url,
+                        x_position: click.x_position,
+                        y_position: click.y_position,
+                        viewport_width: click.viewport_width,
+                        viewport_height: click.viewport_height,
+                        element_selector: click.element_selector || '',
+                        element_text: click.element_text || ''
+                    }));
+                    const { error } = await supabase.from('click_heatmap').insert(heatmapRecords);
+                    if (error) console.error(error);
+                }
+            }
+            return true;
+        } catch (error) {
+            console.error('Tracking request error:', error);
+            return false;
+        }
+    },
                 body: JSON.stringify({
                     ...data,
                     consent_given: consentGiven
@@ -235,9 +334,9 @@
             time_on_page: timeOnPage
         };
         
-        if (navigator.sendBeacon) {
+        if (// (Beacon disabled for Supabase)
             const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-            navigator.sendBeacon(`${CONFIG.apiUrl}/track/page-exit`, blob);
+            // (Beacon disabled for Supabase)
         } else {
             // Fallback to synchronous XHR
             const xhr = new XMLHttpRequest();

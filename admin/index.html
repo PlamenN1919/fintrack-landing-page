@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrack Analytics - Admin Login</title>
     
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../app/favicon.ico">
     
@@ -260,6 +263,24 @@
         
         <form id="loginForm" class="login-form">
             <div class="form-group">
+                <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i> Имейл
+                </label>
+                <div class="form-input-wrapper">
+                    <i class="fas fa-user-circle form-input-icon"></i>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Въведете вашия имейл"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="password" class="form-label">
                     <i class="fas fa-lock"></i> Парола
                 </label>
@@ -295,87 +316,63 @@
         </div>
     </div>
     
-    <script>
-        // Configuration
-        const API_URL = 'https://api.fintrackwallet.com/api';
+            <script>
+        const SUPABASE_URL = 'https://mwqbnufrszmioqbfmdxe.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13cWJudWZyc3ptaW9xYmZtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDI3MDcsImV4cCI6MjA5MDgxODcwN30.jkvcGWlV499Bmxo7TgGqtRoiLcmNsIkYTWP3kR4vPNc';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         
         // Form elements
         const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const loginBtn = document.getElementById('loginBtn');
         const btnText = document.getElementById('btnText');
         const errorMessage = document.getElementById('errorMessage');
         const errorText = document.getElementById('errorText');
         
-        // Check if already logged in
+        // Check if already logged in via Supabase
         checkAuth();
         
         async function checkAuth() {
             try {
-                const response = await fetch(`${API_URL}/auth/check`, {
-                    credentials: 'include'
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.authenticated) {
-                        // Already logged in, redirect to dashboard
-                        window.location.href = 'dashboard.html';
-                    }
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    window.location.href = 'dashboard.html';
                 }
             } catch (error) {
-                console.log('Not authenticated');
+                console.error('Auth check error', error);
             }
         }
         
-        // Form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const email = emailInput.value.trim();
             const password = passwordInput.value.trim();
             
-            if (!password) {
-                showError('Моля, въведете парола');
+            if (!email || !password) {
+                showError('Моля, въведете имейл и парола');
                 return;
             }
             
             // Disable form
             setLoading(true);
             hideError();
-
-            // Local preview bypass
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                if (password === 'admin123' || password === 'admin') {
-                    btnText.textContent = 'Успешен вход (Локално)!';
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 500);
-                    return;
-                }
-            }
             
             try {
-                const response = await fetch(`${API_URL}/auth/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({ password })
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
                 });
                 
-                const data = await response.json();
-                
-                if (response.ok) {
-                    // Success - redirect to dashboard
+                if (error) {
+                    showError(error.message === 'Invalid login credentials' ? 'Грешен имейл или парола' : error.message);
+                    setLoading(false);
+                } else if (data.session) {
                     btnText.textContent = 'Успешен вход!';
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
                     }, 500);
-                } else {
-                    // Error
-                    showError(data.message || 'Грешна парола');
-                    setLoading(false);
                 }
             } catch (error) {
                 console.error('Login error:', error);
@@ -386,7 +383,6 @@
         
         function setLoading(loading) {
             loginBtn.disabled = loading;
-            
             if (loading) {
                 btnText.innerHTML = '<div class="spinner"></div>';
             } else {
@@ -398,17 +394,18 @@
             errorText.textContent = message;
             errorMessage.classList.add('show');
             passwordInput.classList.add('error');
+            emailInput.classList.add('error');
             passwordInput.focus();
         }
         
         function hideError() {
             errorMessage.classList.remove('show');
             passwordInput.classList.remove('error');
+            emailInput.classList.remove('error');
         }
         
-        // Clear error on input
         passwordInput.addEventListener('input', hideError);
+        emailInput.addEventListener('input', hideError);
     </script>
 </body>
 </html>
-
