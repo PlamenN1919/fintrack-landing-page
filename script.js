@@ -1528,19 +1528,52 @@ function initEnhancedFearFeatures() {
 function scrollToDownload(event) {
     if (event) event.preventDefault();
     const downloadSection = document.getElementById('download');
-    if (downloadSection) {
-        if (typeof lenis !== 'undefined' && lenis) {
-            lenis.scrollTo(downloadSection, {
-                offset: -50,
-                duration: 1.0
-            });
+    if (!downloadSection) return;
+
+    // Track state to avoid overlapping loops
+    let rafId;
+    
+    // A robust scrolling implementation that works regardless of viewport resizing
+    // and dynamic loading content that shifts the page layout on mobile/desktop.
+    const startY = window.scrollY || document.documentElement.scrollTop;
+    const duration = 1200; // 1.2s smooth scroll
+    const startTime = performance.now();
+    
+    // Check if lenis is active
+    const useLenis = typeof lenis !== 'undefined' && lenis;
+    if (useLenis) lenis.stop(); // Temporarily stop lenis hijacking while we manual scroll
+    
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+    function step(currentTime) {
+        const timeElapsed = currentTime - startTime;
+        let progress = Math.min(timeElapsed / duration, 1);
+        progress = easeOutQuart(progress);
+        
+        // Dynamically get the current offset every frame!
+        // This ensures if the page height GROWS, we STILL target the correct bottom pixel.
+        const currentY = window.scrollY || document.documentElement.scrollTop;
+        const rect = downloadSection.getBoundingClientRect();
+        const targetY = currentY + rect.top - 50; // offset -50px
+        
+        // Compute where we should be right now
+        // We interpolate based on the INITIAL startY, so progress goes from 0 to 1
+        const nextY = startY + (targetY - startY) * progress;
+        
+        window.scrollTo(0, nextY);
+
+        if (timeElapsed < duration) {
+            rafId = requestAnimationFrame(step);
         } else {
-            downloadSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
+            // Final safety alignment
+            const finalRect = downloadSection.getBoundingClientRect();
+            window.scrollBy(0, finalRect.top - 50);
+            
+            if (useLenis) lenis.start(); // Resume Lenis
         }
     }
+    
+    rafId = requestAnimationFrame(step);
 }
 
 // Auto-attach scrollToDownload to ALL links that point to #download
@@ -2982,12 +3015,15 @@ let tubelightNav = {
         
         // Set active immediately for better UX
         this.setActiveTab(index);
+
+        if (sectionId === 'download' || sectionId === '#download') return; 
         
         // Use Lenis
         if (typeof lenis !== 'undefined' && lenis) {
             this.isScrolling = true;
             lenis.scrollTo(targetSection, {
                 duration: 1.2,
+                lock: true,
                 onComplete: () => {
                     this.isScrolling = false;
                 }
@@ -3162,6 +3198,9 @@ function initHeroDesktopNav() {
             // If it's a real URL (like story.html), allow normal navigation
             if (targetId && !targetId.startsWith('#')) return;
             
+            // Prevent conflict with scrollToDownload
+            if (targetId === '#download') return;
+            
             e.preventDefault();
             
             // Remove active from all items
@@ -3264,22 +3303,7 @@ function handleMarketingCTA() {
     
     // Wait for close animation to complete, then scroll
     setTimeout(() => {
-        const downloadSection = document.getElementById('download');
-        if (downloadSection) {
-            // Use Lenis Scroll if available
-            if (typeof lenis !== 'undefined' && lenis) {
-                lenis.scrollTo(downloadSection, {
-                    duration: 1.2,
-                    offset: -50
-                });
-            } else {
-                // Fallback to native smooth scroll
-                downloadSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
+scrollToDownload(null);
     }, 400); // Match the exit animation duration
     
     console.log('💰 Marketing CTA clicked - scrolling to download');

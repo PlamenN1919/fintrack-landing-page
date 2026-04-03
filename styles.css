@@ -17418,7 +17418,7 @@ body.is-scrolling {
 }
 
 /* Smooth scroll snap за секциите (optional) */
-@supports (scroll-snap-type: y proximity) {
+/* @supports (scroll-snap-type: y proximity) {
     html {
         scroll-snap-type: y proximity;
     }
@@ -17427,7 +17427,7 @@ body.is-scrolling {
         scroll-snap-align: start;
         scroll-snap-stop: normal;
     }
-}
+} */
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
